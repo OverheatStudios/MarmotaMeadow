@@ -5,6 +5,7 @@ public class MovementScript : MonoBehaviour
 {
     [SerializeField] private GameObject m_camera;
     [SerializeField] private float m_speed = 8.0f;
+    [SerializeField] private Rigidbody m_rigidbody;
 
     void Start()
     {
@@ -22,8 +23,11 @@ public class MovementScript : MonoBehaviour
             movement.x -= 1;
         if (Input.GetKey(KeyCode.D))
             movement.z += 1;
+        
+        
 
         movement = movement.normalized * Time.deltaTime * m_speed;
+        
 
         Vector3 forward = m_camera.transform.forward;
         forward.y = 0;
@@ -32,8 +36,10 @@ public class MovementScript : MonoBehaviour
         Vector3 right = m_camera.transform.right;
         right.y = 0;
         right = right.normalized;
+        
+        m_rigidbody.velocity = forward * movement.x + right * movement.z;
 
-        transform.position += forward * movement.x;
-        transform.position += right * movement.z;
+        //transform.position += forward * movement.x;
+        //transform.position += right * movement.z;
     }
 }

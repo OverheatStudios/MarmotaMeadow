@@ -20,6 +20,6 @@ public class CameraScript : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(pitch, transform.localRotation.eulerAngles.y + mouseDelta.x, 0);
 
-        Mouse.current.WarpCursorPosition(new Vector2(Screen.width, Screen.height) / 2);
+        //Mouse.current.WarpCursorPosition(new Vector2(Screen.width, Screen.height) / 2);
     }
 }
