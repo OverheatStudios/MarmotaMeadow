@@ -11,7 +11,7 @@ public class CameraScript : MonoBehaviour
     {
     }
 
-    void Update()
+    void LateUpdate()
     {
         Vector2 mouseDelta = Mouse.current.delta.ReadValue() * m_sensitivity;
 

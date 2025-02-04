@@ -12,7 +12,7 @@ public class MovementScript : MonoBehaviour
         Assert.IsNotNull(m_camera);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 movement = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
