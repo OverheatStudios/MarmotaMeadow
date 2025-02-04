@@ -1,3 +1,4 @@
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -12,6 +13,8 @@ public class GroundhogScript : MonoBehaviour
     [SerializeField] private DataScriptableObject m_data;
     private State m_state = State.Rising;
     private float m_upTime;
+    private const float MAX_Y = 0.9f;
+    private const float MIN_Y = 0.1f;
 
     void Start()
     {
@@ -25,10 +28,13 @@ public class GroundhogScript : MonoBehaviour
         if (m_state == State.Rising)
         {
             transform.position += m_speed * Time.deltaTime * Vector3.up;
-            if (transform.position.y >= 1)
+            if (transform.position.y >= MAX_Y)
             {
-                transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+                transform.position = new Vector3(transform.position.x, MAX_Y, transform.position.z);
                 m_state = State.Idle;
+            } else if (transform.position.y < MIN_Y)
+            {
+                transform.position = new Vector3(transform.position.x, MIN_Y, transform.position.z);
             }
         }
         else if (m_state == State.Idle)
@@ -42,7 +48,7 @@ public class GroundhogScript : MonoBehaviour
         else
         {
             transform.position += m_speed * Time.deltaTime * Vector3.down;
-            if (transform.position.y <= 0)
+            if (transform.position.y <= MIN_Y)
             {
                 Destroy(gameObject);
             }

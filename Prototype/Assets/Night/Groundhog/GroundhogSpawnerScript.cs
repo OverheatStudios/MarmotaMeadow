@@ -1,14 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class GroundhogSpawnerScript : MonoBehaviour
 {
-    [SerializeField] private GameObject m_prefab;
+    [SerializeField] protected GameObject m_burrowContainer;
     private float m_timeToSpawn = 2;
 
     void Start()
     {
-        Assert.IsNotNull(m_prefab);
+        Assert.IsNotNull(m_burrowContainer);
     }
 
     void Update()
@@ -17,9 +18,18 @@ public class GroundhogSpawnerScript : MonoBehaviour
         if (m_timeToSpawn > 0) return;
 
         m_timeToSpawn = Random.Range(0.5f, 1.5f);
+        TrySpawnGroundhog();
+    }
 
-        Vector3 position = new Vector3(Random.Range(-4, 4), 0, Random.Range(-4, 1));
-        GameObject groundhog = Instantiate(m_prefab);
-        groundhog.transform.position = position + transform.position;
+    void TrySpawnGroundhog()
+    {
+        foreach (Transform child in m_burrowContainer.transform)
+        {
+            BurrowScript burrow = child.gameObject.GetComponent<BurrowScript>();
+            if (!burrow.IsEmpty()) continue;
+
+            burrow.Spawn();
+            return;
+        }
     }
 }
