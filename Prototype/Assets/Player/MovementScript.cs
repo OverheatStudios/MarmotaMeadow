@@ -3,17 +3,28 @@ using UnityEngine.Assertions;
 
 public class MovementScript : MonoBehaviour
 {
+    /// <summary>
+    /// Player camera
+    /// </summary>
     [SerializeField] private GameObject m_camera;
+
+    /// <summary>
+    /// Player movement speed
+    /// </summary>
     [SerializeField] private float m_speed = 8.0f;
+
+    /// <summary>
+    /// Rigid body of the player
+    /// </summary>
     [SerializeField] private Rigidbody m_rigidbody;
 
     void Start()
     {
-        Assert.IsNotNull(m_camera);
     }
 
     void FixedUpdate()
     {
+        // Which direction is player trying to move
         Vector3 movement = Vector2.zero;
         if (Input.GetKey(KeyCode.W))
             movement.x += 1;
@@ -24,11 +35,10 @@ public class MovementScript : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             movement.z += 1;
         
+        // Scale movement vector
+        movement = movement.normalized * (Time.deltaTime * m_speed);
         
-
-        movement = movement.normalized * Time.deltaTime * m_speed;
-        
-
+        // Where is the camera facing
         Vector3 forward = m_camera.transform.forward;
         forward.y = 0;
         forward = forward.normalized;
@@ -37,9 +47,7 @@ public class MovementScript : MonoBehaviour
         right.y = 0;
         right = right.normalized;
         
+        // Move
         m_rigidbody.velocity = forward * movement.x + right * movement.z;
-
-        //transform.position += forward * movement.x;
-        //transform.position += right * movement.z;
     }
 }

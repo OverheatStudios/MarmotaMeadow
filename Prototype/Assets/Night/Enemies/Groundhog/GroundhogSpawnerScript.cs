@@ -4,7 +4,14 @@ using UnityEngine.Assertions;
 
 public class GroundhogSpawnerScript : MonoBehaviour
 {
+    /// <summary>
+    /// Parent object of all burrow objects
+    /// </summary>
     [SerializeField] protected GameObject m_burrowContainer;
+
+    /// <summary>
+    /// Time until we next spawn a groundhog in seconds
+    /// </summary>
     private float m_timeToSpawn = 2;
 
     void Start()
@@ -21,8 +28,12 @@ public class GroundhogSpawnerScript : MonoBehaviour
         TrySpawnGroundhog();
     }
 
+    /// <summary>
+    /// Try and spawn a groundhog in a random empty burrow, fails silently if there was no empty burrows
+    /// </summary>
     void TrySpawnGroundhog()
     {
+        // Find all empty burrows
         List<BurrowScript> emptyBurrows = new List<BurrowScript>();
         foreach (Transform child in m_burrowContainer.transform)
         {
@@ -32,6 +43,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
             emptyBurrows.Add(burrow);
         }
 
+        // Spawn groundhog
         if (emptyBurrows.Count > 0)
         {
             emptyBurrows[Random.Range(0, emptyBurrows.Count)].SpawnGroundhog();
