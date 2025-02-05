@@ -23,13 +23,18 @@ public class GroundhogSpawnerScript : MonoBehaviour
 
     void TrySpawnGroundhog()
     {
+        List<BurrowScript> emptyBurrows = new List<BurrowScript>();
         foreach (Transform child in m_burrowContainer.transform)
         {
             BurrowScript burrow = child.gameObject.GetComponent<BurrowScript>();
-            if (!burrow.IsEmpty()) continue;
+            if (!burrow.HasNoGroundhog()) continue;
 
-            burrow.Spawn();
-            return;
+            emptyBurrows.Add(burrow);
+        }
+
+        if (emptyBurrows.Count > 0)
+        {
+            emptyBurrows[Random.Range(0, emptyBurrows.Count)].SpawnGroundhog();
         }
     }
 }

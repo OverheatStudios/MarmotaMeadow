@@ -19,13 +19,13 @@ public class BurrowScript : MonoBehaviour
         
     }
 
-    public void Spawn()
+    public void SpawnGroundhog()
     {
         m_groundhog = Instantiate(m_groundhogPrefab);
         m_groundhog.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
 
-    public bool IsEmpty()
+    public bool HasNoGroundhog()
     {
         return m_groundhog == null;
     }
