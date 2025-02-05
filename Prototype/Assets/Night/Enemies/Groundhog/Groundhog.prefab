@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6035331214010430183}
   - component: {fileID: 7620796663301623070}
   - component: {fileID: 1792784198960699979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Groundhog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
