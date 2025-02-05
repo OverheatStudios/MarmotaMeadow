@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public class ShootScript : MonoBehaviour
 {
@@ -9,13 +8,11 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private GameObject m_camera;
     [SerializeField] private float m_maxDistance = 100.0f;
     [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private AudioSource m_shootSound;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        Assert.IsNotNull(m_camera);
-        Assert.IsNotNull(m_data);
+
     }
 
     void Update()
@@ -35,13 +32,14 @@ public class ShootScript : MonoBehaviour
 
     void ShootBullet()
     {
+        m_shootSound.Play();
+
         Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, m_maxDistance, m_enemyLayer))
         {
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponent<GroundhogScript>();
-            Assert.IsNotNull(groundhogScript);
             KillGroundhog(groundhogScript);
         }
     }
