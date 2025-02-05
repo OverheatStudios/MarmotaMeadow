@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootScript : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private float m_maxDistance = 100.0f;
     [SerializeField] private DataScriptableObject m_data;
     [SerializeField] private AudioSource m_shootSound;
+    [SerializeField] private Image m_cooldownBar;
+    [SerializeField] private Image m_cooldownBarMask;
 
     void Start()
     {
-
     }
 
     void Update()
@@ -20,8 +22,12 @@ public class ShootScript : MonoBehaviour
         if (m_currentCooldown >= 0)
         {
             m_currentCooldown -= Time.deltaTime;
+            m_cooldownBar.enabled = true;
+            m_cooldownBarMask.fillAmount = (m_currentCooldown / Mathf.Max(m_cooldown, 0));
             return;
         }
+
+        m_cooldownBar.enabled = false;
 
         if (Input.GetMouseButtonDown(0))
         {
