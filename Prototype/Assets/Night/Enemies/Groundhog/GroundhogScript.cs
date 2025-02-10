@@ -1,4 +1,3 @@
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -21,6 +20,11 @@ public class GroundhogScript : MonoBehaviour
     /// </summary>
     [SerializeField] private DataScriptableObject m_data;
 
+    /// <summary>
+    /// Default maximum health, may be changed by night number or other means
+    /// </summary>
+    [SerializeField] private float m_maxHealth = 15;
+
     private State m_state = State.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -28,12 +32,14 @@ public class GroundhogScript : MonoBehaviour
     private float m_upTime;
     private const float MAX_Y = 0.9f;
     private const float MIN_Y = 0.1f;
+    private float m_health;
 
     void Start()
     {
         m_upTime = Random.Range(1.5f, 2.5f);
-        Assert.IsNotNull(m_data);
-        m_data.groundhogsSpawned++;
+        m_data.GroundhogsSpawned++;
+        Assert.IsTrue(m_maxHealth > 0);
+        m_health = m_maxHealth;
     }
 
     void Update()
@@ -69,7 +75,41 @@ public class GroundhogScript : MonoBehaviour
             if (transform.position.y <= MIN_Y)
             {
                 Destroy(gameObject);
+                return;
             }
         }
+    }
+
+    /// <summary>
+    /// Damage the groundhog, killing it if the new health is <= 0
+    /// </summary>
+    /// <param name="damage">Amount to damage by</param>
+    public void Damage(float damage)
+    {
+        m_health -= damage;
+
+        if (m_health <= 0)
+        {
+            m_data.GroundhogsKilled++;
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    /// <summary>
+    /// Set the maximum health of the groundhog, this will modify the health too (damaged if max health lowered, healed if max health increased)
+    /// This may kill the groundhog
+    /// </summary>
+    /// <param name="maxHealth">Max health, must be greater than 0</param>
+    public void SetMaxHealth(float maxHeatlh)
+    {
+        Assert.IsTrue(m_maxHealth > 0);
+        m_maxHealth = maxHeatlh;
+        Damage(m_maxHealth - maxHeatlh); // May heal if the new max health is greater
+    }
+
+    public float GetMaxHealth()
+    {
+        return m_maxHealth;
     }
 }

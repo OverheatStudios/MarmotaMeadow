@@ -74,7 +74,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
         // Spawn groundhog
         if (emptyBurrows.Count > 0)
         {
-            emptyBurrows[Random.Range(0, emptyBurrows.Count)].SpawnGroundhog();
+            emptyBurrows[Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.NightCounter);
         }
     }
 }
