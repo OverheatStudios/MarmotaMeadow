@@ -38,7 +38,7 @@ public class BurrowContainerScript : MonoBehaviour
             t.gameObject.SetActive(false);
         }
 
-        int numBurrows = GetBurrowCount(m_data.nightCounter, burrows.Count);
+        int numBurrows = GetBurrowCount(m_data.NightCounter, burrows.Count);
         for (int i = 0; i < numBurrows; i++)
         {
             int burrowIndex = Random.Range(0, burrows.Count);
