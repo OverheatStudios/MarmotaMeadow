@@ -57,6 +57,11 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     [SerializeField] private TextMeshProUGUI m_reloadText;
 
+    /// <summary>
+    /// Randomness in damage, 0.1 means +-10%
+    /// </summary>
+    [Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
@@ -159,7 +164,7 @@ public class ShootScript : MonoBehaviour
     /// <param name="groundhog">Groundhog to kill</param>
     private void KillGroundhog(GroundhogScript groundhog)
     {
-        groundhog.Damage(m_data.Damage);
+        groundhog.Damage(m_data.Damage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
     }
 
     /// <summary>

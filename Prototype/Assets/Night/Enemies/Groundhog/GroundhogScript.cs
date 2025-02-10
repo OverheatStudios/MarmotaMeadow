@@ -25,6 +25,11 @@ public class GroundhogScript : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_maxHealth = 15;
 
+    /// <summary>
+    /// Health bar
+    /// </summary>
+    [SerializeField] private ProgressBarScript m_healthBar;
+
     private State m_state = State.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -34,7 +39,7 @@ public class GroundhogScript : MonoBehaviour
     private const float MIN_Y = 0.1f;
     private float m_health;
 
-    void Start()
+    void Awake()
     {
         m_upTime = Random.Range(1.5f, 2.5f);
         m_data.GroundhogsSpawned++;
@@ -44,6 +49,9 @@ public class GroundhogScript : MonoBehaviour
 
     void Update()
     {
+        // Update health bar
+        m_healthBar.SetProgress(m_health, m_maxHealth, 0);
+
         // Go up until reach MAX_Y
         if (m_state == State.Rising)
         {
@@ -101,11 +109,11 @@ public class GroundhogScript : MonoBehaviour
     /// This may kill the groundhog
     /// </summary>
     /// <param name="maxHealth">Max health, must be greater than 0</param>
-    public void SetMaxHealth(float maxHeatlh)
+    public void SetMaxHealth(float maxHealth)
     {
         Assert.IsTrue(m_maxHealth > 0);
-        m_maxHealth = maxHeatlh;
-        Damage(m_maxHealth - maxHeatlh); // May heal if the new max health is greater
+        Damage(m_maxHealth - maxHealth); // May heal if the new max health is greater
+        m_maxHealth = maxHealth;
     }
 
     public float GetMaxHealth()
