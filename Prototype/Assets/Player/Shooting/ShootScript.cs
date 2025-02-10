@@ -57,6 +57,11 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     [SerializeField] private TextMeshProUGUI m_reloadText;
 
+    /// <summary>
+    /// Randomness in damage, 0.1 means +-10%
+    /// </summary>
+    [Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
@@ -64,7 +69,7 @@ public class ShootScript : MonoBehaviour
 
     void Start()
     {
-        SetAmmo(m_data.maxAmmo);
+        SetAmmo(m_data.MaxAmmo);
     }
 
     void Update()
@@ -90,7 +95,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Ammo
-        if (m_data.currentAmmo < 1)
+        if (m_data.CurrentAmmo < 1)
         {
             m_reloadText.enabled = true;
             return;
@@ -107,13 +112,13 @@ public class ShootScript : MonoBehaviour
     private void SetAmmo(int ammo)
     {
         if (ammo < 0) ammo = 0;
-        else if (ammo > m_data.maxAmmo) ammo = m_data.maxAmmo;
+        else if (ammo > m_data.MaxAmmo) ammo = m_data.MaxAmmo;
 
-        m_data.currentAmmo = ammo;
+        m_data.CurrentAmmo = ammo;
         m_ammoText.text = new StringBuilder("Ammo: ")
             .Append(ammo)
             .Append("/")
-            .Append(m_data.maxAmmo)
+            .Append(m_data.MaxAmmo)
             .ToString();
 
         m_reloadText.enabled = false;
@@ -135,7 +140,7 @@ public class ShootScript : MonoBehaviour
     private void ShootBullet()
     {
         // Ammo
-        SetAmmo(m_data.currentAmmo - 1);
+        SetAmmo(m_data.CurrentAmmo - 1);
 
         SetShootCooldown(m_cooldown);
 
@@ -159,8 +164,7 @@ public class ShootScript : MonoBehaviour
     /// <param name="groundhog">Groundhog to kill</param>
     private void KillGroundhog(GroundhogScript groundhog)
     {
-        Destroy(groundhog.gameObject);
-        m_data.groundhogsKilled++;
+        groundhog.Damage(m_data.Damage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
     }
 
     /// <summary>
@@ -168,10 +172,10 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     async void ReloadAmmo()
     {
-        if (m_data.currentAmmo >= m_data.maxAmmo) return;
+        if (m_data.CurrentAmmo >= m_data.MaxAmmo) return;
 
         SetShootCooldown(m_reloadCooldown);
         await Task.Delay((int)(m_reloadCooldown * 1000));
-        SetAmmo(m_data.maxAmmo);
+        SetAmmo(m_data.MaxAmmo);
     }
 }
