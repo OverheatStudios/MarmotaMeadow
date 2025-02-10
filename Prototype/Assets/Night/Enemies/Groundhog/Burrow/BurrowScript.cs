@@ -39,8 +39,6 @@ public class BurrowScript : MonoBehaviour
 
         GroundhogScript groundhogScript = m_groundhog.GetComponent<GroundhogScript>();
         groundhogScript.SetMaxHealth(groundhogScript.GetMaxHealth() * (1 + night / (100.0f / HP_GAIN_PERCENT_PER_NIGHT)));
-
-
     }
 
     /// <summary>
