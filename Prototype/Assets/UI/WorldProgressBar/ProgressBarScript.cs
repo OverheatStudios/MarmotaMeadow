@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ProgressBarScript : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class ProgressBarScript : MonoBehaviour
             m_minValue = minValue;
         if (maxValue != UNSPECIFIED) 
             m_maxValue = maxValue;
-        Assert.GreaterOrEqual(m_maxValue, m_minValue);
+        Assert.IsTrue(m_maxValue >= m_minValue);
 
         // Value
         m_value = value;
