@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3866d6c7cd66e154e879fd0a6c2e7c9e, type: 3}
-  m_Name: watering can
+  m_Name: harvesting tool
   m_EditorClassIdentifier: 
-  m_itemName: watering can
+  m_itemName: harvesting tool
   m_isStackable: 0
-  m_image: {fileID: 21300000, guid: 9926c34cc609b0e4cbd4b2e1ce59b0fe, type: 3}
-  m_maxAmount: 0
-  toolMultiplier: 0
-  toolLevel: 0
-  toolLevelCost: 0
+  m_image: {fileID: 21300000, guid: 8f7bb4113100d7a4daabfacd67e5b390, type: 3}
+  m_maxAmount: 1
+  toolMultiplier: 1
+  toolLevel: 1
+  toolLevelCost: 1
