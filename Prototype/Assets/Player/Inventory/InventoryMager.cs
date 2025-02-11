@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,9 +10,10 @@ public class InventoryMager : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public BaseItem item;
     public BaseItem item2;
-    void Start()
+
+    private void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class InventoryMager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            AddItem(item);
+            //AddItem(item);
             AddItem(item2);
         }
     }
