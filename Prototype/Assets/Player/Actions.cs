@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Actions : MonoBehaviour
@@ -18,7 +19,16 @@ public class Actions : MonoBehaviour
     [SerializeField] private float m_maxDistance;
     [SerializeField] private LayerMask m_plantLayerMask;
     [SerializeField] private GameObject m_intereactedPlant;
-    
+
+    [Header("Scene")] 
+    [SerializeField] bool isDay;
+
+    private void Start()
+    {
+        isDay = SceneManager.GetActiveScene().name == "Day Scene";
+        Debug.Log(isDay);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -49,9 +59,21 @@ public class Actions : MonoBehaviour
                 slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
             }
         }
-
         InteractWithPlot();
+        
+        
         ToggleInventory();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            IncreaseMultiplierTest();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Yes");
+            SceneManager.LoadScene("NightScene");
+        }
     }
 
     void InteractWithPlot()
@@ -67,7 +89,7 @@ public class Actions : MonoBehaviour
                 {
                     if (slots[m_selectedItemIndex].transform.childCount > 0) 
                     {   
-                        if (hit.collider.GetComponent<Plant>().ChangeState(slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().item) 
+                        if (hit.collider.GetComponent<Plant>().ChangeState(slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>()) 
                             & slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().item.IsStackable())
                         {
                             slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().count--;
@@ -103,5 +125,10 @@ public class Actions : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    void IncreaseMultiplierTest()
+    {
+        slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
     }
 }

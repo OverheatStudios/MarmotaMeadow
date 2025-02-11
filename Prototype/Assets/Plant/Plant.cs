@@ -39,37 +39,40 @@ public class Plant : MonoBehaviour
         
     }
 
-    public bool ChangeState(BaseItem item)
+    public bool ChangeState(InventoryItem item)
     {
-        if (item.name == "hoe" && state == PlantState.Normal)
+
+        if (item.item.name == "hoe" && state == PlantState.Normal)
         {
             state = PlantState.Tealed;
             stateText.text = state.ToString();
             gameObject.GetComponent<Renderer>().material.color = new Color32(244, 237, 22 , 1);
             return true;
-        }else if (item is Seeds  && state == PlantState.Tealed)
+        }else if (item.item is Seeds seeds  && state == PlantState.Tealed)
         {
             //changing state
             state = PlantState.Planted;
             stateText.text = state.ToString();
             //adding the seed
-            m_seed = (Seeds)item;
+            m_seed = seeds;
             image.sprite = m_seed.ReturnImage();
             growthTimer = m_seed.ReturnGrowDuration();
             StartCoroutine(nameof(CountdownRoutine));
             //some visual feedback
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             return true;
-        }else if (item.name == "watering can" && state == PlantState.Planted)
+        }else if (item.item.name == "watering can" && state == PlantState.Planted)
         {
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
             return true;
-        }else if (item.name == "harvesting tool" && state == PlantState.Completed)
+        }else if (item.item.name == "harvesting tool" && state == PlantState.Completed)
         {
+            multiplier += item.ReturnMultiplier();
             state = PlantState.Normal;
             stateText.text = state.ToString();
             image.sprite = null;
             HarvestCrop();
+            return true;
         }
         return false;
     }
@@ -88,18 +91,22 @@ public class Plant : MonoBehaviour
         StopAllCoroutines();
     }
     
+    // ReSharper disable Unity.PerformanceAnalysis
     void HarvestCrop()
     {
-        GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
-        
-        spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed);
-
-        // Apply force to throw the item in an arch
-        Rigidbody itemRb = spawnedItem.GetComponent<Rigidbody>();
-        if (itemRb != null)
+        for (int i = 0; i < multiplier; i++)
         {
-            Vector3 throwDirection = CalculateArchVelocity(throwAngle, throwDistance);
-            itemRb.velocity = throwDirection;
+            GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
+        
+            spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed);
+
+            // Apply force to throw the item in an arch
+            Rigidbody itemRb = spawnedItem.GetComponent<Rigidbody>();
+            if (itemRb != null)
+            {
+                Vector3 throwDirection = CalculateArchVelocity(throwAngle, throwDistance);
+                itemRb.velocity = throwDirection;
+            }
         }
     }
     
