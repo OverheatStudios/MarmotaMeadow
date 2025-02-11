@@ -78,6 +78,7 @@ public class ShootScript : MonoBehaviour
         {
             m_currentCooldown -= Time.deltaTime;
             m_cooldownBar.enabled = true;
+            m_reloadText.enabled = false;
             m_cooldownBarMask.fillAmount = (m_currentCooldown / Mathf.Max(m_lastCooldownSet, 0));
             return;
         }
