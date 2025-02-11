@@ -19,7 +19,6 @@ public class CollisonsHandler : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Crop"))
         {
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());

@@ -13,7 +13,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public BaseItem item;
     public TextMeshProUGUI countText;
     public int count = 0;
-
+    [SerializeField] private float multiplier;
     public Transform parentAfterDrag;
     
     // Start is called before the first frame update
@@ -56,5 +56,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+    }
+
+    public float ReturnMultiplier()
+    {
+        return multiplier;
+    }
+
+    public void IncreaseMultiplier()
+    {
+        multiplier++;
     }
 }
