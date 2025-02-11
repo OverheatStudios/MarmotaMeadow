@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
+=======
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+>>>>>>> origin/plant
 
 public class Actions : MonoBehaviour
 {
