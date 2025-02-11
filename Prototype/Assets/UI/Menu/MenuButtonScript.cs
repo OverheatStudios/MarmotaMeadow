@@ -40,4 +40,10 @@ public class MenuButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene("ControlsSettingsScene", LoadSceneMode.Single);
     }
+
+    public void OpenCredits()
+    {
+        SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
+
+    }
 }
