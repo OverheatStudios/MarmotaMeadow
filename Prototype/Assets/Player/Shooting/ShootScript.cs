@@ -115,7 +115,7 @@ public class ShootScript : MonoBehaviour
         else if (ammo > m_data.MaxAmmo) ammo = m_data.MaxAmmo;
 
         m_data.CurrentAmmo = ammo;
-        m_ammoText.text = new StringBuilder("Ammo: ")
+        m_ammoText.text = new StringBuilder("")
             .Append(ammo)
             .Append("/")
             .Append(m_data.MaxAmmo)
