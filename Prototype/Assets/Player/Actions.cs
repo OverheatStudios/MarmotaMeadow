@@ -30,7 +30,7 @@ public class Actions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
             Debug.Log(slots[m_selectedItemIndex].name);
@@ -44,7 +44,7 @@ public class Actions : MonoBehaviour
             {
                 slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
             }
-        }else if (Input.GetKeyDown(KeyCode.Q))
+        }else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
             m_selectedItemIndex--;
@@ -58,6 +58,11 @@ public class Actions : MonoBehaviour
                 slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
             }
         }
+        
+        
+        
+        
+        
         InteractWithPlot();
         
         

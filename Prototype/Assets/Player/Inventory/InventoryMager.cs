@@ -37,7 +37,7 @@ public class InventoryMager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SaveInventory();
+            //SaveInventory();
         }
     }
 
