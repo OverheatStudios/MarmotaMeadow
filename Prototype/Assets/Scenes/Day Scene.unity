@@ -1792,6 +1792,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1888573899974228293, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3097902270475952157, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1836,6 +1840,10 @@ PrefabInstance:
       propertyPath: 'slots.Array.data[8]'
       value: 
       objectReference: {fileID: 1929457322}
+    - target: {fileID: 5373176862444775438, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6394691437711549382, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.21
