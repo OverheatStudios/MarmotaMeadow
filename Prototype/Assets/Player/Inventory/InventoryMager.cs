@@ -3,6 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.IO;
+
+[System.Serializable]
+public class InventoryData
+{
+    public GameObject slot;
+    public int amount;
+    public float multiplier;
+    public BaseItem item;
+}
 
 public class InventoryMager : MonoBehaviour
 {
@@ -10,12 +20,13 @@ public class InventoryMager : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public BaseItem item;
     public BaseItem item2;
-
-    private void Awake()
+    
+    private string filePath;
+    void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        filePath = Application.persistentDataPath + "/playerData.json";
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +34,10 @@ public class InventoryMager : MonoBehaviour
         {
             //AddItem(item);
             AddItem(item2);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SaveInventory();
         }
     }
 
@@ -59,4 +74,38 @@ public class InventoryMager : MonoBehaviour
         InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
         inventoryItem.InitializeItem(item);
     }
+
+    private void SaveInventory()
+    {
+        List<InventoryData> inventoryDataList = new List<InventoryData>();
+
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].GetComponentInChildren<InventoryItem>())
+            {
+                InventoryData inventoryData = new InventoryData
+                {
+                    slot = inventorySlots[i].gameObject, // Save the slot name
+                    item = inventorySlots[i].GetComponentInChildren<InventoryItem>().item, // Save the item name
+                    amount = inventorySlots[i].GetComponentInChildren<InventoryItem>().ReturnAmount(),
+                    multiplier = inventorySlots[i].GetComponentInChildren<InventoryItem>().ReturnMultiplier()
+                };
+
+                inventoryDataList.Add(inventoryData);
+            }
+        }
+        
+        // Wrap the list in a wrapper class
+        InventoryWrapper wrapper = new InventoryWrapper { inventoryDataList = inventoryDataList };
+
+        // Serialize the wrapper to JSON
+        string json = JsonUtility.ToJson(wrapper, true);
+        File.WriteAllText(filePath, json);
+    }
+}
+
+[System.Serializable]
+public class InventoryWrapper
+{
+    public List<InventoryData> inventoryDataList;
 }

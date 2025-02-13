@@ -63,6 +63,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return multiplier;
     }
 
+    public int ReturnAmount()
+    {
+        return count;
+    }
+
     public void IncreaseMultiplier()
     {
         multiplier++;
