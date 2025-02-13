@@ -3,7 +3,9 @@ using UnityEngine.Assertions;
 
 public class ProgressBarScript : MonoBehaviour
 {
-    [SerializeField] private GameObject m_fillSprite;
+    [SerializeField] private SpriteRenderer m_fillSprite;
+    [SerializeField] private Color m_fullColor = Color.green;
+    [SerializeField] private Color m_emptyColor = Color.red;
 
     private const float UNSPECIFIED = float.MinValue;
     private float m_maxValue = 1.0f;
@@ -21,7 +23,7 @@ public class ProgressBarScript : MonoBehaviour
         // Range
         if (minValue != UNSPECIFIED)
             m_minValue = minValue;
-        if (maxValue != UNSPECIFIED) 
+        if (maxValue != UNSPECIFIED)
             m_maxValue = maxValue;
         Assert.IsTrue(m_maxValue >= m_minValue);
 
@@ -33,5 +35,6 @@ public class ProgressBarScript : MonoBehaviour
         // Bar
         float progress = Mathf.InverseLerp(m_minValue, m_maxValue, value);
         m_fillSprite.transform.localScale = new Vector3(progress, m_fillSprite.transform.localScale.y, m_fillSprite.transform.localScale.z);
+        m_fillSprite.color = Color.Lerp(m_emptyColor, m_fullColor, progress);
     }
 }

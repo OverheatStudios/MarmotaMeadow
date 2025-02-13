@@ -174,13 +174,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3379045781931867605, guid: 7807bdf355caafa43bc68d0d03ada546, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379045781931867605, guid: 7807bdf355caafa43bc68d0d03ada546, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379045781931867605, guid: 7807bdf355caafa43bc68d0d03ada546, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379045781931867605, guid: 7807bdf355caafa43bc68d0d03ada546, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5421285925956407679, guid: 7807bdf355caafa43bc68d0d03ada546, type: 3}
       propertyPath: m_Name
       value: HeatlhBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 5421285925956407679, guid: 7807bdf355caafa43bc68d0d03ada546, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
