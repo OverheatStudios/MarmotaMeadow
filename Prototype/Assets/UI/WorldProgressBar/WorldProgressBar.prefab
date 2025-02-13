@@ -218,4 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0513cd838fb2a04b871d2267a439dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fillSprite: {fileID: 1555231508577874618}
+  m_fillSprite: {fileID: 1703475953468171393}
+  m_fullColor: {r: 0, g: 1, b: 0, a: 1}
+  m_emptyColor: {r: 1, g: 0, b: 0, a: 1}
