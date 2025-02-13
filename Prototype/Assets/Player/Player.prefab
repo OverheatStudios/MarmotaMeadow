@@ -289,6 +289,7 @@ MonoBehaviour:
   m_cooldownBarMask: {fileID: 0}
   m_ammoText: {fileID: 0}
   m_reloadText: {fileID: 0}
+  m_randomDamageScale: 0.2
 --- !u!82 &6608403481258858457
 AudioSource:
   m_ObjectHideFlags: 0
@@ -492,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d1dba6f564e6c45990b3450a08f2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sensitivity: 0.2
+  m_sensitivity: 0.15
 --- !u!1001 &1654200011283792916
 PrefabInstance:
   m_ObjectHideFlags: 0
