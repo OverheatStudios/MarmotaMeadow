@@ -30,6 +30,11 @@ public class GroundhogScript : MonoBehaviour
     /// </summary>
     [SerializeField] private ProgressBarScript m_healthBar;
 
+    /// <summary>
+    /// Minimum seconds that groundhog will be fully up for (maximum is this value + 1)
+    /// </summary>
+    [SerializeField] private float m_minUptime = 2.25f;
+
     private State m_state = State.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -41,7 +46,7 @@ public class GroundhogScript : MonoBehaviour
 
     void Awake()
     {
-        m_upTime = Random.Range(1.5f, 2.5f);
+        m_upTime = Random.Range(0, 1) + m_minUptime;
         m_data.GroundhogsSpawned++;
         Assert.IsTrue(m_maxHealth > 0);
         m_health = m_maxHealth;
