@@ -50,13 +50,13 @@ public class GroundhogScript : MonoBehaviour
         m_data.GroundhogsSpawned++;
         Assert.IsTrue(m_maxHealth > 0);
         m_health = m_maxHealth;
+
+        // Update health bar
+        m_healthBar.SetProgress(m_health, m_maxHealth, 0);
     }
 
     void Update()
     {
-        // Update health bar
-        m_healthBar.SetProgress(m_health, m_maxHealth, 0);
-
         // Go up until reach MAX_Y
         if (m_state == State.Rising)
         {
@@ -101,6 +101,9 @@ public class GroundhogScript : MonoBehaviour
     {
         m_health -= damage;
 
+        // Update health bar
+        m_healthBar.SetProgress(m_health, m_maxHealth, 0);
+
         if (m_health <= 0)
         {
             m_data.GroundhogsKilled++;
@@ -119,6 +122,9 @@ public class GroundhogScript : MonoBehaviour
         Assert.IsTrue(m_maxHealth > 0);
         Damage(m_maxHealth - maxHealth); // May heal if the new max health is greater
         m_maxHealth = maxHealth;
+
+        // Update health bar
+        m_healthBar.SetProgress(m_health, m_maxHealth, 0);
     }
 
     public float GetMaxHealth()

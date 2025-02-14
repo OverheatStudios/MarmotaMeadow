@@ -547,7 +547,7 @@ Transform:
   - {fileID: 228685924}
   - {fileID: 319966883}
   - {fileID: 1301245937}
-  - {fileID: 1050727339}
+  - {fileID: 2065291741}
   - {fileID: 533249057}
   - {fileID: 1868437357}
   - {fileID: 1854805255}
@@ -557,7 +557,7 @@ Transform:
   - {fileID: 587205857}
   - {fileID: 469083406}
   - {fileID: 590988013}
-  - {fileID: 2065291741}
+  - {fileID: 1050727339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &484465068
