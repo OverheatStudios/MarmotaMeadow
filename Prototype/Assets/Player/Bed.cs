@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Bed : MonoBehaviour
 {
     [SerializeField] private GameObject m_UI;
+    [SerializeField] private GameObject m_confirmationUI;
     private void OnMouseOver()
     {
         m_UI.SetActive(true);
@@ -19,6 +20,20 @@ public class Bed : MonoBehaviour
 
     private void OnMouseDown()
     {
+        m_confirmationUI.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void Confirm()
+    {
         SceneManager.LoadScene("NightScene");
+    }
+
+    public void NoButton()
+    {
+        m_confirmationUI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
