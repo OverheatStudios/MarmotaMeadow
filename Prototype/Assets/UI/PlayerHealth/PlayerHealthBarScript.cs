@@ -37,21 +37,15 @@ public class PlayerHealthBarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        ClampHealthValue();
+
+        if (m_data.CurrentHealth <= 0)
         {
-            m_data.CurrentHealth--;
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            m_data.CurrentHealth++;
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            m_data.MaxHealth--;
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            m_data.MaxHealth++;
+            // Player lost TODO
+            print("You lost, but that isn't coded yet, so here's half a heart");
+            m_data.CurrentHealth = 1;
+            m_data.MaxHealth = Mathf.Max(m_data.CurrentHealth, m_data.MaxHealth);
+            return;
         }
 
         if (m_data.CurrentHealth != m_healthLastFrame || m_data.MaxHealth != m_maxHealthLastFrame)
@@ -60,6 +54,16 @@ public class PlayerHealthBarScript : MonoBehaviour
             m_healthLastFrame = m_data.CurrentHealth;
             m_maxHealthLastFrame = m_data.MaxHealth;
         }
+    }
+
+    /// <summary>
+    /// Ensure max and current healths are valid
+    /// </summary>
+    private void ClampHealthValue()
+    {
+        m_data.CurrentHealth = Mathf.Max(m_data.CurrentHealth, 0);
+        m_data.MaxHealth = Mathf.Max(m_data.MaxHealth, 1);
+        m_data.CurrentHealth = Mathf.Min(m_data.CurrentHealth, m_data.MaxHealth);
     }
 
     private void GenerateNecessaryHearts()

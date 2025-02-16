@@ -35,6 +35,8 @@ public class GroundhogScript : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_minUptime = 2.25f;
 
+    [SerializeField] private GroundhogEscapeScriptableObject m_escapeObj;
+
     private State m_state = State.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -87,6 +89,7 @@ public class GroundhogScript : MonoBehaviour
             transform.position += m_speed * Time.deltaTime * Vector3.down;
             if (transform.position.y <= MIN_Y)
             {
+                m_escapeObj.NotifyGroundhogEscaped();
                 Destroy(gameObject);
                 return;
             }
