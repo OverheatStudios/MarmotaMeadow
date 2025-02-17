@@ -61,6 +61,21 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     [Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
 
+    /// <summary>
+    /// Bullet hole decal
+    /// </summary>
+    [SerializeField] private GameObject m_bulletHolePrefab;
+
+    /// <summary>
+    /// Layer which anything that can have a bullet hole decal applied, should not include enemies
+    /// </summary>
+    [SerializeField] private LayerMask m_shootablesLayer;
+
+    /// <summary>
+    /// To prevent z-fighting, move the bullet hole decal along the normal of the surface this many units
+    /// </summary>
+    [SerializeField] private float m_bulletHoleOffset = 0.01f;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
@@ -156,6 +171,24 @@ public class ShootScript : MonoBehaviour
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponent<GroundhogScript>();
             KillGroundhog(groundhogScript);
         }
+        else if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_shootablesLayer))
+        {
+            // Hit shootable
+            SpawnBulletHoleDecal(hit);
+        }
+    }
+
+    /// <summary>
+    /// Spawns a bullet hole decal on the surface that the raycast intersected with
+    /// </summary>
+    /// <param name="hit">Raycast result</param>
+    private void SpawnBulletHoleDecal(RaycastHit hit)
+    {
+        GameObject bulletHole = Instantiate(m_bulletHolePrefab);
+        bulletHole.transform.localScale = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
+        bulletHole.transform.position = hit.point + hit.normal * m_bulletHoleOffset;
+        bulletHole.transform.forward = hit.normal;
+        bulletHole.transform.SetParent(hit.transform, true);
     }
 
     /// <summary>

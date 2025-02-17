@@ -1929,7 +1929,7 @@ GameObject:
   - component: {fileID: 1596365643}
   - component: {fileID: 1596365642}
   - component: {fileID: 1596365646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2512,6 +2512,14 @@ PrefabInstance:
       propertyPath: m_cooldownBarMask
       value: 
       objectReference: {fileID: 965706080}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_bulletHolePrefab
+      value: 
+      objectReference: {fileID: 5830452461756022397, guid: ed638f66a617fe142a49e97832d8e691, type: 3}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_shootablesLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 2661324106007050100, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_IsActive
       value: 0
