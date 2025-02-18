@@ -14,41 +14,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day Scene.unity
     guid: ab5f0061632c61643a0b4cbd9dd6ecf3
-  - enabled: 1
-    path: Assets/Scenes/SettingsScene.unity
-    guid: cd39c99c0ad20dd4c8b7a1e979b0036a
-  - enabled: 1
-    path: Assets/Scenes/AudioSettingsScene.unity
-    guid: 837b059cd1c7a0a48adc9f84466be5a3
-  - enabled: 1
-    path: Assets/Scenes/ControlsSettingsScene.unity
-    guid: 6cf0d368be9da184abdd9e626ba7c7e7
-  - enabled: 1
-    path: Assets/Scenes/VideoSettingsScene.unity
-    guid: 3401bc15484613c45825e8a0b79c3542
-  - enabled: 1
-    path: Assets/Scenes/CreditsScene.unity
-    guid: 242beaf833dcf914ab5fc5a652df989b
-  - enabled: 1
-    path: Assets/Scenes/Day Scene.unity
-    guid: ab5f0061632c61643a0b4cbd9dd6ecf3
-  - enabled: 1
-    path: Assets/Scenes/SettingsScene.unity
-    guid: cd39c99c0ad20dd4c8b7a1e979b0036a
-  - enabled: 1
-    path: Assets/Scenes/AudioSettingsScene.unity
-    guid: 837b059cd1c7a0a48adc9f84466be5a3
-  - enabled: 1
-    path: Assets/Scenes/ControlsSettingsScene.unity
-    guid: 6cf0d368be9da184abdd9e626ba7c7e7
-  - enabled: 1
-    path: Assets/Scenes/VideoSettingsScene.unity
-    guid: 3401bc15484613c45825e8a0b79c3542
-  - enabled: 1
-    path: Assets/Scenes/CreditsScene.unity
-    guid: 242beaf833dcf914ab5fc5a652df989b
-  - enabled: 1
-    path: Assets/Scenes/Shop.unity
-    guid: a9af496ef7ca4de4aa9380f6f66ac59c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

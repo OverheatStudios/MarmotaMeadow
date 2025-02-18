@@ -29,8 +29,6 @@ public class BurrowContainerScript : MonoBehaviour
     /// </summary>
     private void EnableBurrows()
     {
-        m_currentBurrowCount = 0;
-
         List<GameObject> burrows = new List<GameObject>();
         foreach (Transform t in transform)
         {
@@ -41,11 +39,9 @@ public class BurrowContainerScript : MonoBehaviour
         int numBurrows = GetBurrowCount(m_data.NightCounter, burrows.Count);
         for (int i = 0; i < numBurrows; i++)
         {
-            int burrowIndex = Random.Range(0, burrows.Count);
-            burrows[burrowIndex].SetActive(true);
-            burrows.RemoveAt(burrowIndex);
-            m_currentBurrowCount++;
+            burrows[i].SetActive(true);
         }
+        m_currentBurrowCount = numBurrows;
     }
 
     /// <summary>
