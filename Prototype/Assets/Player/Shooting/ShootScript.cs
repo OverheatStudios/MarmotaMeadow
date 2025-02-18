@@ -2,6 +2,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class ShootScript : MonoBehaviour
@@ -198,7 +199,7 @@ public class ShootScript : MonoBehaviour
         bulletHole.transform.position = hit.point + hit.normal * m_bulletHoleOffset;
         bulletHole.transform.forward = hit.normal;
         bulletHole.transform.SetParent(hit.transform, true);
-        bulletHole.transform.localScale = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
+        bulletHole.GetComponentInChildren<DecalProjector>().size = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
     }
 
     /// <summary>
