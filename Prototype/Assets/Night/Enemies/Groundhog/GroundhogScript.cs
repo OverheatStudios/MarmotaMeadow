@@ -37,6 +37,12 @@ public class GroundhogScript : MonoBehaviour
 
     [SerializeField] private GroundhogEscapeScriptableObject m_escapeObj;
 
+    /// <summary>
+    /// High precision collider of the groundhog, probably should be a mesh collider.
+    /// This will be disabled most of the time and require enabling before use.
+    /// </summary>
+    [SerializeField] private Collider m_highPrecisionCollider;
+
     private State m_state = State.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -133,5 +139,25 @@ public class GroundhogScript : MonoBehaviour
     public float GetMaxHealth()
     {
         return m_maxHealth;
+    }
+
+    public bool IsAlive()
+    {
+        return m_health > 0;
+    }
+
+    public Collider GetHighPrecisionCollider()
+    {
+        return m_highPrecisionCollider;
+    }
+
+    public void EnableHighPrecisionCollider()
+    {
+      m_highPrecisionCollider.enabled = true;
+    }
+
+    public void DisableHighPrecisionCollider()
+    {
+        m_highPrecisionCollider.enabled=false;
     }
 }

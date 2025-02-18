@@ -170,6 +170,16 @@ public class ShootScript : MonoBehaviour
             // Hit a groundhog, damage it
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponent<GroundhogScript>();
             DamageGroundhog(groundhogScript);
+            if (groundhogScript.IsAlive())
+            {
+                // Cast ray against groundhogs mesh
+                groundhogScript.EnableHighPrecisionCollider();
+                if (groundhogScript.GetHighPrecisionCollider().Raycast(ray, out hit, MAX_RAY_DISTANCE))
+                {
+                    SpawnBulletHoleDecal(hit);
+                }
+                groundhogScript.DisableHighPrecisionCollider();
+            }
         }
         else if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_shootablesLayer))
         {

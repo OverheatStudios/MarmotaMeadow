@@ -24,6 +24,5 @@ public class DecalScalingScript : MonoBehaviour
     void Update()
     {
         m_decalProjector.size = m_scalar.localScale;
-        print(m_scalar.transform.localScale);
     }
 }
