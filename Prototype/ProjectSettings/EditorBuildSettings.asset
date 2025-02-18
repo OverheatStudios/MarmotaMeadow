@@ -29,8 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: 242beaf833dcf914ab5fc5a652df989b
-    path: Assets/Scenes/Test.unity
-    guid: 18ec8e696c7893a49b9282cc0a50771f
   - enabled: 1
     path: Assets/Scenes/Day Scene.unity
     guid: ab5f0061632c61643a0b4cbd9dd6ecf3
@@ -49,5 +47,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: 242beaf833dcf914ab5fc5a652df989b
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: a9af496ef7ca4de4aa9380f6f66ac59c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

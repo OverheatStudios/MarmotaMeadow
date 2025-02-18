@@ -58,6 +58,7 @@ public class Plant : MonoBehaviour
             image.sprite = m_seed.ReturnImage();
             growthTimer = m_seed.ReturnGrowDuration();
             StartCoroutine(nameof(CountdownRoutine));
+            multiplier = m_seed.ReturnAmount();
             //some visual feedback
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
             return true;
@@ -98,7 +99,7 @@ public class Plant : MonoBehaviour
         {
             GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
         
-            spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed);
+            spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed.ReturnCrop());
 
             // Apply force to throw the item in an arch
             Rigidbody itemRb = spawnedItem.GetComponent<Rigidbody>();
