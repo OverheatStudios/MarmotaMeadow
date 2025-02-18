@@ -31,7 +31,7 @@ public class AutoDestroyScript : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            else
+            else if (m_sprite != null)
             {
                 m_sprite.color = new Color(m_sprite.color.r, m_sprite.color.g, m_sprite.color.b, opacity);
             }

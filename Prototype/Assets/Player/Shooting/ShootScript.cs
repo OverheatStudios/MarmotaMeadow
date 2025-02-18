@@ -72,9 +72,9 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private LayerMask m_shootablesLayer;
 
     /// <summary>
-    /// To prevent z-fighting, move the bullet hole decal along the normal of the surface this many units
+    /// Move the bullet hole decal along the normal of the surface this many units
     /// </summary>
-    [SerializeField] private float m_bulletHoleOffset = 0.01f;
+    [SerializeField] private float m_bulletHoleOffset = 0.5f;
 
     private const float MAX_RAY_DISTANCE = 100f;
 
@@ -167,9 +167,9 @@ public class ShootScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_enemyLayer))
         {
-            // Hit a groundhog, kill it
+            // Hit a groundhog, damage it
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponent<GroundhogScript>();
-            KillGroundhog(groundhogScript);
+            DamageGroundhog(groundhogScript);
         }
         else if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_shootablesLayer))
         {
@@ -185,17 +185,17 @@ public class ShootScript : MonoBehaviour
     private void SpawnBulletHoleDecal(RaycastHit hit)
     {
         GameObject bulletHole = Instantiate(m_bulletHolePrefab);
-        bulletHole.transform.localScale = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
         bulletHole.transform.position = hit.point + hit.normal * m_bulletHoleOffset;
         bulletHole.transform.forward = hit.normal;
         bulletHole.transform.SetParent(hit.transform, true);
+        bulletHole.transform.localScale = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
     }
 
     /// <summary>
-    /// Kill a groundhog
+    /// Damage a groundhog
     /// </summary>
-    /// <param name="groundhog">Groundhog to kill</param>
-    private void KillGroundhog(GroundhogScript groundhog)
+    /// <param name="groundhog">Groundhog to damage</param>
+    private void DamageGroundhog(GroundhogScript groundhog)
     {
         groundhog.Damage(m_data.Damage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
     }
