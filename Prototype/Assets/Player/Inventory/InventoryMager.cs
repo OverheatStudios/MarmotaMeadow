@@ -8,7 +8,7 @@ using System.IO;
 [System.Serializable]
 public class InventoryData
 {
-    public GameObject slot;
+    public String slotName;
     public int amount;
     public float multiplier;
     public BaseItem item;
@@ -20,11 +20,13 @@ public class InventoryMager : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public BaseItem item;
     public BaseItem item2;
+    public float coins;
     
     private string filePath;
     void Start()
     {
-        filePath = Application.persistentDataPath + "/playerData.json";
+        filePath = Application.dataPath + "/playerData.json";
+        LoadInventory();
     }
     
     // Update is called once per frame
@@ -37,7 +39,11 @@ public class InventoryMager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            //SaveInventory();
+            SaveInventory();
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            LoadInventory();
         }
     }
 
@@ -49,7 +55,7 @@ public class InventoryMager : MonoBehaviour
             InventoryItem inventoryItem = slot.GetComponentInChildren<InventoryItem>();
             if (inventoryItem && inventoryItem.item == item && inventoryItem.count <= inventoryItem.item.ReturnMaxAmount() && inventoryItem.item.IsStackable())
             {
-                inventoryItem.count++;
+                inventoryItem.IncreaseAmount();
                 inventoryItem.RefreshCount();   
                 return true;
             }
@@ -85,7 +91,7 @@ public class InventoryMager : MonoBehaviour
             {
                 InventoryData inventoryData = new InventoryData
                 {
-                    slot = inventorySlots[i].gameObject, // Save the slot name
+                    slotName = inventorySlots[i].gameObject.name, // Save the slot name
                     item = inventorySlots[i].GetComponentInChildren<InventoryItem>().item, // Save the item name
                     amount = inventorySlots[i].GetComponentInChildren<InventoryItem>().ReturnAmount(),
                     multiplier = inventorySlots[i].GetComponentInChildren<InventoryItem>().ReturnMultiplier()
@@ -102,6 +108,53 @@ public class InventoryMager : MonoBehaviour
         string json = JsonUtility.ToJson(wrapper, true);
         File.WriteAllText(filePath, json);
     }
+    
+    private void LoadInventory()
+    {
+        if (File.Exists(filePath))
+        {
+            // Read the JSON file
+            string json = File.ReadAllText(filePath);
+
+            // Deserialize the JSON back into the wrapper class
+            InventoryWrapper wrapper = JsonUtility.FromJson<InventoryWrapper>(json);
+
+            for (int i = 0; i < wrapper.inventoryDataList.Count; i++)
+            {
+                for (int j = 0; j < inventorySlots.Length; j++)
+                {
+                    if (wrapper.inventoryDataList[i].slotName == inventorySlots[j].gameObject.name)
+                    {
+                        GameObject newItem = Instantiate(inventoryItemPrefab, inventorySlots[j].transform);
+                        InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
+                        inventoryItem.InitializeItem(wrapper.inventoryDataList[i].item);
+                        inventoryItem.SetAmount(wrapper.inventoryDataList[i].amount);
+                        inventoryItem.SetMultiplier(wrapper.inventoryDataList[i].multiplier);
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Inventory file not found at " + filePath);
+        }
+    }
+
+    public void IncreaseCoins(float amount)
+    {
+        coins += amount;
+    }
+
+    public void DecreaseCoins(float amount)
+    {
+        coins -= amount;
+    }
+
+    public float GetCoins()
+    {
+        return coins;
+    }
+    
 }
 
 [System.Serializable]

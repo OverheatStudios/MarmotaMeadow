@@ -27,7 +27,7 @@ public class Bed : MonoBehaviour
 
     public void Confirm()
     {
-        SceneManager.LoadScene("NightScene");
+        SceneManager.LoadScene("Shop");
     }
 
     public void NoButton()
