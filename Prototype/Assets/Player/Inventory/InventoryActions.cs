@@ -14,6 +14,12 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private int m_selectedItemIndex;
     [SerializeField] private GameObject m_inventoryUI;
     [SerializeField] private bool m_inInventory;
+    [SerializeField] private InventoryMager m_inventoryManager;
+
+    private void Start()
+    {
+        m_inventoryManager.NotifyNewSelectedItemIndex(m_selectedItemIndex);
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,6 +44,7 @@ public class InventoryActions : MonoBehaviour
             {
                 slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
             }
+            m_inventoryManager.NotifyNewSelectedItemIndex(m_selectedItemIndex);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -52,6 +59,7 @@ public class InventoryActions : MonoBehaviour
             {
                 slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
             }
+            m_inventoryManager.NotifyNewSelectedItemIndex(m_selectedItemIndex);
         }
     }
 

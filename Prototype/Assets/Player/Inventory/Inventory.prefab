@@ -322,6 +322,8 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
   item2: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
   coins: 0
+  inventoryItem: {fileID: 0}
+  m_saveLocation: 
 --- !u!114 &5935117403572180540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +336,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6bd2cef6d359048b7f74522b2b34c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_canOpenInventory: 1
+  slots: []
+  m_selectedItemIndex: 0
+  m_inventoryUI: {fileID: 0}
+  m_inInventory: 0
+  m_inventoryManager: {fileID: 6857077546119639811}
 --- !u!1 &6505193758527495094
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System.Text;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -60,7 +62,7 @@ public class ShootScript : MonoBehaviour
     /// <summary>
     /// Randomness in damage, 0.1 means +-10%
     /// </summary>
-    [Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
+    [UnityEngine.Range(0, 1)] [SerializeField] private float m_randomDamageScale = 0.2f;
 
     /// <summary>
     /// Bullet hole decal
@@ -76,6 +78,8 @@ public class ShootScript : MonoBehaviour
     /// Move the bullet hole decal along the normal of the surface this many units
     /// </summary>
     [SerializeField] private float m_bulletHoleOffset = 0.5f;
+
+    [SerializeField] private InventoryMager m_inventoryManager;
 
     private const float MAX_RAY_DISTANCE = 100f;
 
@@ -101,7 +105,13 @@ public class ShootScript : MonoBehaviour
 
         m_cooldownBar.enabled = false;
 
-        // Not on cooldown passed this point
+        // Not on cooldown after this point
+
+        // Is holding gun?
+        if (m_inventoryManager.GetHeldItem() is not Gun gun)
+        {
+            return;
+        }
 
         // Reloading
         if (Input.GetKeyDown(KeyCode.R))
@@ -208,7 +218,8 @@ public class ShootScript : MonoBehaviour
     /// <param name="groundhog">Groundhog to damage</param>
     private void DamageGroundhog(GroundhogScript groundhog)
     {
-        groundhog.Damage(m_data.Damage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
+        float baseDamage = GetGunUnsafe().GetDamage();
+        groundhog.Damage(baseDamage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
     }
 
     /// <summary>
@@ -221,5 +232,13 @@ public class ShootScript : MonoBehaviour
         SetShootCooldown(m_reloadCooldown);
         await Task.Delay((int)(m_reloadCooldown * 1000));
         SetAmmo(m_data.MaxAmmo);
+    }
+
+    private Gun GetGunUnsafe()
+    {
+        BaseItem heldItem = m_inventoryManager.GetHeldItem();
+        if (heldItem is Gun gun) return gun;
+        Assert.IsTrue(false);
+        return null;
     }
 }

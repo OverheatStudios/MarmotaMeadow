@@ -9,7 +9,6 @@ public class DataScriptableObject : ScriptableObject
     [HideInInspector] public int MaxAmmo;
     [HideInInspector] public int CurrentAmmo;
     [HideInInspector] public int NightCounter;
-    [HideInInspector] public int Damage;
     [HideInInspector] public int MaxHealth;
     [HideInInspector] public int CurrentHealth;
     [HideInInspector] public float BulletHoleSize; // Scale of bullet hole prefab (.15 is a good number)
@@ -21,7 +20,6 @@ public class DataScriptableObject : ScriptableObject
         MaxAmmo = 30;
         CurrentAmmo = MaxAmmo;
         NightCounter = 0;
-        Damage = 10;
         MaxHealth = 10;
         Assert.IsTrue(MaxHealth % 2 == 0); // Max health must be even! This is due to how health bar works
         CurrentHealth = MaxHealth;
