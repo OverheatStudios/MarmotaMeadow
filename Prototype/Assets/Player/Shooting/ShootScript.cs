@@ -62,7 +62,7 @@ public class ShootScript : MonoBehaviour
     /// <summary>
     /// Randomness in damage, 0.1 means +-10%
     /// </summary>
-    [UnityEngine.Range(0, 1)] [SerializeField] private float m_randomDamageScale = 0.2f;
+    [UnityEngine.Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
 
     /// <summary>
     /// Bullet hole decal
@@ -110,8 +110,10 @@ public class ShootScript : MonoBehaviour
         // Is holding gun?
         if (m_inventoryManager.GetHeldItem() is not Gun gun)
         {
+            HideGunUi();
             return;
         }
+        ShowGunUi();
 
         // Reloading
         if (Input.GetKeyDown(KeyCode.R))
@@ -132,6 +134,26 @@ public class ShootScript : MonoBehaviour
         {
             ShootBullet();
             return;
+        }
+    }
+
+    private void HideGunUi()
+    {
+        m_reloadText.enabled = false;
+        m_ammoText.enabled = false;
+        foreach (Transform child in m_ammoText.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowGunUi()
+    {
+        // Reload text will enable itself when needed
+        m_ammoText.enabled = true; 
+        foreach (Transform child in m_ammoText.transform)
+        {
+            child.gameObject.SetActive(true);
         }
     }
 
