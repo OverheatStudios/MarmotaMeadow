@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class InventoryActions : MonoBehaviour
 {
+    /// <summary>
+    /// If false, player cannot open inventory and can only use tool bar
+    /// </summary>
+    [SerializeField] private bool m_canOpenInventory = true;
+
     [Header("Inventory")]
     [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>(); // List of inventory slots
     [SerializeField] private int m_selectedItemIndex;
@@ -52,6 +57,8 @@ public class InventoryActions : MonoBehaviour
 
     void ToggleInventory()
     {
+        if (!m_canOpenInventory) return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && !m_inInventory)
         {
             //UI
