@@ -19,6 +19,11 @@ public class Gun : BaseItem
     /// Bullet spread, 0.01f is a nice number
     /// </summary>
     [SerializeField] private float m_spread = 0.01f;
+    /// <summary>
+    /// Scale of bullet hole prefab (.15 is a good number)
+    /// </summary>
+    [SerializeField] private float m_bulletHoleSize;
+    [SerializeField] private float m_swapCooldownSeconds = 1.5f;
 
     private void OnEnable()
     {
@@ -58,12 +63,22 @@ public class Gun : BaseItem
     public void SetCurrentAmmo(int ammo)
     {
         Assert.IsTrue(ammo >= 0);
-        Assert.IsTrue(ammo <= m_maxAmmo); 
+        Assert.IsTrue(ammo <= m_maxAmmo);
         m_currentAmmo = ammo;
     }
 
     public float GetBulletSpread()
     {
         return m_spread;
+    }
+
+    public float GetBulletHoleSize()
+    {
+        return m_bulletHoleSize;
+    }
+
+    public float GetSwapCooldownSeconds()
+    {
+        return m_swapCooldownSeconds;
     }
 }

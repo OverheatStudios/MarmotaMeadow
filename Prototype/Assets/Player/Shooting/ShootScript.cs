@@ -75,6 +75,7 @@ public class ShootScript : MonoBehaviour
 
     private float m_currentCooldown = 0;
     private float m_lastCooldownSet = 0;
+    private BaseItem m_heldItemLastSwap;
 
     void Start()
     {
@@ -97,12 +98,15 @@ public class ShootScript : MonoBehaviour
 
         // Not on cooldown after this point
 
+        HandleSwapCooldown();
+
         // Is holding gun?
         if (m_inventoryManager.GetHeldItem() is not Gun gun)
         {
             HideGunUi();
             return;
         }
+
         SetAmmo(gun.GetCurrentAmmo());
         ShowGunUi();
 
@@ -130,6 +134,28 @@ public class ShootScript : MonoBehaviour
                 ShootBullet();
             }
             return;
+        }
+    }
+
+    /// <summary>
+    /// Handle swap cooldown, player does not need to be holding a gun when this method is called.
+    /// Checks if a swap occurred and handles it if it did
+    /// </summary>
+    private void HandleSwapCooldown()
+    {
+        if (m_inventoryManager.GetHeldItem() is not Gun gun)
+        {
+            m_heldItemLastSwap = null;
+            return;
+        }
+
+        if (m_heldItemLastSwap != gun)
+        {
+            if (m_currentCooldown < gun.GetSwapCooldownSeconds())
+            {
+                SetShootCooldown(gun.GetSwapCooldownSeconds());
+            }
+            m_heldItemLastSwap = gun;
         }
     }
 
@@ -221,7 +247,7 @@ public class ShootScript : MonoBehaviour
     /// <returns>Normalised vector representing bullet spread</returns>
     private Vector3 GetRandomBulletDirection()
     {
-        Gun gun = GetGunUnsafe();   
+        Gun gun = GetGunUnsafe();
         Vector3 baseDirection = m_camera.transform.forward;
         baseDirection.x += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
         baseDirection.y += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
@@ -239,7 +265,7 @@ public class ShootScript : MonoBehaviour
         bulletHole.transform.position = hit.point + hit.normal * m_bulletHoleOffset;
         bulletHole.transform.forward = hit.normal;
         bulletHole.transform.SetParent(hit.transform, true);
-        bulletHole.GetComponentInChildren<DecalProjector>().size = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
+        bulletHole.GetComponentInChildren<DecalProjector>().size = new Vector3(GetGunUnsafe().GetBulletHoleSize(), GetGunUnsafe().GetBulletHoleSize(), GetGunUnsafe().GetBulletHoleSize());
     }
 
     /// <summary>
