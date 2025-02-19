@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f684fb996e77894e9f56564f32233b9, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
+  m_handModelPrefab: {fileID: 4046243830329892476, guid: e4ebbf60d18b74747bdad67e4e3035f6, type: 3}
   m_itemName: Shotgun
   m_isStackable: 0
   m_image: {fileID: 21300000, guid: e76faaf3238bd5347bb1be0418ed01d1, type: 3}
