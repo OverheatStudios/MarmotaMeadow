@@ -25,12 +25,10 @@ public class Actions : MonoBehaviour
     private void Start()
     {
         isDay = SceneManager.GetActiveScene().name == "Day Scene";
-        Debug.Log(isDay);
     }
 
     private void Update()
-    {
-        
+    {        
         InteractWithPlot();
         
 

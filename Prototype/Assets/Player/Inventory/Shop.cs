@@ -24,4 +24,14 @@ public class Shop : MonoBehaviour
             CoinsText.text = "Coins: " + inventoryMager.GetCoins();
         }
     }
+
+    public void UpgradeTool(InventorySlot item)
+    {
+        if (item.GetComponentInChildren<InventoryItem>().item is Tool tool)
+        {
+            inventoryMager.DecreaseCoins(tool.ReturnToolLevelCost());
+            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
+            CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+        }
+    }
 }

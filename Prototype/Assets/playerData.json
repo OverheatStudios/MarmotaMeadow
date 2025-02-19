@@ -2,10 +2,10 @@
     "inventoryDataList": [
         {
             "slotName": "ToolBarSlot",
-            "amount": 1,
+            "amount": 2,
             "multiplier": 0.0,
             "item": {
-                "instanceID": 32228
+                "instanceID": 41550
             }
         },
         {
@@ -13,7 +13,7 @@
             "amount": 1,
             "multiplier": 0.0,
             "item": {
-                "instanceID": 32220
+                "instanceID": 41540
             }
         },
         {
@@ -21,7 +21,7 @@
             "amount": 1,
             "multiplier": 0.0,
             "item": {
-                "instanceID": 32242
+                "instanceID": 41482
             }
         },
         {
@@ -29,7 +29,7 @@
             "amount": 1,
             "multiplier": 0.0,
             "item": {
-                "instanceID": 32218
+                "instanceID": 41562
             }
         }
     ]

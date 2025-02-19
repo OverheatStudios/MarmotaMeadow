@@ -23,7 +23,6 @@ public class InventoryActions : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
-            Debug.Log(slots[m_selectedItemIndex].name);
             m_selectedItemIndex++;
             if (m_selectedItemIndex >= 9)
             {

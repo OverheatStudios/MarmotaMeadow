@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler , IPointerExitHandler
+public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHandler
 {
     [Header("UI")]
     public Image image;
@@ -25,6 +25,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField] private TextMeshProUGUI multiplierText;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private int level;
+
+    [Header("References")] 
+    [SerializeField] private InventoryMager inventory;
     
     // Start is called before the first frame update
     void Start()
@@ -44,14 +47,14 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.sprite = newItem.ReturnImage();
         RefreshCount();
     }
-
-    public void OnBeginDrag(PointerEventData eventData)
+    
+    /*public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
     }
-    
+
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
@@ -61,7 +64,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
-    }
+    }*/
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -118,5 +121,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             Destroy(gameObject);
         else
             countText.text = count.ToString();
+    }
+
+    public void SetInventory(InventoryMager inventory)
+    {
+        this.inventory = inventory;
+    }
+
+    public void SetImageRaycast(bool raycast)
+    {
+        image.raycastTarget = raycast;
     }
 }
