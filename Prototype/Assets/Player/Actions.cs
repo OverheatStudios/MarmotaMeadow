@@ -30,43 +30,9 @@ public class Actions : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
-            Debug.Log(slots[m_selectedItemIndex].name);
-            m_selectedItemIndex++;
-            if (m_selectedItemIndex >= 9)
-            {
-                m_selectedItemIndex = 0;
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
-            }
-            else
-            {
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
-            }
-        }else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
-            m_selectedItemIndex--;
-            if (m_selectedItemIndex <= -1)
-            {
-                m_selectedItemIndex = 8;
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
-            }
-            else
-            {
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
-            }
-        }
-        
-        
-        
-        
         
         InteractWithPlot();
         
-        
-        ToggleInventory();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -108,28 +74,6 @@ public class Actions : MonoBehaviour
         }
     }
 
-    void ToggleInventory()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !m_inInventory)
-        {
-            //UI
-            m_inInventory = true;
-            m_inventoryUI.SetActive(true);
-            
-            //Cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }else if (Input.GetKeyDown(KeyCode.Escape) && m_inInventory)
-        {
-            //UI
-            m_inInventory = false;
-            m_inventoryUI.SetActive(false);
-            
-            //Cursor
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-    }
 
     void IncreaseMultiplierTest()
     {

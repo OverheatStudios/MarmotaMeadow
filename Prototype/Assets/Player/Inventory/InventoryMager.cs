@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Assertions;
 
 [System.Serializable]
 public class InventoryData
@@ -23,9 +24,13 @@ public class InventoryMager : MonoBehaviour
     public float coins;
     
     private string filePath;
+
+    [SerializeField] private string m_saveLocation;
+
     void Start()
     {
-        filePath = Application.dataPath + "/playerData.json";
+        Assert.IsNotNull(m_saveLocation);
+        filePath = Application.dataPath + "/" + m_saveLocation;
         LoadInventory();
     }
     
