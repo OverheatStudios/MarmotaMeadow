@@ -21,12 +21,13 @@ public class InventoryMager : MonoBehaviour
     public BaseItem item;
     public BaseItem item2;
     public float coins;
+    [SerializeField] private GameObject inventoryItem;
     
     private string filePath;
     void Start()
     {
         filePath = Application.dataPath + "/playerData.json";
-        LoadInventory();
+        LoadInventoryFromFile();
     }
     
     // Update is called once per frame
@@ -37,13 +38,19 @@ public class InventoryMager : MonoBehaviour
             //AddItem(item);
             AddItem(item2);
         }
+        
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SaveInventory();
+            SaveInventoryToFile();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            LoadInventory();
+            LoadInventoryFromFile();
+        }
+
+        if (inventoryItem)
+        {
+            inventoryItem.transform.position = Input.mousePosition;
         }
     }
 
@@ -79,9 +86,10 @@ public class InventoryMager : MonoBehaviour
         GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
         inventoryItem.InitializeItem(item);
+        inventoryItem.SetInventory(this);
     }
 
-    private void SaveInventory()
+    private void SaveInventoryToFile()
     {
         List<InventoryData> inventoryDataList = new List<InventoryData>();
 
@@ -109,7 +117,7 @@ public class InventoryMager : MonoBehaviour
         File.WriteAllText(filePath, json);
     }
     
-    private void LoadInventory()
+    private void LoadInventoryFromFile()
     {
         if (File.Exists(filePath))
         {
@@ -130,6 +138,7 @@ public class InventoryMager : MonoBehaviour
                         inventoryItem.InitializeItem(wrapper.inventoryDataList[i].item);
                         inventoryItem.SetAmount(wrapper.inventoryDataList[i].amount);
                         inventoryItem.SetMultiplier(wrapper.inventoryDataList[i].multiplier);
+                        inventoryItem.SetInventory(this);
                     }
                 }
             }
@@ -153,6 +162,22 @@ public class InventoryMager : MonoBehaviour
     public float GetCoins()
     {
         return coins;
+    }
+
+    public void SetInventoryItem(GameObject itemToDrag)
+    {
+        inventoryItem = itemToDrag;
+        itemToDrag.transform.parent = transform.root;
+    }
+    
+    public void SetInventoryItem()
+    {
+        inventoryItem = null;
+    }
+
+    public GameObject ReturnInventoryItem()
+    {
+        return inventoryItem;
     }
     
 }

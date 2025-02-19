@@ -25,7 +25,6 @@ public class Actions : MonoBehaviour
     private void Start()
     {
         isDay = SceneManager.GetActiveScene().name == "Day Scene";
-        Debug.Log(isDay);
     }
 
     private void Update()
@@ -33,7 +32,6 @@ public class Actions : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
-            Debug.Log(slots[m_selectedItemIndex].name);
             m_selectedItemIndex++;
             if (m_selectedItemIndex >= 9)
             {

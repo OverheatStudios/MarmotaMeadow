@@ -6,4 +6,9 @@ using UnityEngine;
 public class Tool : BaseItem
 {
     [SerializeField] private float toolLevelCost;
+
+    public float ReturnToolLevelCost()
+    {
+        return toolLevelCost;
+    }
 }
