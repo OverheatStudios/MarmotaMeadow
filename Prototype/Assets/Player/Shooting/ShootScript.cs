@@ -10,16 +10,6 @@ using UnityEngine.UI;
 public class ShootScript : MonoBehaviour
 {
     /// <summary>
-    /// Shoot cooldown in secnods
-    /// </summary>
-    [SerializeField] private float m_cooldown = 0.4f;
-
-    /// <summary>
-    /// Reload cooldown in seconds
-    /// </summary>
-    [SerializeField] private float m_reloadCooldown = 2.5f;
-
-    /// <summary>
     /// Layer which all enemies and only enemies are on
     /// </summary>
     [SerializeField] private LayerMask m_enemyLayer;
@@ -88,7 +78,7 @@ public class ShootScript : MonoBehaviour
 
     void Start()
     {
-        SetAmmo(m_data.MaxAmmo);
+
     }
 
     void Update()
@@ -113,6 +103,7 @@ public class ShootScript : MonoBehaviour
             HideGunUi();
             return;
         }
+        SetAmmo(gun.GetCurrentAmmo());
         ShowGunUi();
 
         // Reloading
@@ -123,7 +114,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Ammo
-        if (m_data.CurrentAmmo < 1)
+        if (gun.GetCurrentAmmo() <= 0)
         {
             m_reloadText.enabled = true;
             return;
@@ -132,7 +123,12 @@ public class ShootScript : MonoBehaviour
         // Shoot
         if (Input.GetMouseButtonDown(0))
         {
-            ShootBullet();
+            Assert.IsTrue(gun.GetNumBullets() >= 1);
+            SetAmmo(GetGunUnsafe().GetCurrentAmmo() - 1);
+            for (int i = 0; i < gun.GetNumBullets(); ++i)
+            {
+                ShootBullet();
+            }
             return;
         }
     }
@@ -150,7 +146,7 @@ public class ShootScript : MonoBehaviour
     private void ShowGunUi()
     {
         // Reload text will enable itself when needed
-        m_ammoText.enabled = true; 
+        m_ammoText.enabled = true;
         foreach (Transform child in m_ammoText.transform)
         {
             child.gameObject.SetActive(true);
@@ -159,14 +155,15 @@ public class ShootScript : MonoBehaviour
 
     private void SetAmmo(int ammo)
     {
+        Gun gun = GetGunUnsafe();
         if (ammo < 0) ammo = 0;
-        else if (ammo > m_data.MaxAmmo) ammo = m_data.MaxAmmo;
+        else if (ammo > gun.GetMaxAmmo()) ammo = gun.GetMaxAmmo();
 
-        m_data.CurrentAmmo = ammo;
+        gun.SetCurrentAmmo(ammo);
         m_ammoText.text = new StringBuilder("")
             .Append(ammo)
             .Append("/")
-            .Append(m_data.MaxAmmo)
+            .Append(gun.GetMaxAmmo())
             .ToString();
 
         m_reloadText.enabled = false;
@@ -183,19 +180,16 @@ public class ShootScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Shoot a bullet and set cooldown, should not be called when on cooldown
+    /// Shoot a bullet and set cooldown, should not be called when on cooldown, this will not decrement ammo
     /// </summary>
     private void ShootBullet()
     {
-        // Ammo
-        SetAmmo(m_data.CurrentAmmo - 1);
-
-        SetShootCooldown(m_cooldown);
+        SetShootCooldown(GetGunUnsafe().GetShootCooldownSeconds());
 
         m_shootSound.Play();
 
         // See if bullet hit anything
-        Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
+        Ray ray = new Ray(m_camera.transform.position, GetRandomBulletDirection());
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_enemyLayer))
@@ -219,6 +213,20 @@ public class ShootScript : MonoBehaviour
             // Hit shootable
             SpawnBulletHoleDecal(hit);
         }
+    }
+
+    /// <summary>
+    /// Get the direction a bullet would travel in if one was shot right now, player must be holding a gun if this method is called. Takes gun bullet spread into account.
+    /// </summary>
+    /// <returns>Normalised vector representing bullet spread</returns>
+    private Vector3 GetRandomBulletDirection()
+    {
+        Gun gun = GetGunUnsafe();   
+        Vector3 baseDirection = m_camera.transform.forward;
+        baseDirection.x += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
+        baseDirection.y += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
+        baseDirection.z += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
+        return baseDirection.normalized;
     }
 
     /// <summary>
@@ -249,11 +257,13 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     async void ReloadAmmo()
     {
-        if (m_data.CurrentAmmo >= m_data.MaxAmmo) return;
+        Gun gun = GetGunUnsafe();
+        if (gun.GetCurrentAmmo() >= gun.GetMaxAmmo()) return;
 
-        SetShootCooldown(m_reloadCooldown);
-        await Task.Delay((int)(m_reloadCooldown * 1000));
-        SetAmmo(m_data.MaxAmmo);
+        float reloadCooldown = GetGunUnsafe().GetReloadCooldownSeconds();
+        SetShootCooldown(reloadCooldown);
+        await Task.Delay((int)(reloadCooldown * 1000));
+        SetAmmo(gun.GetMaxAmmo());
     }
 
     private Gun GetGunUnsafe()
