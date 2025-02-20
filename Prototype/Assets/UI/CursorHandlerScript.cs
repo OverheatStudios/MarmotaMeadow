@@ -13,6 +13,8 @@ public class CursorHandlerScript : ScriptableObject
         m_isUiOpen = false;
     }
 
+    // TODO: Might be worth making this a stack so it supports multiple ui open at once (e.g if 2 ui open and 1 close, cursor should still be locked)
+
     /// <summary>
     /// Let the cursor handler know that the ui is open and cursor should not be locked
     /// </summary>
