@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Assertions;
+using System.Linq;
 
 [System.Serializable]
 public class InventoryData
@@ -24,9 +26,15 @@ public class InventoryMager : MonoBehaviour
     [SerializeField] private GameObject inventoryItem;
     
     private string filePath;
+
+    [SerializeField] private string m_saveLocation;
+
+    private int m_selectedItemIndex = -1;
+
     void Start()
     {
-        filePath = Application.dataPath + "/playerData.json";
+        Assert.IsNotNull(m_saveLocation);
+        filePath = Application.dataPath + "/" + m_saveLocation;
         LoadInventoryFromFile();
     }
     
@@ -79,6 +87,29 @@ public class InventoryMager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Get the item at an index, may return null
+    /// </summary>
+    /// <param name="index">Index, must be valid index</param>
+    /// <returns>The BaseItem or null</returns>
+    public BaseItem GetItem(int index)
+    {
+        Assert.IsTrue(index >= 0 && index < inventorySlots.Count());
+        InventorySlot slot = inventorySlots[index];
+        InventoryItem item = slot.GetComponentInChildren<InventoryItem>();
+        if (item == null) return null;
+        return item.item;
+    }
+
+    /// <summary>
+    /// Get the item the player is holding
+    /// </summary>
+    /// <returns>The item, or null</returns>
+    public BaseItem GetHeldItem()
+    {
+        return GetItem(m_selectedItemIndex);
     }
 
     private void SpawnNewItem(BaseItem item, InventorySlot slot)
@@ -180,6 +211,19 @@ public class InventoryMager : MonoBehaviour
         return inventoryItem;
     }
     
+    /// <summary>
+    /// Let the inventory manager know that the player changed held item slot
+    /// </summary>
+    /// <param name="index">New index</param>
+    public void NotifyNewSelectedItemIndex(int index)
+    {
+        m_selectedItemIndex = index;
+    }
+
+    public int GetSelectedItemIndex()
+    {
+        return m_selectedItemIndex;
+    }
 }
 
 [System.Serializable]

@@ -1,22 +1,14 @@
+using NUnit.Framework;
 using System.Text;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class ShootScript : MonoBehaviour
 {
-    /// <summary>
-    /// Shoot cooldown in secnods
-    /// </summary>
-    [SerializeField] private float m_cooldown = 0.4f;
-
-    /// <summary>
-    /// Reload cooldown in seconds
-    /// </summary>
-    [SerializeField] private float m_reloadCooldown = 2.5f;
-
     /// <summary>
     /// Layer which all enemies and only enemies are on
     /// </summary>
@@ -60,7 +52,7 @@ public class ShootScript : MonoBehaviour
     /// <summary>
     /// Randomness in damage, 0.1 means +-10%
     /// </summary>
-    [Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
+    [UnityEngine.Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
 
     /// <summary>
     /// Bullet hole decal
@@ -77,14 +69,17 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_bulletHoleOffset = 0.5f;
 
+    [SerializeField] private InventoryMager m_inventoryManager;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
     private float m_lastCooldownSet = 0;
+    private BaseItem m_heldItemLastSwap;
 
     void Start()
     {
-        SetAmmo(m_data.MaxAmmo);
+
     }
 
     void Update()
@@ -101,7 +96,19 @@ public class ShootScript : MonoBehaviour
 
         m_cooldownBar.enabled = false;
 
-        // Not on cooldown passed this point
+        // Not on cooldown after this point
+
+        HandleSwapCooldown();
+
+        // Is holding gun?
+        if (m_inventoryManager.GetHeldItem() is not Gun gun)
+        {
+            HideGunUi();
+            return;
+        }
+
+        SetAmmo(gun.GetCurrentAmmo());
+        ShowGunUi();
 
         // Reloading
         if (Input.GetKeyDown(KeyCode.R))
@@ -111,7 +118,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Ammo
-        if (m_data.CurrentAmmo < 1)
+        if (gun.GetCurrentAmmo() <= 0)
         {
             m_reloadText.enabled = true;
             return;
@@ -120,21 +127,69 @@ public class ShootScript : MonoBehaviour
         // Shoot
         if (Input.GetMouseButtonDown(0))
         {
-            ShootBullet();
+            Assert.IsTrue(gun.GetNumBullets() >= 1);
+            SetAmmo(GetGunUnsafe().GetCurrentAmmo() - 1);
+            for (int i = 0; i < gun.GetNumBullets(); ++i)
+            {
+                ShootBullet();
+            }
             return;
+        }
+    }
+
+    /// <summary>
+    /// Handle swap cooldown, player does not need to be holding a gun when this method is called.
+    /// Checks if a swap occurred and handles it if it did
+    /// </summary>
+    private void HandleSwapCooldown()
+    {
+        if (m_inventoryManager.GetHeldItem() is not Gun gun)
+        {
+            m_heldItemLastSwap = null;
+            return;
+        }
+
+        if (m_heldItemLastSwap != gun)
+        {
+            if (m_currentCooldown < gun.GetSwapCooldownSeconds())
+            {
+                SetShootCooldown(gun.GetSwapCooldownSeconds());
+            }
+            m_heldItemLastSwap = gun;
+        }
+    }
+
+    private void HideGunUi()
+    {
+        m_reloadText.enabled = false;
+        m_ammoText.enabled = false;
+        foreach (Transform child in m_ammoText.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowGunUi()
+    {
+        // Reload text will enable itself when needed
+        m_ammoText.enabled = true;
+        foreach (Transform child in m_ammoText.transform)
+        {
+            child.gameObject.SetActive(true);
         }
     }
 
     private void SetAmmo(int ammo)
     {
+        Gun gun = GetGunUnsafe();
         if (ammo < 0) ammo = 0;
-        else if (ammo > m_data.MaxAmmo) ammo = m_data.MaxAmmo;
+        else if (ammo > gun.GetMaxAmmo()) ammo = gun.GetMaxAmmo();
 
-        m_data.CurrentAmmo = ammo;
+        gun.SetCurrentAmmo(ammo);
         m_ammoText.text = new StringBuilder("")
             .Append(ammo)
             .Append("/")
-            .Append(m_data.MaxAmmo)
+            .Append(gun.GetMaxAmmo())
             .ToString();
 
         m_reloadText.enabled = false;
@@ -151,19 +206,16 @@ public class ShootScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Shoot a bullet and set cooldown, should not be called when on cooldown
+    /// Shoot a bullet and set cooldown, should not be called when on cooldown, this will not decrement ammo
     /// </summary>
     private void ShootBullet()
     {
-        // Ammo
-        SetAmmo(m_data.CurrentAmmo - 1);
-
-        SetShootCooldown(m_cooldown);
+        SetShootCooldown(GetGunUnsafe().GetShootCooldownSeconds());
 
         m_shootSound.Play();
 
         // See if bullet hit anything
-        Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
+        Ray ray = new Ray(m_camera.transform.position, GetRandomBulletDirection());
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_enemyLayer))
@@ -190,6 +242,20 @@ public class ShootScript : MonoBehaviour
     }
 
     /// <summary>
+    /// Get the direction a bullet would travel in if one was shot right now, player must be holding a gun if this method is called. Takes gun bullet spread into account.
+    /// </summary>
+    /// <returns>Normalised vector representing bullet spread</returns>
+    private Vector3 GetRandomBulletDirection()
+    {
+        Gun gun = GetGunUnsafe();
+        Vector3 baseDirection = m_camera.transform.forward;
+        baseDirection.x += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
+        baseDirection.y += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
+        baseDirection.z += Random.Range(-gun.GetBulletSpread(), gun.GetBulletSpread());
+        return baseDirection.normalized;
+    }
+
+    /// <summary>
     /// Spawns a bullet hole decal on the surface that the raycast intersected with
     /// </summary>
     /// <param name="hit">Raycast result</param>
@@ -199,7 +265,7 @@ public class ShootScript : MonoBehaviour
         bulletHole.transform.position = hit.point + hit.normal * m_bulletHoleOffset;
         bulletHole.transform.forward = hit.normal;
         bulletHole.transform.SetParent(hit.transform, true);
-        bulletHole.GetComponentInChildren<DecalProjector>().size = new Vector3(m_data.BulletHoleSize, m_data.BulletHoleSize, m_data.BulletHoleSize);
+        bulletHole.GetComponentInChildren<DecalProjector>().size = new Vector3(GetGunUnsafe().GetBulletHoleSize(), GetGunUnsafe().GetBulletHoleSize(), GetGunUnsafe().GetBulletHoleSize());
     }
 
     /// <summary>
@@ -208,7 +274,8 @@ public class ShootScript : MonoBehaviour
     /// <param name="groundhog">Groundhog to damage</param>
     private void DamageGroundhog(GroundhogScript groundhog)
     {
-        groundhog.Damage(m_data.Damage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
+        float baseDamage = GetGunUnsafe().GetDamage();
+        groundhog.Damage(baseDamage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
     }
 
     /// <summary>
@@ -216,10 +283,20 @@ public class ShootScript : MonoBehaviour
     /// </summary>
     async void ReloadAmmo()
     {
-        if (m_data.CurrentAmmo >= m_data.MaxAmmo) return;
+        Gun gun = GetGunUnsafe();
+        if (gun.GetCurrentAmmo() >= gun.GetMaxAmmo()) return;
 
-        SetShootCooldown(m_reloadCooldown);
-        await Task.Delay((int)(m_reloadCooldown * 1000));
-        SetAmmo(m_data.MaxAmmo);
+        float reloadCooldown = GetGunUnsafe().GetReloadCooldownSeconds();
+        SetShootCooldown(reloadCooldown);
+        await Task.Delay((int)(reloadCooldown * 1000));
+        SetAmmo(gun.GetMaxAmmo());
+    }
+
+    private Gun GetGunUnsafe()
+    {
+        BaseItem heldItem = m_inventoryManager.GetHeldItem();
+        if (heldItem is Gun gun) return gun;
+        Assert.IsTrue(false);
+        return null;
     }
 }

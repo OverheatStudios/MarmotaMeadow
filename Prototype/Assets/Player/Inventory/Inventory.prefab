@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 4305583956246758480}
   - component: {fileID: 1573004745547194539}
   - component: {fileID: 6857077546119639811}
+  - component: {fileID: 5935117403572180540}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -321,6 +322,26 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
   item2: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
   coins: 0
+  inventoryItem: {fileID: 0}
+  m_saveLocation: 
+--- !u!114 &5935117403572180540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084150171375576466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6bd2cef6d359048b7f74522b2b34c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_canOpenInventory: 1
+  slots: []
+  m_selectedItemIndex: 0
+  m_inventoryUI: {fileID: 0}
+  m_inInventory: 0
+  m_inventoryManager: {fileID: 6857077546119639811}
 --- !u!1 &6505193758527495094
 GameObject:
   m_ObjectHideFlags: 0
