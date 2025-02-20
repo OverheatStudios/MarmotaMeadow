@@ -13,21 +13,28 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+        //putting an item on an empty slot
         if (transform.childCount == 0)
         {
             inventory.ReturnInventoryItem().transform.SetParent(transform);
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(true);
             inventory.SetInventoryItem();
         }
+        //trading places with another item
         else if(transform.childCount >= 1 && inventory.ReturnInventoryItem())
         {
             inventory.ReturnInventoryItem().transform.SetParent(transform);
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(true);
             inventory.SetInventoryItem(transform.GetChild(0).gameObject);
             inventory.ReturnInventoryItem().transform.SetParent(transform.root);
-        }else if (transform.childCount >= 1 && !inventory.ReturnInventoryItem())
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(false);
+        }
+        //taking an item away from a slot
+        else if (transform.childCount >= 1 && !inventory.ReturnInventoryItem())
         {
             inventory.SetInventoryItem(transform.GetChild(0).gameObject);
             inventory.ReturnInventoryItem().transform.SetParent(transform.root);
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(false);
         }
     }
     

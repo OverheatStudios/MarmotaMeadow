@@ -2,35 +2,27 @@
     "inventoryDataList": [
         {
             "slotName": "ToolBarSlot",
-            "amount": 2,
+            "amount": 1,
             "multiplier": 0.0,
-            "item": {
-                "instanceID": 41550
-            }
+            "item": "Corn"
         },
         {
             "slotName": "ToolBarSlot 1",
             "amount": 1,
             "multiplier": 0.0,
-            "item": {
-                "instanceID": 41540
-            }
+            "item": "Corn seeds"
         },
         {
             "slotName": "ToolBarSlot 2",
             "amount": 1,
             "multiplier": 0.0,
-            "item": {
-                "instanceID": 41482
-            }
+            "item": "harvesting tool"
         },
         {
             "slotName": "ToolBarSlot 3",
             "amount": 1,
             "multiplier": 0.0,
-            "item": {
-                "instanceID": 41562
-            }
+            "item": "hoe"
         }
     ]
 }

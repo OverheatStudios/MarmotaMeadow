@@ -323,6 +323,7 @@ MonoBehaviour:
   item2: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
   coins: 0
   inventoryItem: {fileID: 0}
+  items: []
   m_saveLocation: 
 --- !u!114 &5935117403572180540
 MonoBehaviour:

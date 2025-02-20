@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemScriptableObject", menuName = "Scriptable Objects/BaseItem")]
+[System.Serializable]
 public class BaseItem : ScriptableObject
 {
     [SerializeField] protected GameObject m_handModelPrefab;

@@ -13,7 +13,7 @@ public class InventoryData
     public String slotName;
     public int amount;
     public float multiplier;
-    public BaseItem item;
+    public string item;
 }
 
 public class InventoryMager : MonoBehaviour
@@ -24,6 +24,7 @@ public class InventoryMager : MonoBehaviour
     public BaseItem item2;
     public float coins;
     [SerializeField] private GameObject inventoryItem;
+    [SerializeField] private BaseItem[] items;
     
     private string filePath;
 
@@ -103,6 +104,16 @@ public class InventoryMager : MonoBehaviour
         return item.item;
     }
 
+    public InventoryItem GetInventoryItem(int index)
+    {
+        Assert.IsTrue(index >= 0 && index < inventorySlots.Count());
+        Debug.Log(inventorySlots[index]);
+        InventorySlot slot = inventorySlots[index];
+        InventoryItem item = inventorySlots[index].GetComponentInChildren<InventoryItem>();
+        if (item == null) return null;
+        return item;
+    }
+
     /// <summary>
     /// Get the item the player is holding
     /// </summary>
@@ -110,6 +121,11 @@ public class InventoryMager : MonoBehaviour
     public BaseItem GetHeldItem()
     {
         return GetItem(m_selectedItemIndex);
+    }
+
+    public InventoryItem GetHeldInventoryItem()
+    {
+        return GetInventoryItem(m_selectedItemIndex);
     }
 
     private void SpawnNewItem(BaseItem item, InventorySlot slot)
@@ -131,7 +147,7 @@ public class InventoryMager : MonoBehaviour
                 InventoryData inventoryData = new InventoryData
                 {
                     slotName = inventorySlots[i].gameObject.name, // Save the slot name
-                    item = inventorySlots[i].GetComponentInChildren<InventoryItem>().item, // Save the item name
+                    item = inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name, // Save the item name
                     amount = inventorySlots[i].GetComponentInChildren<InventoryItem>().ReturnAmount(),
                     multiplier = inventorySlots[i].GetComponentInChildren<InventoryItem>().ReturnMultiplier()
                 };
@@ -166,7 +182,13 @@ public class InventoryMager : MonoBehaviour
                     {
                         GameObject newItem = Instantiate(inventoryItemPrefab, inventorySlots[j].transform);
                         InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
-                        inventoryItem.InitializeItem(wrapper.inventoryDataList[i].item);
+                        for (int k = 0; k < items.Length; k++)
+                        {
+                            if (wrapper.inventoryDataList[i].item == items[i].name)
+                            {
+                                inventoryItem.InitializeItem(items[i]);
+                            }
+                        }
                         inventoryItem.SetAmount(wrapper.inventoryDataList[i].amount);
                         inventoryItem.SetMultiplier(wrapper.inventoryDataList[i].multiplier);
                         inventoryItem.SetInventory(this);
