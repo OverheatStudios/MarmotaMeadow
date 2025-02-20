@@ -15,6 +15,7 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private GameObject m_inventoryUI;
     [SerializeField] private bool m_inInventory;
     [SerializeField] private InventoryMager m_inventoryManager;
+    [SerializeField] private CursorHandlerScript m_cursorHandler;
 
     private void Start()
     {
@@ -74,8 +75,7 @@ public class InventoryActions : MonoBehaviour
             m_inventoryUI.SetActive(true);
 
             //Cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            m_cursorHandler.NotifyUiOpen();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && m_inInventory)
         {
@@ -84,8 +84,7 @@ public class InventoryActions : MonoBehaviour
             m_inventoryUI.SetActive(false);
 
             //Cursor
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            m_cursorHandler.NotifyUiClosed();
         }
     }
 }

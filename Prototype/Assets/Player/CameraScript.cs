@@ -8,17 +8,19 @@ public class CameraScript : MonoBehaviour
     /// </summary>
     [SerializeField] private float m_sensitivity = 1;
 
+    [SerializeField] private CursorHandlerScript m_cursorHandler;
 
     private float pitch = 0f;
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        m_cursorHandler.NotifyUiClosed();
     }
 
     void LateUpdate()
     {
+        if (m_cursorHandler.IsUiOpen()) return;
+
         // Move camera based on how much mouse moved this frame
         Vector2 mouseDelta = Mouse.current.delta.ReadValue() * m_sensitivity;
 

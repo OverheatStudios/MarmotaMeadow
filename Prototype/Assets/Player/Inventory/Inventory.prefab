@@ -342,6 +342,7 @@ MonoBehaviour:
   m_inventoryUI: {fileID: 0}
   m_inInventory: 0
   m_inventoryManager: {fileID: 6857077546119639811}
+  m_cursorHandler: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
 --- !u!1 &6505193758527495094
 GameObject:
   m_ObjectHideFlags: 0
