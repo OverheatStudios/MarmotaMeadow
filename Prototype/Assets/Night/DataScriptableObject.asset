@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e678149aec341408fa41563e8bff14, type: 3}
   m_Name: DataScriptableObject
   m_EditorClassIdentifier: 
-  groundhogsSpawned: 0
-  groundhogsKilled: 0
+  GroundhogsSpawned: 0
+  GroundhogsKilled: 0
+  NightCounter: 0
+  MaxHealth: 10
+  CurrentHealth: 10

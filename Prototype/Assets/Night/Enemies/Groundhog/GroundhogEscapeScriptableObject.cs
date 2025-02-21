@@ -21,7 +21,7 @@ public class GroundhogEscapeScriptableObject : ScriptableObject
         m_groundhogsEscaped++;
         if (m_groundhogsEscaped % m_groundhogsPerHealthPoint == 0)
         {
-            m_data.CurrentHealth--;
+            m_data.Damage(1);
         }
     }
 }

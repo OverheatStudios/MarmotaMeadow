@@ -33,8 +33,8 @@ public class CursorHandlerScript : ScriptableObject
     {
         m_isUiOpen = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
     }
 
     /// <summary>
@@ -45,4 +45,5 @@ public class CursorHandlerScript : ScriptableObject
     {
         return m_isUiOpen;
     }
+
 }

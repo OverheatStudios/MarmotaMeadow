@@ -217,6 +217,11 @@ public class InventoryMager : MonoBehaviour
         return coins;
     }
 
+    public void SetCoins(float amount)
+    {
+        coins = amount;
+    }
+
     public void SetInventoryItem(GameObject itemToDrag)
     {
         inventoryItem = itemToDrag;

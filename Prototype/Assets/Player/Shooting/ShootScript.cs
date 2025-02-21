@@ -75,6 +75,7 @@ public class ShootScript : MonoBehaviour
     private float m_currentCooldown = 0;
     private float m_lastCooldownSet = 0;
     private BaseItem m_heldItemLastSwap;
+    private bool m_isInfiniteAmmoCheatEnabled = false;
 
     void Start()
     {
@@ -126,13 +127,35 @@ public class ShootScript : MonoBehaviour
         // Shoot
         if (Input.GetMouseButtonDown(0))
         {
-            Assert.IsTrue(gun.GetNumBullets() >= 1);
-            SetAmmo(GetGunUnsafe().GetCurrentAmmo() - 1);
-            for (int i = 0; i < gun.GetNumBullets(); ++i)
-            {
-                ShootBullet();
-            }
+            ShootGun();
             return;
+        }
+    }
+
+    /// <summary>
+    /// Enable/disable infinite ammo (no ammo consumption)
+    /// </summary>
+    /// <param name="toggleUi">The debug ui toggle for infinite ammo</param>
+    public void SetInfiniteAmmoCheat(Toggle toggleUi)
+    {
+        m_isInfiniteAmmoCheatEnabled = toggleUi.isOn;
+    }
+
+    /// <summary>
+    /// Shoot the gun once, consuming 1 ammo (if not infinite), depending on the gun this may shoot multiple bullets
+    /// </summary>
+    private void ShootGun()
+    {
+        Gun gun = GetGunUnsafe();
+        Assert.IsTrue(gun.GetNumBullets() >= 1);
+
+        if (!m_isInfiniteAmmoCheatEnabled)
+        {
+            SetAmmo(GetGunUnsafe().GetCurrentAmmo() - 1);
+        }
+        for (int i = 0; i < gun.GetNumBullets(); ++i)
+        {
+            ShootBullet();
         }
     }
 

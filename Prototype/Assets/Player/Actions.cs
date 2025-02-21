@@ -29,12 +29,6 @@ public class Actions : MonoBehaviour
     private void Update()
     {        
         InteractWithPlot();
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Debug.Log("Yes");
-            SceneManager.LoadScene("NightScene");
-        }
     }
 
     void InteractWithPlot()
