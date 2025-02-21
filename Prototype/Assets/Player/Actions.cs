@@ -8,10 +8,9 @@ using UnityEngine.UI;
 public class Actions : MonoBehaviour
 {
     [Header("Inventory")]
-    [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>(); // List of inventory slots
-    [SerializeField] private int m_selectedItemIndex;
     [SerializeField] private GameObject m_inventoryUI;
     [SerializeField] private bool m_inInventory;
+    [SerializeField] private InventoryMager m_inventoryManager;
     
     [Header("Interactions")]
     [SerializeField] private GameObject m_camera;
@@ -30,12 +29,6 @@ public class Actions : MonoBehaviour
     private void Update()
     {        
         InteractWithPlot();
-        
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            IncreaseMultiplierTest();
-        }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -55,26 +48,22 @@ public class Actions : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Plant"))
                 {
-                    if (slots[m_selectedItemIndex].transform.childCount > 0) 
+                    InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
+                    
+                    if (heldItem.transform.childCount > 0) 
                     {   
-                        if (hit.collider.GetComponent<Plant>().ChangeState(slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>()) 
-                            & slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().item.IsStackable())
+                        if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) 
+                            & heldItem.item.IsStackable())
                         {
-                            slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().count--;
-                            if (slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().count <= 0)
+                            heldItem.count--;
+                            if (heldItem.count <= 0)
                             {
-                                Destroy(slots[m_selectedItemIndex].transform.GetChild(0).gameObject);
+                                Destroy(heldItem.transform.GetChild(0).gameObject);
                             }
                         }
                     }
                 }
             }
         }
-    }
-
-
-    void IncreaseMultiplierTest()
-    {
-        slots[m_selectedItemIndex].GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
     }
 }
