@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4468f244fa4d34fb52e7c09daea1b7, type: 3}
   m_Name: SettingsScriptableObject
   m_EditorClassIdentifier: 
-  m_musicVolume: 0.5
+  m_settingsAutosaveIntervalSeconds: 10
+  m_settingsFile: settings.json

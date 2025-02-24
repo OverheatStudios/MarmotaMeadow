@@ -93,3 +93,5 @@ MonoBehaviour:
   m_capturePositionOffset: {x: -5, y: -5}
   m_lightStrength: 0.498
   m_brightnessContributions: {x: 0.299, y: 0.587, z: 0.114}
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
+  m_staticScreenColor: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}

@@ -26,6 +26,9 @@ public class CrosshairScript : MonoBehaviour
     private float m_maxBrightness;
     private float m_inverseMaxBrightness;
     private Texture2D m_screenTexture;
+    [SerializeField] private SettingsScriptableObject m_settings;
+    [Tooltip("If dynamic crosshair is disabled, pretend screen is this colour")]
+    [SerializeField] private Color m_staticScreenColor = new(0.33f, 0.33f, 0.33f);
 
     void OnEnable()
     {
@@ -37,7 +40,14 @@ public class CrosshairScript : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(CalculateOptimalLightness());
+        if (m_settings.GetSettings().IsDynamicCrosshair())
+        {
+            StartCoroutine(CalculateOptimalLightness());
+        }
+        else
+        {
+            UpdateCrosshairColor(m_staticScreenColor);
+        }
     }
 
     void OnDisable()
@@ -55,7 +65,7 @@ public class CrosshairScript : MonoBehaviour
 
         // Copies from current rt, on update that should be the final screen of the last frame unless im dumb
         // Way better than taking a screenshot every frame
-        m_screenTexture.ReadPixels(new Rect(capturePosition.x, capturePosition.y, 1, 1), 0, 0); 
+        m_screenTexture.ReadPixels(new Rect(capturePosition.x, capturePosition.y, 1, 1), 0, 0);
 
         Color color = m_screenTexture.GetPixel(0, 0);
         UpdateCrosshairColor(color);
