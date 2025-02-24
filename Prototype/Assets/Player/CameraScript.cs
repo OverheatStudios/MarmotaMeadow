@@ -3,9 +3,7 @@ using UnityEngine.InputSystem;
 
 public class CameraScript : MonoBehaviour
 {
-    /// <summary>
-    /// How much does the camera move when player moves mouse
-    /// </summary>
+    [Tooltip("How much does the camera move when player moves mouse")]
     [SerializeField] private float m_sensitivity = 1;
 
     [SerializeField] private CursorHandlerScript m_cursorHandler;

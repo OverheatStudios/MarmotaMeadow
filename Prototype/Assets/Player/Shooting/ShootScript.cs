@@ -8,65 +8,43 @@ using UnityEngine.UI;
 
 public class ShootScript : MonoBehaviour
 {
-    /// <summary>
-    /// Layer which all enemies and only enemies are on
-    /// </summary>
+    [Tooltip("Layer which all enemies and only enemies are on")]
     [SerializeField] private LayerMask m_enemyLayer;
 
-    /// <summary>
-    /// Player camera
-    /// </summary>
+    [Tooltip("Player camera")]
     [SerializeField] private GameObject m_camera;
 
-    /// <summary>
-    /// Game data
-    /// </summary>
+    [Tooltip("Game data")]
     [SerializeField] private DataScriptableObject m_data;
 
-    /// <summary>
-    /// Sound to play on shoot
-    /// </summary>
+    [Tooltip("Sound to play on shoot")]
     [SerializeField] private AudioSource m_shootSound;
 
-    /// <summary>
-    /// Shooting cooldown bar background
-    /// </summary>
+    [Tooltip("Shooting cooldown bar background")]
     [SerializeField] private Image m_cooldownBar;
 
-    /// <summary>
-    /// Shooting cooldown bar mask (progress)
-    /// </summary>
+    [Tooltip("Shooting cooldown bar mask (progress)")]
     [SerializeField] private Image m_cooldownBarMask;
 
-    /// <summary>
-    /// Current and max ammo display
-    /// </summary>
+    [Tooltip("Current and max ammo display")]
     [SerializeField] private TextMeshProUGUI m_ammoText;
 
-    /// <summary>
-    /// Text telling user how to reload
-    /// </summary>
+    [Tooltip("Text telling user how to reload")]
     [SerializeField] private TextMeshProUGUI m_reloadText;
 
-    /// <summary>
-    /// Randomness in damage, 0.1 means +-10%
-    /// </summary>
-    [UnityEngine.Range(0, 1)][SerializeField] private float m_randomDamageScale = 0.2f;
+    [Tooltip("Randomness in damage, 0.1 means +-10%")]
+    [UnityEngine.Range(0, 1)]
+    [SerializeField] private float m_randomDamageScale = 0.2f;
 
-    /// <summary>
-    /// Bullet hole decal
-    /// </summary>
+    [Tooltip("Bullet hole decal")]
     [SerializeField] private GameObject m_bulletHolePrefab;
 
-    /// <summary>
-    /// Layer which anything that can have a bullet hole decal applied, should not include enemies
-    /// </summary>
+    [Tooltip("Layer which anything that can have a bullet hole decal applied, should not include enemies")]
     [SerializeField] private LayerMask m_shootablesLayer;
 
-    /// <summary>
-    /// Move the bullet hole decal along the normal of the surface this many units
-    /// </summary>
+    [Tooltip("Move the bullet hole decal along the normal of the surface this many units")]
     [SerializeField] private float m_bulletHoleOffset = 0.5f;
+
 
     [SerializeField] private InventoryMager m_inventoryManager;
 

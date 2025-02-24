@@ -6,22 +6,16 @@ using UnityEngine.Assertions;
 [CreateAssetMenu(fileName = "ItemScriptableObject", menuName = "Scriptable Objects/Gun")]
 public class Gun : BaseItem
 {
-    /// <summary>
-    /// Damage per bullet, 10 is a nice number
-    /// </summary>
+    [Tooltip("Damage per bullet, 10 is a nice number")]
     [SerializeField] private float m_damage;
     [SerializeField] private int m_numBulletsPerShot;
     [SerializeField] private float m_shootCooldownSeconds;
     [SerializeField] private float m_reloadCooldownSeconds;
     [SerializeField] private int m_maxAmmo;
     private int m_currentAmmo;
-    /// <summary>
-    /// Bullet spread, 0.01f is a nice number
-    /// </summary>
+    [Tooltip("Bullet spread, 0.01f is a nice number")]
     [SerializeField] private float m_spread = 0.01f;
-    /// <summary>
-    /// Scale of bullet hole prefab (.15 is a good number)
-    /// </summary>
+    [Tooltip("Scale of bullet hole prefab (.15 is a good number)")]
     [SerializeField] private float m_bulletHoleSize;
     [SerializeField] private float m_swapCooldownSeconds = 1.5f;
 

@@ -5,9 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GroundhogEscapeScriptableObject", menuName = "Scriptable Objects/GroundhogEscapeScriptableObject")]
 public class GroundhogEscapeScriptableObject : ScriptableObject
 {
-    /// <summary>
-    /// How many groundhogs need to escape to cause the player to lose a single health (half a heart)
-    /// </summary>
+    [Tooltip("How many groundhogs need to escape to cause the player to lose a single health (half a heart)")]
     [SerializeField] private int m_groundhogsPerHealthPoint = 3;
     [SerializeField] private DataScriptableObject m_data;
 

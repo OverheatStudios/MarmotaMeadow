@@ -10,38 +10,26 @@ public class GroundhogScript : MonoBehaviour
         Falling // Going down, about to disappear
     }
 
-    /// <summary>
-    /// Speed at which the groundhog moves up/down
-    /// </summary>
-    [SerializeField] private float m_speed = 1.0f;
+    [SerializeField, Tooltip("Speed at which the groundhog moves up/down")]
+    private float m_speed = 1.0f;
 
-    /// <summary>
-    /// Game data
-    /// </summary>
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField, Tooltip("Game data")]
+    private DataScriptableObject m_data;
 
-    /// <summary>
-    /// Default maximum health, may be changed by night number or other means
-    /// </summary>
-    [SerializeField] private float m_maxHealth = 15;
+    [SerializeField, Tooltip("Default maximum health, may be changed by night number or other means")]
+    private float m_maxHealth = 15;
 
-    /// <summary>
-    /// Health bar
-    /// </summary>
-    [SerializeField] private ProgressBarScript m_healthBar;
+    [SerializeField, Tooltip("Health bar")]
+    private ProgressBarScript m_healthBar;
 
-    /// <summary>
-    /// Minimum seconds that groundhog will be fully up for (maximum is this value + 1)
-    /// </summary>
-    [SerializeField] private float m_minUptime = 2.25f;
+    [SerializeField, Tooltip("Minimum seconds that groundhog will be fully up for (maximum is this value + 1)")]
+    private float m_minUptime = 2.25f;
 
-    [SerializeField] private GroundhogEscapeScriptableObject m_escapeObj;
+    [SerializeField]
+    private GroundhogEscapeScriptableObject m_escapeObj;
 
-    /// <summary>
-    /// High precision collider of the groundhog, probably should be a mesh collider.
-    /// This will be disabled most of the time and require enabling before use.
-    /// </summary>
-    [SerializeField] private Collider m_highPrecisionCollider;
+    [SerializeField, Tooltip("High precision collider of the groundhog, probably should be a mesh collider. This will be disabled most of the time and require enabling before use.")]
+    private Collider m_highPrecisionCollider;
 
     private State m_state = State.Rising;
     /// <summary>

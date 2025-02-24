@@ -9,16 +9,15 @@ public class GroundhogSpawnerScript : MonoBehaviour
     /// </summary>
     [SerializeField] private BurrowContainerScript m_burrowContainer;
 
-    /// <summary>
-    /// Seconds until we start spawning groundhogs
-    /// </summary>
+    [Tooltip("Seconds until we start spawning groundhogs")]
     [SerializeField] private float m_secondsBeforeSpawning = 2;
 
-    /// <summary>
-    /// How much randomness in the spawn interval? 0.1 is +- 10%
-    /// </summary>
+    [Tooltip("How much randomness in the spawn interval? 0.1 is +- 10%")]
     [Range(0, 1)]
     [SerializeField] private float m_randomIntervalPercent = 0.1f;
+
+    [Tooltip("Seconds between each groundhog spawn per night, before randomness applied")]
+    [SerializeField] private List<float> m_groundhogSpawnIntervalsPerNight;
 
     /// <summary>
     /// Game data
@@ -33,6 +32,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
     void Start()
     {
         m_timeToSpawn = m_secondsBeforeSpawning;
+        Assert.IsTrue(m_groundhogSpawnIntervalsPerNight != null && m_groundhogSpawnIntervalsPerNight.Count > 0);
     }
 
     void Update()
@@ -49,7 +49,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
     /// </summary>
     private void SetTimeToSpawn()
     {
-        float baseInterval = 5.0f / m_burrowContainer.CurrentBurrowCount;
+        float baseInterval = m_groundhogSpawnIntervalsPerNight[Mathf.Min(m_data.NightCounter, m_groundhogSpawnIntervalsPerNight.Count - 1)];
         float randomness = Random.Range(1 - m_randomIntervalPercent, 1 + m_randomIntervalPercent);
         m_timeToSpawn = baseInterval * randomness;
     }

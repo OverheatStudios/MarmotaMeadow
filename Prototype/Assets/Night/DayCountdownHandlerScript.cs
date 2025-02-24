@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public class DayCountdownHandlerScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_countdownText;
     [SerializeField] private DataScriptableObject m_data;
+    [Header("Config")]
+    [Tooltip("Length of each night in seconds, length of last night is used for any nights past the last, must have at least one entry")]
+    [SerializeField] private List<float> m_nightLengths;
     private float m_secondsRemaining = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        Assert.IsTrue(m_nightLengths != null && m_nightLengths.Count > 0);
         m_secondsRemaining = GetNightLengthSeconds();
     }
 
@@ -36,7 +41,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     /// <returns>Number of seconds the current night should last</returns>
     private float GetNightLengthSeconds()
     {
-        return 90 + Mathf.Min(60, m_data.NightCounter * 5) - 1;
+        return m_nightLengths[Mathf.Min(m_nightLengths.Count - 1, m_data.NightCounter)];
     }
 
     private void SwitchDayScene()

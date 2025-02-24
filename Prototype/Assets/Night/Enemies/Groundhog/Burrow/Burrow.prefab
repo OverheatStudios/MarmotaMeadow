@@ -99,3 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_groundhogPrefab: {fileID: 9137272397123157763, guid: 8acb9cfc6a585a545bc33995322c4fd0, type: 3}
+  m_groundhogBonusHealthPercentages:
+  - 0
+  - 5

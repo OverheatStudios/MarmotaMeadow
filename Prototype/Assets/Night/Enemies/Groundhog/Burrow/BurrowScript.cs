@@ -1,15 +1,14 @@
-using NUnit.Framework;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class BurrowScript : MonoBehaviour
 {
     [SerializeField] private GameObject m_groundhogPrefab;
-    /// <summary>
-    /// Each night groundhogs gain this amount more max health, if this is 5 and night is 1 (second night!) then groundhog has 105% base health, night 3 has 115%
-    /// </summary>
-    private const float HP_GAIN_PERCENT_PER_NIGHT = 5.0f;
+    [Tooltip("Each night groundhogs gain this amount more max health, if this is 5 for element 1 (second element) then on night 1 (second night) groundhogs have 105% health")]
+    [SerializeField] private List<float> m_groundhogBonusHealthPercentages;
 
     /// <summary>
     /// The current groundhog object in this burrow, may be null
@@ -19,7 +18,7 @@ public class BurrowScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Assert.IsTrue(m_groundhogBonusHealthPercentages != null && m_groundhogBonusHealthPercentages.Count > 0);
     }
 
     // Update is called once per frame
@@ -39,7 +38,12 @@ public class BurrowScript : MonoBehaviour
         m_groundhog.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         GroundhogScript groundhogScript = m_groundhog.GetComponent<GroundhogScript>();
-        groundhogScript.SetMaxHealth(groundhogScript.GetMaxHealth() * (1 + night / (100.0f / HP_GAIN_PERCENT_PER_NIGHT)));
+        groundhogScript.SetMaxHealth(groundhogScript.GetMaxHealth() * (1 + night / (100.0f / GetGroundhogHealthPercentBonus(night))));
+    }
+
+    private float GetGroundhogHealthPercentBonus(int night)
+    {
+        return m_groundhogBonusHealthPercentages[Mathf.Min(m_groundhogBonusHealthPercentages.Count - 1, night)];
     }
 
     /// <summary>
