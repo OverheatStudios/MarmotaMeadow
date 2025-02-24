@@ -20,10 +20,16 @@ public class MenuButtonScript : MonoBehaviour
     [Header("Video Settings")]
     [SerializeField] private Toggle m_dynamicCrosshairToggle;
 
+    [Header("Controls Settings")]
+    [SerializeField] private Slider m_cameraSensitivitySlider;
+
     private void Start()
     {
         m_musicVolumeSlider.onValueChanged.AddListener(val => m_settings.GetSettings().SetMusicVolume(val));
+
         m_dynamicCrosshairToggle.onValueChanged.AddListener(val => m_settings.GetSettings().SetDynamicCrosshair(val));
+
+        m_cameraSensitivitySlider.onValueChanged.AddListener(val => m_settings.GetSettings().SetCameraSensitivity(val));
     }
 
     private void Update()
@@ -31,7 +37,10 @@ public class MenuButtonScript : MonoBehaviour
         if (!m_settings.IsUiDirty()) return;
 
         m_musicVolumeSlider.value = m_settings.GetSettings().GetMusicVolume();
+
         m_dynamicCrosshairToggle.isOn = m_settings.GetSettings().IsDynamicCrosshair();
+
+        m_cameraSensitivitySlider.value = m_settings.GetSettings().GetCameraSensitivity();
     }
 
     public void PlayGame()

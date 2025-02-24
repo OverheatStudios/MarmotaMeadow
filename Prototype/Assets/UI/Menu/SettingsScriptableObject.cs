@@ -4,17 +4,16 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Timers;
-using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 [System.Serializable]
 public class Settings
 {
-    [SerializeField] private float m_musicVolume = 0.5f;
+    [SerializeField] private float m_musicVolume = 0.5f; // 0 to 1 range
     [SerializeField] private bool m_dynamicCrosshair = true;
+    [SerializeField] private float m_cameraSensitivity = 0.5f; // 0.1 to 1 range
 
     private bool m_dirty;
 
@@ -44,18 +43,35 @@ public class Settings
         ValidateSettings();
     }
 
+    public float GetCameraSensitivity()
+    {
+        return m_cameraSensitivity;
+    }
+
+    public void SetCameraSensitivity(float sens)
+    {
+        if (sens == m_cameraSensitivity) return;    
+        m_cameraSensitivity = sens;
+        m_dirty = true;
+        ValidateSettings();
+    }
+
     public void ValidateSettings()
     {
         if (m_musicVolume < 0) SetMusicVolume(0);
         if (m_musicVolume > 1) SetMusicVolume(1);
 
         // don't need to validate dynamic crosshair
+
+        if (m_cameraSensitivity < 0) SetCameraSensitivity(0);   
+        if (m_cameraSensitivity > 1) SetCameraSensitivity(1);
     }
 
     public void Reset()
     {
         SetMusicVolume(0.5f);
         SetDynamicCrosshair(true);
+        SetCameraSensitivity(0.5f);
     }
 
     public void MarkClean()

@@ -89,19 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f7eb4a5827f814fb437935122a8b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_selectedItemIndex: 0
   m_inventoryUI: {fileID: 0}
   m_inInventory: 0
+  m_inventoryManager: {fileID: 0}
   m_camera: {fileID: 8133200046893287152}
   m_maxDistance: 1000
   m_plantLayerMask:
@@ -543,8 +533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d1dba6f564e6c45990b3450a08f2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sensitivity: 0.15
+  m_sensitivity: 0.3
   m_cursorHandler: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
 --- !u!114 &7373862065222987196
 MonoBehaviour:
   m_ObjectHideFlags: 0
