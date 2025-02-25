@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - UI
   - Crop
+  - ToolTip
   layers:
   - Default
   - TransparentFX

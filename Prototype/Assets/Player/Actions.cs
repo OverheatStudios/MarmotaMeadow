@@ -52,7 +52,7 @@ public class Actions : MonoBehaviour
                             heldItem.count--;
                             if (heldItem.count <= 0)
                             {
-                                Destroy(heldItem.transform.GetChild(0).gameObject);
+                                Destroy(heldItem.gameObject);
                             }
                         }
                     }

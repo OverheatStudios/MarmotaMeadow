@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3866d6c7cd66e154e879fd0a6c2e7c9e, type: 3}
   m_Name: hoe
   m_EditorClassIdentifier: 
+  m_handModelPrefab: {fileID: 4249221674907983291, guid: df334081b5104974099eca05368aacb2, type: 3}
   m_itemName: hoe
   m_isStackable: 0
   m_image: {fileID: 21300000, guid: 990782e343c0c074c831630fe5a7a17b, type: 3}
   m_maxAmount: 1
-  toolMultiplier: 0
-  toolLevel: 0
   toolLevelCost: 0

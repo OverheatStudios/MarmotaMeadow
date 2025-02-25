@@ -28,11 +28,12 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
 
     [Header("References")] 
     [SerializeField] private InventoryMager inventory;
+    [SerializeField] private GameObject toolTipLocation;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        toolTip = GameObject.FindGameObjectWithTag("ToolTip");
     }
 
     // Update is called once per frame
@@ -66,14 +67,15 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
         transform.SetParent(parentAfterDrag);
     }*/
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)  
     {
         toolTip.SetActive(true);
+        toolTip.transform.position = toolTipLocation.transform.position;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        toolTip.SetActive(false);
+        toolTip.transform.position = new Vector3(0, 0, -100000);
     }
     
     public void RefreshCount()
