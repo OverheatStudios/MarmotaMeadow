@@ -56,6 +56,8 @@ public class GroundhogScript : MonoBehaviour
     {
         m_typeInfo = GetComponentInChildren<GroundhogTypeInfo>();
         m_highPrecisionCollider = m_typeInfo.GetHighPrecisionCollider();
+
+        SetMaxHealth(m_maxHealth * m_typeInfo.GetHealthScalar());
     }
 
     void Update()

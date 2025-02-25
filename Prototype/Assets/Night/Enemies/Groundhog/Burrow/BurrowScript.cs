@@ -35,7 +35,8 @@ public class BurrowScript : MonoBehaviour
     {
         if (m_groundhog != null) Destroy(m_groundhog);
 
-        GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(GroundhogType.Basic);
+        GroundhogType type = m_groundhogTypes.GetRandomGroundhogType();
+        GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(type);
 
         m_groundhog = Instantiate(groundhogScript.gameObject);
         m_groundhog.transform.position = new Vector3(transform.position.x, 0, transform.position.z);

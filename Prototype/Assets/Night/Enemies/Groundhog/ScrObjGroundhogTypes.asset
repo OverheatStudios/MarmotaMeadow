@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84eb5a270830bb94387acfab1f4b243d, type: 3}
   m_Name: ScrObjGroundhogTypes
   m_EditorClassIdentifier: 
-  m_baseGroundhogPrefab: {fileID: 0}
-  m_groundhogTypesPrefabs: []
+  m_baseGroundhogPrefab: {fileID: 9137272397123157763, guid: 8acb9cfc6a585a545bc33995322c4fd0, type: 3}
+  m_groundhogTypesPrefabs:
+  - First: 0
+    Second: {fileID: 8707210447567435520, guid: 09c5ae29e6f76104485cc02bf3fe5710, type: 3}
+  - First: 1
+    Second: {fileID: 8707210447567435520, guid: a25965845216f1f47965cd567bc93909, type: 3}
