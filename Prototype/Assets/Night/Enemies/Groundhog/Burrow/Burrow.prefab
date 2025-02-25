@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada083cfb3342d349a17970a1b076823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_groundhogPrefab: {fileID: 9137272397123157763, guid: 8acb9cfc6a585a545bc33995322c4fd0, type: 3}
+  m_groundhogTypes: {fileID: 11400000, guid: 5b5ac8b53c6a08640b889f23c1934296, type: 2}
   m_groundhogBonusHealthPercentages:
   - 0
   - 5

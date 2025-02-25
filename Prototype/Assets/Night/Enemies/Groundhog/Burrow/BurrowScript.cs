@@ -6,7 +6,8 @@ using UnityEngine.Assertions;
 
 public class BurrowScript : MonoBehaviour
 {
-    [SerializeField] private GameObject m_groundhogPrefab;
+    [SerializeField] private GroundhogTypes m_groundhogTypes;
+    
     [Tooltip("Each night groundhogs gain this amount more max health, if this is 5 for element 1 (second element) then on night 1 (second night) groundhogs have 105% health")]
     [SerializeField] private List<float> m_groundhogBonusHealthPercentages;
 
@@ -34,10 +35,12 @@ public class BurrowScript : MonoBehaviour
     {
         if (m_groundhog != null) Destroy(m_groundhog);
 
-        m_groundhog = Instantiate(m_groundhogPrefab);
+        GroundhogType type = m_groundhogTypes.GetRandomGroundhogType();
+        GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(type);
+
+        m_groundhog = Instantiate(groundhogScript.gameObject);
         m_groundhog.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
-        GroundhogScript groundhogScript = m_groundhog.GetComponent<GroundhogScript>();
         groundhogScript.SetMaxHealth(groundhogScript.GetMaxHealth() * (1 + night / (100.0f / GetGroundhogHealthPercentBonus(night))));
     }
 

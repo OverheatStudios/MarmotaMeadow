@@ -39,6 +39,7 @@ public class GroundhogScript : MonoBehaviour
     private const float MAX_Y = 0.9f;
     private const float MIN_Y = 0.1f;
     private float m_health;
+    private GroundhogTypeInfo m_typeInfo;
 
     void Awake()
     {
@@ -49,6 +50,14 @@ public class GroundhogScript : MonoBehaviour
 
         // Update health bar
         m_healthBar.SetProgress(m_health, m_maxHealth, 0);
+    }
+
+    private void Start()
+    {
+        m_typeInfo = GetComponentInChildren<GroundhogTypeInfo>();
+        m_highPrecisionCollider = m_typeInfo.GetHighPrecisionCollider();
+
+        SetMaxHealth(m_maxHealth * m_typeInfo.GetHealthScalar());
     }
 
     void Update()
@@ -147,5 +156,10 @@ public class GroundhogScript : MonoBehaviour
     public void DisableHighPrecisionCollider()
     {
         m_highPrecisionCollider.enabled=false;
+    }
+
+    public GroundhogTypeInfo getTypeInfo()
+    {
+        return m_typeInfo;
     }
 }
