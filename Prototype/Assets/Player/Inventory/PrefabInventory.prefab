@@ -537,7 +537,18 @@ MonoBehaviour:
   item2: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
   coins: 0
   inventoryItem: {fileID: 0}
-  items: []
+  items:
+  - {fileID: 11400000, guid: 5365fbd2c29e13149a30373f31a844c0, type: 2}
+  - {fileID: 11400000, guid: cbc03137cf0f77444ab58bdf02821b06, type: 2}
+  - {fileID: 11400000, guid: e1cb7fa50bfacef4e880fc6cd537c4d0, type: 2}
+  - {fileID: 11400000, guid: c161442496246ec448402b77019a170e, type: 2}
+  - {fileID: 11400000, guid: 6fbfe7120d3fb144c93226316336351c, type: 2}
+  - {fileID: 11400000, guid: c5b71ab94c216c54f98328f7ef25bbab, type: 2}
+  - {fileID: 11400000, guid: 2f13af07a1eb8e146870e559498f7ac9, type: 2}
+  - {fileID: 11400000, guid: a6dbb878b3563654d83e6a45ad068888, type: 2}
+  - {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
+  - {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
+  - {fileID: 11400000, guid: 386c8be34faa57e4e9283a0683456374, type: 2}
   m_saveLocation: 
 --- !u!114 &5935117403572180540
 MonoBehaviour:

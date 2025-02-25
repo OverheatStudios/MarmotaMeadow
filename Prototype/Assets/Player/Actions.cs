@@ -49,11 +49,7 @@ public class Actions : MonoBehaviour
                         if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) 
                             & heldItem.item.IsStackable())
                         {
-                            heldItem.count--;
-                            if (heldItem.count <= 0)
-                            {
-                                Destroy(heldItem.gameObject);
-                            }
+                            heldItem.DecreaseAmount();
                         }
                     }
                 }

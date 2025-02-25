@@ -184,14 +184,16 @@ public class InventoryMager : MonoBehaviour
                         InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
                         for (int k = 0; k < items.Length; k++)
                         {
-                            if (wrapper.inventoryDataList[i].item == items[i].name)
+                            if (wrapper.inventoryDataList[i].item == items[k].name)
                             {
-                                inventoryItem.InitializeItem(items[i]);
+                                inventoryItem.InitializeItem(items[k]);
+                                break;
                             }
                         }
                         inventoryItem.SetAmount(wrapper.inventoryDataList[i].amount);
                         inventoryItem.SetMultiplier(wrapper.inventoryDataList[i].multiplier);
                         inventoryItem.SetInventory(this);
+                        break;
                     }
                 }
             }

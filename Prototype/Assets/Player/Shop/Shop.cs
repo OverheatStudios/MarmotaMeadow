@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Shop : MonoBehaviour
 {
@@ -41,5 +42,10 @@ public class Shop : MonoBehaviour
         plotManager.IncreaseNumberOfPlots();
         inventoryMager.DecreaseCoins(money);
         CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+    }
+
+    public void GoToNight()
+    {
+        SceneManager.LoadScene("NightScene");
     }
 }
