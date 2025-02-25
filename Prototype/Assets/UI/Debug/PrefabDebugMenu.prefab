@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5145027545002269446}
   - component: {fileID: 4095631771551001450}
   m_Layer: 5
-  m_Name: DebugMenu
+  m_Name: PrefabDebugMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

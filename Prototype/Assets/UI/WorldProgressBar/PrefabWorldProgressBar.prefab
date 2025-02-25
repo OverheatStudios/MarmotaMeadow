@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2085209600151818699}
   - component: {fileID: 5358849365676243559}
   m_Layer: 0
-  m_Name: WorldProgressBar
+  m_Name: PrefabWorldProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

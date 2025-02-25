@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 4480046363090902123}
   - component: {fileID: 6075961776045402429}
   m_Layer: 7
-  m_Name: Plant
+  m_Name: PrefabPlant
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
