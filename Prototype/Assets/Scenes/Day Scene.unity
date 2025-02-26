@@ -2862,6 +2862,26 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1804676360}
+    - target: {fileID: 3877222016503559965, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: m_inventoryManager
+      value: 
+      objectReference: {fileID: 1804676360}
+    - target: {fileID: 3877222016503559965, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: m_eternalItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877222016503559965, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'm_eternalItems.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
+    - target: {fileID: 3877222016503559965, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'm_eternalItems.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
+    - target: {fileID: 3877222016503559965, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'm_eternalItems.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 386c8be34faa57e4e9283a0683456374, type: 2}
     - target: {fileID: 3887638392618100832, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: inventory
       value: 

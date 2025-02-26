@@ -6,6 +6,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.Assertions;
 using System.Linq;
+using UnityEngine.Rendering.Universal.Internal;
 
 [System.Serializable]
 public class InventoryData
@@ -18,6 +19,9 @@ public class InventoryData
 
 public class InventoryMager : MonoBehaviour
 {
+    public const int TOOLBAR_START_INDEX = 0;
+    public const int TOOLBAR_SIZE = 9;
+    private const float AUTO_SAVE_INTERVAL_SECONDS = 30;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
     public BaseItem item;
@@ -25,20 +29,33 @@ public class InventoryMager : MonoBehaviour
     public float coins;
     [SerializeField] private GameObject inventoryItem;
     [SerializeField] private BaseItem[] items;
-    
+
     private string filePath;
 
     [SerializeField] private string m_saveLocation;
 
     private int m_selectedItemIndex = -1;
+    private bool m_isLoaded = false;
 
-    void Start()
+    void OnEnable()
     {
-        Assert.IsNotNull(m_saveLocation);
-        filePath = Application.dataPath + "/" + m_saveLocation;
-        LoadInventoryFromFile();
+        if (!m_isLoaded)
+        {
+            Assert.IsNotNull(m_saveLocation);
+            filePath = Application.dataPath + "/" + m_saveLocation;
+            LoadInventoryFromFile();
+            m_isLoaded = true;
+
+            InvokeRepeating(nameof(SaveInventoryToFile), AUTO_SAVE_INTERVAL_SECONDS, AUTO_SAVE_INTERVAL_SECONDS);
+        }
     }
-    
+
+    private void OnDestroy()
+    {
+        CancelInvoke(nameof(SaveInventoryToFile));
+        SaveInventoryToFile();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,20 +64,16 @@ public class InventoryMager : MonoBehaviour
             //AddItem(item);
             AddItem(item2);
         }
-        
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SaveInventoryToFile();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            LoadInventoryFromFile();
-        }
 
         if (inventoryItem)
         {
             inventoryItem.transform.position = Input.mousePosition;
         }
+    }
+
+    public bool IsInventoryLoadedYet()
+    {
+        return m_isLoaded;
     }
 
     public bool AddItem(BaseItem item)
@@ -72,11 +85,11 @@ public class InventoryMager : MonoBehaviour
             if (inventoryItem && inventoryItem.item == item && inventoryItem.count <= inventoryItem.item.ReturnMaxAmount() && inventoryItem.item.IsStackable())
             {
                 inventoryItem.IncreaseAmount();
-                inventoryItem.RefreshCount();   
+                inventoryItem.RefreshCount();
                 return true;
             }
         }
-        
+
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             InventorySlot slot = inventorySlots[i];
@@ -155,7 +168,7 @@ public class InventoryMager : MonoBehaviour
                 inventoryDataList.Add(inventoryData);
             }
         }
-        
+
         // Wrap the list in a wrapper class
         InventoryWrapper wrapper = new InventoryWrapper { inventoryDataList = inventoryDataList };
 
@@ -163,7 +176,7 @@ public class InventoryMager : MonoBehaviour
         string json = JsonUtility.ToJson(wrapper, true);
         File.WriteAllText(filePath, json);
     }
-    
+
     private void LoadInventoryFromFile()
     {
         if (File.Exists(filePath))
@@ -229,7 +242,7 @@ public class InventoryMager : MonoBehaviour
         inventoryItem = itemToDrag;
         itemToDrag.transform.parent = transform.root;
     }
-    
+
     public void SetInventoryItem()
     {
         inventoryItem = null;
@@ -239,7 +252,7 @@ public class InventoryMager : MonoBehaviour
     {
         return inventoryItem;
     }
-    
+
     /// <summary>
     /// Let the inventory manager know that the player changed held item slot
     /// </summary>
@@ -252,6 +265,15 @@ public class InventoryMager : MonoBehaviour
     public int GetSelectedItemIndex()
     {
         return m_selectedItemIndex;
+    }
+
+    /// <summary>
+    /// Get number of slots in inventory
+    /// </summary>
+    /// <returns>The size</returns>
+    public int GetSize()
+    {
+        return inventorySlots.Length;
     }
 }
 

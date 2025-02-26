@@ -35,6 +35,12 @@
             "amount": 3,
             "multiplier": 0.0,
             "item": "Tomato"
+        },
+        {
+            "slotName": "ToolBarSlot 6",
+            "amount": 1,
+            "multiplier": 0.0,
+            "item": "watering can"
         }
     ]
 }

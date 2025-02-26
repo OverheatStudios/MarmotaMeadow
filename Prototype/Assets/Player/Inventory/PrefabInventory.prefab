@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 1573004745547194539}
   - component: {fileID: 6857077546119639811}
   - component: {fileID: 5935117403572180540}
+  - component: {fileID: 3877222016503559965}
   m_Layer: 5
   m_Name: PrefabInventory
   m_TagString: Untagged
@@ -549,6 +550,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
   - {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
   - {fileID: 11400000, guid: 386c8be34faa57e4e9283a0683456374, type: 2}
+  - {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
+  - {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
+  - {fileID: 11400000, guid: d66b7cfbf3722ad4e938c931bdb2b70d, type: 2}
   m_saveLocation: 
 --- !u!114 &5935117403572180540
 MonoBehaviour:
@@ -569,6 +573,20 @@ MonoBehaviour:
   m_inInventory: 0
   m_inventoryManager: {fileID: 6857077546119639811}
   m_cursorHandler: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
+--- !u!114 &3877222016503559965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084150171375576466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6461ad894398648b0b261389ae6164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_inventoryManager: {fileID: 0}
+  m_eternalItems: []
 --- !u!1 &6505193758527495094
 GameObject:
   m_ObjectHideFlags: 0
