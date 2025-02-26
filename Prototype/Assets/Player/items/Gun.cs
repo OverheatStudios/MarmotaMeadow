@@ -75,4 +75,9 @@ public class Gun : BaseItem
     {
         return m_swapCooldownSeconds;
     }
+
+    public override float ReturnBuyCoinsAmount()
+    {
+        return buyCoins;
+    }
 }

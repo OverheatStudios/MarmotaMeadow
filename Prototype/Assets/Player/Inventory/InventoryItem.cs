@@ -29,11 +29,13 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
     [Header("References")] 
     [SerializeField] private InventoryMager inventory;
     [SerializeField] private GameObject toolTipLocation;
+    [SerializeField] private TextMeshProUGUI[] toolTipText;
     
     // Start is called before the first frame update
     void Start()
     {
         toolTip = GameObject.FindGameObjectWithTag("ToolTip");
+        toolTipText = toolTip.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -71,6 +73,8 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
     {
         toolTip.SetActive(true);
         toolTip.transform.position = toolTipLocation.transform.position;
+        toolTipText[0].text = "Lvl: " + level;
+        toolTipText[1].text = "Multiplier: " + multiplier;
     }
 
     public void OnPointerExit(PointerEventData eventData)

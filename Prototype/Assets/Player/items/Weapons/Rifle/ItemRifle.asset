@@ -15,8 +15,9 @@ MonoBehaviour:
   m_handModelPrefab: {fileID: 0}
   m_itemName: Rifle
   m_isStackable: 0
-  m_image: {fileID: 21300000, guid: e76faaf3238bd5347bb1be0418ed01d1, type: 3}
+  m_image: {fileID: 21300000, guid: 7c6896ba8917bb245bc3dfd54bdd784b, type: 3}
   m_maxAmount: 1
+  buyCoins: 0
   m_damage: 25
   m_numBulletsPerShot: 1
   m_shootCooldownSeconds: 1

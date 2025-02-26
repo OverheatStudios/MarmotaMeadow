@@ -7,7 +7,6 @@ public class Seeds : BaseItem
 {
     [SerializeField] public float m_amount;
     [SerializeField] private float m_growthDuration;
-    [SerializeField] private float buyCoins;
     public Crops crop;
 
     public float ReturnGrowDuration()
@@ -15,7 +14,7 @@ public class Seeds : BaseItem
         return m_growthDuration;
     }
 
-    public float ReturnBuyCoinsAmount()
+    public override float ReturnBuyCoinsAmount()
     {
         return buyCoins;
     }

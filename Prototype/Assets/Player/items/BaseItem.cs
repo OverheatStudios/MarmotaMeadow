@@ -11,6 +11,7 @@ public class BaseItem : ScriptableObject
     [SerializeField] protected bool m_isStackable;
     [SerializeField] protected Sprite m_image;
     [SerializeField] protected int m_maxAmount;
+    [SerializeField] protected float buyCoins;
 
     /// <summary>
     /// Get the model that should be shown in hand, this may be null.
@@ -19,6 +20,11 @@ public class BaseItem : ScriptableObject
     public GameObject GetHandModel()
     {
         return m_handModelPrefab;
+    }
+
+    public virtual float ReturnBuyCoinsAmount()
+    {
+        return 0;
     }
     
     public Sprite ReturnImage()

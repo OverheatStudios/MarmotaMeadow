@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CoinsText;
     [SerializeField] private PlotManager plotManager;
 
-    public void BuyItem(Seeds item)
+    public void BuyItem(BaseItem item)
     {
         inventoryMager.AddItem(item);
         inventoryMager.DecreaseCoins(item.ReturnBuyCoinsAmount());
@@ -47,5 +47,10 @@ public class Shop : MonoBehaviour
     public void GoToNight()
     {
         SceneManager.LoadScene("NightScene");
+    }
+
+    public void DestroyGameObject(GameObject objectToDestroy)
+    {
+        Destroy(objectToDestroy);
     }
 }

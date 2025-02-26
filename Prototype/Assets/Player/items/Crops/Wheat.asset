@@ -17,4 +17,4 @@ MonoBehaviour:
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 2071e28e4eed12540bb757559032f457, type: 3}
   m_maxAmount: 1000000000
-  sellCoins: 0
+  sellCoins: 10
