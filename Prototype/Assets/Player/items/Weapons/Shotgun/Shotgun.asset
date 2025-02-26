@@ -25,3 +25,5 @@ MonoBehaviour:
   m_spread: 0.05
   m_bulletHoleSize: 0.15
   m_swapCooldownSeconds: 1.5
+  m_purchasePrice: 20
+  m_requiresBullets: 1

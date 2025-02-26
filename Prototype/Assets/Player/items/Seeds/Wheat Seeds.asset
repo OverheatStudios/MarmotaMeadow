@@ -19,5 +19,5 @@ MonoBehaviour:
   m_maxAmount: 1000000000
   m_amount: 10
   m_growthDuration: 5
-  buyCoins: 20
   crop: {fileID: 11400000, guid: 6fbfe7120d3fb144c93226316336351c, type: 2}
+  m_purchasePrice: 10

@@ -45,6 +45,8 @@ public class ShootScript : MonoBehaviour
     [Tooltip("Move the bullet hole decal along the normal of the surface this many units")]
     [SerializeField] private float m_bulletHoleOffset = 0.5f;
 
+    [Tooltip("Text that should be displayed if user needs to reload but doesn't have any ammo packs in inventory and also the gun requires ammo packs")]
+    [SerializeField] private TextMeshProUGUI m_noBulletsForReloadText;
 
     [SerializeField] private InventoryMager m_inventoryManager;
 
@@ -54,10 +56,12 @@ public class ShootScript : MonoBehaviour
     private float m_lastCooldownSet = 0;
     private BaseItem m_heldItemLastSwap;
     private bool m_isInfiniteAmmoCheatEnabled = false;
+    private Bullet m_bulletForHeldGun = null; // possibly null
+    private bool m_noBulletsToReload = false;
 
     void Start()
     {
-
+        HideReloadUi();
     }
 
     void Update()
@@ -67,7 +71,7 @@ public class ShootScript : MonoBehaviour
         {
             m_currentCooldown -= Time.deltaTime;
             m_cooldownBar.enabled = true;
-            m_reloadText.enabled = false;
+            HideReloadUi();
             m_cooldownBarMask.fillAmount = (m_currentCooldown / Mathf.Max(m_lastCooldownSet, 0));
             return;
         }
@@ -75,8 +79,7 @@ public class ShootScript : MonoBehaviour
         m_cooldownBar.enabled = false;
 
         // Not on cooldown after this point
-
-        HandleSwapCooldown();
+        HandleGunSwap();
 
         // Is holding gun?
         if (m_inventoryManager.GetHeldItem() is not Gun gun)
@@ -91,14 +94,14 @@ public class ShootScript : MonoBehaviour
         // Reloading
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ReloadAmmo();
+            AttemptAmmoReload();
             return;
         }
 
         // Ammo
         if (gun.GetCurrentAmmo() <= 0)
         {
-            m_reloadText.enabled = true;
+            ShowReloadUi();
             return;
         }
 
@@ -107,6 +110,45 @@ public class ShootScript : MonoBehaviour
         {
             ShootGun();
             return;
+        }
+    }
+
+    private void HideReloadUi()
+    {
+        m_reloadText.enabled = false;
+        m_noBulletsForReloadText.enabled = false;
+    }
+
+    private void ShowReloadUi()
+    {
+        HideReloadUi();
+
+        if (m_noBulletsToReload)
+        {
+            m_noBulletsForReloadText.enabled = true;
+        }
+        else
+        {
+            m_reloadText.enabled = true;
+        }
+    }
+
+    private void UpdateBulletForHeldGun()
+    {
+        // Is holding a gun?
+        if (m_inventoryManager.GetHeldItem() is not Gun gun)
+        {
+            m_bulletForHeldGun = null;
+            m_noBulletsToReload = false;
+            return;
+        }
+
+        // Yes, find bullet
+        m_bulletForHeldGun = GetBullet(gun);
+        m_noBulletsToReload = false;
+        if (m_bulletForHeldGun != null)
+        {
+            m_noBulletsToReload = m_inventoryManager.CountItemsOwned(m_bulletForHeldGun) < 1;
         }
     }
 
@@ -141,11 +183,12 @@ public class ShootScript : MonoBehaviour
     /// Handle swap cooldown, player does not need to be holding a gun when this method is called.
     /// Checks if a swap occurred and handles it if it did
     /// </summary>
-    private void HandleSwapCooldown()
+    private void HandleGunSwap()
     {
         if (m_inventoryManager.GetHeldItem() is not Gun gun)
         {
             m_heldItemLastSwap = null;
+            UpdateBulletForHeldGun();
             return;
         }
 
@@ -154,6 +197,7 @@ public class ShootScript : MonoBehaviour
             if (m_currentCooldown < gun.GetSwapCooldownSeconds())
             {
                 SetShootCooldown(gun.GetSwapCooldownSeconds());
+                UpdateBulletForHeldGun();
             }
             m_heldItemLastSwap = gun;
         }
@@ -163,6 +207,7 @@ public class ShootScript : MonoBehaviour
     {
         m_reloadText.enabled = false;
         m_ammoText.enabled = false;
+        m_noBulletsForReloadText.enabled = false;
         foreach (Transform child in m_ammoText.transform)
         {
             child.gameObject.SetActive(false);
@@ -179,9 +224,10 @@ public class ShootScript : MonoBehaviour
         }
     }
 
-    private void SetAmmo(int ammo)
+    public void SetAmmo(int ammo)
     {
-        Gun gun = GetGunUnsafe();
+        if (m_inventoryManager.GetHeldItem() is not Gun gun) return;
+
         if (ammo < 0) ammo = 0;
         else if (ammo > gun.GetMaxAmmo()) ammo = gun.GetMaxAmmo();
 
@@ -281,15 +327,42 @@ public class ShootScript : MonoBehaviour
     /// <summary>
     /// Reload ammo unless at max ammo, set cooldown, should not be called when on cooldown
     /// </summary>
-    async void ReloadAmmo()
+    async void AttemptAmmoReload()
     {
         Gun gun = GetGunUnsafe();
         if (gun.GetCurrentAmmo() >= gun.GetMaxAmmo()) return;
 
+        if (gun.DoesRequireBullets())
+        {
+            // Check if we have the ammo pack
+            if (m_noBulletsToReload) return;
+
+            // Remove ammo pack
+            bool removedSuccessfully = m_inventoryManager.RemoveItems(m_bulletForHeldGun, 1);
+            Assert.IsTrue(removedSuccessfully);
+            UpdateBulletForHeldGun();
+        }
+
+        // Reload
         float reloadCooldown = GetGunUnsafe().GetReloadCooldownSeconds();
         SetShootCooldown(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000));
         SetAmmo(gun.GetMaxAmmo());
+    }
+
+    /// <summary>
+    /// Get the bullet (ammo pack) associated with a gun
+    /// </summary>
+    /// <param name="gun">The gun</param>
+    /// <returns>The bullet, or null if one doesn't exist</returns>
+    private Bullet GetBullet(Gun gun)
+    {
+        foreach (BaseItem item in m_inventoryManager.GetItemTypes())
+        {
+            if (item is not Bullet bullet) continue;
+            if (bullet.GetGunName().Equals(gun.name)) return bullet;
+        }
+        return null;
     }
 
     private Gun GetGunUnsafe()

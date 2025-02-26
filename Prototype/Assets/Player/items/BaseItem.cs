@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,6 @@ public class BaseItem : ScriptableObject
     [SerializeField] protected bool m_isStackable;
     [SerializeField] protected Sprite m_image;
     [SerializeField] protected int m_maxAmount;
-    [SerializeField] protected float buyCoins;
 
     /// <summary>
     /// Get the model that should be shown in hand, this may be null.

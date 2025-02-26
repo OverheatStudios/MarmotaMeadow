@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public class Shop : MonoBehaviour
@@ -12,8 +13,26 @@ public class Shop : MonoBehaviour
 
     public void BuyItem(BaseItem item)
     {
+        Assert.IsTrue(item != null);
+        Assert.IsTrue(item.ReturnBuyCoinsAmount() > 0);
+        if (inventoryMager.coins < item.ReturnBuyCoinsAmount())
+        {
+            return;
+        }
         inventoryMager.AddItem(item);
         inventoryMager.DecreaseCoins(item.ReturnBuyCoinsAmount());
+        CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+    }
+
+    public void AddCoins(float coins)
+    {
+        inventoryMager.IncreaseCoins(coins);
+        CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+    }
+
+    public void SetCoins(float coins)
+    {
+        inventoryMager.SetCoins(coins);
         CoinsText.text = "Coins: " + inventoryMager.GetCoins();
     }
 

@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHandler
+public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI")]
     public Image image;
@@ -26,11 +26,11 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private int level;
 
-    [Header("References")] 
+    [Header("References")]
     [SerializeField] private InventoryMager inventory;
     [SerializeField] private GameObject toolTipLocation;
     [SerializeField] private TextMeshProUGUI[] toolTipText;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +41,7 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void InitializeItem(BaseItem newItem)
@@ -50,7 +50,7 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
         image.sprite = newItem.ReturnImage();
         RefreshCount();
     }
-    
+
     /*public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
@@ -69,7 +69,7 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
         transform.SetParent(parentAfterDrag);
     }*/
 
-    public void OnPointerEnter(PointerEventData eventData)  
+    public void OnPointerEnter(PointerEventData eventData)
     {
         toolTip.SetActive(true);
         toolTip.transform.position = toolTipLocation.transform.position;
@@ -81,7 +81,7 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
     {
         toolTip.transform.position = new Vector3(0, 0, -100000);
     }
-    
+
     public void RefreshCount()
     {
         countText.text = count.ToString();
@@ -119,10 +119,10 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
         count++;
         countText.text = count.ToString();
     }
-    
-    public void DecreaseAmount()
+
+    public void DecreaseAmount(int amount = 1)
     {
-        count--;
+        count -= amount;
         if (count <= 0)
             Destroy(gameObject);
         else
@@ -137,5 +137,10 @@ public class InventoryItem : MonoBehaviour,IPointerEnterHandler , IPointerExitHa
     public void SetImageRaycast(bool raycast)
     {
         image.raycastTarget = raycast;
+    }
+
+    public bool IsThisType(BaseItem type)
+    {
+        return item.name == type.name;
     }
 }

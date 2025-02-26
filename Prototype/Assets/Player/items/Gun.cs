@@ -17,11 +17,24 @@ public class Gun : BaseItem
     [SerializeField] private float m_spread = 0.01f;
     [Tooltip("Scale of bullet hole prefab (.15 is a good number)")]
     [SerializeField] private float m_bulletHoleSize;
-    [SerializeField] private float m_swapCooldownSeconds = 1.5f;
+    [SerializeField] private float m_swapCooldownSeconds = 1.5f; 
+    [SerializeField] private float m_purchasePrice;
+    [Tooltip("If this is false, there is still ammo but players can reload any time for free. If this is true, reloading will cost an ammo pack item (purchasable in shop)")]
+    [SerializeField] private bool m_requiresBullets;
+
+    public override float ReturnBuyCoinsAmount()
+    {
+        return m_purchasePrice;
+    }
 
     private void OnEnable()
     {
         m_currentAmmo = m_maxAmmo;
+    }
+
+    public bool DoesRequireBullets()
+    {
+        return m_requiresBullets;
     }
 
     public float GetDamage()
@@ -74,10 +87,5 @@ public class Gun : BaseItem
     public float GetSwapCooldownSeconds()
     {
         return m_swapCooldownSeconds;
-    }
-
-    public override float ReturnBuyCoinsAmount()
-    {
-        return buyCoins;
     }
 }

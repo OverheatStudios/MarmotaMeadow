@@ -71,6 +71,11 @@ public class InventoryMager : MonoBehaviour
         }
     }
 
+    public BaseItem[] GetItemTypes()
+    {
+        return items;
+    }
+
     public bool IsInventoryLoadedYet()
     {
         return m_isLoaded;
@@ -134,6 +139,56 @@ public class InventoryMager : MonoBehaviour
     public BaseItem GetHeldItem()
     {
         return GetItem(m_selectedItemIndex);
+    }
+
+    /// <summary>
+    /// Check how many of an item the player owns
+    /// </summary>
+    /// <param name="item">The item</param>
+    /// <returns>The amount of the item in the players inventory, sums all stacks</returns>
+    public int CountItemsOwned(BaseItem item)
+    {
+        int quanity = 0;
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            InventoryItem slotItem = slot.GetComponentInChildren<InventoryItem>();
+            if (slotItem == null || !slotItem.IsThisType(item)) continue;
+            quanity += slotItem.count;
+        }
+        return quanity;
+    }
+
+    /// <summary>
+    /// Remove items from the players inventory, will remove items even if the player has less than `count` items (e.g if you remove 5 apples and player has 3 apples, player will end up with 0 apples)
+    /// </summary>
+    /// <param name="item">Item</param>
+    /// <param name="count">Amount to remove, must be greater than 0</param>
+    /// <returns>True if player had enough items, false if they didn't</returns>
+    public bool RemoveItems(BaseItem item, int count)
+    {
+        Assert.IsTrue(count > 0);
+
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            InventoryItem slotItem = slot.GetComponentInChildren<InventoryItem>();
+            if (slotItem == null || !slotItem.IsThisType(item)) continue;
+
+            if (count >= slotItem.count)
+            {
+                // Remove the whole stack
+                count -= slotItem.count;
+                slotItem.DecreaseAmount(slotItem.count);
+            } else
+            {
+                // The stack contains more items than we want to remove
+                slotItem.DecreaseAmount(count);
+                slotItem.RefreshCount();
+                return true;
+            }
+        }
+
+        Assert.IsTrue(count == 0);
+        return count <= 0;
     }
 
     public InventoryItem GetHeldInventoryItem()
