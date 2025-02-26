@@ -141,6 +141,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public bool IsThisType(BaseItem type)
     {
-        return item.name == type.name;
+        return item != null && item.name == type.name;
     }
 }

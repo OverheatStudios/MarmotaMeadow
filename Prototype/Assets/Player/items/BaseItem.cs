@@ -41,4 +41,9 @@ public class BaseItem : ScriptableObject
     {
         return m_isStackable;
     }
+
+    public string GetItemName()
+    {
+        return m_itemName;
+    }
 }

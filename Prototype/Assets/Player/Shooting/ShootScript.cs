@@ -360,7 +360,7 @@ public class ShootScript : MonoBehaviour
         foreach (BaseItem item in m_inventoryManager.GetItemTypes())
         {
             if (item is not Bullet bullet) continue;
-            if (bullet.GetGunName().Equals(gun.name)) return bullet;
+            if (bullet.GetGunName().Equals(gun.GetItemName())) return bullet;
         }
         return null;
     }
