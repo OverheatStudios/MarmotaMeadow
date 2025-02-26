@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -337.02353, y: -10}
+  m_AnchoredPosition: {x: -337.02, y: -30.900011}
   m_SizeDelta: {x: 355.9529, y: 71.3338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34839136
@@ -2917,8 +2917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -337.02353, y: 90}
-  m_SizeDelta: {x: 355.9529, y: 71.3338}
+  m_AnchoredPosition: {x: -375.59, y: 77.9}
+  m_SizeDelta: {x: 278.8165, y: 107.0991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &736234823
 MonoBehaviour:
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.922, g: 0.922, b: 0.922, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2996,8 +2996,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fbd9b8d70c80398419efdec7b28ba06e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5035,7 +5035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -410, y: -210}
+  m_AnchoredPosition: {x: -460.7, y: -289.6}
   m_SizeDelta: {x: 300, y: 71.3338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1285524548
@@ -5243,7 +5243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -337.02353, y: -110}
+  m_AnchoredPosition: {x: -337.02, y: -125.9}
   m_SizeDelta: {x: 355.9529, y: 71.3338}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360918597
@@ -5741,6 +5741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DebugMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 6056331215257846369, guid: c684637f2e7ec4547a2b23450e1da71f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6363424327000517268, guid: c684637f2e7ec4547a2b23450e1da71f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6090,7 +6094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1599125069
 RectTransform:
   m_ObjectHideFlags: 0
