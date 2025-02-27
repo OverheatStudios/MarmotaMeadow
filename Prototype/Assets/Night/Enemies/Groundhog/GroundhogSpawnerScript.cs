@@ -7,11 +7,12 @@ using UnityEngine.Assertions;
 [System.Serializable]
 public class GroundhogSpawn : IComparable
 {
+    [Header("Groundhog Spawn Set")]
     public float SecondsSinceNightBeginning = 0;
     public GroundhogType GroundhogType;
     public int NumberGroundhogs = 1;
     public float SpawnInterval = 1.0f;
-  [HideInInspector]  public float SecondsSinceLastSpawn = 0;
+    [HideInInspector] public float SecondsSinceLastSpawn = 0;
 
     /// <summary>
     /// Check if a groundhog should spawn this frame, updates seconds since last spawn
@@ -31,7 +32,8 @@ public class GroundhogSpawn : IComparable
 
     public int CompareTo(object obj)
     {
-        if (obj is GroundhogSpawn spawn) { 
+        if (obj is GroundhogSpawn spawn)
+        {
             return SecondsSinceNightBeginning.CompareTo(spawn.SecondsSinceNightBeginning);
         }
         return 0;
@@ -41,6 +43,7 @@ public class GroundhogSpawn : IComparable
 [System.Serializable]
 public class NightGroundhogSpawns
 {
+    [Header("---NIGHT---")]
     public List<GroundhogSpawn> GroundhogsThisNight;
 
     /// <summary>
@@ -100,15 +103,24 @@ public class GroundhogSpawnerScript : MonoBehaviour
         NightGroundhogSpawns spawns = GetSpawnsTonight();
         GroundhogSpawn nextSpawn = null;
 
-        for (int i = 1; i < spawns.GroundhogsThisNight.Count; i++)
+        for (int i = 1; i <= spawns.GroundhogsThisNight.Count; i++)
         {
             do
             {
                 // Should we spawn something?
-                if (spawns.GroundhogsThisNight.Count <= 0) return;
+                if (spawns.GroundhogsThisNight.Count <= 0)
+                {
+                    return;
+                }
                 nextSpawn = spawns.GroundhogsThisNight[spawns.GroundhogsThisNight.Count - i];
-                if (nextSpawn.SecondsSinceNightBeginning >= m_secondsSinceNightBegin) return; // Not ready for this spawn yet
-                if (!nextSpawn.ShouldSpawnThisFrame(Time.deltaTime)) break; // Spawned some of this spawn too recently
+                if (nextSpawn.SecondsSinceNightBeginning >= m_secondsSinceNightBegin)
+                {
+                    return;
+                } // Not ready for this spawn yet
+                if (!nextSpawn.ShouldSpawnThisFrame(Time.deltaTime))
+                {
+                    break; // Spawned some of this spawn too recently
+                }
 
                 // Find all empty burrows
                 List<BurrowScript> emptyBurrows = new List<BurrowScript>();
@@ -126,6 +138,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
                 if (emptyBurrows.Count > 0)
                 {
                     emptyBurrows[UnityEngine.Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.NightCounter, nextSpawn.GroundhogType);
+                    nextSpawn.NumberGroundhogs--;
                     if (nextSpawn.NumberGroundhogs <= 0)
                     {
                         spawns.GroundhogsThisNight.Remove(nextSpawn);
