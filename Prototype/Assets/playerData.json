@@ -1,34 +1,28 @@
 {
     "inventoryDataList": [
         {
-            "slotName": "ToolBarSlot 1",
-            "amount": 2,
-            "multiplier": 0.0,
-            "item": "Corn seeds"
-        },
-        {
-            "slotName": "ToolBarSlot 2",
-            "amount": 1,
-            "multiplier": 0.0,
-            "item": "harvesting tool"
-        },
-        {
-            "slotName": "ToolBarSlot 3",
+            "slotName": "ToolBarSlot",
             "amount": 1,
             "multiplier": 0.0,
             "item": "hoe"
         },
         {
-            "slotName": "ToolBarSlot 4",
-            "amount": 9,
+            "slotName": "ToolBarSlot 1",
+            "amount": 1,
             "multiplier": 0.0,
-            "item": "Tomato Seeds"
+            "item": "harvesting tool"
         },
         {
-            "slotName": "ToolBarSlot 6",
+            "slotName": "ToolBarSlot 2",
             "amount": 1,
             "multiplier": 0.0,
             "item": "watering can"
+        },
+	{
+            "slotName": "ToolBarSlot 3",
+            "amount": 3,
+            "multiplier": 0.0,
+            "item": "Corn Seeds"
         }
     ]
 }
