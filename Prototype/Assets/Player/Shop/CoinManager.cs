@@ -11,6 +11,11 @@ public class CoinManager : MonoBehaviour
         coins += amount;
     }
 
+    public void SetCoins(float amount)
+    {
+        coins = amount;
+    }
+
     public void DecreaseCoins(float amount)
     {
         coins -= amount;

@@ -31,6 +31,12 @@ public class Shop : MonoBehaviour
         CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
+    public void SetCoins(float coins)
+    {
+        coinManager.SetCoins(coins);
+        CoinsText.text = "Coins: " + coinManager.GetCoins();
+    }
+
     public void SellItem(InventorySlot item)
     {
         if (item.GetComponentInChildren<InventoryItem>().item is Crops crop)
