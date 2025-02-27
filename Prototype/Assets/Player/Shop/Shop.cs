@@ -10,39 +10,34 @@ public class Shop : MonoBehaviour
     [SerializeField] InventoryMager inventoryMager;
     [SerializeField] private TextMeshProUGUI CoinsText;
     [SerializeField] private PlotManager plotManager;
+    [SerializeField] private CoinManager coinManager;
 
     public void BuyItem(BaseItem item)
     {
         Assert.IsTrue(item != null);
         Assert.IsTrue(item.ReturnBuyCoinsAmount() > 0);
-        if (inventoryMager.coins < item.ReturnBuyCoinsAmount())
+        if (coinManager.GetCoins() < item.ReturnBuyCoinsAmount())
         {
             return;
         }
         inventoryMager.AddItem(item);
-        inventoryMager.DecreaseCoins(item.ReturnBuyCoinsAmount());
-        CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+        coinManager.DecreaseCoins(item.ReturnBuyCoinsAmount());
+        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void AddCoins(float coins)
     {
-        inventoryMager.IncreaseCoins(coins);
-        CoinsText.text = "Coins: " + inventoryMager.GetCoins();
-    }
-
-    public void SetCoins(float coins)
-    {
-        inventoryMager.SetCoins(coins);
-        CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+        coinManager.IncreaseCoins(coins);
+        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void SellItem(InventorySlot item)
     {
         if (item.GetComponentInChildren<InventoryItem>().item is Crops crop)
         {
-            inventoryMager.IncreaseCoins(crop.ReturnSellCoinsAmount());
+            coinManager.IncreaseCoins(crop.ReturnSellCoinsAmount());
             item.GetComponentInChildren<InventoryItem>().DecreaseAmount();
-            CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+            CoinsText.text = "Coins: " + coinManager.GetCoins();
         }
     }
 
@@ -50,17 +45,17 @@ public class Shop : MonoBehaviour
     {
         if (item.GetComponentInChildren<InventoryItem>().item is Tool tool)
         {
-            inventoryMager.DecreaseCoins(tool.ReturnToolLevelCost());
+            coinManager.DecreaseCoins(tool.ReturnToolLevelCost());
             item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
-            CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+            CoinsText.text = "Coins: " + coinManager.GetCoins();
         }
     }
 
     public void BuyPlot(int money)
     {
         plotManager.IncreaseNumberOfPlots();
-        inventoryMager.DecreaseCoins(money);
-        CoinsText.text = "Coins: " + inventoryMager.GetCoins();
+        coinManager.DecreaseCoins(money);
+        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void GoToNight()
