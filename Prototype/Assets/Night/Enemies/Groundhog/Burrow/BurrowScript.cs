@@ -31,11 +31,10 @@ public class BurrowScript : MonoBehaviour
     /// <summary>
     /// Spawn a groundhog in this burrow, destroying any existing groundhog
     /// </summary>
-    public void SpawnGroundhog(int night)
+    public void SpawnGroundhog(int night, GroundhogType type)
     {
         if (m_groundhog != null) Destroy(m_groundhog);
 
-        GroundhogType type = m_groundhogTypes.GetRandomGroundhogType();
         GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(type);
 
         m_groundhog = Instantiate(groundhogScript.gameObject);

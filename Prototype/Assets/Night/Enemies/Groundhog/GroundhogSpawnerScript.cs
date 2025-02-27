@@ -1,6 +1,62 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+
+[System.Serializable]
+public class GroundhogSpawn : IComparable
+{
+    public float SecondsSinceNightBeginning = 0;
+    public GroundhogType GroundhogType;
+    public int NumberGroundhogs = 1;
+    public float SpawnInterval = 1.0f;
+  [HideInInspector]  public float SecondsSinceLastSpawn = 0;
+
+    /// <summary>
+    /// Check if a groundhog should spawn this frame, updates seconds since last spawn
+    /// </summary>
+    /// <param name="deltaTime">Delta time this frame</param>
+    /// <returns>True if a groundhog should spawn</returns>
+    public bool ShouldSpawnThisFrame(float deltaTime)
+    {
+        SecondsSinceLastSpawn += deltaTime;
+        if (SecondsSinceLastSpawn >= SpawnInterval)
+        {
+            SecondsSinceLastSpawn = 0;
+            return true;
+        }
+        return false;
+    }
+
+    public int CompareTo(object obj)
+    {
+        if (obj is GroundhogSpawn spawn) { 
+            return SecondsSinceNightBeginning.CompareTo(spawn.SecondsSinceNightBeginning);
+        }
+        return 0;
+    }
+}
+
+[System.Serializable]
+public class NightGroundhogSpawns
+{
+    public List<GroundhogSpawn> GroundhogsThisNight;
+
+    /// <summary>
+    /// Sort the list in descending order of spawn time
+    /// </summary>
+    public void Setup()
+    {
+        GroundhogsThisNight.Sort();
+        GroundhogsThisNight.Reverse();
+
+        foreach (var spawn in GroundhogsThisNight)
+        {
+            spawn.SecondsSinceLastSpawn = spawn.SpawnInterval;
+        }
+    }
+}
 
 public class GroundhogSpawnerScript : MonoBehaviour
 {
@@ -9,49 +65,31 @@ public class GroundhogSpawnerScript : MonoBehaviour
     /// </summary>
     [SerializeField] private BurrowContainerScript m_burrowContainer;
 
-    [Tooltip("Seconds until we start spawning groundhogs")]
-    [SerializeField] private float m_secondsBeforeSpawning = 2;
-
-    [Tooltip("How much randomness in the spawn interval? 0.1 is +- 10%")]
-    [Range(0, 1)]
-    [SerializeField] private float m_randomIntervalPercent = 0.1f;
-
-    [Tooltip("Seconds between each groundhog spawn per night, before randomness applied")]
-    [SerializeField] private List<float> m_groundhogSpawnIntervalsPerNight;
+    [Tooltip("What groundhogs spawn each night")]
+    [SerializeField] private List<NightGroundhogSpawns> m_nightGroundhogSpawns;
 
     /// <summary>
     /// Game data
     /// </summary>
     [SerializeField] private DataScriptableObject m_data;
 
-    /// <summary>
-    /// Time until we next spawn a groundhog in seconds
-    /// </summary>
-    private float m_timeToSpawn = 2;
+    private float m_secondsSinceNightBegin = 0;
 
     void Start()
     {
-        m_timeToSpawn = m_secondsBeforeSpawning;
-        Assert.IsTrue(m_groundhogSpawnIntervalsPerNight != null && m_groundhogSpawnIntervalsPerNight.Count > 0);
+        GetSpawnsTonight().Setup();
     }
 
     void Update()
     {
-        m_timeToSpawn -= Time.deltaTime;
-        if (m_timeToSpawn > 0) return;
+        m_secondsSinceNightBegin += Time.deltaTime;
 
-        SetTimeToSpawn();
         TrySpawnGroundhog();
     }
 
-    /// <summary>
-    /// Set spawn interval for groundhogs, slightly randomised
-    /// </summary>
-    private void SetTimeToSpawn()
+    private NightGroundhogSpawns GetSpawnsTonight()
     {
-        float baseInterval = m_groundhogSpawnIntervalsPerNight[Mathf.Min(m_data.NightCounter, m_groundhogSpawnIntervalsPerNight.Count - 1)];
-        float randomness = Random.Range(1 - m_randomIntervalPercent, 1 + m_randomIntervalPercent);
-        m_timeToSpawn = baseInterval * randomness;
+        return m_nightGroundhogSpawns[Mathf.Min(m_nightGroundhogSpawns.Count - 1, m_data.NightCounter)];
     }
 
     /// <summary>
@@ -59,22 +97,43 @@ public class GroundhogSpawnerScript : MonoBehaviour
     /// </summary>
     private void TrySpawnGroundhog()
     {
-        // Find all empty burrows
-        List<BurrowScript> emptyBurrows = new List<BurrowScript>();
-        foreach (Transform child in m_burrowContainer.transform)
+        NightGroundhogSpawns spawns = GetSpawnsTonight();
+        GroundhogSpawn nextSpawn = null;
+
+        for (int i = 1; i < spawns.GroundhogsThisNight.Count; i++)
         {
-            if (!child.gameObject.activeInHierarchy) continue;
+            do
+            {
+                // Should we spawn something?
+                if (spawns.GroundhogsThisNight.Count <= 0) return;
+                nextSpawn = spawns.GroundhogsThisNight[spawns.GroundhogsThisNight.Count - i];
+                if (nextSpawn.SecondsSinceNightBeginning >= m_secondsSinceNightBegin) return; // Not ready for this spawn yet
+                if (!nextSpawn.ShouldSpawnThisFrame(Time.deltaTime)) break; // Spawned some of this spawn too recently
 
-            BurrowScript burrow = child.gameObject.GetComponent<BurrowScript>();
-            if (!burrow.HasNoGroundhog()) continue;
+                // Find all empty burrows
+                List<BurrowScript> emptyBurrows = new List<BurrowScript>();
+                foreach (Transform child in m_burrowContainer.transform)
+                {
+                    if (!child.gameObject.activeInHierarchy) continue;
 
-            emptyBurrows.Add(burrow);
-        }
+                    BurrowScript burrow = child.gameObject.GetComponent<BurrowScript>();
+                    if (!burrow.HasNoGroundhog()) continue;
 
-        // Spawn groundhog
-        if (emptyBurrows.Count > 0)
-        {
-            emptyBurrows[Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.NightCounter);
+                    emptyBurrows.Add(burrow);
+                }
+
+                // Spawn groundhog
+                if (emptyBurrows.Count > 0)
+                {
+                    emptyBurrows[UnityEngine.Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.NightCounter, nextSpawn.GroundhogType);
+                    if (nextSpawn.NumberGroundhogs <= 0)
+                    {
+                        spawns.GroundhogsThisNight.Remove(nextSpawn);
+                    }
+                }
+
+                break;
+            } while (true);
         }
     }
 }
