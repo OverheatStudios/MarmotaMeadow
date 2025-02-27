@@ -34,34 +34,41 @@ public class InventoryActions : MonoBehaviour
     {
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
-            m_selectedItemIndex++;
-            if (m_selectedItemIndex >= 9)
+            int slot = m_selectedItemIndex + 1;
+            if (slot >= 9)
             {
-                m_selectedItemIndex = 0;
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
+                slot = 0;
             }
-            else
-            {
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
-            }
-            m_inventoryManager.NotifyNewSelectedItemIndex(m_selectedItemIndex);
+            SelectSlot(slot);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
-            m_selectedItemIndex--;
-            if (m_selectedItemIndex <= -1)
+            int slot = m_selectedItemIndex - 1;
+            if (slot <= -1)
             {
-                m_selectedItemIndex = 8;
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
+                slot = 8;
             }
-            else
-            {
-                slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
-            }
-            m_inventoryManager.NotifyNewSelectedItemIndex(m_selectedItemIndex);
+            SelectSlot(slot);
         }
+        else
+        {
+            for (int i = 0; i < 9; ++i)
+            {
+                if (Input.GetKeyDown("" + (i + 1)))
+                {
+                    SelectSlot(i);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void SelectSlot(int slot)
+    {
+        slots[m_selectedItemIndex].GetComponent<InventorySlot>().Deselect();
+        m_selectedItemIndex = slot;
+        m_inventoryManager.NotifyNewSelectedItemIndex(slot);
+        slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
     }
 
     void ToggleInventory()
