@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 686976465}
   - component: {fileID: 686976467}
   - component: {fileID: 686976466}
+  - component: {fileID: 686976468}
   m_Layer: 5
   m_Name: DayCountdownText
   m_TagString: Untagged
@@ -631,6 +632,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686976464}
   m_CullTransparentMesh: 1
+--- !u!114 &686976468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686976464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826ba52651c5eac4f8af868e28edca4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 686976466}
+  maxTime: 60
 --- !u!1 &718005606
 GameObject:
   m_ObjectHideFlags: 0
