@@ -26,9 +26,11 @@ public class InventoryMager : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public BaseItem item;
     public BaseItem item2;
-    public float coins;
     [SerializeField] private GameObject inventoryItem;
     [SerializeField] private BaseItem[] items;
+    [SerializeField] private GameObject pistolButton;
+    [SerializeField] private GameObject shotgunButton;
+    
 
     private string filePath;
 
@@ -47,6 +49,22 @@ public class InventoryMager : MonoBehaviour
             m_isLoaded = true;
 
             InvokeRepeating(nameof(SaveInventoryToFile), AUTO_SAVE_INTERVAL_SECONDS, AUTO_SAVE_INTERVAL_SECONDS);
+        }
+
+        if (pistolButton)
+        {
+            if (HasBoughtPistol())
+            {
+                Destroy(pistolButton);
+            }
+        }
+
+        if (shotgunButton)
+        {
+            if (HasBoughtShotgun())
+            {
+                Destroy(shotgunButton);
+            }
         }
     }
 
@@ -272,26 +290,6 @@ public class InventoryMager : MonoBehaviour
         }
     }
 
-    public void IncreaseCoins(float amount)
-    {
-        coins += amount;
-    }
-
-    public void DecreaseCoins(float amount)
-    {
-        coins -= amount;
-    }
-
-    public float GetCoins()
-    {
-        return coins;
-    }
-
-    public void SetCoins(float amount)
-    {
-        coins = amount;
-    }
-
     public void SetInventoryItem(GameObject itemToDrag)
     {
         inventoryItem = itemToDrag;
@@ -329,6 +327,32 @@ public class InventoryMager : MonoBehaviour
     public int GetSize()
     {
         return inventorySlots.Length;
+    }
+
+    private bool HasBoughtPistol()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
+            {
+                return true;
+                break;
+            }
+        }
+        return false;
+    }
+
+    private bool HasBoughtShotgun()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "Shotgun")
+            {
+                return true;
+                break;
+            }
+        }
+        return false;
     }
 }
 

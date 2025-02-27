@@ -72,4 +72,9 @@ public class PlotManager : MonoBehaviour
     {
         numberOfPlots++;
     }
+
+    public void OnDestroy()
+    {
+        Save();
+    }
 }

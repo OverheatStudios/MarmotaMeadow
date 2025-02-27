@@ -1,12 +1,6 @@
 {
     "inventoryDataList": [
         {
-            "slotName": "ToolBarSlot",
-            "amount": 1,
-            "multiplier": 0.0,
-            "item": "Corn"
-        },
-        {
             "slotName": "ToolBarSlot 1",
             "amount": 2,
             "multiplier": 0.0,
@@ -29,12 +23,6 @@
             "amount": 9,
             "multiplier": 0.0,
             "item": "Tomato Seeds"
-        },
-        {
-            "slotName": "ToolBarSlot 5",
-            "amount": 3,
-            "multiplier": 0.0,
-            "item": "Tomato"
         },
         {
             "slotName": "ToolBarSlot 6",
