@@ -30,9 +30,7 @@ public class InventoryMager : MonoBehaviour
     [SerializeField] private BaseItem[] items;
     [SerializeField] private GameObject pistolButton;
     [SerializeField] private GameObject shotgunButton;
-    
-
-    private string filePath;
+    [SerializeField] private SaveManager m_saveManager;
 
     [SerializeField] private string m_saveLocation;
 
@@ -44,7 +42,6 @@ public class InventoryMager : MonoBehaviour
         if (!m_isLoaded)
         {
             Assert.IsNotNull(m_saveLocation);
-            filePath = Application.dataPath + "/" + m_saveLocation;
             LoadInventoryFromFile();
             m_isLoaded = true;
 
@@ -247,15 +244,15 @@ public class InventoryMager : MonoBehaviour
 
         // Serialize the wrapper to JSON
         string json = JsonUtility.ToJson(wrapper, true);
-        File.WriteAllText(filePath, json);
+        File.WriteAllText(m_saveManager.GetFilePath(m_saveLocation), json);
     }
 
     private void LoadInventoryFromFile()
     {
-        if (File.Exists(filePath))
+        if (File.Exists(m_saveManager.GetFilePath(m_saveLocation)))
         {
             // Read the JSON file
-            string json = File.ReadAllText(filePath);
+            string json = File.ReadAllText(m_saveManager.GetFilePath(m_saveLocation));
 
             // Deserialize the JSON back into the wrapper class
             InventoryWrapper wrapper = JsonUtility.FromJson<InventoryWrapper>(json);
@@ -286,7 +283,7 @@ public class InventoryMager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Inventory file not found at " + filePath);
+            Debug.LogWarning("Inventory file not found at " + m_saveManager.GetFilePath(m_saveLocation));
         }
     }
 

@@ -1311,8 +1311,9 @@ MonoBehaviour:
   - {fileID: 1289305892}
   plots:
     numberOfPlots: 0
-  numberOfPlots: 1
+  numberOfPlots: 0
   m_plotPrefab: {fileID: 8865579511690387235, guid: bee8eeac5ac3686468a7b76a83d1f087, type: 3}
+  m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
 --- !u!4 &1144081424
 Transform:
   m_ObjectHideFlags: 0

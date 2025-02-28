@@ -536,7 +536,6 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: 1910295243344952414, guid: b6fcd47dd5584954eb1a82bb6c02f810, type: 3}
   item: {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
   item2: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
-  coins: 0
   inventoryItem: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 5365fbd2c29e13149a30373f31a844c0, type: 2}
@@ -555,6 +554,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d66b7cfbf3722ad4e938c931bdb2b70d, type: 2}
   - {fileID: 11400000, guid: 5561a2fc7aea06d4e9da82da4cb0c5c6, type: 2}
   - {fileID: 11400000, guid: 7bfcb18f8420aad40b364c55cb584c74, type: 2}
+  pistolButton: {fileID: 0}
+  shotgunButton: {fileID: 0}
+  m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
   m_saveLocation: 
 --- !u!114 &5935117403572180540
 MonoBehaviour:

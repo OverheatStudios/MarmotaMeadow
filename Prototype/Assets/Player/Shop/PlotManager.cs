@@ -20,10 +20,11 @@ public class PlotManager : MonoBehaviour
     [SerializeField] private PlotData plots;
     [SerializeField] private int numberOfPlots;
     [SerializeField] private GameObject m_plotPrefab;
+    [SerializeField] private SaveManager m_saveManager;
 
     void Start()
     {
-        filePath = Application.dataPath + "/" + m_saveLocation;
+        filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
     }
 

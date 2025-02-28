@@ -22,11 +22,12 @@ public class SaveManager : ScriptableObject
     /// <summary>
     /// Name of current save folder
     /// </summary>
-    private string m_currentSaveName = TEST_SAVE;
+    private string m_currentSaveName;
 
     private void OnEnable()
     {
         if (!GameRunning.IsGameRunning()) return;
+        m_currentSaveName = TEST_SAVE;
 
         if (!Directory.Exists(GetBaseSaveDirectoryPath()))
         {
