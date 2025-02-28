@@ -99,20 +99,9 @@ public class SettingsScriptableObject : ScriptableObject
     private Settings m_settings = new Settings();
     private bool m_isUiDirty = true;
 
-    private bool IsGameRunning()
-    {
-#if UNITY_EDITOR
-        if (EditorApplication.isPlayingOrWillChangePlaymode)
-        {
-            return true;
-        }
-#endif
-        return Application.isPlaying;
-    }
-
     void OnEnable()
     {
-        if (!IsGameRunning())
+        if (!GameRunning.IsGameRunning())
         {
             m_settings = null;
             return;
@@ -134,7 +123,7 @@ public class SettingsScriptableObject : ScriptableObject
 
     void OnDisable()
     {
-        if (!IsGameRunning()) return;
+        if (!GameRunning.IsGameRunning()) return;
 
         _ = SaveSettings();
     }

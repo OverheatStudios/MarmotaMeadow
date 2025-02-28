@@ -13,6 +13,7 @@ public class MenuButtonScript : MonoBehaviour
     [SerializeField] private GameObject m_controlsSettings;
     [SerializeField] private GameObject m_credits;
     [SerializeField] private SettingsScriptableObject m_settings;
+    [SerializeField] private GameObject m_saves;
 
     [Header("Audio Settings")]
     [SerializeField] private Slider m_musicVolumeSlider;
@@ -43,7 +44,7 @@ public class MenuButtonScript : MonoBehaviour
         m_cameraSensitivitySlider.value = m_settings.GetSettings().GetCameraSensitivity();
     }
 
-    public void PlayGame()
+    public static void PlayGame()
     {
         SceneManager.LoadScene("Day Scene", LoadSceneMode.Single);
     }
@@ -56,6 +57,7 @@ public class MenuButtonScript : MonoBehaviour
         m_videoSettings.SetActive(false);
         m_controlsSettings.SetActive(false);
         m_credits.SetActive(false);
+        m_saves.SetActive(false);
     }
 
     public void QuitGame()
@@ -67,6 +69,12 @@ public class MenuButtonScript : MonoBehaviour
     {
         DisableAllObjects();
         m_mainSettings.SetActive(true);
+    }
+
+    public void OpenSaves()
+    {
+        DisableAllObjects();
+        m_saves.SetActive(true);
     }
 
     public void OpenMainMenu()
