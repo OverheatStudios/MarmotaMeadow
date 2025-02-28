@@ -85,6 +85,10 @@ public class SaveManager : ScriptableObject
         return Path.Combine(GetCurrentSavePath(), fileName);
     }
 
+    /// <summary>
+    /// Get the name of all saves
+    /// </summary>
+    /// <returns>Array of directory names</returns>
     public string[] GetSaves()
     {
         string[] fullPaths = Directory.GetDirectories(GetSavesDirectoryPath());
