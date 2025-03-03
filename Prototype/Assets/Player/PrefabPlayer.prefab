@@ -331,6 +331,7 @@ MonoBehaviour:
   m_noBulletsForReloadText: {fileID: 0}
   m_inventoryManager: {fileID: 0}
   m_cursorHandler: {fileID: 0}
+  m_cameraScript: {fileID: 0}
 --- !u!82 &6608403481258858457
 AudioSource:
   m_ObjectHideFlags: 0
@@ -549,6 +550,8 @@ MonoBehaviour:
   - 1
   - 1.5
   m_isNightSwayMultipliersEnabled: 0
+  m_recoilVeloMultiplier: 0.15
+  m_recoilDeveloMultiplier: 0.65
 --- !u!114 &7373862065222987196
 MonoBehaviour:
   m_ObjectHideFlags: 0

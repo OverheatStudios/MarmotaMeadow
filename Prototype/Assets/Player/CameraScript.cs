@@ -33,6 +33,12 @@ public class CameraScript : MonoBehaviour
     [Tooltip("Is night aim sway enabled? (disable in the day scene if you want)")]
     [SerializeField] private bool m_isNightSwayMultipliersEnabled = false;
 
+    [Header("Recoil")]
+    [Tooltip("Aim is adjusted by m_recoilVeloMultiplier * current velocity per frame, having this at 1 makes physical sense but it feels weird")]
+    [SerializeField] private float m_recoilVeloMultiplier = 0.1f;
+    [Tooltip("Recoil velocity is multiplied by this value every fixed frame")]
+    [SerializeField] private float m_recoilDeveloMultiplier = 0.9f;
+
     private float m_pitch = 0f;
     private Vector2 m_currentSwayVector = Vector2.zero;
     private Vector2 m_lastSwayVector = Vector2.zero;
@@ -40,6 +46,7 @@ public class CameraScript : MonoBehaviour
     private float m_currentSwaySpeed = 0;
     private Vector2 m_swaySinceLateUpdate = Vector2.zero;
     private float m_pauseTimeRemaining = 0;
+    private float m_recoilVelocity = 0;
 
     void Start()
     {
@@ -84,7 +91,7 @@ public class CameraScript : MonoBehaviour
     private float GetNightSwayMultiplier()
     {
         if (!m_isNightSwayMultipliersEnabled) return 1;
-        int index = Mathf.Min(m_data.NightCounter, m_nightAimSwayMultipliers.Length-1);
+        int index = Mathf.Min(m_data.NightCounter, m_nightAimSwayMultipliers.Length - 1);
         return m_nightAimSwayMultipliers[index];
     }
 
@@ -122,5 +129,21 @@ public class CameraScript : MonoBehaviour
         m_pitch = Mathf.Clamp(m_pitch, -89f, 89f);
 
         transform.localRotation = Quaternion.Euler(m_pitch, transform.localRotation.eulerAngles.y + mouseDelta.x, 0);
+    }
+
+    private void FixedUpdate()
+    {
+        // Recoil
+        m_swaySinceLateUpdate.y += m_recoilVelocity * m_recoilVeloMultiplier;
+        m_recoilVelocity *= m_recoilDeveloMultiplier;
+        if (m_recoilVelocity < 0.01f)
+        {
+            m_recoilVelocity = 0;
+        }
+    }
+
+    public void ApplyRecoil(float force)
+    {
+        m_recoilVelocity += force;
     }
 }

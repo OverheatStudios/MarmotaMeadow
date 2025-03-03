@@ -52,6 +52,8 @@ public class ShootScript : MonoBehaviour
 
     [SerializeField] private CursorHandlerScript m_cursorHandler;
 
+    [SerializeField] private CameraScript m_cameraScript;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
@@ -191,6 +193,8 @@ public class ShootScript : MonoBehaviour
         {
             ShootBullet();
         }
+
+        m_cameraScript.ApplyRecoil(gun.GetRecoilForce());
     }
 
     /// <summary>

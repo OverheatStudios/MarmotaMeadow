@@ -3421,6 +3421,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 5945169492971177153, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
   m_PrefabInstance: {fileID: 5557785422135966027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1043104214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4143399426402761582, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+  m_PrefabInstance: {fileID: 5557785422135966027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d1dba6f564e6c45990b3450a08f2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1050727339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
@@ -6093,6 +6104,10 @@ PrefabInstance:
       propertyPath: m_cooldownBar
       value: 
       objectReference: {fileID: 2109825258}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_cameraScript
+      value: 
+      objectReference: {fileID: 1043104214}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_cursorHandler
       value: 
