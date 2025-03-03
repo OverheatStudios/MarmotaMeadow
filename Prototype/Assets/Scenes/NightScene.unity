@@ -6090,6 +6090,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2109825258}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_cursorHandler
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_reloadCooldown
       value: 1.5
       objectReference: {fileID: 0}

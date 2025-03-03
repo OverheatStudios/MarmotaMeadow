@@ -50,6 +50,8 @@ public class ShootScript : MonoBehaviour
 
     [SerializeField] private InventoryMager m_inventoryManager;
 
+    [SerializeField] private CursorHandlerScript m_cursorHandler;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
@@ -82,6 +84,7 @@ public class ShootScript : MonoBehaviour
 
         SetAmmo(gun.GetCurrentAmmo());
         ShowGunUi();
+        if (m_cursorHandler.IsUiOpen()) return;
 
         // Reloading
         if (Input.GetKeyDown(KeyCode.R))
