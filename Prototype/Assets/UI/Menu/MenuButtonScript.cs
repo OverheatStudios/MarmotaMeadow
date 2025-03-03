@@ -16,32 +16,32 @@ public class MenuButtonScript : MonoBehaviour
     [SerializeField] private GameObject m_saves;
 
     [Header("Audio Settings")]
-    [SerializeField] private Slider m_musicVolumeSlider;
+    [SerializeField] private UiSlider m_musicVolumeSlider;
 
     [Header("Video Settings")]
     [SerializeField] private Toggle m_dynamicCrosshairToggle;
 
     [Header("Controls Settings")]
-    [SerializeField] private Slider m_cameraSensitivitySlider;
+    [SerializeField] private UiSlider m_cameraSensitivitySlider;
 
     private void Start()
     {
-        m_musicVolumeSlider.onValueChanged.AddListener(val => m_settings.GetSettings().SetMusicVolume(val));
+        m_musicVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetMusicVolume(val));
 
         m_dynamicCrosshairToggle.onValueChanged.AddListener(val => m_settings.GetSettings().SetDynamicCrosshair(val));
 
-        m_cameraSensitivitySlider.onValueChanged.AddListener(val => m_settings.GetSettings().SetCameraSensitivity(val));
+        m_cameraSensitivitySlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetCameraSensitivity(val));
     }
 
     private void Update()
     {
         if (!m_settings.IsUiDirty()) return;
 
-        m_musicVolumeSlider.value = m_settings.GetSettings().GetMusicVolume();
+        m_musicVolumeSlider.SetValue(m_settings.GetSettings().GetMusicVolume());
 
         m_dynamicCrosshairToggle.isOn = m_settings.GetSettings().IsDynamicCrosshair();
 
-        m_cameraSensitivitySlider.value = m_settings.GetSettings().GetCameraSensitivity();
+        m_cameraSensitivitySlider.SetValue(m_settings.GetSettings().GetCameraSensitivity());
     }
 
     public static void PlayGame()
