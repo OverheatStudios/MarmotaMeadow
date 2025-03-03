@@ -18,6 +18,7 @@ public class UiSlider : MonoBehaviour
     [Tooltip("Sprite to use for handle when value is 0, optional")]
     [SerializeField] private Sprite m_handleSpriteMinValue;
     [SerializeField] private float m_handleRightOffset = 0;
+    private bool m_startedClickOnBar = false;
 
     private void Start()
     {
@@ -31,7 +32,13 @@ public class UiSlider : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && RectTransformUtility.RectangleContainsScreenPoint(m_collider, Input.mousePosition))
+        bool overBar = RectTransformUtility.RectangleContainsScreenPoint(m_collider, Input.mousePosition);
+        if (Input.GetMouseButtonDown(0))
+        {
+            m_startedClickOnBar = overBar;
+        }
+
+        if (Input.GetMouseButton(0)  && m_startedClickOnBar)
         {
             SetValue(GetValueFromPosition(Input.mousePosition.x));
         }
