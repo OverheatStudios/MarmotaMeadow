@@ -48,4 +48,9 @@ public class DayCountdownHandlerScript : MonoBehaviour
     {
         SceneManager.LoadScene("Day Scene", LoadSceneMode.Single);
     }
+
+    public void SkipNight()
+    {
+        m_secondsRemaining = 0.01f;
+    }
 }

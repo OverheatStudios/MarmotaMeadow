@@ -21,7 +21,7 @@ MonoBehaviour:
   m_numBulletsPerShot: 1
   m_shootCooldownSeconds: 0.2
   m_reloadCooldownSeconds: 1.25
-  m_maxAmmo: 10
+  m_maxAmmo: 6
   m_spread: 0.025
   m_bulletHoleSize: 0.05
   m_swapCooldownSeconds: 0.5
