@@ -37,7 +37,7 @@ public class BurrowScript : MonoBehaviour
 
         GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(type);
 
-        m_groundhog = Instantiate(groundhogScript.gameObject);
+        m_groundhog = groundhogScript.gameObject;
         m_groundhog.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         groundhogScript.SetMaxHealth(groundhogScript.GetMaxHealth() * (1 + night / (100.0f / GetGroundhogHealthPercentBonus(night))));
