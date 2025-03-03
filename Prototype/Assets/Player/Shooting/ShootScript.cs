@@ -66,27 +66,19 @@ public class ShootScript : MonoBehaviour
 
     void Update()
     {
-        // Cooldown
-        if (m_currentCooldown >= 0)
-        {
-            m_currentCooldown -= Time.deltaTime;
-            m_cooldownBar.enabled = true;
-            HideReloadUi();
-            m_cooldownBarMask.fillAmount = (m_currentCooldown / Mathf.Max(m_lastCooldownSet, 0));
-            return;
-        }
-
-        m_cooldownBar.enabled = false;
-
-        // Not on cooldown after this point
-        HandleGunSwap();
-
         // Is holding gun?
         if (m_inventoryManager.GetHeldItem() is not Gun gun)
         {
             HideGunUi();
+            HandleCooldown();
             return;
         }
+
+        // Cooldown
+        if (HandleCooldown()) return;
+
+        // Not on cooldown after this point
+        HandleGunSwap();
 
         SetAmmo(gun.GetCurrentAmmo());
         ShowGunUi();
@@ -111,6 +103,25 @@ public class ShootScript : MonoBehaviour
             ShootGun();
             return;
         }
+    }
+
+    /// <summary>
+    /// Handle cooldown logic
+    /// </summary>
+    /// <returns>True if on cooldown, false if not</returns>
+    private bool HandleCooldown()
+    {
+        if (m_currentCooldown >= 0)
+        {
+            m_currentCooldown -= Time.deltaTime;
+            m_cooldownBar.enabled = true;
+            HideReloadUi();
+            m_cooldownBarMask.fillAmount = (m_currentCooldown / Mathf.Max(m_lastCooldownSet, 0));
+            return true;
+        }
+
+        m_cooldownBar.enabled = false;
+        return false;
     }
 
     private void HideReloadUi()
