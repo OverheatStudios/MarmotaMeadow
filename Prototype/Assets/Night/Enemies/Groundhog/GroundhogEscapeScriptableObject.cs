@@ -9,6 +9,8 @@ public class GroundhogEscapeScriptableObject : ScriptableObject
     [SerializeField] private int m_groundhogsPerHealthPoint = 3;
     [SerializeField] private DataScriptableObject m_data;
 
+    [SerializeField] private GameObject m_damageTooltip;
+
     [HideInInspector] private int m_groundhogsEscaped = 0;
 
     /// <summary>
@@ -20,6 +22,7 @@ public class GroundhogEscapeScriptableObject : ScriptableObject
         if (m_groundhogsEscaped % m_groundhogsPerHealthPoint == 0)
         {
             m_data.Damage(1);
+            TooltipManager.Get().ShowTooltip(m_damageTooltip);
         }
     }
 }
