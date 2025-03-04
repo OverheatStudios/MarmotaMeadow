@@ -54,6 +54,9 @@ public class ShootScript : MonoBehaviour
 
     [SerializeField] private CameraScript m_cameraScript;
 
+    [SerializeField] private Transform m_canvas;
+    private GunProgress m_reloadBar;
+
     private const float MAX_RAY_DISTANCE = 100f;
 
     private float m_currentCooldown = 0;
@@ -66,6 +69,7 @@ public class ShootScript : MonoBehaviour
     void Start()
     {
         HideReloadUi();
+        m_cooldownBar.enabled = false;
     }
 
     void Update()
@@ -75,6 +79,7 @@ public class ShootScript : MonoBehaviour
         {
             HideGunUi();
             HandleCooldown();
+            m_reloadBar = null;
             return;
         }
 
@@ -110,12 +115,21 @@ public class ShootScript : MonoBehaviour
         }
     }
 
+    private void SetupReloadBar()
+    {
+        m_reloadBar = Instantiate(GetGunUnsafe().GetReloadBarPrefab()).GetComponent<GunProgress>();
+        m_reloadBar.name = "ReloadBar";
+        m_reloadBar.transform.SetParent(m_canvas.transform, false);
+    }
+
     /// <summary>
     /// Handle cooldown logic
     /// </summary>
     /// <returns>True if on cooldown, false if not</returns>
     private bool HandleCooldown()
     {
+        if (m_reloadBar != null && m_reloadBar.IsRunning()) return true;
+
         if (m_currentCooldown >= 0)
         {
             m_currentCooldown -= Time.deltaTime;
@@ -212,6 +226,9 @@ public class ShootScript : MonoBehaviour
 
         if (m_heldItemLastSwap != gun)
         {
+            // Swapped item
+            SetupReloadBar();
+
             if (m_currentCooldown < gun.GetSwapCooldownSeconds())
             {
                 SetShootCooldown(gun.GetSwapCooldownSeconds());
@@ -223,6 +240,10 @@ public class ShootScript : MonoBehaviour
 
     private void HideGunUi()
     {
+        if (m_reloadBar != null)
+        {
+            m_reloadBar.SetVisible(false);
+        }
         m_reloadText.enabled = false;
         m_ammoText.enabled = false;
         m_noBulletsForReloadText.enabled = false;
@@ -236,6 +257,7 @@ public class ShootScript : MonoBehaviour
     {
         // Reload text will enable itself when needed
         m_ammoText.enabled = true;
+        m_reloadBar.SetVisible(true);
         foreach (Transform child in m_ammoText.transform)
         {
             child.gameObject.SetActive(true);
@@ -363,7 +385,7 @@ public class ShootScript : MonoBehaviour
 
         // Reload
         float reloadCooldown = GetGunUnsafe().GetReloadCooldownSeconds();
-        SetShootCooldown(reloadCooldown);
+        m_reloadBar.StartProgress(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000));
         SetAmmo(gun.GetMaxAmmo());
     }

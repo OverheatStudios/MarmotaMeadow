@@ -23,6 +23,7 @@ public class Gun : BaseItem
     [SerializeField] private bool m_requiresBullets;
     [Tooltip("Gun recoil force, 5 is a good number")]
     [SerializeField] private float m_recoilForce = 5.0f;
+    [SerializeField] private GameObject m_reloadBarPrefab;
 
     public override float ReturnBuyCoinsAmount()
     {
@@ -32,6 +33,11 @@ public class Gun : BaseItem
     private void OnEnable()
     {
         m_currentAmmo = m_maxAmmo;
+    }
+
+    public GameObject GetReloadBarPrefab()
+    {
+        return m_reloadBarPrefab;
     }
 
     public bool DoesRequireBullets()
