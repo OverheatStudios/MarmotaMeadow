@@ -15,4 +15,9 @@ public class SpawnedItem : MonoBehaviour
     {
         return _item;
     }
+
+    void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = _item.ReturnImage();
+    }
 }
