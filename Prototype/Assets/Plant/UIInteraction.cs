@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class UIInteraction : MonoBehaviour
 {
+    [SerializeField] private ShowUI showUI;
     private void OnMouseOver()
     {
-        gameObject.GetComponentInParent<ShowUI>().InteractedWithUI();
+        showUI.InteractedWithUI();
     }
 
     private void OnMouseExit()
     {
-        gameObject.GetComponentInParent<ShowUI>().StopInteractionWithUI();
+        showUI.StopInteractionWithUI();
     }
 }

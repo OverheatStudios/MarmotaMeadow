@@ -15,9 +15,12 @@ MonoBehaviour:
   m_handModelPrefab: {fileID: 0}
   m_itemName: Tomato Seeds
   m_isStackable: 1
-  m_image: {fileID: 21300000, guid: 79265caf13911cd4382c7fd2b26a2e94, type: 3}
+  m_image: {fileID: 21300000, guid: 61d66aeb5bf1aaf45b8185d22910db68, type: 3}
   m_maxAmount: 1000000000
   m_amount: 20
   m_growthDuration: 5
   crop: {fileID: 11400000, guid: c5b71ab94c216c54f98328f7ef25bbab, type: 2}
   m_purchasePrice: 10
+  plantedSprite: {fileID: 21300000, guid: 985e540dc568ed348bc8e1e8a1746390, type: 3}
+  growingSprite: {fileID: 21300000, guid: 682bfb1cbbd2a804d9e06fd66eaff728, type: 3}
+  finishedSprite: {fileID: 21300000, guid: f0a886fcf23daa64885d990fa8e4eb87, type: 3}

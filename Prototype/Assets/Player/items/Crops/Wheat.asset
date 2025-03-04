@@ -15,6 +15,6 @@ MonoBehaviour:
   m_handModelPrefab: {fileID: 0}
   m_itemName: Wheat
   m_isStackable: 1
-  m_image: {fileID: 21300000, guid: 2071e28e4eed12540bb757559032f457, type: 3}
+  m_image: {fileID: 21300000, guid: ec8a01acaa6939d49bcf89051b2bdbf9, type: 3}
   m_maxAmount: 1000000000
   sellCoins: 10

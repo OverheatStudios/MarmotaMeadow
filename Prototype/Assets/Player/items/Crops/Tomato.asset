@@ -15,6 +15,6 @@ MonoBehaviour:
   m_handModelPrefab: {fileID: 0}
   m_itemName: Tomato
   m_isStackable: 1
-  m_image: {fileID: 21300000, guid: dce7a3d59f92c0d4f952e282a618d2df, type: 3}
+  m_image: {fileID: 21300000, guid: 4b144301b96e78d448a8051b1f673e2f, type: 3}
   m_maxAmount: 1000000000
   sellCoins: 10

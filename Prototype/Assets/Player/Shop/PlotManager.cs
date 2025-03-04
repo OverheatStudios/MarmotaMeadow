@@ -41,7 +41,7 @@ public class PlotManager : MonoBehaviour
         }
     }
     
-    private void Save()
+    public void Save()
     {
         plots.numberOfPlots = numberOfPlots;
         string json = JsonUtility.ToJson(plots, true);
@@ -60,6 +60,7 @@ public class PlotManager : MonoBehaviour
             {
                 numberOfPlots = data.numberOfPlots;
             }
+
 
             if (SceneManager.GetActiveScene().name == "Day Scene")
             {

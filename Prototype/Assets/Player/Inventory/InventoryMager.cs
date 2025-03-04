@@ -7,6 +7,7 @@ using System.IO;
 using UnityEngine.Assertions;
 using System.Linq;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class InventoryData
@@ -36,6 +37,9 @@ public class InventoryMager : MonoBehaviour
 
     private int m_selectedItemIndex = -1;
     private bool m_isLoaded = false;
+    
+    [SerializeField] private GameObject m_upgradeslot;
+    [SerializeField] private GameObject m_sellSlot;
 
     void OnEnable()
     {
@@ -238,6 +242,42 @@ public class InventoryMager : MonoBehaviour
                 inventoryDataList.Add(inventoryData);
             }
         }
+        
+        
+        //Checking if there is an item on the upgrade slot
+        if (m_upgradeslot && m_upgradeslot.transform.childCount >= 0)
+        {
+            if (m_upgradeslot.GetComponentInChildren<InventoryItem>())
+            {
+                InventoryData inventoryData = new InventoryData
+                {
+                    slotName = ReturnFirstEmptySpace(), // Save the slot name
+                    item = m_upgradeslot.GetComponentInChildren<InventoryItem>().item.name, // Save the item name
+                    amount = m_upgradeslot.GetComponentInChildren<InventoryItem>().ReturnAmount(),
+                    multiplier = m_upgradeslot.GetComponentInChildren<InventoryItem>().ReturnMultiplier()
+                };
+                inventoryDataList.Add(inventoryData);
+                AddItem(m_upgradeslot.GetComponentInChildren<InventoryItem>().item);
+            }
+        }
+        
+        //Checking if there is an item on the sell slot
+        if (m_sellSlot && m_sellSlot.transform.childCount >= 0)
+        {
+            if (m_sellSlot.GetComponentInChildren<InventoryItem>())
+            {
+                InventoryData inventoryData = new InventoryData
+                {
+                    slotName = ReturnFirstEmptySpace(), // Save the slot name
+                    item = m_sellSlot.GetComponentInChildren<InventoryItem>().item.name, // Save the item name
+                    amount = m_sellSlot.GetComponentInChildren<InventoryItem>().ReturnAmount(),
+                    multiplier = m_sellSlot.GetComponentInChildren<InventoryItem>().ReturnMultiplier()
+                };
+                inventoryDataList.Add(inventoryData);
+                AddItem(m_sellSlot.GetComponentInChildren<InventoryItem>().item);
+            }
+        }
+        
 
         // Wrap the list in a wrapper class
         InventoryWrapper wrapper = new InventoryWrapper { inventoryDataList = inventoryDataList };
@@ -330,10 +370,13 @@ public class InventoryMager : MonoBehaviour
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
-            if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
+            if (inventorySlots[i].transform.childCount > 0)
             {
-                return true;
-                break;
+                if(inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
+                {
+                    return true;
+                    break;
+                }
             }
         }
         return false;
@@ -342,14 +385,30 @@ public class InventoryMager : MonoBehaviour
     private bool HasBoughtShotgun()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "Shotgun")
+        {   
+            if (inventorySlots[i].transform.childCount > 0)
             {
-                return true;
-                break;
+                if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "Shotgun")
+                {
+                    return true;
+                    break;
+                }
             }
         }
         return false;
+    }
+
+    private string ReturnFirstEmptySpace()
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].transform.childCount <= 0)
+            {
+                return inventorySlots[i].gameObject.name;
+                break;
+            }
+        }
+        return null;
     }
 }
 
