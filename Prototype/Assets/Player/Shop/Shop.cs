@@ -22,19 +22,16 @@ public class Shop : MonoBehaviour
         }
         inventoryMager.AddItem(item);
         coinManager.DecreaseCoins(item.ReturnBuyCoinsAmount());
-        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void AddCoins(float coins)
     {
         coinManager.IncreaseCoins(coins);
-        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void SetCoins(float coins)
     {
         coinManager.SetCoins(coins);
-        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void SellItem(InventorySlot item)
@@ -43,7 +40,6 @@ public class Shop : MonoBehaviour
         {
             coinManager.IncreaseCoins(crop.ReturnSellCoinsAmount());
             item.GetComponentInChildren<InventoryItem>().DecreaseAmount();
-            CoinsText.text = "Coins: " + coinManager.GetCoins();
         }
     }
 
@@ -53,7 +49,6 @@ public class Shop : MonoBehaviour
         {
             coinManager.DecreaseCoins(tool.ReturnToolLevelCost());
             item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
-            CoinsText.text = "Coins: " + coinManager.GetCoins();
         }
     }
 
@@ -61,7 +56,6 @@ public class Shop : MonoBehaviour
     {
         plotManager.IncreaseNumberOfPlots();
         coinManager.DecreaseCoins(money);
-        CoinsText.text = "Coins: " + coinManager.GetCoins();
     }
 
     public void GoToNight()

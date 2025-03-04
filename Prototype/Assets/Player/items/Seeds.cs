@@ -9,6 +9,9 @@ public class Seeds : BaseItem
     [SerializeField] private float m_growthDuration;
     public Crops crop;
     [SerializeField] private float m_purchasePrice;
+    [SerializeField] private Sprite plantedSprite;
+    [SerializeField] private Sprite growingSprite;
+    [SerializeField] private Sprite finishedSprite;
 
     public override float ReturnBuyCoinsAmount()
     {
@@ -28,5 +31,20 @@ public class Seeds : BaseItem
     public float ReturnAmount()
     {
         return m_amount;
+    }
+
+    public Sprite ReturnPlantedSprite()
+    {
+        return plantedSprite;
+    }
+
+    public Sprite ReturnGrowingSprite()
+    {
+        return growingSprite;
+    }
+
+    public Sprite ReturnFinishedSprite()
+    {
+        return finishedSprite;
     }
 }

@@ -19,24 +19,33 @@ public class Plant : MonoBehaviour
     [SerializeField] private TextMeshProUGUI growthText;
     [SerializeField] private Image image;
     [SerializeField] private float growthTimer = 0f;
+    [SerializeField] private float maxGrowthTimer;
     [SerializeField] private float multiplier = 1.0f;
     [SerializeField] private GameObject cropToSpawn;
     [SerializeField] private float throwAngle = 45f; // Angle of the throw (in degrees)
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private GameObject cropToSpawnLocation;
     
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer2;
     
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        growthTimer = maxGrowthTimer;
+        spriteRenderer.sprite = null;
+        spriteRenderer2.sprite = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (growthTimer < maxGrowthTimer/2 && state == PlantState.Planted)
+        {
+            spriteRenderer.sprite = m_seed.ReturnGrowingSprite();
+            spriteRenderer2.sprite = m_seed.ReturnGrowingSprite();
+        }
     }
 
     public bool ChangeState(InventoryItem item)
@@ -46,7 +55,6 @@ public class Plant : MonoBehaviour
         {
             state = PlantState.Tealed;
             stateText.text = state.ToString();
-            gameObject.GetComponent<Renderer>().material.color = new Color32(244, 237, 22 , 1);
             return true;
         }else if (item.item is Seeds seeds  && state == PlantState.Tealed)
         {
@@ -57,14 +65,15 @@ public class Plant : MonoBehaviour
             m_seed = seeds;
             image.sprite = m_seed.ReturnImage();
             growthTimer = m_seed.ReturnGrowDuration();
+            maxGrowthTimer = m_seed.ReturnGrowDuration();
             StartCoroutine(nameof(CountdownRoutine));
             multiplier = m_seed.ReturnAmount();
             //some visual feedback
-            gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            spriteRenderer.sprite = m_seed.ReturnPlantedSprite();
+            spriteRenderer2.sprite = m_seed.ReturnPlantedSprite();
             return true;
         }else if (item.item.name == "watering can" && state == PlantState.Planted)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
             return true;
         }else if (item.item.name == "harvesting tool" && state == PlantState.Completed)
         {
@@ -72,6 +81,8 @@ public class Plant : MonoBehaviour
             state = PlantState.Normal;
             stateText.text = state.ToString();
             image.sprite = null;
+            spriteRenderer.sprite = null;
+            spriteRenderer2.sprite = null;
             HarvestCrop();
             return true;
         }
@@ -89,6 +100,8 @@ public class Plant : MonoBehaviour
 
         state = PlantState.Completed;
         stateText.text = state.ToString();
+        spriteRenderer.sprite = m_seed.ReturnFinishedSprite();
+        spriteRenderer2.sprite = m_seed.ReturnFinishedSprite();
         StopAllCoroutines();
     }
     
