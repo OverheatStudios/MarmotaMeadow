@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunProgress : MonoBehaviour
+public class ReloadAnimation : MonoBehaviour
 {
     [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
     [SerializeField] private Image m_display;

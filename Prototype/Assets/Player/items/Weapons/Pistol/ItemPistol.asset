@@ -28,3 +28,4 @@ MonoBehaviour:
   m_purchasePrice: 10
   m_requiresBullets: 1
   m_recoilForce: 5
+  m_reloadBarPrefab: {fileID: 4414279777620984797, guid: c76bdabedf3c63e4187a22ded64a0a91, type: 3}

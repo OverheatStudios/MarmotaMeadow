@@ -375,7 +375,6 @@ public class InventoryMager : MonoBehaviour
                 if(inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
                 {
                     return true;
-                    break;
                 }
             }
         }
@@ -391,7 +390,6 @@ public class InventoryMager : MonoBehaviour
                 if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "Shotgun")
                 {
                     return true;
-                    break;
                 }
             }
         }
@@ -405,7 +403,6 @@ public class InventoryMager : MonoBehaviour
             if (inventorySlots[i].transform.childCount <= 0)
             {
                 return inventorySlots[i].gameObject.name;
-                break;
             }
         }
         return null;

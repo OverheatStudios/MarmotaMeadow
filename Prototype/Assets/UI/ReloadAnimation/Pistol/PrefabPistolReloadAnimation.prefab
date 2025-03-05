@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8876387851933236990}
   - component: {fileID: 8035546241743327363}
   m_Layer: 5
-  m_Name: PrefabShotgunProgress
+  m_Name: PrefabPistolReloadAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,9 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sprites:
-  - {fileID: 21300000, guid: 72d0c8d1f6c219e409f2d7f76055c96b, type: 3}
-  - {fileID: 21300000, guid: daa498ceb3de3fb4da53e2b9307c0cff, type: 3}
-  - {fileID: 21300000, guid: 3b5abbb108b07254f88f5be91f6f4225, type: 3}
+  - {fileID: 21300000, guid: ce31123dab3ac644abd63b526ac55413, type: 3}
+  - {fileID: 21300000, guid: eac15fdb1e66ba64e90f86b0284d4352, type: 3}
+  - {fileID: 21300000, guid: a9ea4da42607f3d4dafcc62b93a8be0e, type: 3}
+  - {fileID: 21300000, guid: a4b505affa13c724f9a005436fb086d1, type: 3}
+  - {fileID: 21300000, guid: 7ba4eddbb3feb70458ddc587c1df40e5, type: 3}
   m_display: {fileID: 3744854477160293235}
 --- !u!1 &4757619359170245627
 GameObject:

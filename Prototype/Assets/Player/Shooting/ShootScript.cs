@@ -55,7 +55,7 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private CameraScript m_cameraScript;
 
     [SerializeField] private Transform m_canvas;
-    private GunProgress m_reloadBar;
+    private ReloadAnimation m_reloadBar;
 
     private const float MAX_RAY_DISTANCE = 100f;
 
@@ -117,7 +117,7 @@ public class ShootScript : MonoBehaviour
 
     private void SetupReloadBar()
     {
-        m_reloadBar = Instantiate(GetGunUnsafe().GetReloadBarPrefab()).GetComponent<GunProgress>();
+        m_reloadBar = Instantiate(GetGunUnsafe().GetReloadBarPrefab()).GetComponent<ReloadAnimation>();
         m_reloadBar.name = "ReloadBar";
         m_reloadBar.transform.SetParent(m_canvas.transform, false);
     }
