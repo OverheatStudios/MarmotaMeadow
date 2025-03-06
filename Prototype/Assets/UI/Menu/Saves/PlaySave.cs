@@ -19,7 +19,7 @@ public class PlaySave : MonoBehaviour
     public void SetSaveName(string saveName)
     {
         m_saveName = saveName;
-        m_text.text = "Save " + saveName;
+        m_text.text = "" + saveName;
     }
 
     public void PlayGame()

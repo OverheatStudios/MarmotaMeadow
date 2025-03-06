@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -23,6 +25,8 @@ public class SaveManager : ScriptableObject
     /// Name of current save folder
     /// </summary>
     private string m_currentSaveName;
+    public TMP_InputField SaveNameInputField;
+    public TextMeshProUGUI SaveNameErrorText;
 
     private void OnEnable()
     {
@@ -46,7 +50,7 @@ public class SaveManager : ScriptableObject
         }
     }
 
-    public void NewSave()
+    public void NewSave(bool playGame)
     {
         // Are we already in a save
         if (m_currentSaveName != TEST_SAVE)
@@ -55,19 +59,69 @@ public class SaveManager : ScriptableObject
         }
 
         // Generate new save name
-        string newSaveName = "";
-        string[] saves = GetSaves();
-        for (int i = 0; i <= saves.Length; ++i)
+        string newSaveName = SaveNameInputField.text;
+
+        if (DoesSaveExist(newSaveName))
         {
-            if (saves.Contains(i + "")) continue;
-            newSaveName = i + "";
-            break;
+            SaveNameErrorText.text = "That farm already exists.";
+            return;
         }
-        Assert.IsFalse(newSaveName == "");
+        else if (newSaveName.Length == 0)
+        {
+            SaveNameErrorText.text = "You must enter a farm name.";
+            return;
+        }
+        else if (newSaveName.Length >= 50)
+        {
+            SaveNameErrorText.text = "That farm name is too long. (maximum 50 chars)";
+            return;
+        }
+        else if (!IsSaveNameValid(newSaveName))
+        {
+            SaveNameErrorText.text = "Invalid farm name. (only letters, numbers, and spaces)";
+            return;
+        }
 
         // Create save
         CreateSave(Path.Combine(GetSavesDirectoryPath(), newSaveName));
         SwitchSave(newSaveName);
+
+        if (playGame)
+        {
+            MenuButtonScript.PlayGame();
+        }
+    }
+
+    private bool IsSaveNameValid(string saveName)
+    {
+        foreach (char c in saveName)
+        {
+            if (c >= '0' && c <= '9') return true;
+            if (c >= 'A' && c <= 'Z') return true;
+            if (c >= 'a' && c <= 'z') return true;
+            if (c == ' ') return true;
+            return false;
+        }
+        return false;
+    }
+
+    public bool DoesSaveExist(string saveName)
+    {
+        string[] saves = GetSaves();
+        for (int i = 0; i < saves.Length;i++)
+        {
+            saves[i] = saves[i].ToLower();
+        }
+
+        saveName = saveName.ToLower();
+        for (int i = 0; i <= saves.Length; ++i)
+        {
+            if (saves.Contains(saveName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void SwitchSave(string saveName)

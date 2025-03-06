@@ -14,6 +14,7 @@ public class MenuButtonScript : MonoBehaviour
     [SerializeField] private GameObject m_credits;
     [SerializeField] private SettingsScriptableObject m_settings;
     [SerializeField] private GameObject m_saves;
+    [SerializeField] private GameObject m_newSave;
 
     [Header("Audio Settings")]
     [SerializeField] private UiSlider m_musicVolumeSlider;
@@ -58,6 +59,7 @@ public class MenuButtonScript : MonoBehaviour
         m_controlsSettings.SetActive(false);
         m_credits.SetActive(false);
         m_saves.SetActive(false);
+        m_newSave.SetActive(false);
     }
 
     public void QuitGame()
@@ -105,5 +107,11 @@ public class MenuButtonScript : MonoBehaviour
     {
         DisableAllObjects();
         m_credits.SetActive(true);
+    }
+
+    public void OpenNewSave()
+    {
+        DisableAllObjects();
+        m_newSave.SetActive(true);
     }
 }
