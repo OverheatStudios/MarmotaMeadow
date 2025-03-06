@@ -1,19 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class PlayerHealthBarScript : MonoBehaviour
 {
     [SerializeField] private DataScriptableObject m_data;
-    /// <summary>
-    /// Texture to use for half a heart
-    /// </summary>
-    [SerializeField] private Sprite m_halfTexture;
-    /// <summary>
-    /// Texture to use for a full heart
-    /// </summary>
-    [SerializeField] private Sprite m_fullTexture;
+    [Tooltip("Sprites to use for hearts, 0 should be full, then 1 is next damaged, etc. Final should be empty.")]
+    [SerializeField] private List<Sprite> m_heartSprites;
     /// <summary>
     /// UI Canvas
     /// </summary>
@@ -31,6 +26,7 @@ public class PlayerHealthBarScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Assert.IsTrue(m_heartSprites.Count >= 2);
         GenerateNecessaryHearts();
     }
 
@@ -68,14 +64,9 @@ public class PlayerHealthBarScript : MonoBehaviour
 
     private void GenerateNecessaryHearts()
     {
-        // Make any half hearts full hearts
-        foreach (Image image in m_images)
-        {
-            image.sprite = m_fullTexture;
-        }
-
         // Create hearts
-        int requiredHearts = Mathf.CeilToInt(m_data.CurrentHealth / 2.0f);
+        int healthPerHeart = (m_heartSprites.Count - 1);
+        int requiredHearts = Mathf.CeilToInt((float)m_data.MaxHealth / (float)healthPerHeart);
         for (int i = m_images.Count; i < requiredHearts; i++)
         {
             CreateHealthImage();
@@ -88,10 +79,22 @@ public class PlayerHealthBarScript : MonoBehaviour
             m_images.RemoveAt(m_images.Count - 1);
         }
 
-        // Make last heart half if necessary
-        if (m_images.Count > 0 && m_data.CurrentHealth % 2 != 0)
+        // Set damage states of hearts
+        for (int i = 0; i < m_images.Count; ++i)
         {
-            m_images[m_images.Count - 1].sprite = m_halfTexture;
+            if (m_data.CurrentHealth >= healthPerHeart * (i + 1))
+            {
+                m_images[i].sprite = m_heartSprites[0]; // full
+            }
+            else if (m_data.CurrentHealth > healthPerHeart * i)
+            {
+                Assert.IsTrue(m_heartSprites.Count == 4); // not sure this line is correct for anything other than 4
+                m_images[i].sprite = m_heartSprites[m_heartSprites.Count - (m_data.CurrentHealth - healthPerHeart * i) - 1]; // damaged
+            }
+            else
+            {
+                m_images[i].sprite = m_heartSprites[m_heartSprites.Count - 1]; // empty
+            }
         }
     }
 
@@ -112,7 +115,7 @@ public class PlayerHealthBarScript : MonoBehaviour
         // Image
         GameObject obj = new GameObject();
         Image image = obj.AddComponent<Image>();
-        image.sprite = m_fullTexture;
+        image.sprite = m_heartSprites[0];
 
         // Transform
         Transform imageTransform = obj.transform;

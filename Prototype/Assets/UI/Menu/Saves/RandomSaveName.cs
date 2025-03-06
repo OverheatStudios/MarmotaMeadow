@@ -9,6 +9,7 @@ public class RandomSaveName : MonoBehaviour
     [SerializeField] private TMP_InputField m_nameInput;
     [SerializeField] private SaveManager m_saveManager;
 
+    // https://gist.github.com/petergombos/2e1f7f0c0c4bf514ac56ee0f8ff12015
     private string[] m_adjectives = {
   "different",
   "used",
@@ -533,6 +534,7 @@ public class RandomSaveName : MonoBehaviour
   "resident"
     };
 
+    // https://github.com/dariusk/corpora/blob/master/data/words/nouns.json
     private string[] m_nouns = {"Armour",
       "Barrymore",
       "Cabot",

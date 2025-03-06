@@ -1,9 +1,7 @@
-using JetBrains.Annotations;
-using NUnit.Framework;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class TooltipManager : MonoBehaviour
