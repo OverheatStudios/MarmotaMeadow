@@ -20,9 +20,9 @@ TagManager:
   - Plant
   - Shootables
   - GroundhogMeshCollider
-  - 
-  - 
-  - 
+  - GroundhogAttack
+  - Boundary
+  - Player
   - 
   - 
   - 

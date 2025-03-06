@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 
 public class GroundhogScript : MonoBehaviour
 {
-    enum State
+    public enum GroundhogState
     {
         Idle, // At max height, not moving
         Rising, // Just spawned, on way up
@@ -31,7 +31,7 @@ public class GroundhogScript : MonoBehaviour
     [SerializeField, Tooltip("High precision collider of the groundhog, probably should be a mesh collider. This will be disabled most of the time and require enabling before use.")]
     private Collider m_highPrecisionCollider;
 
-    private State m_state = State.Rising;
+    private GroundhogState m_state = GroundhogState.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
     /// </summary>
@@ -58,32 +58,34 @@ public class GroundhogScript : MonoBehaviour
         m_highPrecisionCollider = m_typeInfo.GetHighPrecisionCollider();
 
         SetMaxHealth(m_maxHealth * m_typeInfo.GetHealthScalar());
+        SetState(GroundhogState.Rising);
     }
 
     void Update()
     {
         // Go up until reach MAX_Y
-        if (m_state == State.Rising)
+        if (m_state == GroundhogState.Rising)
         {
             transform.position += m_speed * Time.deltaTime * Vector3.up;
             if (transform.position.y >= MAX_Y)
             {
                 // Reached max Y
                 transform.position = new Vector3(transform.position.x, MAX_Y, transform.position.z);
-                m_state = State.Idle;
-            } else if (transform.position.y < MIN_Y)
+                SetState(GroundhogState.Idle);
+            }
+            else if (transform.position.y < MIN_Y)
             {
                 // Somehow below minimum height (probably just spawned in)
                 transform.position = new Vector3(transform.position.x, MIN_Y, transform.position.z);
             }
         }
         // Do nothing
-        else if (m_state == State.Idle)
+        else if (m_state == GroundhogState.Idle)
         {
             m_upTime -= Time.deltaTime;
             if (m_upTime < 0)
             {
-                m_state = State.Falling;
+                SetState(GroundhogState.Falling);
             }
         }
         // Go down and destroy self
@@ -97,6 +99,12 @@ public class GroundhogScript : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void SetState(GroundhogState state)
+    {
+        m_state = state;
+        m_typeInfo.CurrentState = state;
     }
 
     /// <summary>
@@ -150,12 +158,12 @@ public class GroundhogScript : MonoBehaviour
 
     public void EnableHighPrecisionCollider()
     {
-      m_highPrecisionCollider.enabled = true;
+        m_highPrecisionCollider.enabled = true;
     }
 
     public void DisableHighPrecisionCollider()
     {
-        m_highPrecisionCollider.enabled=false;
+        m_highPrecisionCollider.enabled = false;
     }
 
     public GroundhogTypeInfo getTypeInfo()

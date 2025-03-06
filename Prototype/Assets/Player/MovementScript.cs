@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
+    public static GameObject PlayerInstance;
+
     /// <summary>
     /// Player camera
     /// </summary>
@@ -19,6 +21,7 @@ public class MovementScript : MonoBehaviour
 
     void Start()
     {
+        PlayerInstance = gameObject;
     }
 
     void FixedUpdate()
@@ -33,10 +36,10 @@ public class MovementScript : MonoBehaviour
             movement.x -= 1;
         if (Input.GetKey(KeyCode.D))
             movement.z += 1;
-        
+
         // Scale movement vector
         movement = movement.normalized * (Time.deltaTime * m_speed);
-        
+
         // Where is the camera facing
         Vector3 forward = m_camera.transform.forward;
         forward.y = 0;
@@ -45,7 +48,7 @@ public class MovementScript : MonoBehaviour
         Vector3 right = m_camera.transform.right;
         right.y = 0;
         right = right.normalized;
-        
+
         // Move
         m_rigidbody.velocity = forward * movement.x + right * movement.z;
     }

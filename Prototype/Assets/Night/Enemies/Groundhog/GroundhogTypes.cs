@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 public enum GroundhogType
 {
-    Basic, Tank
+    Basic, Tank, Ranged
 }
 
 [CreateAssetMenu(fileName = "GroundhogTypes", menuName = "Scriptable Objects/ScrObjGroundhogTypes")]

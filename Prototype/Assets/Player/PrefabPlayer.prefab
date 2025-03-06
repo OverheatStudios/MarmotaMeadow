@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 47346954774448801}
   - component: {fileID: 8330514824683677567}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3059902831932482646}
   - component: {fileID: 3697521161658006190}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 2720010273818133341}
   - component: {fileID: 3184824759017437960}
   - component: {fileID: 8942070438449667077}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PrefabPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 840164467554708816}
   - component: {fileID: 2594669183110137106}
   - component: {fileID: 6608403481258858457}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Shooting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,6 +332,7 @@ MonoBehaviour:
   m_inventoryManager: {fileID: 0}
   m_cursorHandler: {fileID: 0}
   m_cameraScript: {fileID: 0}
+  m_canvas: {fileID: 0}
 --- !u!82 &6608403481258858457
 AudioSource:
   m_ObjectHideFlags: 0
@@ -442,7 +443,7 @@ GameObject:
   - component: {fileID: 7130942657814689703}
   - component: {fileID: 4143399426402761582}
   - component: {fileID: 7373862065222987196}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
