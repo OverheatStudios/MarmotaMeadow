@@ -66,7 +66,7 @@ public class PlayerHealthBarScript : MonoBehaviour
     {
         // Create hearts
         int healthPerHeart = (m_heartSprites.Count - 1);
-        int requiredHearts = Mathf.CeilToInt(m_data.MaxHealth / healthPerHeart);
+        int requiredHearts = Mathf.CeilToInt((float)m_data.MaxHealth / (float)healthPerHeart);
         for (int i = m_images.Count; i < requiredHearts; i++)
         {
             CreateHealthImage();
