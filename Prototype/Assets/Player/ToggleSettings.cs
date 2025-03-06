@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class ToggleSettings : MonoBehaviour
+{
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject mainSettings;
+    [SerializeField] private GameObject countDownUI;
+    [SerializeField] private bool toggle;
+    [SerializeField] private CursorHandlerScript m_cursorHandler;
+    [SerializeField] private GameObject[] plants;
+    
+    // Update is called once per frame
+    void Update()
+    {
+        Toggler();
+    }
+
+    void Start()
+    {
+        Invoke(nameof(FindPlants), 0.5f);
+    }
+    
+    void Toggler()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !toggle)
+        {
+            PlantToggler(toggle);
+            toggle = true;
+            settings.SetActive(true);
+            mainSettings.SetActive(true);
+            m_cursorHandler.NotifyUiOpen();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && toggle)
+        {
+            PlantToggler(toggle);
+            toggle = false;
+            settings.SetActive(false);
+            mainSettings.SetActive(true);
+            m_cursorHandler.NotifyUiClosed();
+        }
+    }
+
+    void PlantToggler(bool toggle)
+    {
+        for (int i = 0; i < plants.Length; i++)
+        {
+            plants[i].SetActive(toggle);
+        }
+        countDownUI.SetActive(toggle);
+    }
+
+    void FindPlants()
+    {
+        plants = GameObject.FindGameObjectsWithTag("Plant");
+    }
+}

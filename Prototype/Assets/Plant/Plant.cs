@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;   
     
 public class Plant : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Plant : MonoBehaviour
     
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteRenderer spriteRenderer2;
+    
+    [SerializeField] private UnityEvent gamePausedEvent;
     
     
     // Start is called before the first frame update

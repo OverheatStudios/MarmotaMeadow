@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1895552561247250477}
   m_Layer: 7
   m_Name: Soils
-  m_TagString: Plant
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +150,9 @@ MonoBehaviour:
   cropToSpawnLocation: {fileID: 5862528567581457388}
   spriteRenderer: {fileID: 3312485650001206611}
   spriteRenderer2: {fileID: 7428401891004521868}
+  gamePausedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1895552561247250477
 BoxCollider:
   m_ObjectHideFlags: 0

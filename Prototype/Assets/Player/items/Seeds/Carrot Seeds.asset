@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c036b1eed04506c49abdf343565d91c0, type: 3}
+  m_Name: Carrot Seeds
+  m_EditorClassIdentifier: 
+  m_handModelPrefab: {fileID: 0}
+  m_itemName: Carrot Seeds
+  m_isStackable: 1
+  m_image: {fileID: 21300000, guid: f0d457977f3096c47a2fac7f980a64f4, type: 3}
+  m_maxAmount: 10000
+  m_amount: 10
+  m_growthDuration: 60
+  crop: {fileID: 11400000, guid: 9f889842aa6526b47aa70b403fc1f1f7, type: 2}
+  m_purchasePrice: 100
+  plantedSprite: {fileID: 21300000, guid: ec7f00ff86f1cf74ba32bfed01cbf1e0, type: 3}
+  growingSprite: {fileID: 21300000, guid: 43fb68f2412be7548bafe077626bb8a2, type: 3}
+  finishedSprite: {fileID: 21300000, guid: 3712d5d68319df440975129c57499fb6, type: 3}

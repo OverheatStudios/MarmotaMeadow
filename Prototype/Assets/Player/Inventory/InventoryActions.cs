@@ -75,7 +75,7 @@ public class InventoryActions : MonoBehaviour
     {
         if (!m_canOpenInventory) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !m_inInventory)
+        if (Input.GetKeyDown(KeyCode.E) && !m_inInventory)
         {
             //UI
             m_inInventory = true;
@@ -84,7 +84,7 @@ public class InventoryActions : MonoBehaviour
             //Cursor
             m_cursorHandler.NotifyUiOpen();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && m_inInventory)
+        else if (Input.GetKeyDown(KeyCode.E) && m_inInventory)
         {
             //UI
             m_inInventory = false;

@@ -52,14 +52,22 @@ public class MenuButtonScript : MonoBehaviour
 
     private void DisableAllObjects()
     {
-        m_mainMenu.SetActive(false);
-        m_mainSettings.SetActive(false);
-        m_audioSettings.SetActive(false);
-        m_videoSettings.SetActive(false);
-        m_controlsSettings.SetActive(false);
-        m_credits.SetActive(false);
-        m_saves.SetActive(false);
-        m_newSave.SetActive(false);
+        if(m_mainMenu)
+            m_mainMenu.SetActive(false);
+        if(m_mainSettings)
+            m_mainSettings.SetActive(false);
+        if(m_audioSettings)
+            m_audioSettings.SetActive(false);
+        if(m_videoSettings)
+            m_videoSettings.SetActive(false);
+        if(m_controlsSettings)
+            m_controlsSettings.SetActive(false);
+        if(m_credits)
+            m_credits.SetActive(false);
+        if(m_saves)
+            m_saves.SetActive(false);
+        if(m_newSave)
+            m_newSave.SetActive(false);
     }
 
     public void QuitGame()

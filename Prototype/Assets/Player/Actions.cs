@@ -40,20 +40,17 @@ public class Actions : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit, m_maxDistance, m_plantLayerMask))
             {
-                if (hit.collider.CompareTag("Plant"))
-                {
-                    InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
+                InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
                     
-                    if (heldItem.transform.childCount > 0) 
-                    {   
-                        if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) 
-                            & heldItem.item.IsStackable())
-                        {
-                            heldItem.DecreaseAmount();
-                        }
+                if (heldItem.transform.childCount > 0) 
+                {   
+                    if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) 
+                        & heldItem.item.IsStackable())
+                    { 
+                        heldItem.DecreaseAmount();
                     }
                 }
             }
         }
-    }
+    } 
 }
