@@ -18,8 +18,7 @@ public class DataScriptableObject : ScriptableObject
         GroundhogsKilled = 0;
         GroundhogsSpawned = 0;
         NightCounter = 0;
-        MaxHealth = 10;
-        Assert.IsTrue(MaxHealth % 2 == 0); // Max health must be even! This is due to how health bar works
+        MaxHealth = 12;
         CurrentHealth = MaxHealth;
         m_isInfiniteHealthCheatEnabled = false;
     }
