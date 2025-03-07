@@ -50,9 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sprites:
-  - {fileID: 21300000, guid: d49093e9e842a724da5cb6eee82eae5f, type: 3}
-  - {fileID: 21300000, guid: d0d328ea595d80b44917af7da65fd3f6, type: 3}
-  - {fileID: 21300000, guid: 6076ca7117f247c4f8eaad96e7ed9be1, type: 3}
+  - {fileID: 21300000, guid: 9e5dd5898eb2da942a9aa3e481e80efe, type: 3}
+  - {fileID: 21300000, guid: 878f89c4ced134c4084079bd9069eb7c, type: 3}
+  - {fileID: 21300000, guid: fe70b9e5fe686404a91ecef77ee833ec, type: 3}
+  - {fileID: 21300000, guid: b4d729178a8634146b6e9556adda2a51, type: 3}
   m_display: {fileID: 3744854477160293235}
 --- !u!1 &4757619359170245627
 GameObject:
