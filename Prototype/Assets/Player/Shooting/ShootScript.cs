@@ -257,7 +257,7 @@ public class ShootScript : MonoBehaviour
     {
         // Reload text will enable itself when needed
         m_ammoText.enabled = true;
-        m_reloadBar.SetVisible(true);
+        if (m_reloadBar) m_reloadBar.SetVisible(true);
         foreach (Transform child in m_ammoText.transform)
         {
             child.gameObject.SetActive(true);
