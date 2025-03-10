@@ -51,22 +51,15 @@ struct face {
 };
 
 void push_cube(std::vector<vertex>& vertices, std::vector<face>& faces, float width, float height, float x, float y, std::bitset< 4> obscuredFaces, bool greedyCulling, float greedyExpand) {
-	int startingIndex = vertices.size() + 1;
+	int startingIndex = vertices.size();
 
 	float scale = SCALE;
 
 
 	if (!greedyCulling) {
 		scale = SCALE * greedyExpand;
-		// Front face
-		//actually we don't need this face, and since the tex coords are broken on it we'll pretend the back face is the front face
-		vertices.emplace_back(vec3{ x, y, 0 }, vec3{ 0, 0, -1 }, vec2{ 0, 0 });
-		vertices.emplace_back(vec3{ scale + x, y, 0 }, vec3{ 0, 0, -1 }, vec2{ greedyExpand, 0 });
-		vertices.emplace_back(vec3{ scale + x, scale + y, 0 }, vec3{ 0, 0, -1 }, vec2{ greedyExpand, greedyExpand });
-		vertices.emplace_back(vec3{ x, scale + y, 0 }, vec3{ 0, 0, -1 }, vec2{ 0, greedyExpand });
-	//	faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 
-		// Back face
+		// Front face
 		vertices.emplace_back(vec3{ x, y, SCALE }, vec3{ 0, 0, 1 }, vec2{ 0, 0 });
 		vertices.emplace_back(vec3{ scale + x, y, SCALE }, vec3{ 0, 0, 1 }, vec2{ greedyExpand, 0 });
 		vertices.emplace_back(vec3{ scale + x, scale + y, SCALE }, vec3{ 0, 0, 1 }, vec2{ greedyExpand,greedyExpand });
@@ -112,7 +105,7 @@ void push_cube(std::vector<vertex>& vertices, std::vector<face>& faces, float wi
 	}
 
 	// Correct uvs
-	for (int i = 0; i < vertices.size(); ++i) {
+	for (int i = startingIndex; i < vertices.size(); ++i) {
 		vec2& uv = vertices[i].uv;
 		uv.x = (x + uv.x) / width;
 		uv.y = (y + uv.y) / height;
