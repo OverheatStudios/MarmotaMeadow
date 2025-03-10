@@ -27,7 +27,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     {
         m_secondsRemaining -= Time.deltaTime;
 
-        m_countdownText.text = string.Format("Day in {0} seconds", 1 + (int)m_secondsRemaining);
+        m_countdownText.text = string.Format("{0}", 1 + (int)m_secondsRemaining);
 
         if (m_secondsRemaining < 0)
         {

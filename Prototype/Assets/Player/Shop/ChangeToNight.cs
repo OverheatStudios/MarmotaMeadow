@@ -12,7 +12,7 @@ public class ChangeToNight : MonoBehaviour
     void Update()
     {
         maxTime -= Time.deltaTime;
-        text.text = "Night in " + Mathf.Ceil(maxTime).ToString() + " seconds";
+        text.text = Mathf.Ceil(maxTime).ToString() ;
         if (maxTime <= 0)
         {
             SceneManager.LoadScene("Shop");
