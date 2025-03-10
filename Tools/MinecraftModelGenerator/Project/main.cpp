@@ -5,6 +5,9 @@
 #include <chrono>
 #include <bitset>
 #include <array>
+#include <unordered_map>
+#include <string>
+#include <filesystem>
 
 inline bool is_transparent(stbi_uc* data, int width, int x, int y) {
 	return data[4 * (y * width + x) + 3] == 0;
@@ -16,11 +19,19 @@ struct vec3 {
 	float x;
 	float y;
 	float z;
+
+	bool operator==(const vec3& other) const {
+		return x == other.x && y == other.y && z == other.z;
+	}
 };
 
 struct vec2 {
 	float x;
 	float y;
+
+	bool operator==(const vec2& other) const {
+		return x == other.x && y == other.y;
+	}
 };
 
 struct vertex {
@@ -29,6 +40,46 @@ struct vertex {
 	vec2 uv;
 
 	vertex(vec3 pos, vec3 normal, vec2 uv) : pos(pos), normal(normal), uv(uv) {}
+
+	bool operator==(const vertex& other) const {
+		return pos == other.pos && normal == other.normal && uv == other.uv;
+	}
+};
+
+// boost https://stackoverflow.com/questions/2590677/how-do-i-combine-hash-values-in-c0x
+inline size_t hash_combine(std::size_t hash, std::size_t otherHash)
+{
+	hash ^= otherHash + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+	return hash;
+}
+
+struct hash_vec3 {
+	size_t operator()(const vec3& v) const {
+		size_t h1 = std::hash<float>{}(v.x);
+		size_t h2 = std::hash<float>{}(v.y);
+		size_t h3 = std::hash<float>{}(v.z);
+
+		return hash_combine(h1, hash_combine(h2, h3));
+	}
+};
+
+struct hash_vec2 {
+	size_t operator()(const vec2& v) const {
+		size_t h1 = std::hash<float>{}(v.x);
+		size_t h2 = std::hash<float>{}(v.y);
+
+		return hash_combine(h1, h2);
+	}
+};
+
+struct hash_vertex {
+	size_t operator()(const vertex& v) const {
+		size_t h1 = hash_vec3{}(v.pos);
+		size_t h2 = hash_vec3{}(v.normal);
+		size_t h3 = hash_vec2{}(v.uv);
+
+		return hash_combine(h1, hash_combine(h2, h3));
+	}
 };
 
 struct face {
@@ -192,6 +243,36 @@ void generate_model(const char* path, const char* out) {
 		}
 	}
 
+	// Remove duplicate vertices
+	std::unordered_map<vertex, int, hash_vertex> uniqueVertices;
+	for (int i = 0; i < vertices.size(); ++i) {
+		auto it = uniqueVertices.find(vertices[i]);
+		if (it == uniqueVertices.end()) {
+			uniqueVertices.insert(std::make_pair(vertices[i], i));
+			continue;
+		}
+		// dupe vertex!
+
+		// fix the faces since we're gonna be removing something
+		for (auto& face : faces) {
+			for (auto& j : face.indices) {
+				// .obj indices are 1-based
+
+				// first we remap to use the vertex we already found instead of the duplicate one
+				if (j - 1 == i) {
+					j = 1 + it->second;
+				}
+
+				// now everything past this vertex needs to be decremented since we're removing from the vector
+				if (j - 1 > i) j--;
+			}
+		}
+
+		// remove the dupe vertex
+		vertices.erase(vertices.begin() + i);
+		--i;
+	}
+
 	// Convert faces and vertices into .obj file
 	std::ofstream file;
 	file.open(out);
@@ -218,8 +299,34 @@ void generate_model(const char* path, const char* out) {
 
 int main() {
 
-	auto now = std::chrono::system_clock::now();
-	generate_model("test.png", "test.obj");
-	auto end = std::chrono::system_clock::now();
-	std::cout << "Generated model in " << std::chrono::duration_cast<std::chrono::milliseconds>(end - now).count() << "ms.\n";
+	int num = 0;
+	auto nowTotal = std::chrono::system_clock::now();
+
+	std::filesystem::create_directory("input");
+	std::filesystem::create_directory("output");
+
+	for (const auto& entry : std::filesystem::directory_iterator("input")) {
+		if (entry.is_regular_file()) {
+			num++;
+
+			std::string input_file = entry.path().string();
+			std::string output_file = "output/" + entry.path().stem().string() + ".obj";
+
+			auto modelStart = std::chrono::system_clock::now();
+
+			generate_model(input_file.c_str(), output_file.c_str());
+
+			auto modelEnd = std::chrono::system_clock::now();
+
+			std::chrono::duration<double> modelDuration = modelEnd - modelStart;
+			std::cout << "Model " << num << " generated in " << std::chrono::duration_cast<std::chrono::milliseconds>(modelDuration).count() << "ms.\n";
+		}
+	}
+
+	auto endTotal = std::chrono::system_clock::now();
+
+	std::cout << "Generated " << num << " model(s) in " << std::chrono::duration_cast<std::chrono::milliseconds>(endTotal - nowTotal).count() << "ms.\n";
+
+	std::cout << "Press enter to exit the program.\n";
+	std::cin.get();
 }
