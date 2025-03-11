@@ -135,7 +135,7 @@ void push_cube(std::vector<vertex>& vertices, std::vector<face>& faces, float wi
 		vertices.emplace_back(vec3{ scale + x, y, 0 }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
 		vertices.emplace_back(vec3{ scale + x, scale + y, 0 }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
 		vertices.emplace_back(vec3{ scale + x, scale + y, zScale }, vec3{ 1, 0, 0 }, vec2{ 0,0 });
-		vertices.emplace_back(vec3{ scale + x, y, scale }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
+		vertices.emplace_back(vec3{ scale + x, y, zScale }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
 		faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 	}
 
