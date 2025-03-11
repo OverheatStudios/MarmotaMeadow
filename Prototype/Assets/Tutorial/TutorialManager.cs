@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    public TutorialStep[] steps;
     public TriggerBase[] triggers; // Direct references — no tags required
     public TextMeshProUGUI tutorialText;
 
@@ -17,13 +16,11 @@ public class TutorialManager : MonoBehaviour
 
     void ShowStep(int stepIndex)
     {
-        if (stepIndex < steps.Length)
+        if (stepIndex < triggers.Length)
         {
-            TutorialStep step = steps[stepIndex];
-
-            tutorialText.text = step.stepDescription;
-
-            if (triggers.Length > stepIndex && triggers[stepIndex] != null)
+            tutorialText.text = triggers[stepIndex].StepText;
+            
+            if (triggers.Length > stepIndex && triggers[stepIndex])
             {
                 triggers[stepIndex].ActivateTrigger();
                 triggers[stepIndex].OnTriggerCompleted += AdvanceStep;
