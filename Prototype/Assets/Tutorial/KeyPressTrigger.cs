@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class KeyPressTrigger : TriggerBase
@@ -9,7 +10,7 @@ public class KeyPressTrigger : TriggerBase
         StartCoroutine(WaitForKeyPress());
     }
 
-    private System.Collections.IEnumerator WaitForKeyPress()
+    private IEnumerator  WaitForKeyPress()
     {
         while (!Input.GetKeyDown(keyToPress))
         {
