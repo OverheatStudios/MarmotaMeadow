@@ -7,6 +7,7 @@ using UnityEngine;
 public class BaseItem : ScriptableObject
 {
     [SerializeField] protected GameObject m_handModelPrefab;
+    [SerializeField] private bool m_isMinecraftModel = true;
     [SerializeField] protected string m_itemName;
     [SerializeField] protected bool m_isStackable;
     [SerializeField] protected Sprite m_image;
@@ -19,6 +20,11 @@ public class BaseItem : ScriptableObject
     public GameObject GetHandModel()
     {
         return m_handModelPrefab;
+    }
+
+    public bool IsMinecraftModel()
+    {
+        return m_isMinecraftModel;
     }
 
     public virtual float ReturnBuyCoinsAmount()

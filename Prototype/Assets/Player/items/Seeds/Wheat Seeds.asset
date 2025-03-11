@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c036b1eed04506c49abdf343565d91c0, type: 3}
   m_Name: Wheat Seeds
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 0}
+  m_handModelPrefab: {fileID: 919132149155446097, guid: fda49fd6be49e2b4dbe1b1e784235338, type: 3}
+  m_isMinecraftModel: 1
   m_itemName: Wheat Seeds
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 8b4dbced717e16b4f9e5a206ef08e31a, type: 3}

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14f63c9c31371441a9455a770ad5509, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 0}
+  m_handModelPrefab: {fileID: 919132149155446097, guid: 43c515562427e2249b89aaa6b3f507ba, type: 3}
+  m_isMinecraftModel: 1
   m_itemName: Carrot
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 6e610929684de3742b52d6aca502d90c, type: 3}

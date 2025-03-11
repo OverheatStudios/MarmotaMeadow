@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3866d6c7cd66e154e879fd0a6c2e7c9e, type: 3}
   m_Name: watering can
   m_EditorClassIdentifier: 
+  m_handModelPrefab: {fileID: 0}
+  m_isMinecraftModel: 0
   m_itemName: watering can
   m_isStackable: 0
   m_image: {fileID: 21300000, guid: 9926c34cc609b0e4cbd4b2e1ce59b0fe, type: 3}
   m_maxAmount: 0
-  toolMultiplier: 0
-  toolLevel: 0
   toolLevelCost: 0

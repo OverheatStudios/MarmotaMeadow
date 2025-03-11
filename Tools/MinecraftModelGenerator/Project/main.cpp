@@ -7,13 +7,12 @@
 #include <array>
 #include <unordered_map>
 #include <string>
+#include <iomanip>
 #include <filesystem>
 
 inline bool is_transparent(stbi_uc* data, int width, int x, int y) {
-	return data[4 * (y * width + x) + 3] == 0;
+	return data[4 * (y * width + x) + 3] < 200;
 }
-
-#define SCALE 1.0f
 
 struct vec3 {
 	float x;
@@ -23,6 +22,8 @@ struct vec3 {
 	bool operator==(const vec3& other) const {
 		return x == other.x && y == other.y && z == other.z;
 	}
+
+	vec3(float x, float y, float z) : x(x), y(y), z(z) {}
 };
 
 struct vec2 {
@@ -101,65 +102,66 @@ struct face {
 	}
 };
 
-void push_cube(std::vector<vertex>& vertices, std::vector<face>& faces, float width, float height, float x, float y, std::bitset< 4> obscuredFaces, bool greedyCulling, float greedyExpand) {
+void push_cube(std::vector<vertex>& vertices, std::vector<face>& faces, float width, float height, float x, float y, std::bitset< 4> obscuredFaces,
+	bool greedyCulling, float greedyExpand, float originalScale, float pixelX, float pixelY) {
 	int startingIndex = vertices.size();
+	float scale = originalScale;
 
-	float scale = SCALE;
-
+	const float zScale = 0.1f;
 
 	if (!greedyCulling) {
-		scale = SCALE * greedyExpand;
+		scale = originalScale * greedyExpand;
 
 		// Front face
-		vertices.emplace_back(vec3{ x, y, SCALE }, vec3{ 0, 0, 1 }, vec2{ 0, 0 });
-		vertices.emplace_back(vec3{ scale + x, y, SCALE }, vec3{ 0, 0, 1 }, vec2{ greedyExpand, 0 });
-		vertices.emplace_back(vec3{ scale + x, scale + y, SCALE }, vec3{ 0, 0, 1 }, vec2{ greedyExpand,greedyExpand });
-		vertices.emplace_back(vec3{ x, scale + y, SCALE }, vec3{ 0, 0, 1 }, vec2{ 0, greedyExpand });
+		vertices.emplace_back(vec3{ x, y, zScale }, vec3{ 0, 0, 1 }, vec2{ 0, 0 });
+		vertices.emplace_back(vec3{ scale + x, y, zScale }, vec3{ 0, 0, 1 }, vec2{ greedyExpand, 0 });
+		vertices.emplace_back(vec3{ scale + x, scale + y, zScale }, vec3{ 0, 0, 1 }, vec2{ greedyExpand, greedyExpand });
+		vertices.emplace_back(vec3{ x, scale + y, zScale }, vec3{ 0, 0, 1 }, vec2{ 0, greedyExpand });
 		faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 	}
 
 	// Left face
-	scale = SCALE;
+	scale = originalScale;
 	if (!obscuredFaces[0]) {
 		vertices.emplace_back(vec3{ x, y, 0 }, vec3{ -1, 0, 0 }, vec2{ 0, 0 });
-		vertices.emplace_back(vec3{ x, y, scale }, vec3{ -1, 0, 0 }, vec2{ 0, 1 });
-		vertices.emplace_back(vec3{ x, scale + y, scale }, vec3{ -1, 0, 0 }, vec2{ 1, 1 });
-		vertices.emplace_back(vec3{ x, scale + y, 0 }, vec3{ -1, 0, 0 }, vec2{ 1, 0 });
+		vertices.emplace_back(vec3{ x, y, zScale }, vec3{ -1, 0, 0 }, vec2{ 0, 0 });
+		vertices.emplace_back(vec3{ x, scale + y, zScale }, vec3{ -1, 0, 0 }, vec2{0,0 });
+		vertices.emplace_back(vec3{ x, scale + y, 0 }, vec3{ -1, 0, 0 }, vec2{ 0, 0 });
 		faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 	}
 
 	// Right face
 	if (!obscuredFaces[1]) {
 		vertices.emplace_back(vec3{ scale + x, y, 0 }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
-		vertices.emplace_back(vec3{ scale + x, scale + y, 0 }, vec3{ 1, 0, 0 }, vec2{ 1, 0 });
-		vertices.emplace_back(vec3{ scale + x, scale + y, scale }, vec3{ 1, 0, 0 }, vec2{ 1, 1 });
-		vertices.emplace_back(vec3{ scale + x, y, scale }, vec3{ 1, 0, 0 }, vec2{ 0, 1 });
+		vertices.emplace_back(vec3{ scale + x, scale + y, 0 }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
+		vertices.emplace_back(vec3{ scale + x, scale + y, zScale }, vec3{ 1, 0, 0 }, vec2{ 0,0 });
+		vertices.emplace_back(vec3{ scale + x, y, scale }, vec3{ 1, 0, 0 }, vec2{ 0, 0 });
 		faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 	}
 
 	// Bottom face
 	if (!obscuredFaces[2]) {
 		vertices.emplace_back(vec3{ x, y, 0 }, vec3{ 0, -1, 0 }, vec2{ 0, 0 });
-		vertices.emplace_back(vec3{ x, y, scale }, vec3{ 0, -1, 0 }, vec2{ 1, 0 });
-		vertices.emplace_back(vec3{ scale + x, y, scale }, vec3{ 0, -1, 0 }, vec2{ 1, 1 });
-		vertices.emplace_back(vec3{ scale + x, y, 0 }, vec3{ 0, -1, 0 }, vec2{ 0, 1 });
+		vertices.emplace_back(vec3{ x, y, zScale }, vec3{ 0, -1, 0 }, vec2{ 0, 0 });
+		vertices.emplace_back(vec3{ scale + x, y, zScale }, vec3{ 0, -1, 0 }, vec2{ 0,0 });
+		vertices.emplace_back(vec3{ scale + x, y, 0 }, vec3{ 0, -1, 0 }, vec2{ 0, 0 });
 		faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 	}
 
 	// Top face
 	if (!obscuredFaces[3]) {
 		vertices.emplace_back(vec3{ x, scale + y, 0 }, vec3{ 0, 1, 0 }, vec2{ 0, 0 });
-		vertices.emplace_back(vec3{ x, scale + y, scale }, vec3{ 0, 1, 0 }, vec2{ 1, 0 });
-		vertices.emplace_back(vec3{ scale + x, scale + y, scale }, vec3{ 0, 1, 0 }, vec2{ 1, 1 });
-		vertices.emplace_back(vec3{ scale + x, scale + y, 0 }, vec3{ 0, 1, 0 }, vec2{ 0, 1 });
+		vertices.emplace_back(vec3{ x, scale + y, zScale }, vec3{ 0, 1, 0 }, vec2{ 0, 0 });
+		vertices.emplace_back(vec3{ scale + x, scale + y, zScale }, vec3{ 0, 1, 0 }, vec2{ 0,0 });
+		vertices.emplace_back(vec3{ scale + x, scale + y, 0 }, vec3{ 0, 1, 0 }, vec2{ 0, 0 });
 		faces.emplace_back(vertices.size() - 3, vertices.size() - 2, vertices.size() - 1, vertices.size() - 0);
 	}
 
-	// Correct uvs
+	// Correct uvs and scale z
 	for (int i = startingIndex; i < vertices.size(); ++i) {
 		vec2& uv = vertices[i].uv;
-		uv.x = (x + uv.x) / width;
-		uv.y = (y + uv.y) / height;
+		uv.x = (pixelX + uv.x) / width;
+		uv.y = (pixelY + uv.y) / height;
 	}
 
 }
@@ -172,6 +174,7 @@ void generate_model(const char* path, const char* out) {
 	stbi_uc* data = stbi_load(path, &width, &height, &numChannels, 4);
 	if (!data) {
 		std::cerr << "Failed to load image: " << path << "\n";
+		return;
 	}
 
 	std::vector<vertex> vertices;
@@ -228,6 +231,11 @@ void generate_model(const char* path, const char* out) {
 		}
 	}
 
+	// Scale & center
+	float scale = 3.0f / width;
+	float startingX = -width * scale * 0.5;
+	float startingY = -height * scale * 0.5;
+
 	// Generate voxels
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
@@ -239,7 +247,8 @@ void generate_model(const char* path, const char* out) {
 			obscuredFaces[2] = y > 0 && !is_transparent(data, width, x, y - 1);
 			obscuredFaces[3] = y < height - 1 && !is_transparent(data, width, x, y + 1);
 
-			push_cube(vertices, faces, width, height, x * SCALE, y * SCALE, obscuredFaces, greedyCullingArray[x * width + y], greedyExpandArray[x * width + y]);
+			push_cube(vertices, faces, width, height, startingX + x * scale, startingY + y * scale, obscuredFaces, greedyCullingArray[x * width + y],
+				greedyExpandArray[x * width + y], scale, x, y);
 		}
 	}
 
@@ -276,6 +285,7 @@ void generate_model(const char* path, const char* out) {
 	// Convert faces and vertices into .obj file
 	std::ofstream file;
 	file.open(out);
+	file << std::fixed << std::setprecision(6);
 
 	for (vertex& v : vertices) {
 		file << "v " << v.pos.x << " " << v.pos.y << " " << v.pos.z << "\n";
@@ -292,6 +302,12 @@ void generate_model(const char* path, const char* out) {
 			<< " " << face[1] << "/" << face[1] << "/" << face[1]
 			<< " " << face[2] << "/" << face[2] << "/" << face[2]
 			<< " " << face[3] << "/" << face[3] << "/" << face[3] << "\n";
+
+		if (vertices[face[0] - 1].normal == vec3(0.f, 0.f, 1.f)) {
+			if (vertices[face[0] - 1].uv == vertices[face[1] - 1].uv ) {
+				int a = 23048;
+			}
+		}
 	}
 
 	file.close();
@@ -314,6 +330,7 @@ int main() {
 
 			auto modelStart = std::chrono::system_clock::now();
 
+			if (input_file == "input/.gitignore") continue;
 			generate_model(input_file.c_str(), output_file.c_str());
 
 			auto modelEnd = std::chrono::system_clock::now();

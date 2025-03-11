@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: harvesting tool
   m_EditorClassIdentifier: 
   m_handModelPrefab: {fileID: 8976990069420053624, guid: 4fb1ee8f4afdff145b8310998245c11a, type: 3}
+  m_isMinecraftModel: 0
   m_itemName: harvesting tool
   m_isStackable: 0
   m_image: {fileID: 21300000, guid: cd45e47248586d442b8563fda3889a56, type: 3}

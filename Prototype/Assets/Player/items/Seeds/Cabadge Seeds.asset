@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c036b1eed04506c49abdf343565d91c0, type: 3}
   m_Name: Cabadge Seeds
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 0}
+  m_handModelPrefab: {fileID: 919132149155446097, guid: f027f91a77e6a304caba890b64efbc42, type: 3}
+  m_isMinecraftModel: 1
   m_itemName: Cabadge Seeds
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 7c105de22e1910e4690aa16a6df61da3, type: 3}
