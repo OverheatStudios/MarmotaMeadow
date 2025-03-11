@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c736cce6e0714b468faa5e20e9cf700, type: 3}
   m_Name: ItemPistolBullet
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 0}
+  m_handModelPrefab: {fileID: 6837703380926908114, guid: 55cb800bfc7616e499349696a9294642, type: 3}
+  m_isMinecraftModel: 1
   m_itemName: Pistol Ammo
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 5e0d43672677bf747b6e2d951064a91f, type: 3}

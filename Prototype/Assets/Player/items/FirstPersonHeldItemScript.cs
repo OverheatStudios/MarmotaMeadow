@@ -45,7 +45,7 @@ public class FirstPersonHeldItemScript : MonoBehaviour
             m_heldItemModel.transform.SetParent(transform, false);
             if (useMinecraftTransform)
             {
-                m_heldItemModel.transform.localEulerAngles = m_minecraftHeldItemRot;//= Quaternion.Euler(m_minecraftHeldItemRot);
+                m_heldItemModel.transform.localEulerAngles += m_minecraftHeldItemRot;//= Quaternion.Euler(m_minecraftHeldItemRot);
                 m_heldItemModel.transform.localPosition = m_minecraftHeldItemPos;
                 m_heldItemModel.transform.localScale = new Vector3(
                     m_minecraftHeldItemScale.x * m_heldItemModel.transform.localScale.x,

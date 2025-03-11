@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c736cce6e0714b468faa5e20e9cf700, type: 3}
   m_Name: ItemShotgunBullet
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 0}
-  m_isMinecraftModel: 0
+  m_handModelPrefab: {fileID: 919132149155446097, guid: 462520a37b3cad5458a2b1c8cc5b437e, type: 3}
+  m_isMinecraftModel: 1
   m_itemName: Shotgun Ammo Pack
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 14f04f4959e2d294ea0fb8fcedb167d2, type: 3}
