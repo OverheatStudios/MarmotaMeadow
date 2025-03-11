@@ -37,7 +37,6 @@ public class GroundhogScript : MonoBehaviour
     /// </summary>
     private float m_upTime;
     private const float MAX_Y = 0.9f;
-    private const float MIN_Y = 0.1f;
     private float m_health;
     private GroundhogTypeInfo m_typeInfo;
 
@@ -73,10 +72,10 @@ public class GroundhogScript : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, MAX_Y, transform.position.z);
                 SetState(GroundhogState.Idle);
             }
-            else if (transform.position.y < MIN_Y)
+            else if (transform.position.y < m_typeInfo.GetMinYBeforeDisappear())
             {
                 // Somehow below minimum height (probably just spawned in)
-                transform.position = new Vector3(transform.position.x, MIN_Y, transform.position.z);
+                transform.position = new Vector3(transform.position.x, m_typeInfo.GetMinYBeforeDisappear(), transform.position.z);
             }
         }
         // Do nothing
@@ -92,7 +91,7 @@ public class GroundhogScript : MonoBehaviour
         else
         {
             transform.position += m_speed * Time.deltaTime * Vector3.down;
-            if (transform.position.y <= MIN_Y)
+            if (transform.position.y <= m_typeInfo.GetMinYBeforeDisappear())
             {
                 m_escapeObj.NotifyGroundhogEscaped();
                 Destroy(gameObject);

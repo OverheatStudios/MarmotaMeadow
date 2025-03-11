@@ -103,6 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_highPrecisionCollider: {fileID: 445173684851483103}
   m_healthScalar: 3
+  CurrentState: 1
+  m_minYBeforeDisappear: -1.2
 --- !u!1001 &1655226992932987511
 PrefabInstance:
   m_ObjectHideFlags: 0
