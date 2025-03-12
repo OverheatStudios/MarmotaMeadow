@@ -282,6 +282,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &90031395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90031396}
+  - component: {fileID: 90031397}
+  m_Layer: 0
+  m_Name: Step8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90031396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90031395}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 566637405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90031397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90031395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf904d0e591743e4996db69fbea7cc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepText: Pick up the corn
+  itemTag: Pickup
+  playerTag: Player
+  isActive: 1
+  pickups: []
 --- !u!1 &141374803
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,12 +403,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 248866496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94db90db6955b14448610960a7380ed9, type: 3}
+  m_Script: {fileID: 11500000, guid: 708d08dbc1ea8754d9a88882088c2c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: yo
-  keyToPress: 101
-  isMouseWheel: 0
+  StepText: "Wait for it to finish \u2026"
+  waitTime: 5
 --- !u!1 &248999752
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,8 +646,9 @@ MonoBehaviour:
   - {fileID: 1075720588}
   - {fileID: 1486997976}
   - {fileID: 1493068378}
-  - {fileID: 248866498}
+  - {fileID: 0}
   tutorialText: {fileID: 1251129178}
+  textToDisplay: Now wait for the timer to run out or interact with bed
 --- !u!4 &566637405
 Transform:
   m_ObjectHideFlags: 0
@@ -619,6 +668,8 @@ Transform:
   - {fileID: 1486997975}
   - {fileID: 1493068377}
   - {fileID: 248866497}
+  - {fileID: 1905170684}
+  - {fileID: 90031396}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &580277202 stripped
@@ -3895,6 +3946,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902028592}
   m_CullTransparentMesh: 1
+--- !u!1 &1905170683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905170684}
+  - component: {fileID: 1905170685}
+  m_Layer: 0
+  m_Name: Step7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905170684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905170683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 566637405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1905170685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905170683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327ef470f24cebc47abd9a7b59f5d602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepText: "While having your Harvesting Tool Selected and looking at the plot press
+    the \u201CLeft Mouse Button\u201D"
+  cameraObject: {fileID: 603934162}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  inventoryManager: {fileID: 1804676360}
+  maxDistance: 1000
+  specificItem: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
 --- !u!1 &1910408950
 GameObject:
   m_ObjectHideFlags: 0

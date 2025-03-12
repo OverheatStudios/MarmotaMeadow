@@ -58,6 +58,7 @@ public class Plant : MonoBehaviour
         {
             state = PlantState.Tealed;
             stateText.text = state.ToString();
+            multiplier += item.ReturnMultiplier();
             return true;
         }else if (item.item is Seeds seeds  && state == PlantState.Tealed)
         {
