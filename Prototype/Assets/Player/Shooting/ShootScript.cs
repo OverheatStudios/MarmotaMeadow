@@ -298,7 +298,12 @@ public class ShootScript : MonoBehaviour
     {
         SetShootCooldown(GetGunUnsafe().GetShootCooldownSeconds());
 
-        m_shootSound.Play();
+        Gun gun = GetGunUnsafe();
+        if (gun.GetShootSfx())
+        {
+            m_shootSound.clip = gun.GetShootSfx();
+            m_shootSound.Play();
+        }
 
         // See if bullet hit anything
         Ray ray = new Ray(m_camera.transform.position, GetRandomBulletDirection());
@@ -384,7 +389,8 @@ public class ShootScript : MonoBehaviour
         }
 
         // Reload
-        float reloadCooldown = GetGunUnsafe().GetReloadCooldownSeconds();
+        float reloadCooldown = gun.GetReloadCooldownSeconds();
+        gun.PlayReloadSfx();
         m_reloadBar.StartProgress(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000));
         SetAmmo(gun.GetMaxAmmo());

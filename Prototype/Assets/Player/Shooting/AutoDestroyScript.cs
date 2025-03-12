@@ -25,6 +25,12 @@ public class AutoDestroyScript : MonoBehaviour
         m_delaySeconds -= Time.deltaTime;
         if (m_delaySeconds < 0)
         {
+            if (m_fadeOutSeconds <= 0.0f)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             m_timeSpentFading += Time.deltaTime;
             float opacity = 1.0f - Mathf.InverseLerp(0, m_fadeOutSeconds, m_timeSpentFading);
             if (opacity <= 0)
@@ -36,5 +42,11 @@ public class AutoDestroyScript : MonoBehaviour
                 m_sprite.color = new Color(m_sprite.color.r, m_sprite.color.g, m_sprite.color.b, opacity);
             }
         }
+    }
+
+    public void SetDelay(float delaySeconds, float fadeOutSeconds)
+    {
+        m_delaySeconds = delaySeconds;
+        m_fadeOutSeconds = fadeOutSeconds;
     }
 }

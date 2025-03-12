@@ -24,15 +24,50 @@ public class Gun : BaseItem
     [Tooltip("Gun recoil force, 5 is a good number")]
     [SerializeField] private float m_recoilForce = 5.0f;
     [SerializeField] private GameObject m_reloadBarPrefab;
-
-    public override float ReturnBuyCoinsAmount()
-    {
-        return m_purchasePrice;
-    }
+    [SerializeField] private AudioClip m_reloadSfx;
+    [SerializeField] private int m_reloadSfxLoopCount = 4;
+    [SerializeField] private AudioClip m_shootSfx;
+    [SerializeField] private AudioClip m_reloadFinishSfx;
 
     private void OnEnable()
     {
         m_currentAmmo = m_maxAmmo;
+    }
+
+    public void PlayReloadSfx()
+    {
+        if (!m_reloadSfx) return;
+
+        // Reload sfx
+        GameObject reload = new GameObject();
+
+        AudioSource reloadSource = reload.AddComponent<AudioSource>();
+        reloadSource.clip = m_reloadSfx;
+        reloadSource.loop = true;
+        reloadSource.Play();
+
+        float reloadDuration = m_reloadSfxLoopCount * m_reloadSfx.length + 0.01f;
+        reload.AddComponent<AutoDestroyScript>().SetDelay(reloadDuration, 0);
+
+        // Pump sfx
+        if (!m_reloadFinishSfx) return;
+        GameObject pump = new GameObject();
+
+        AudioSource pumpSource = pump.AddComponent<AudioSource>();
+        pumpSource.clip = m_reloadFinishSfx;
+        pumpSource.PlayDelayed(reloadDuration);
+
+        reload.AddComponent<AutoDestroyScript>().SetDelay(reloadDuration + m_reloadFinishSfx.length + 0.01f, 0);
+    }
+
+    public AudioClip GetShootSfx()
+    {
+        return m_shootSfx;
+    }
+
+    public override float ReturnBuyCoinsAmount()
+    {
+        return m_purchasePrice;
     }
 
     public GameObject GetReloadBarPrefab()
