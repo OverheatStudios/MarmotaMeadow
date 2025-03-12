@@ -11,6 +11,7 @@ public class ToggleSettings : MonoBehaviour
     [SerializeField] private bool toggle;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private GameObject[] plants;
+    [SerializeField] private GameObject background;
     
     // Update is called once per frame
     void Update()
@@ -41,6 +42,15 @@ public class ToggleSettings : MonoBehaviour
             mainSettings.SetActive(true);
             m_cursorHandler.NotifyUiClosed();
         }
+    }
+
+    public void Back()
+    {
+        PlantToggler(toggle);
+        toggle = false;
+        settings.SetActive(false);
+        mainSettings.SetActive(true);
+        m_cursorHandler.NotifyUiClosed();
     }
 
     void PlantToggler(bool toggle)

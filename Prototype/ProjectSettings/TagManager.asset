@@ -9,6 +9,8 @@ TagManager:
   - UI
   - Crop
   - ToolTip
+  - Step1
+  - Step2
   layers:
   - Default
   - TransparentFX
