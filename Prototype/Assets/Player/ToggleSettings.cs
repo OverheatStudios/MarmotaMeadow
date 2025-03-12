@@ -66,4 +66,9 @@ public class ToggleSettings : MonoBehaviour
     {
         plants = GameObject.FindGameObjectsWithTag("Plant");
     }
+
+    public bool IsToggled()
+    {
+        return toggle;
+    }
 }

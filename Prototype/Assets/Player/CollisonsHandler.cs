@@ -23,7 +23,7 @@ public class CollisonsHandler : MonoBehaviour
         if (other.gameObject.CompareTag("Crop"))
         {
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
-            Destroy(other.gameObject);
+            Destroy(other.gameObject, 0.1f);
         }
     }
 }

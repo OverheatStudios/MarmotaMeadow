@@ -124,7 +124,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         count -= amount;
         if (count <= 0)
-            Destroy(gameObject);
+            Destroy(gameObject, 0.01f);
         else
             countText.text = count.ToString();
     }

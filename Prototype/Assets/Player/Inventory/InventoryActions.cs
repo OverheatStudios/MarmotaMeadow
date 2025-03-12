@@ -16,6 +16,7 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private bool m_inInventory;
     [SerializeField] private InventoryMager m_inventoryManager;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
+    [SerializeField] private ToggleSettings m_toggleSettings;
 
     private void Start()
     {
@@ -75,7 +76,7 @@ public class InventoryActions : MonoBehaviour
     {
         if (!m_canOpenInventory) return;
 
-        if (Input.GetKeyDown(KeyCode.E) && !m_inInventory)
+        if (Input.GetKeyDown(KeyCode.E) && !m_inInventory && !m_toggleSettings.IsToggled())
         {
             //UI
             m_inInventory = true;
@@ -84,7 +85,7 @@ public class InventoryActions : MonoBehaviour
             //Cursor
             m_cursorHandler.NotifyUiOpen();
         }
-        else if (Input.GetKeyDown(KeyCode.E) && m_inInventory)
+        else if (Input.GetKeyDown(KeyCode.E) && m_inInventory && !m_toggleSettings.IsToggled())
         {
             //UI
             m_inInventory = false;
