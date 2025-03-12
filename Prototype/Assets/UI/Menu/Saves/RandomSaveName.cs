@@ -1541,4 +1541,9 @@ public class RandomSaveName : MonoBehaviour
             m_nameInput.text = name;
         }
     }
+
+    private void Start()
+    {
+        GenerateRandomSaveName();
+    }
 }
