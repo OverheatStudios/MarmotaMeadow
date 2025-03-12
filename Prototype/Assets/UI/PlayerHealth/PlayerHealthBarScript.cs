@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealthBarScript : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerHealthBarScript : MonoBehaviour
     /// How far apart are the heart images?
     /// </summary>
     [SerializeField] private float m_heartSpacing = 50;
+    [SerializeField] private ScrObjGameOver m_gameOverReason;
 
     private List<Image> m_images = new();
     private float m_healthLastFrame = 0;
@@ -37,10 +39,9 @@ public class PlayerHealthBarScript : MonoBehaviour
 
         if (m_data.CurrentHealth <= 0)
         {
-            // Player lost TODO
-            print("You lost, but that isn't coded yet, so here's half a heart");
-            m_data.CurrentHealth = 1;
-            m_data.MaxHealth = Mathf.Max(m_data.CurrentHealth, m_data.MaxHealth);
+            // Player lost
+            m_gameOverReason.GameOverReason = ScrObjGameOver.Reason.Died;
+            SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
             return;
         }
 
@@ -50,6 +51,13 @@ public class PlayerHealthBarScript : MonoBehaviour
             m_healthLastFrame = m_data.CurrentHealth;
             m_maxHealthLastFrame = m_data.MaxHealth;
         }
+    }
+
+    public void SetHealth(int health)
+    {
+        if (health < 1) health = 1;
+        if (health > m_data.MaxHealth) health = m_data.MaxHealth;
+        m_data.CurrentHealth = health;
     }
 
     /// <summary>
