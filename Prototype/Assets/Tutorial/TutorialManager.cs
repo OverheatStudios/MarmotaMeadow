@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ public class TutorialManager : MonoBehaviour
 {
     public TriggerBase[] triggers; // Direct references — no tags required
     public TextMeshProUGUI tutorialText;
+    public String textToDisplay;
 
     private int currentStep = 0;
 
@@ -28,7 +30,7 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            tutorialText.text = "Tutorial Complete!";
+            tutorialText.text = textToDisplay;
         }
     }
 

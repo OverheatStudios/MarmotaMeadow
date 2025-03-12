@@ -100,7 +100,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void IncreaseMultiplier()
     {
         multiplier++;
-        multiplierText.text = "Multiplier: " + multiplier.ToString();
     }
 
     public void SetMultiplier(float mult)
