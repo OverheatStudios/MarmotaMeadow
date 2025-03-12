@@ -17,7 +17,7 @@ public class DataScriptableObject : ScriptableObject
     {
         GroundhogsKilled = 0;
         GroundhogsSpawned = 0;
-        NightCounter = 0;
+        NightCounter = -1;
         MaxHealth = 15;
         CurrentHealth = MaxHealth;
         m_isInfiniteHealthCheatEnabled = false;
