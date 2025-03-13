@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ToturialData
 {
     public bool isFinsihed = false;
+    public int step = 0;
 }
 
 public class TutorialManager : MonoBehaviour
@@ -17,8 +18,7 @@ public class TutorialManager : MonoBehaviour
     public TriggerBase[] triggers;
     public TextMeshProUGUI tutorialText;
     public String textToDisplay;
-
-    private int currentStep = 0;
+    
     
     [SerializeField] ToturialData tutorialData;
     [SerializeField] private SaveManager m_saveManager;
@@ -30,7 +30,7 @@ public class TutorialManager : MonoBehaviour
         
         if (!tutorialData.isFinsihed)
         {
-            ShowStep(currentStep);
+            ShowStep(tutorialData.step);
         }
     }
 
@@ -55,8 +55,8 @@ public class TutorialManager : MonoBehaviour
 
     void AdvanceStep()
     {
-        currentStep++;
-        ShowStep(currentStep);
+        tutorialData.step++;
+        ShowStep(tutorialData.step);
     }
     
     public void OnDestroy()

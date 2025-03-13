@@ -4664,8 +4664,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
+  m_sharedMaterial: {fileID: 8289695555494012424, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4727,7 +4727,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -348.88116, w: -113.27313}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4757,7 +4757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 601, y: 381}
+  m_AnchoredPosition: {x: -763, y: 363}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &840110004
@@ -7262,7 +7262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208ad98ebec54d64d8808f06c689ebcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_saveLocation: 
+  m_saveLocation: ShopTutorialManager.json
   triggers:
   - {fileID: 1438964967}
   - {fileID: 1899177111}
@@ -7274,7 +7274,8 @@ MonoBehaviour:
     by clicking the door
   tutorialData:
     isFinsihed: 0
-  m_saveManager: {fileID: 0}
+    step: 0
+  m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
 --- !u!4 &1096908354
 Transform:
   m_ObjectHideFlags: 0
@@ -8301,7 +8302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a95bf05015c9d4db00d430024ffe60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: Click on the corn and drag them to teh sell slot and sell them
+  StepText: Click on the corn and drag them to the sell slot and sell them
   active: 0
   Slot: {fileID: 1628408399}
   item: {fileID: 11400000, guid: 2f13af07a1eb8e146870e559498f7ac9, type: 2}
