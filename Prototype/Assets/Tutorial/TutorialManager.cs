@@ -1,19 +1,37 @@
 using System;
+using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class ToturialData
+{
+    public bool isFinsihed = false;
+}
 
 public class TutorialManager : MonoBehaviour
 {
-    public TriggerBase[] triggers; // Direct references — no tags required
+    [SerializeField] private string m_saveLocation;
+    private string filePath;
+    public TriggerBase[] triggers;
     public TextMeshProUGUI tutorialText;
     public String textToDisplay;
 
     private int currentStep = 0;
+    
+    [SerializeField] ToturialData tutorialData;
+    [SerializeField] private SaveManager m_saveManager;
 
     void Start()
     {
-        ShowStep(currentStep);
+        filePath = m_saveManager.GetFilePath(m_saveLocation);
+        Load();
+        
+        if (!tutorialData.isFinsihed)
+        {
+            ShowStep(currentStep);
+        }
     }
 
     void ShowStep(int stepIndex)
@@ -31,6 +49,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             tutorialText.text = textToDisplay;
+            Save();
         }
     }
 
@@ -38,5 +57,33 @@ public class TutorialManager : MonoBehaviour
     {
         currentStep++;
         ShowStep(currentStep);
+    }
+    
+    public void OnDestroy()
+    {
+        Save();
+    }
+    
+    public void Save()
+    {
+        tutorialData.isFinsihed = SceneManager.GetActiveScene().name == "NightScene";
+        
+        string json = JsonUtility.ToJson(tutorialData, true);
+        File.WriteAllText(filePath, json);
+        print("saved");
+    }
+    
+    private void Load()
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            ToturialData data = JsonUtility.FromJson<ToturialData>(json);
+            
+            if (data != null) 
+            {
+                tutorialData = data;
+            }
+        }
     }
 }

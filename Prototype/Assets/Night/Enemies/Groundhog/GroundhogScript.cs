@@ -120,7 +120,7 @@ public class GroundhogScript : MonoBehaviour
         if (m_health <= 0)
         {
             m_data.GroundhogsKilled++;
-            Destroy(gameObject);
+            Destroy(gameObject, 0.01f);
             return;
         }
     }
