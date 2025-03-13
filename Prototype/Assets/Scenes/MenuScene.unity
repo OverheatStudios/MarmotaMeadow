@@ -4826,6 +4826,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 488005409}
+    - target: {fileID: 4487012197401064678, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4625778869230528509, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4837,6 +4841,10 @@ PrefabInstance:
     - target: {fileID: 7284935811794054735, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
       propertyPath: m_Name
       value: PrefabSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792833610453785852, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
