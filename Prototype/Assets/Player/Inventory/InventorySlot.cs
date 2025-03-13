@@ -10,6 +10,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public Color32 normalColor;
     public Color32 selectedColor;
     [SerializeField] InventoryMager inventory;
+    [SerializeField] private Sprite normalInventoryItem;
+    [SerializeField] private Sprite selectedInventoryItem;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -40,11 +42,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     
     public void Select()
     {
-        image.color = Color.blue;
+        image.sprite = selectedInventoryItem;
     }
 
     public void Deselect()
     {
-        image.color = Color.white;
+        image.sprite = normalInventoryItem;
     }
 }
