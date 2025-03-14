@@ -25,7 +25,7 @@ public class GroundhogProjectile : MonoBehaviour
         if (((1 << other.gameObject.layer) & m_playerLayer) != 0)
         {
             Destroy(gameObject);
-            m_data.Damage(1);
+            m_data.Damage((int)Damage);
         }
     }
 }

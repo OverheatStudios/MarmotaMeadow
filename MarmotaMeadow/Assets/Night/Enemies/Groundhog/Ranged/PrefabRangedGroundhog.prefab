@@ -127,7 +127,7 @@ MonoBehaviour:
   m_maxProjectileSpeed: 6
   m_minProjectileInaccuracy: 0.01
   m_maxProjectileInaccuracy: 0.025
-  m_projectileDamage: 1
+  m_projectileDamage: 15
   m_minVelocityScalar: 1
   m_maxVelocityScalar: 2
   m_additionalYVelocity: 3

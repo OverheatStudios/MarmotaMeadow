@@ -12,13 +12,14 @@ public class GlobalData
     public int GroundhogsSpawned = 0;
     public int GroundhogsKilled = 0;
     public int NightCounter = -1;
-    public int MaxHealth = 15;
-    public int CurrentHealth = 15;
+    public int CurrentHealth = ScrObjGlobalData.MAX_HEALTH;
 }
 
 [CreateAssetMenu(fileName = "DataScriptableObject", menuName = "Scriptable Objects/DataScriptableObject")]
 public class ScrObjGlobalData : ScriptableObject
 {
+    public const int MAX_HEALTH = 100;
+
     private GlobalData m_globalData;
     private bool m_isInfiniteHealthCheatEnabled;
     [SerializeField] private SaveManager m_saveManager;
