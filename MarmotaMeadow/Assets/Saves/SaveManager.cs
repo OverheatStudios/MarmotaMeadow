@@ -164,7 +164,7 @@ public class SaveManager : ScriptableObject
         CopyFolderOrFileNoMeta(GetBaseSaveDirectoryPath(), fullSavePath);
     }
 
-    private string GetCurrentSavePath()
+    public string GetCurrentSavePath()
     {
         return Path.Combine(GetSavesDirectoryPath(), m_currentSaveName);
     }

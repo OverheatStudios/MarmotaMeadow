@@ -15,7 +15,7 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private GameObject m_camera;
 
     [Tooltip("Game data")]
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
 
     [Tooltip("Sound to play on shoot")]
     [SerializeField] private AudioSource m_shootSound;

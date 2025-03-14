@@ -15,7 +15,7 @@ public class NightDebugMenu : MonoBehaviour
     [SerializeField] private ShootScript m_shootScript;
     [SerializeField] private Toggle m_infiniteAmmoToggle;
     [SerializeField] private Toggle m_infiniteHealthToggle;
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
 
     private void Start()
     {

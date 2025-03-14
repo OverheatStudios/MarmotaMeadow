@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e678149aec341408fa41563e8bff14, type: 3}
-  m_Name: DataScriptableObject
+  m_Script: {fileID: 11500000, guid: a105a448fe41f7541b39bccc74e5efb4, type: 3}
+  m_Name: ScrObjGlobalData
   m_EditorClassIdentifier: 
-  GroundhogsSpawned: 0
-  GroundhogsKilled: 0
-  NightCounter: 0
-  MaxHealth: 10
-  CurrentHealth: 10
+  m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}

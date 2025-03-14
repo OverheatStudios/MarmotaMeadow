@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
 
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private SettingsScriptableObject m_settings;
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
 
     [Header("Aim Sway")]
     [Tooltip("How far should the aim sway? 1 is a good number")]
@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
     private float GetNightSwayMultiplier()
     {
         if (!m_isNightSwayMultipliersEnabled) return 1;
-        int index = Mathf.Min(m_data.NightCounter, m_nightAimSwayMultipliers.Length - 1);
+        int index = Mathf.Min(m_data.GetData().NightCounter, m_nightAimSwayMultipliers.Length - 1);
         return m_nightAimSwayMultipliers[index];
     }
 

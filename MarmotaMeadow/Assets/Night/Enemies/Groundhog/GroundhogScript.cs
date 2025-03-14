@@ -14,7 +14,7 @@ public class GroundhogScript : MonoBehaviour
     private float m_speed = 1.0f;
 
     [SerializeField, Tooltip("Game data")]
-    private DataScriptableObject m_data;
+    private ScrObjGlobalData m_data;
 
     [SerializeField, Tooltip("Default maximum health, may be changed by night number or other means")]
     private float m_maxHealth = 15;
@@ -43,7 +43,7 @@ public class GroundhogScript : MonoBehaviour
     void Awake()
     {
         m_upTime = Random.Range(0, 1) + m_minUptime;
-        m_data.GroundhogsSpawned++;
+        m_data.GetData().GroundhogsSpawned++;
         Assert.IsTrue(m_maxHealth > 0);
         m_health = m_maxHealth;
 
@@ -119,7 +119,7 @@ public class GroundhogScript : MonoBehaviour
 
         if (m_health <= 0)
         {
-            m_data.GroundhogsKilled++;
+            m_data.GetData().GroundhogsKilled++;
             Destroy(gameObject, 0.01f);
             return;
         }

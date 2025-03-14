@@ -30,7 +30,7 @@ MonoBehaviour:
   m_requiresBullets: 0
   m_recoilForce: 5
   m_reloadBarPrefab: {fileID: 4414279777620984797, guid: e0106de68b36fc84b8714b996ca37f74, type: 3}
-  m_reloadSfx: {fileID: 0}
-  m_reloadSfxLoopCount: 4
-  m_shootSfx: {fileID: 0}
+  m_reloadSfx: {fileID: 8300000, guid: cae195e6d4d204e4f95526555d0505d2, type: 3}
+  m_reloadSfxLoopCount: 1
+  m_shootSfx: {fileID: 8300000, guid: 42bf894da66280340835ba31371bc63a, type: 3}
   m_reloadFinishSfx: {fileID: 0}

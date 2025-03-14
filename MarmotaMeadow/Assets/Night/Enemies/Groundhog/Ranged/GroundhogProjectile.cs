@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundhogProjectile : MonoBehaviour
 {
     [SerializeField] private LayerMask m_playerLayer;
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
     [SerializeField] private float m_lifespanSeconds = 5.0f;
 
     public float Damage = 1;

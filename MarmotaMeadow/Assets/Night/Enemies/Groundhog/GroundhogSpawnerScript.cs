@@ -74,7 +74,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
     /// <summary>
     /// Game data
     /// </summary>
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
 
     private float m_secondsSinceNightBegin = 0;
 
@@ -92,7 +92,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
 
     private NightGroundhogSpawns GetSpawnsTonight()
     {
-        return m_nightGroundhogSpawns[Mathf.Min(m_nightGroundhogSpawns.Count - 1, m_data.NightCounter)];
+        return m_nightGroundhogSpawns[Mathf.Min(m_nightGroundhogSpawns.Count - 1, m_data.GetData().NightCounter)];
     }
 
     /// <summary>
@@ -137,7 +137,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
                 // Spawn groundhog
                 if (emptyBurrows.Count > 0)
                 {
-                    emptyBurrows[UnityEngine.Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.NightCounter, nextSpawn.GroundhogType);
+                    emptyBurrows[UnityEngine.Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.GetData().NightCounter, nextSpawn.GroundhogType);
                     nextSpawn.NumberGroundhogs--;
                     if (nextSpawn.NumberGroundhogs <= 0)
                     {

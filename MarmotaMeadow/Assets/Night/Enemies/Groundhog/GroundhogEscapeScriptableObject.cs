@@ -7,7 +7,7 @@ public class GroundhogEscapeScriptableObject : ScriptableObject
 {
     [Tooltip("How many groundhogs need to escape to cause the player to lose a single health (half a heart)")]
     [SerializeField] private int m_groundhogsPerHealthPoint = 3;
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
 
     [SerializeField] private GameObject m_damageTooltip;
 

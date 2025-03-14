@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class DayCountdownHandlerScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_countdownText;
-    [SerializeField] private DataScriptableObject m_data;
+    [SerializeField] private ScrObjGlobalData m_data;
     [Header("Config")]
     [Tooltip("Length of each night in seconds, length of last night is used for any nights past the last, must have at least one entry")]
     [SerializeField] private List<float> m_nightLengths;
@@ -41,7 +41,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     /// <returns>Number of seconds the current night should last</returns>
     private float GetNightLengthSeconds()
     {
-        return m_nightLengths[Mathf.Min(m_nightLengths.Count - 1, m_data.NightCounter)];
+        return m_nightLengths[Mathf.Min(m_nightLengths.Count - 1, m_data.GetData().NightCounter)];
     }
 
     private void SwitchDayScene()
