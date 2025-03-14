@@ -7,6 +7,7 @@ public class CollisonsHandler : MonoBehaviour
     // Start is called before the first frame update
     [Header("Inventory")]
     [SerializeField] private InventoryMager m_inventory;
+    public System.Action OnPlayerCollision; 
     void Start()
     {
         
@@ -23,7 +24,8 @@ public class CollisonsHandler : MonoBehaviour
         if (other.gameObject.CompareTag("Crop"))
         {
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
-            Destroy(other.gameObject, 0.1f);
+            Destroy(other.gameObject);
+            OnPlayerCollision?.Invoke();
         }
     }
 }

@@ -49,6 +49,7 @@ public class TutorialManager : MonoBehaviour
         else
         {
             tutorialText.text = textToDisplay;
+            tutorialData.isFinsihed = true;
             Save();
         }
     }
@@ -66,8 +67,6 @@ public class TutorialManager : MonoBehaviour
     
     public void Save()
     {
-        tutorialData.isFinsihed = SceneManager.GetActiveScene().name == "NightScene";
-        
         string json = JsonUtility.ToJson(tutorialData, true);
         File.WriteAllText(filePath, json);
         print("saved");

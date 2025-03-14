@@ -483,10 +483,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StepText: Pick up the corn
-  itemTag: Pickup
+  itemTag: Crop
   playerTag: Player
   isActive: 1
-  pickups: []
+  playerCollision: {fileID: 172931782}
 --- !u!1001 &114909014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,6 +669,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1144081424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172931782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8942070438449667077, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+  m_PrefabInstance: {fileID: 603934161}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba68395afc122a4f88dbba41402f2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &177875382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1573,7 +1584,9 @@ MonoBehaviour:
   - {fileID: 1075720588}
   - {fileID: 1486997976}
   - {fileID: 1493068378}
-  - {fileID: 0}
+  - {fileID: 248866498}
+  - {fileID: 1905170685}
+  - {fileID: 90031397}
   tutorialText: {fileID: 1251129178}
   textToDisplay: Now wait for the timer to run out or interact with bed
   tutorialData:
@@ -6403,7 +6416,7 @@ MonoBehaviour:
   cameraObject: {fileID: 603934162}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   inventoryManager: {fileID: 1804676360}
   maxDistance: 1000
   specificItem: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
@@ -8971,6 +8984,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -39.418
       objectReference: {fileID: 0}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: items.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'items.Array.data[11]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f889842aa6526b47aa70b403fc1f1f7, type: 2}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'items.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 473e67b3f9f7bf1429de8f67bcac0051, type: 2}
     - target: {fileID: 6903841661947521471, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
