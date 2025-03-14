@@ -16,6 +16,7 @@ public class ReloadAnimation : MonoBehaviour
     private void Start()
     {
         Assert.IsTrue(m_sprites.Count > 0);
+        m_display.color = Color.clear;
     }
 
     private void Update()

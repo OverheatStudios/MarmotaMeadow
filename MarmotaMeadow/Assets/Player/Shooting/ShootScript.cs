@@ -236,6 +236,11 @@ public class ShootScript : MonoBehaviour
             }
             m_heldItemLastSwap = gun;
         }
+
+        if (!m_reloadBar)
+        {
+            SetupReloadBar();
+        }
     }
 
     private void HideGunUi()
@@ -393,7 +398,7 @@ public class ShootScript : MonoBehaviour
         gun.PlayReloadSfx();
         m_reloadBar.StartProgress(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000));
-        SetAmmo(gun.GetMaxAmmo());
+     if (gun)   SetAmmo(gun.GetMaxAmmo());
     }
 
     /// <summary>
