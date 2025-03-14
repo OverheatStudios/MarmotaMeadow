@@ -41,7 +41,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     /// <returns>Number of seconds the current night should last</returns>
     private float GetNightLengthSeconds()
     {
-        return m_nightLengths[Mathf.Min(m_nightLengths.Count - 1, m_data.GetData().NightCounter)];
+        return m_nightLengths[Mathf.Min(m_nightLengths.Count - 1, m_data.GetData().GetNightCounter())];
     }
 
     private void SwitchDayScene()

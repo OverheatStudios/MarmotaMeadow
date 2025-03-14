@@ -13,6 +13,6 @@ public class StatusText : MonoBehaviour
     {
         // day is night + 1
         // night is 0 indexed so +2
-        m_text.text = string.Format("Day {0} / {1}\nDebt: {2}", m_data.GetData().NightCounter + 2, m_numNights.GetFinalNightPlusOne() + 1, m_numNights.GetMoneyRequired());
+        m_text.text = string.Format("Day {0} / {1}\nDebt: {2}", m_data.GetData().GetNightCounter() + 2, m_numNights.GetFinalNightPlusOne() + 1, m_numNights.GetMoneyRequired());
     }
 }

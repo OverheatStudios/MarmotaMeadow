@@ -11,8 +11,18 @@ public class GlobalData
 {
     public int GroundhogsSpawned = 0;
     public int GroundhogsKilled = 0;
-    public int NightCounter = -1;
+    private int NightCounter = -1;
     public int CurrentHealth = ScrObjGlobalData.MAX_HEALTH;
+
+    public int GetNightCounter()
+    {
+        return NightCounter;
+    }
+
+    public void SetNightCounter(int night)
+    {
+        NightCounter = night;
+    }
 }
 
 [CreateAssetMenu(fileName = "DataScriptableObject", menuName = "Scriptable Objects/DataScriptableObject")]
@@ -22,6 +32,7 @@ public class ScrObjGlobalData : ScriptableObject
 
     private GlobalData m_globalData;
     private bool m_isInfiniteHealthCheatEnabled;
+    private bool m_isNight1CheatEnabled;
     [SerializeField] private SaveManager m_saveManager;
 
     public GlobalData GetData()
@@ -33,6 +44,7 @@ public class ScrObjGlobalData : ScriptableObject
     {
         m_globalData = new();
         m_isInfiniteHealthCheatEnabled = false;
+        m_isNight1CheatEnabled = false;
     }
 
     public void Load()
@@ -58,9 +70,20 @@ public class ScrObjGlobalData : ScriptableObject
         File.WriteAllText(filePath, json);
     }
 
+    public void IncrementNightCounter()
+    {
+        if (!m_isNight1CheatEnabled && m_globalData.GetNightCounter() >= 0) return;
+        m_globalData.SetNightCounter(m_globalData.GetNightCounter() + 1);
+    }
+
     public void SetInfiniteHealthCheatStatus(Toggle toggleUi)
     {
         m_isInfiniteHealthCheatEnabled = toggleUi.isOn;
+    }
+
+    public void SetNight1CheatStatus(Toggle toggleUi)
+    {
+        m_isNight1CheatEnabled = toggleUi.isOn;
     }
 
     /// <summary>

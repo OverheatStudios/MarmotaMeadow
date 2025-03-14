@@ -15,6 +15,7 @@ public class NightDebugMenu : MonoBehaviour
     [SerializeField] private ShootScript m_shootScript;
     [SerializeField] private Toggle m_infiniteAmmoToggle;
     [SerializeField] private Toggle m_infiniteHealthToggle;
+    [SerializeField] private Toggle m_night1Toggle;
     [SerializeField] private ScrObjGlobalData m_data;
 
     private void Start()
@@ -24,6 +25,9 @@ public class NightDebugMenu : MonoBehaviour
 
         m_infiniteHealthToggle.isOn = PlayerPrefs.GetInt("infiniteHealth", 0) != 0;
         m_data.SetInfiniteHealthCheatStatus(m_infiniteHealthToggle);
+
+        m_night1Toggle.isOn = PlayerPrefs.GetInt("alwaysNight1", 0) != 0;
+        m_data.SetNight1CheatStatus(m_night1Toggle);
     }
 
     public void GiveShotgun()
@@ -64,5 +68,10 @@ public class NightDebugMenu : MonoBehaviour
     public void UpdateHealthPref(Toggle toggle)
     {
         PlayerPrefs.SetInt("infiniteHealth", toggle.isOn ? 1 : 0);
+    }
+
+    public void UpdateNight1Pref(Toggle toggle)
+    {
+        PlayerPrefs.SetInt("alwaysNight1", toggle.isOn ? 1 : 0);
     }
 }

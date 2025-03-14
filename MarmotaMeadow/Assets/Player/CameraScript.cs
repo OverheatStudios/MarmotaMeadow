@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
     private float GetNightSwayMultiplier()
     {
         if (!m_isNightSwayMultipliersEnabled) return 1;
-        int index = Mathf.Min(m_data.GetData().NightCounter, m_nightAimSwayMultipliers.Length - 1);
+        int index = Mathf.Min(m_data.GetData().GetNightCounter(), m_nightAimSwayMultipliers.Length - 1);
         return m_nightAimSwayMultipliers[index];
     }
 

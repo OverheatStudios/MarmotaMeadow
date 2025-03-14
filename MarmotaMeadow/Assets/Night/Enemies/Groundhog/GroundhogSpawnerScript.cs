@@ -92,7 +92,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
 
     private NightGroundhogSpawns GetSpawnsTonight()
     {
-        return m_nightGroundhogSpawns[Mathf.Min(m_nightGroundhogSpawns.Count - 1, m_data.GetData().NightCounter)];
+        return m_nightGroundhogSpawns[Mathf.Min(m_nightGroundhogSpawns.Count - 1, m_data.GetData().GetNightCounter())];
     }
 
     /// <summary>
@@ -115,8 +115,8 @@ public class GroundhogSpawnerScript : MonoBehaviour
                 nextSpawn = spawns.GroundhogsThisNight[spawns.GroundhogsThisNight.Count - i];
                 if (nextSpawn.SecondsSinceNightBeginning >= m_secondsSinceNightBegin)
                 {
-                    return;
-                } // Not ready for this spawn yet
+                    return; // Not ready for this spawn yet
+                }
                 if (!nextSpawn.ShouldSpawnThisFrame(Time.deltaTime))
                 {
                     break; // Spawned some of this spawn too recently
@@ -137,7 +137,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
                 // Spawn groundhog
                 if (emptyBurrows.Count > 0)
                 {
-                    emptyBurrows[UnityEngine.Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.GetData().NightCounter, nextSpawn.GroundhogType);
+                    emptyBurrows[UnityEngine.Random.Range(0, emptyBurrows.Count)].SpawnGroundhog(m_data.GetData().GetNightCounter(), nextSpawn.GroundhogType);
                     nextSpawn.NumberGroundhogs--;
                     if (nextSpawn.NumberGroundhogs <= 0)
                     {
