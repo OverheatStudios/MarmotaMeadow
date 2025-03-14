@@ -47,6 +47,8 @@ public class Shop : MonoBehaviour
     {
         if (item.GetComponentInChildren<InventoryItem>().item is Tool tool)
         {
+            if (coinManager.GetCoins() < tool.ReturnToolLevelCost()) return;
+
             coinManager.DecreaseCoins(tool.ReturnToolLevelCost());
             item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
         }
