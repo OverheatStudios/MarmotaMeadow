@@ -17,6 +17,6 @@ MonoBehaviour:
   m_itemName: Pistol Ammo
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: 5e0d43672677bf747b6e2d951064a91f, type: 3}
-  m_maxAmount: 100
+  m_maxAmount: 1000000
   m_gunName: Pistol
   m_purchasePrice: 5
