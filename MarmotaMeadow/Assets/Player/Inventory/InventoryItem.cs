@@ -109,8 +109,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void SetAmount(int amount)
     {
-        count = amount;
-        countText.text = count.ToString();
+        count = amount; 
+        if (count <= 0)
+            Destroy(gameObject, 0.01f);
+        else
+            countText.text = count.ToString();
     }
 
     public void IncreaseAmount()

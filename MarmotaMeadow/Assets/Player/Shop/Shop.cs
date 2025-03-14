@@ -38,8 +38,8 @@ public class Shop : MonoBehaviour
     {
         if (item.GetComponentInChildren<InventoryItem>().item is Crops crop)
         {
-            coinManager.IncreaseCoins(crop.ReturnSellCoinsAmount());
-            item.GetComponentInChildren<InventoryItem>().DecreaseAmount();
+            coinManager.IncreaseCoins(crop.ReturnSellCoinsAmount() * item.GetComponentInChildren<InventoryItem>().ReturnAmount());
+            item.GetComponentInChildren<InventoryItem>().SetAmount(0);
         }
     }
 
