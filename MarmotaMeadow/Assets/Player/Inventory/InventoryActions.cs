@@ -28,7 +28,10 @@ public class InventoryActions : MonoBehaviour
     {
         HandleSlotChange();
 
-        ToggleInventory();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ToggleInventory();
+        }
     }
 
     void HandleSlotChange()
@@ -72,11 +75,11 @@ public class InventoryActions : MonoBehaviour
         slots[m_selectedItemIndex].GetComponent<InventorySlot>().Select();
     }
 
-    void ToggleInventory()
+    public void ToggleInventory()
     {
         if (!m_canOpenInventory) return;
 
-        if (Input.GetKeyDown(KeyCode.E) && !m_inInventory && !m_toggleSettings.IsToggled())
+        if (!m_inInventory && (!m_toggleSettings || !m_toggleSettings.IsToggled()))
         {
             //UI
             m_inInventory = true;
@@ -85,7 +88,7 @@ public class InventoryActions : MonoBehaviour
             //Cursor
             m_cursorHandler.NotifyUiOpen();
         }
-        else if (Input.GetKeyDown(KeyCode.E) && m_inInventory && !m_toggleSettings.IsToggled())
+        else if (m_inInventory && (!m_toggleSettings || !m_toggleSettings.IsToggled()))
         {
             //UI
             m_inInventory = false;

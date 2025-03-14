@@ -625,6 +625,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6dbb878b3563654d83e6a45ad068888, type: 2}
   - {fileID: 11400000, guid: c5b71ab94c216c54f98328f7ef25bbab, type: 2}
   - {fileID: 11400000, guid: 6fbfe7120d3fb144c93226316336351c, type: 2}
+  - {fileID: 11400000, guid: d66b7cfbf3722ad4e938c931bdb2b70d, type: 2}
+  - {fileID: 11400000, guid: 5561a2fc7aea06d4e9da82da4cb0c5c6, type: 2}
+  - {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
+  - {fileID: 11400000, guid: 7bfcb18f8420aad40b364c55cb584c74, type: 2}
+  - {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
   pistolButton: {fileID: 0}
   shotgunButton: {fileID: 0}
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}

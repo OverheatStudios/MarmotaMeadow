@@ -1372,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_canOpenInventory
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: 'slots.Array.data[0]'
@@ -1726,34 +1726,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -39.418
       objectReference: {fileID: 0}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: m_saveLocation
-      value: NightInventory.json
-      objectReference: {fileID: 0}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: items.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: 'items.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: 'items.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7bfcb18f8420aad40b364c55cb584c74, type: 2}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: 'items.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: 'items.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 5561a2fc7aea06d4e9da82da4cb0c5c6, type: 2}
-    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
-      propertyPath: 'items.Array.data[4]'
-      value: 
-      objectReference: {fileID: 11400000, guid: d66b7cfbf3722ad4e938c931bdb2b70d, type: 2}
     - target: {fileID: 6903841661947521471, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
