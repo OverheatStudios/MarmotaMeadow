@@ -22,7 +22,6 @@ public class InventoryMager : MonoBehaviour
 {
     public const int TOOLBAR_START_INDEX = 0;
     public const int TOOLBAR_SIZE = 9;
-    private const float AUTO_SAVE_INTERVAL_SECONDS = 30;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
     public BaseItem item;
@@ -48,8 +47,6 @@ public class InventoryMager : MonoBehaviour
             Assert.IsNotNull(m_saveLocation);
             LoadInventoryFromFile();
             m_isLoaded = true;
-
-            InvokeRepeating(nameof(SaveInventoryToFile), AUTO_SAVE_INTERVAL_SECONDS, AUTO_SAVE_INTERVAL_SECONDS);
         }
 
         if (pistolButton)
@@ -71,7 +68,6 @@ public class InventoryMager : MonoBehaviour
 
     private void OnDestroy()
     {
-        CancelInvoke(nameof(SaveInventoryToFile));
         SaveInventoryToFile();
     }
 
