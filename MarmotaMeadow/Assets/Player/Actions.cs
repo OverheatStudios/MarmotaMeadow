@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private float m_maxDistance;
     [SerializeField] private LayerMask m_plantLayerMask;
     [SerializeField] private GameObject m_intereactedPlant;
+    [SerializeField] ChangeToNight m_changeToNight;
 
     [Header("Scene")] 
     [SerializeField] bool isDay;
@@ -41,6 +43,11 @@ public class Actions : MonoBehaviour
             if (Physics.Raycast(ray, out hit, m_maxDistance, m_plantLayerMask))
             {
                 InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
+
+                if (m_changeToNight.ReturnIsNight() && m_inventoryManager.GetHeldInventoryItem().item.name == "hoe")
+                {
+                    return;
+                }
                     
                 if (heldItem.transform.childCount > 0) 
                 {   

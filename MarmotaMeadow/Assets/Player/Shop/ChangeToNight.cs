@@ -9,16 +9,23 @@ public class ChangeToNight : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private float maxTime;
     [SerializeField] private DayDebugMenu m_debug;
+    [SerializeField] private bool isNight;
+    [SerializeField] private Bed bed;
 
     void Update()
     {
         if (m_debug.IsInfiniteDay()) return;
-
-        maxTime -= Time.deltaTime;
-        text.text = Mathf.Ceil(maxTime).ToString() ;
-        if (maxTime <= 0)
+        
+        if (maxTime <= 0 && !isNight && !bed.ReturnIsInBed())
         {
-            SceneManager.LoadScene("Shop");
+            isNight = true;
+            maxTime -= Time.deltaTime;
+            text.text = Mathf.Ceil(maxTime).ToString() ;
         }
+    }
+
+    public bool ReturnIsNight()
+    {
+       return isNight; 
     }
 }

@@ -22,6 +22,7 @@ public class TutorialManager : MonoBehaviour
     
     [SerializeField] ToturialData tutorialData;
     [SerializeField] private SaveManager m_saveManager;
+    [SerializeField] private bool isTutorialFinished = false;
 
     void Start()
     {
@@ -48,6 +49,7 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            isTutorialFinished = true;
             tutorialText.text = textToDisplay;
             tutorialData.isFinsihed = true;
             Save();
@@ -84,5 +86,10 @@ public class TutorialManager : MonoBehaviour
                 tutorialData = data;
             }
         }
+    }
+
+    public bool ReturnIsTutorialFinished()
+    {
+        return isTutorialFinished;
     }
 }
