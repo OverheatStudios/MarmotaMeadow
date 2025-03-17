@@ -7,6 +7,7 @@ public class ToggleSettings : MonoBehaviour
 {
     [SerializeField] private GameObject settings;
     [SerializeField] private GameObject mainSettings;
+    [SerializeField] private GameObject[] m_settingsSubcategories;
     [SerializeField] private GameObject countDownUI;
     [SerializeField] private bool toggle;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
@@ -32,6 +33,10 @@ public class ToggleSettings : MonoBehaviour
             toggle = true;
             settings.SetActive(true);
             mainSettings.SetActive(true);
+            foreach (GameObject go in m_settingsSubcategories)
+            {
+                go.SetActive(false);
+            }
             m_cursorHandler.NotifyUiOpen();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && toggle)

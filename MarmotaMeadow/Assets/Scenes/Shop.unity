@@ -405,9 +405,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: GoToNight
+      - m_Target: {fileID: 38011840}
+        m_TargetAssemblyTypeName: ShopExitManager, Assembly-CSharp
+        m_MethodName: TryLeaveShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4110,9 +4110,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: AddCoins
+      - m_Target: {fileID: 2142993337}
+        m_TargetAssemblyTypeName: CoinManager, Assembly-CSharp
+        m_MethodName: IncreaseCoins
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8410,8 +8410,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+      - m_Target: {fileID: 2142993337}
+        m_TargetAssemblyTypeName: CoinManager, Assembly-CSharp
         m_MethodName: SetCoins
         m_Mode: 4
         m_Arguments:
@@ -10071,9 +10071,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: AddCoins
+      - m_Target: {fileID: 2142993337}
+        m_TargetAssemblyTypeName: CoinManager, Assembly-CSharp
+        m_MethodName: IncreaseCoins
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
