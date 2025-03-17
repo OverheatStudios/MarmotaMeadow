@@ -19,6 +19,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     void Start()
     {
         Assert.IsTrue(m_nightLengths != null && m_nightLengths.Count > 0);
+        Assert.IsTrue(m_data.GetData().GetNightCounter() >= 0);
         m_secondsRemaining = GetNightLengthSeconds();
     }
 

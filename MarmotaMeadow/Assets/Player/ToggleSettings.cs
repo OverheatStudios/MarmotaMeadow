@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ToggleSettings : MonoBehaviour
 {
+    [SerializeField] private ScrObjGlobalData m_globalData;
     [SerializeField] private GameObject settings;
     [SerializeField] private GameObject mainSettings;
     [SerializeField] private GameObject[] m_settingsSubcategories;
@@ -15,7 +16,8 @@ public class ToggleSettings : MonoBehaviour
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject m_mainInventoryUi;
     [SerializeField] private GameObject m_bedConfirmUi;
-    
+    [SerializeField] private GameObject[] m_disableWhenInSettings;
+
     // Update is called once per frame
     void Update()
     {
@@ -26,18 +28,23 @@ public class ToggleSettings : MonoBehaviour
     {
         Invoke(nameof(FindPlants), 0.5f);
     }
-    
+
     void Toggler()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !toggle)
         {
             PlantToggler(toggle);
             toggle = true;
+            m_globalData.m_isSettingsOpen = true;
             settings.SetActive(true);
             mainSettings.SetActive(true);
             if (m_bedConfirmUi) m_bedConfirmUi.SetActive(false);
             m_mainInventoryUi.SetActive(false);
             foreach (GameObject go in m_settingsSubcategories)
+            {
+                go.SetActive(false);
+            }
+            foreach (GameObject go in m_disableWhenInSettings)
             {
                 go.SetActive(false);
             }
@@ -47,8 +54,13 @@ public class ToggleSettings : MonoBehaviour
         {
             PlantToggler(toggle);
             toggle = false;
+            m_globalData.m_isSettingsOpen = false;
             settings.SetActive(false);
             mainSettings.SetActive(true);
+            foreach (GameObject go in m_disableWhenInSettings)
+            {
+                go.SetActive(true);
+            }
             m_cursorHandler.NotifyUiClosed();
         }
     }

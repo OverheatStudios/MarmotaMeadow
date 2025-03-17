@@ -62,6 +62,8 @@ public class GroundhogScript : MonoBehaviour
 
     void Update()
     {
+        if (m_data.m_isSettingsOpen) return;
+
         // Go up until reach MAX_Y
         if (m_state == GroundhogState.Rising)
         {

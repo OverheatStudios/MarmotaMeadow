@@ -11,10 +11,15 @@ public class GlobalData
 {
     public int GroundhogsSpawned = 0;
     public int GroundhogsKilled = 0;
-    private int NightCounter = -1;
+    [SerializeField] private int NightCounter = -1;
     public int CurrentHealth = ScrObjGlobalData.MAX_HEALTH;
 
     public int GetNightCounter()
+    {
+        return Mathf.Max(0, NightCounter);
+    }
+
+    public int GetNightCounterPossiblyNegative()
     {
         return NightCounter;
     }
@@ -33,6 +38,7 @@ public class ScrObjGlobalData : ScriptableObject
     private GlobalData m_globalData;
     private bool m_isInfiniteHealthCheatEnabled;
     private bool m_isNight1CheatEnabled;
+    public bool m_isSettingsOpen = false;
     [SerializeField] private SaveManager m_saveManager;
 
     public GlobalData GetData()
@@ -72,8 +78,8 @@ public class ScrObjGlobalData : ScriptableObject
 
     public void IncrementNightCounter()
     {
-        if (!m_isNight1CheatEnabled && m_globalData.GetNightCounter() >= 0) return;
-        m_globalData.SetNightCounter(m_globalData.GetNightCounter() + 1);
+        if (!m_isNight1CheatEnabled && m_globalData.GetNightCounterPossiblyNegative() >= 0) return;
+        m_globalData.SetNightCounter(m_globalData.GetNightCounterPossiblyNegative() + 1);
     }
 
     public void SetInfiniteHealthCheatStatus(Toggle toggleUi)
