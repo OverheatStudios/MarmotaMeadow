@@ -7582,6 +7582,10 @@ PrefabInstance:
       propertyPath: objectPool
       value: 
       objectReference: {fileID: 1424464511}
+    - target: {fileID: 6950334320990105419, guid: bee8eeac5ac3686468a7b76a83d1f087, type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 566637404}
     - target: {fileID: 8865579511690387235, guid: bee8eeac5ac3686468a7b76a83d1f087, type: 3}
       propertyPath: m_Name
       value: Plant
