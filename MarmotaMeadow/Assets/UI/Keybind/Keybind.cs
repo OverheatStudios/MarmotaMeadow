@@ -132,7 +132,7 @@ public class Keybind : MonoBehaviour
         var overlayRect = m_selectedOverlay.GetComponent<RectTransform>();
 
         var pos = m_background.transform.position;
-        pos.x = m_backgroundX + (width - m_minWidth);
+        pos.x = m_backgroundX;// + (width - m_minWidth) / 2;
         m_background.transform.position = pos;
         overlayRect.transform.position = pos;
         m_text.transform.position = new Vector3(pos.x, pos.y + m_padding.y, pos.z);
