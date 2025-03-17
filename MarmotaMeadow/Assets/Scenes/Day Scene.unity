@@ -1155,8 +1155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceceba7a8897ce54eadbbccd2298f6a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: "Press \u201CWASD\u201D to move. "
-  requiredKeys: 77000000610000007300000064000000
+  StepText: "Press \u201C[KEYS]\u201D to move. "
+  requiredKeyActionNames:
+  - WalkForward
+  - WalkBackwards
+  - StrafeLeft
+  - StrafeRight
 --- !u!1 &320237404
 GameObject:
   m_ObjectHideFlags: 0

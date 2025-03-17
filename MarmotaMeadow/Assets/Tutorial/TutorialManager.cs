@@ -35,11 +35,19 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        int stepIndex = tutorialData.step;
+        if (stepIndex < triggers.Length)
+        {
+            tutorialText.text = triggers[stepIndex].StepText;
+        }
+    }
+
     void ShowStep(int stepIndex)
     {
         if (stepIndex < triggers.Length)
         {
-            tutorialText.text = triggers[stepIndex].StepText;
             
             if (triggers.Length > stepIndex && triggers[stepIndex])
             {

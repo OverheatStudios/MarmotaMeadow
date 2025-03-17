@@ -18,6 +18,12 @@ public class Keybind : MonoBehaviour
         { "Interact", KeyCode.Mouse0 }
     };
     private static Dictionary<string, KeyCode> m_keycodes = new Dictionary<string, KeyCode>();
+    private static float m_framesSinceKeybindChange = 0;
+    public static bool DidKeybindsChange()
+    {
+        return m_framesSinceKeybindChange <= 2;
+    }
+
     public static KeyCode GetKeyCode(string actionName)
     {
         if (m_keycodes.ContainsKey(actionName)) return m_keycodes[actionName];
@@ -62,6 +68,8 @@ public class Keybind : MonoBehaviour
 
     private void Update()
     {
+        m_framesSinceKeybindChange++;
+
         bool hovering = RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition);
         bool clicked = Input.GetMouseButtonDown(0);
         if (!IsSelected() && hovering && clicked)
@@ -92,6 +100,7 @@ public class Keybind : MonoBehaviour
         m_key = e.keyCode;
         PlayerPrefs.SetString("keybind." + gameObject.name, m_key.ToString());
         m_keycodes[gameObject.name] = m_key;
+        m_framesSinceKeybindChange = 0;
         SetText(m_key.ToString());
     }
 

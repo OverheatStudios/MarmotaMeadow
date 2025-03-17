@@ -5,7 +5,7 @@ public abstract class TriggerBase : MonoBehaviour
 {
     public event Action OnTriggerCompleted;
 
-    public String StepText;
+    public string StepText;
 
     protected void CompleteTrigger()
     {
