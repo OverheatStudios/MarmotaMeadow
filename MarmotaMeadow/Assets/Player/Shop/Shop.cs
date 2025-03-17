@@ -60,11 +60,6 @@ public class Shop : MonoBehaviour
         coinManager.DecreaseCoins(money);
     }
 
-    public void GoToNight()
-    {
-        SceneManager.LoadScene("NightScene");
-    }
-
     public void DestroyGameObject(GameObject objectToDestroy)
     {
         Destroy(objectToDestroy);

@@ -22,12 +22,12 @@ public class InventoryMager : MonoBehaviour
 {
     public const int TOOLBAR_START_INDEX = 0;
     public const int TOOLBAR_SIZE = 9;
-    public InventorySlot[] inventorySlots;
+    public InventorySlot[] inventorySlots; // The players inventory
     public GameObject inventoryItemPrefab;
     public BaseItem item;
     public BaseItem item2;
     [SerializeField] private GameObject inventoryItem;
-    [SerializeField] private BaseItem[] items;
+    [SerializeField] private BaseItem[] items; // Every registered item type
     [SerializeField] private GameObject pistolButton;
     [SerializeField] private GameObject shotgunButton;
     [SerializeField] private SaveManager m_saveManager;
@@ -94,6 +94,21 @@ public class InventoryMager : MonoBehaviour
     public bool IsInventoryLoadedYet()
     {
         return m_isLoaded;
+    }
+
+    /// <summary>
+    /// Can be used to check if the player has an item of a specific category, e.g Seeds, Gun
+    /// </summary>
+    /// <typeparam name="T">Item category</typeparam>
+    /// <returns>True if the player has at least 1 of the category</returns>
+    public bool HasItemCategory<T>() where T : BaseItem
+    {
+        return inventorySlots.Any(slot =>
+        {
+            InventoryItem slotItem = slot.GetComponentInChildren<InventoryItem>();
+            if (slotItem == null) return false;
+            return slotItem.item is T;
+        });
     }
 
     public bool AddItem(BaseItem item)
