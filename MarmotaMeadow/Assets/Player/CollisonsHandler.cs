@@ -8,6 +8,7 @@ public class CollisonsHandler : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private InventoryMager m_inventory;
     public System.Action OnPlayerCollision; 
+    [SerializeField] private ObjectPooling m_ObjectPooling;
     void Start()
     {
         
@@ -24,7 +25,8 @@ public class CollisonsHandler : MonoBehaviour
         if (other.gameObject.CompareTag("Crop"))
         {
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
-            Destroy(other.gameObject);
+            m_ObjectPooling.PutObjectBack("Crop", other.gameObject);
+            //Destroy(other.gameObject);
             OnPlayerCollision?.Invoke();
         }
     }

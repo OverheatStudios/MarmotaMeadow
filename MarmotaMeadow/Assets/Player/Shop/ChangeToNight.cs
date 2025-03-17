@@ -16,11 +16,15 @@ public class ChangeToNight : MonoBehaviour
     {
         if (m_debug.IsInfiniteDay()) return;
         
-        if (maxTime <= 0 && !isNight && !bed.ReturnIsInBed())
+        if (maxTime > 0 && !isNight && !bed.ReturnIsInBed())
         {
-            isNight = true;
             maxTime -= Time.deltaTime;
             text.text = Mathf.Ceil(maxTime).ToString() ;
+        }
+
+        if (maxTime <= 0)
+        {
+            isNight = true;
         }
     }
 

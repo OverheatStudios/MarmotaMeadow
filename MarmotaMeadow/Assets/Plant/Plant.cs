@@ -32,6 +32,8 @@ public class Plant : MonoBehaviour
     
     [SerializeField] private UnityEvent gamePausedEvent;
     
+    [SerializeField] private ObjectPooling objectPool;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -114,7 +116,9 @@ public class Plant : MonoBehaviour
     {
         for (int i = 0; i < multiplier; i++)
         {
-            GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
+            GameObject spawnedItem = objectPool.TakeObjectOut("Crop");
+            spawnedItem.transform.position = cropToSpawnLocation.transform.position;
+            //GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
         
             spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed.ReturnCrop());
 

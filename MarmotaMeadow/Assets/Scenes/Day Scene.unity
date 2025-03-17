@@ -1562,7 +1562,6 @@ MonoBehaviour:
     isFinsihed: 0
     step: 0
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
-  isTutorialFinished: 0
 --- !u!4 &566637405
 Transform:
   m_ObjectHideFlags: 0
@@ -1801,6 +1800,10 @@ PrefabInstance:
       propertyPath: m_inventory
       value: 
       objectReference: {fileID: 1804676360}
+    - target: {fileID: 8942070438449667077, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_ObjectPooling
+      value: 
+      objectReference: {fileID: 1424464511}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1976,7 +1979,7 @@ MonoBehaviour:
   maxTime: 60
   m_debug: {fileID: 3921283106605280825}
   isNight: 0
-  bed: {fileID: 0}
+  bed: {fileID: 778297264}
 --- !u!1001 &710075743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4648,6 +4651,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 255fa5b6d241edd41a4800be1ac744a2, type: 3}
+--- !u!1 &1424464510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424464512}
+  - component: {fileID: 1424464511}
+  m_Layer: 0
+  m_Name: CropPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1424464511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424464510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a565d5a45434ad419d896c658f14793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToSpawn:
+  - key: Crop
+    prefab: {fileID: 3021856811290988992, guid: 79dea0ac5dcdf2245bc828c5f346c7b1, type: 3}
+    amountToSpawn: 10000
+--- !u!4 &1424464512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424464510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.06451, y: 3.07, z: 20.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1426111060 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4796282575284671455, guid: 4f44c451e5f08704282ee47bf1db3d8f, type: 3}
@@ -7527,6 +7578,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b528a85b19463a145bb73a1ad693983e, type: 2}
+    - target: {fileID: 6950334320990105419, guid: bee8eeac5ac3686468a7b76a83d1f087, type: 3}
+      propertyPath: objectPool
+      value: 
+      objectReference: {fileID: 1424464511}
     - target: {fileID: 8865579511690387235, guid: bee8eeac5ac3686468a7b76a83d1f087, type: 3}
       propertyPath: m_Name
       value: Plant
@@ -9326,3 +9381,4 @@ SceneRoots:
   - {fileID: 566637405}
   - {fileID: 1354631704}
   - {fileID: 1340293559}
+  - {fileID: 1424464512}

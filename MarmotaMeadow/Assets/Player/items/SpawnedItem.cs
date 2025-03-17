@@ -9,15 +9,11 @@ public class SpawnedItem : MonoBehaviour
     public void SetItem(BaseItem item)
     {
         _item = item;
+        GetComponent<SpriteRenderer>().sprite = _item.ReturnImage();
     }
 
     public BaseItem ReturnItem()
     {
         return _item;
-    }
-
-    void Start()
-    {
-        GetComponent<SpriteRenderer>().sprite = _item.ReturnImage();
     }
 }
