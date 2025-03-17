@@ -1972,7 +1972,7 @@ MonoBehaviour:
   maxTime: 60
   m_debug: {fileID: 3921283106605280825}
   isNight: 0
-  bed: {fileID: 778297264}
+  bed: {fileID: 0}
 --- !u!1001 &710075743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2447,6 +2447,7 @@ MonoBehaviour:
   m_clicked: 0
   tutorialManager: {fileID: 566637404}
   isInBed: 0
+  m_text: {fileID: 2042355491}
 --- !u!65 &778297265
 BoxCollider:
   m_ObjectHideFlags: 0
