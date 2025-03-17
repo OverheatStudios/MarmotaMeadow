@@ -13,6 +13,8 @@ public class ToggleSettings : MonoBehaviour
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private GameObject[] plants;
     [SerializeField] private GameObject background;
+    [SerializeField] private GameObject m_mainInventoryUi;
+    [SerializeField] private GameObject m_bedConfirmUi;
     
     // Update is called once per frame
     void Update()
@@ -33,6 +35,8 @@ public class ToggleSettings : MonoBehaviour
             toggle = true;
             settings.SetActive(true);
             mainSettings.SetActive(true);
+            if (m_bedConfirmUi) m_bedConfirmUi.SetActive(false);
+            m_mainInventoryUi.SetActive(false);
             foreach (GameObject go in m_settingsSubcategories)
             {
                 go.SetActive(false);
