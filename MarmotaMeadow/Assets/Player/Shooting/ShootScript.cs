@@ -108,7 +108,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Shoot
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(Keybind.GetKeyCode("Interact")))
         {
             ShootGun();
             return;

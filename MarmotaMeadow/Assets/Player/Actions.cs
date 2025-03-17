@@ -35,7 +35,7 @@ public class Actions : MonoBehaviour
 
     void InteractWithPlot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(Keybind.GetKeyCode("Interact")))
         {
             RaycastHit hit;
             Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);

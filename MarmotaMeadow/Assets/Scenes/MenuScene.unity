@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v0.4.0-alpha
+  m_text: v0.5.0-alpha
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
   m_sharedMaterial: {fileID: 8289695555494012424, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
@@ -4820,6 +4820,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2551883869066861413, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4074346906092572272, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4221580857198939641, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,12 +13,19 @@ public class Bed : MonoBehaviour
     [SerializeField] private bool m_clicked = false;
     [SerializeField] private TutorialManager tutorialManager;
     [SerializeField] private bool isInBed;
+    [SerializeField] private TextMeshProUGUI m_text;
+
+    void Update()
+    {
+        m_text.text = "Go to sleep? (" + Keybind.GetKeyCode("Interact") + ")";
+    }
+
     private void OnMouseOver()
     {
-        if(!m_clicked)
+        if (!m_clicked)
             m_UI.SetActive(true);
-        
-        if (Input.GetKeyDown(KeyCode.Q) && tutorialManager.ReturnIsTutorialFinished())
+
+        if (Input.GetKeyDown(Keybind.GetKeyCode("Interact")) && tutorialManager.ReturnIsTutorialFinished())
         {
             isInBed = true;
             m_confirmationUI.SetActive(true);
@@ -31,7 +39,7 @@ public class Bed : MonoBehaviour
     {
         m_UI.SetActive(false);
     }
-    
+
 
     public void Confirm()
     {
