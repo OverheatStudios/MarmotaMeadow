@@ -98,4 +98,9 @@ public class TutorialManager : MonoBehaviour
     {
         return tutorialData.isFinsihed;
     }
+
+    public ToturialData GetTutorialData()
+    {
+        return tutorialData;
+    }
 }
