@@ -38,7 +38,7 @@ public class UiSlider : MonoBehaviour
             m_startedClickOnBar = overBar;
         }
 
-        if (Input.GetMouseButton(0)  && m_startedClickOnBar)
+        if (Input.GetMouseButton(0) && m_startedClickOnBar)
         {
             SetValue(GetValueFromPosition(Input.mousePosition.x));
         }
@@ -46,11 +46,16 @@ public class UiSlider : MonoBehaviour
 
     private float GetValueFromPosition(float x)
     {
-        return Mathf.InverseLerp(
-            m_bar.rectTransform.position.x - 0.5f * (m_bar.rectTransform.sizeDelta.x + 2 * m_handleRect.sizeDelta.x),
-            m_bar.rectTransform.position.x + 0.5f * (m_bar.rectTransform.sizeDelta.x + 2 * m_handleRect.sizeDelta.x),
-            x
-            );
+        Vector2 localMousePos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(m_bar.rectTransform, Input.mousePosition, null, out localMousePos);
+
+        float barHalfWidth = m_bar.rectTransform.sizeDelta.x * 0.5f;
+        float handleHalfWidth = m_handleRect.sizeDelta.x * 0.5f;
+
+        float minX = -barHalfWidth + handleHalfWidth;
+        float maxX = barHalfWidth - handleHalfWidth;
+
+        return Mathf.InverseLerp(minX, maxX, localMousePos.x);
     }
 
     private void UpdateHandleSprite(float newValue)
@@ -61,13 +66,20 @@ public class UiSlider : MonoBehaviour
     public void SetValue(float value)
     {
         UpdateHandleSprite(value);
-        m_value = value;
+        m_value = Mathf.Clamp01(value);
         m_onValueChanged.Invoke(m_value);
 
-        Vector3 pos = m_handle.transform.position;
-        pos.x = m_bar.rectTransform.position.x + (m_value - 0.5f) * (m_bar.rectTransform.sizeDelta.x + 2 * m_handleRect.sizeDelta.x);
-        pos.x += Mathf.Lerp(0, m_handleRightOffset, m_value);
-        m_handle.transform.position = pos;
+        float barHalfWidth = m_bar.rectTransform.sizeDelta.x * 0.5f;
+        float handleHalfWidth = m_handleRect.sizeDelta.x * 0.5f;
+
+        float minX = m_bar.rectTransform.anchoredPosition.x - barHalfWidth + handleHalfWidth;
+        float maxX = m_bar.rectTransform.anchoredPosition.x + barHalfWidth - handleHalfWidth;
+
+        float newX = Mathf.Lerp(minX, maxX, m_value);
+
+        Vector3 pos = m_handle.rectTransform.anchoredPosition;
+        pos.x = newX;
+        m_handle.rectTransform.anchoredPosition = pos;
     }
 
     public float GetValue() { return m_value; }
