@@ -17,7 +17,10 @@ public class ChangeToNight : MonoBehaviour
     {
         if (m_debug.IsInfiniteDay()) return;
         
-        if (maxTime > 0 && !isNight && !bed.ReturnIsInBed())
+        if (scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() < 0)
+        {
+            text.text = "Complete the tutorial First";
+        }else if(maxTime > 0 && !isNight && !bed.ReturnIsInBed() && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
         {
             maxTime -= Time.deltaTime;
             text.text = Mathf.Ceil(maxTime).ToString() ;

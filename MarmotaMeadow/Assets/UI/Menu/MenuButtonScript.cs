@@ -122,4 +122,9 @@ public class MenuButtonScript : MonoBehaviour
         DisableAllObjects();
         m_newSave.SetActive(true);
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+    }
 }

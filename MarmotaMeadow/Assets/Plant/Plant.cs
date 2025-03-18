@@ -35,6 +35,9 @@ public class Plant : MonoBehaviour
     [SerializeField] private ObjectPooling objectPool;
     [SerializeField] private TutorialManager tutorialManager;
     
+    [SerializeField] private GameObject tealedGround;
+    [SerializeField] private GameObject untealedGround;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,8 @@ public class Plant : MonoBehaviour
         spriteRenderer2.sprite = null;
         objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
         tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
+        tealedGround.SetActive(false);
+        untealedGround.SetActive(true);
     }
 
     // Update is called once per frame
@@ -64,6 +69,8 @@ public class Plant : MonoBehaviour
             state = PlantState.Tealed;
             stateText.text = state.ToString();
             multiplier += item.ReturnMultiplier();
+            tealedGround.SetActive(true);
+            untealedGround.SetActive(false);
             return true;
         }else if (item.item is Seeds seeds  && state == PlantState.Tealed)
         {
@@ -93,6 +100,8 @@ public class Plant : MonoBehaviour
             spriteRenderer.sprite = null;
             spriteRenderer2.sprite = null;
             HarvestCrop();
+            tealedGround.SetActive(false);
+            untealedGround.SetActive(true);
             return true;
         }
         return false;
