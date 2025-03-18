@@ -14,11 +14,25 @@ public class GlobalData
     [SerializeField] private int NightCounter = -1;
     public int CurrentHealth = ScrObjGlobalData.MAX_HEALTH;
 
+    // Current night counter, this is incremented when you go to the shop
+    // first day = 0
+    // first shop = 0
+    // first night = 0
+    // second day = 0
+    // second shop = 1
+    // second night = 1
     public int GetNightCounter()
     {
         return Mathf.Max(0, NightCounter);
     }
 
+    // Current night counter, this is -1 if its the first day, this is incremented when you go to the shop
+    // first day = -1
+    // first shop = 0
+    // first night = 0
+    // second day = 0
+    // second shop = 1
+    // second night = 1
     public int GetNightCounterPossiblyNegative()
     {
         return NightCounter;

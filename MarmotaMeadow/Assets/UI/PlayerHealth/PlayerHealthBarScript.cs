@@ -12,6 +12,7 @@ public class PlayerHealthBarScript : MonoBehaviour
     [SerializeField] private Canvas m_canvas;
     [SerializeField] private ScrObjGameOver m_gameOverReason;
     [SerializeField] private TextMeshProUGUI m_healthText;
+    [SerializeField] private Image m_image;
     [SerializeField] private List<Pair<Color, float>> m_colours;
 
     // Start is called before the first frame update
@@ -57,6 +58,7 @@ public class PlayerHealthBarScript : MonoBehaviour
         Color color = Color.Lerp(m_colours[i].First, m_colours[nextIndex].First, t);
         color.a = 1;
         m_healthText.color = color;
+        m_image.color = color;
     }
 
     public void SetHealth(int health)
