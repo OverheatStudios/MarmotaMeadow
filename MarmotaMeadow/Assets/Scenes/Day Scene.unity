@@ -485,7 +485,6 @@ MonoBehaviour:
   StepText: Pick up the corn
   itemTag: Crop
   playerTag: Player
-  isActive: 1
   playerCollision: {fileID: 172931782}
 --- !u!1001 &114909014
 PrefabInstance:
@@ -1158,8 +1157,8 @@ MonoBehaviour:
   StepText: "Press \u201C[KEYS]\u201D to move. "
   requiredKeyActionNames:
   - WalkForward
-  - WalkBackwards
   - StrafeLeft
+  - WalkBackwards
   - StrafeRight
 --- !u!1 &320237404
 GameObject:
