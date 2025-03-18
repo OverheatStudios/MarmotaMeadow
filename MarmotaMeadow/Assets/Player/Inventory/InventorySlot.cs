@@ -57,9 +57,11 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         m_selectedSlot = this;
         image.sprite = selectedInventoryItem;
-        m_heldItemText.rectTransform.position = transform.position + Vector3.up * 250.0f + 4 * image.rectTransform.sizeDelta.x * Vector3.left;
         InventoryItem item = GetComponentInChildren<InventoryItem>();
         m_heldItemText.text = item == null ? "" : item.item.GetItemName();
+
+        m_heldItemText.rectTransform.sizeDelta = new Vector2(m_heldItemText.GetPreferredValues().x, m_heldItemText.rectTransform.sizeDelta.y);
+        m_heldItemText.rectTransform.position = transform.position + 2 * image.rectTransform.sizeDelta.y * Vector3.up + 2 * image.rectTransform.sizeDelta.x * Vector3.left;
     }
 
     public void Deselect()
