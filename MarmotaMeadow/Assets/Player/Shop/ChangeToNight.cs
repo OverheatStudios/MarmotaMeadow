@@ -11,6 +11,7 @@ public class ChangeToNight : MonoBehaviour
     [SerializeField] private DayDebugMenu m_debug;
     [SerializeField] private bool isNight;
     [SerializeField] private Bed bed;
+    [SerializeField] ScrObjGlobalData scrObjGlobalData;
 
     void Update()
     {

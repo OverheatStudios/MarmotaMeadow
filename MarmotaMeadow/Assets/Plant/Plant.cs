@@ -42,6 +42,8 @@ public class Plant : MonoBehaviour
         growthTimer = maxGrowthTimer;
         spriteRenderer.sprite = null;
         spriteRenderer2.sprite = null;
+        objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
+        tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
     }
 
     // Update is called once per frame

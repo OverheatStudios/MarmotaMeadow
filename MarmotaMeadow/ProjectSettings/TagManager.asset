@@ -11,6 +11,8 @@ TagManager:
   - ToolTip
   - Step1
   - Step2
+  - ObjectPool
+  - TutorialManager
   layers:
   - Default
   - TransparentFX

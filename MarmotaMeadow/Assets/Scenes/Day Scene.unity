@@ -1528,7 +1528,7 @@ GameObject:
   - component: {fileID: 566637404}
   m_Layer: 0
   m_Name: Tutorial Stuff
-  m_TagString: Untagged
+  m_TagString: TutorialManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4764,7 +4764,7 @@ GameObject:
   - component: {fileID: 1424464511}
   m_Layer: 0
   m_Name: CropPool
-  m_TagString: Untagged
+  m_TagString: ObjectPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
