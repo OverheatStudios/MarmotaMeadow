@@ -17,11 +17,22 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private InventoryMager m_inventoryManager;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private ToggleSettings m_toggleSettings;
+    [SerializeField] private bool m_canSelectSlots = true;
     private float m_lateStartCalled = 0;
 
     private void Start()
     {
-        SelectSlot(m_selectedItemIndex);
+        if (m_canSelectSlots)
+        {
+            SelectSlot(m_selectedItemIndex);
+        }
+        else
+        {
+            foreach (var slot in slots)
+            {
+                slot.Deselect();
+            }
+        }
     }
 
     private void LateStart()
@@ -33,6 +44,8 @@ public class InventoryActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!m_canSelectSlots) return;
+
         m_lateStartCalled++;
         if (m_lateStartCalled == 2)
         {
