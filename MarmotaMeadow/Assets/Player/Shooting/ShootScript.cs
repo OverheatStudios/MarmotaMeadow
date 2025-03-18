@@ -55,6 +55,7 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private CameraScript m_cameraScript;
 
     [SerializeField] private Transform m_canvas;
+    [SerializeField] private MovementScript m_movementScript;
     private ReloadAnimation m_reloadBar;
 
     private const float MAX_RAY_DISTANCE = 100f;
@@ -110,7 +111,10 @@ public class ShootScript : MonoBehaviour
         // Shoot
         if (Input.GetKeyDown(Keybind.GetKeyCode("Interact")))
         {
-            ShootGun();
+            if (!m_movementScript.IsCrouching())
+            {
+                ShootGun();
+            }
             return;
         }
     }
