@@ -11,6 +11,7 @@ public class MultiKeyPressTrigger : TriggerBase
 
     private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
     private string m_originalText;
+    [SerializeField] private bool isMouseWheel;
 
     public override void ActivateTrigger()
     {

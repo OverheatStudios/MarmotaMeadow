@@ -62,7 +62,7 @@ public class PlotManager : MonoBehaviour
             }
 
 
-            if (SceneManager.GetActiveScene().name == "Day Scene")
+            if (SceneManager.GetActiveScene().name == "Day Scene" || SceneManager.GetActiveScene().name == "NightScene")
             {
                 for (int i = 0; i < numberOfPlots; i++)
                 {

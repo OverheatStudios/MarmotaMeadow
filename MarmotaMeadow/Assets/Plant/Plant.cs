@@ -2,8 +2,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;   
-    
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 public class Plant : MonoBehaviour
 {
     private enum PlantState
@@ -48,10 +49,14 @@ public class Plant : MonoBehaviour
         growthTimer = maxGrowthTimer;
         spriteRenderer.sprite = null;
         spriteRenderer2.sprite = null;
-        objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
-        tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
         tealedGround.SetActive(false);
         untealedGround.SetActive(true);
+        if (SceneManager.GetActiveScene().name == "NightScene")
+        {
+            return;
+        }
+        objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
+        tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
     }
 
     // Update is called once per frame
