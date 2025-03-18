@@ -17,15 +17,29 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private InventoryMager m_inventoryManager;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private ToggleSettings m_toggleSettings;
+    private float m_lateStartCalled = 0;
 
     private void Start()
     {
-        m_inventoryManager.NotifyNewSelectedItemIndex(m_selectedItemIndex);
+        SelectSlot(m_selectedItemIndex);
+    }
+
+    private void LateStart()
+    {
+        SelectSlot(m_selectedItemIndex);
+        slots[0].ShowItemName();
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_lateStartCalled++;
+        if (m_lateStartCalled == 2)
+        {
+            LateStart();
+            return;
+        }
+
         HandleSlotChange();
 
         if (Input.GetKeyDown(KeyCode.E))
