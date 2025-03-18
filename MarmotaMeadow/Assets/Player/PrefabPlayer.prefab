@@ -101,7 +101,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   m_intereactedPlant: {fileID: 0}
-  isDay: 0
+  m_changeToNight: {fileID: 0}
 --- !u!1 &3097902270475952157
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 7827074693464386728}
   - component: {fileID: 5806831465494863518}
   - component: {fileID: 2720010273818133341}
-  - component: {fileID: 3184824759017437960}
+  - component: {fileID: 2501186632336930741}
   - component: {fileID: 8942070438449667077}
   m_Layer: 12
   m_Name: PrefabPlayer
@@ -157,6 +157,11 @@ MonoBehaviour:
   m_camera: {fileID: 8133200046893287152}
   m_speed: 500
   m_rigidbody: {fileID: 2720010273818133341}
+  m_playerCollider: {fileID: 2501186632336930741}
+  m_crouchAnimationDuration: 0.4
+  m_crouchYOffset: 1.25
+  m_crouchingSpeedMultiplier: 0.3
+  m_extraColliderReductionMultiplier: 1.25
 --- !u!23 &7827074693464386728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -236,8 +241,8 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &3184824759017437960
-SphereCollider:
+--- !u!136 &2501186632336930741
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -254,8 +259,10 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Height: 3
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8942070438449667077
 MonoBehaviour:
@@ -270,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inventory: {fileID: 0}
+  m_ObjectPooling: {fileID: 0}
 --- !u!1 &5373176862444775438
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +344,7 @@ MonoBehaviour:
   m_cursorHandler: {fileID: 0}
   m_cameraScript: {fileID: 0}
   m_canvas: {fileID: 0}
+  m_movementScript: {fileID: 0}
 --- !u!82 &6608403481258858457
 AudioSource:
   m_ObjectHideFlags: 0

@@ -18,14 +18,10 @@ public class Actions : MonoBehaviour
     [SerializeField] private float m_maxDistance;
     [SerializeField] private LayerMask m_plantLayerMask;
     [SerializeField] private GameObject m_intereactedPlant;
-    [SerializeField] ChangeToNight m_changeToNight;
-
-    [Header("Scene")] 
-    [SerializeField] bool isDay;
+    [SerializeField] ChangeToNight m_changeToNight;    
 
     private void Start()
     {
-        isDay = SceneManager.GetActiveScene().name == "Day Scene";
     }
 
     private void Update()
