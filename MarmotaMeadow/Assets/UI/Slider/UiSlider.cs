@@ -17,7 +17,6 @@ public class UiSlider : MonoBehaviour
     [SerializeField] private Sprite m_handleSprite;
     [Tooltip("Sprite to use for handle when value is 0, optional")]
     [SerializeField] private Sprite m_handleSpriteMinValue;
-    [SerializeField] private float m_handleRightOffset = 0;
     private bool m_startedClickOnBar = false;
 
     private void Start()
