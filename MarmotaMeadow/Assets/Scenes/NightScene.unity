@@ -8959,6 +8959,10 @@ PrefabInstance:
       value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_playerCollider
+      value: 
+      objectReference: {fileID: 2085883461}
+    - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_crouchAnimationDuration
       value: 0.4
       objectReference: {fileID: 0}

@@ -157,6 +157,8 @@ MonoBehaviour:
   tutorialManager: {fileID: 0}
   tealedGround: {fileID: 5890157229871254127}
   untealedGround: {fileID: 4393602743807611939}
+  m_tillingParticleSystem: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+  m_tillingParticlesOffset: {x: 0, y: 0.15, z: 0}
 --- !u!65 &1895552561247250477
 BoxCollider:
   m_ObjectHideFlags: 0

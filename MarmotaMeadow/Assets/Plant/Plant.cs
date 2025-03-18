@@ -37,8 +37,11 @@ public class Plant : MonoBehaviour
     
     [SerializeField] private GameObject tealedGround;
     [SerializeField] private GameObject untealedGround;
-    
-    
+
+    [SerializeField] private GameObject m_tillingParticleSystem;
+    [SerializeField] private Vector3 m_tillingParticlesOffset = new Vector3 (0, 0.15f, 0);
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +74,10 @@ public class Plant : MonoBehaviour
             multiplier += item.ReturnMultiplier();
             tealedGround.SetActive(true);
             untealedGround.SetActive(false);
+
+            GameObject particles = Instantiate(m_tillingParticleSystem);
+            particles.transform.SetParent(transform, false);
+            particles.transform.position += m_tillingParticlesOffset;
             return true;
         }else if (item.item is Seeds seeds  && state == PlantState.Tealed)
         {
