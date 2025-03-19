@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b2ad2d5ba76f044bc0bf9e74397908, type: 3}
+  m_Name: AllGroundhogSpawns
+  m_EditorClassIdentifier: 
+  m_nightGroundhogSpawns:
+  - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 0
+      NumberGroundhogs: 26
+      SpawnInterval: 3
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 15
+      GroundhogType: 1
+      NumberGroundhogs: 4
+      SpawnInterval: 15
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 40
+      GroundhogType: 2
+      NumberGroundhogs: 2
+      SpawnInterval: 30
+      SecondsSinceLastSpawn: 0

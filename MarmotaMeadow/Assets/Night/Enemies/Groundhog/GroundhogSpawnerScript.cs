@@ -4,63 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-[System.Serializable]
-public class GroundhogSpawn : IComparable
-{
-    [Header("Groundhog Spawn Set")]
-    public float SecondsSinceNightBeginning = 0;
-    public GroundhogType GroundhogType;
-    public int NumberGroundhogs = 1;
-    public float SpawnInterval = 1.0f;
-    [HideInInspector] public float SecondsSinceLastSpawn = 0;
-
-    /// <summary>
-    /// Check if a groundhog should spawn this frame, updates seconds since last spawn
-    /// </summary>
-    /// <param name="deltaTime">Delta time this frame</param>
-    /// <returns>True if a groundhog should spawn</returns>
-    public bool ShouldSpawnThisFrame(float deltaTime)
-    {
-        SecondsSinceLastSpawn += deltaTime;
-        if (SecondsSinceLastSpawn >= SpawnInterval)
-        {
-            SecondsSinceLastSpawn = 0;
-            return true;
-        }
-        return false;
-    }
-
-    public int CompareTo(object obj)
-    {
-        if (obj is GroundhogSpawn spawn)
-        {
-            return SecondsSinceNightBeginning.CompareTo(spawn.SecondsSinceNightBeginning);
-        }
-        return 0;
-    }
-}
-
-[System.Serializable]
-public class NightGroundhogSpawns
-{
-    [Header("---NIGHT---")]
-    public List<GroundhogSpawn> GroundhogsThisNight;
-
-    /// <summary>
-    /// Sort the list in descending order of spawn time
-    /// </summary>
-    public void Setup()
-    {
-        GroundhogsThisNight.Sort();
-        GroundhogsThisNight.Reverse();
-
-        foreach (var spawn in GroundhogsThisNight)
-        {
-            spawn.SecondsSinceLastSpawn = spawn.SpawnInterval;
-        }
-    }
-}
-
 public class GroundhogSpawnerScript : MonoBehaviour
 {
     /// <summary>
@@ -68,18 +11,19 @@ public class GroundhogSpawnerScript : MonoBehaviour
     /// </summary>
     [SerializeField] private BurrowContainerScript m_burrowContainer;
 
-    [Tooltip("What groundhogs spawn each night")]
-    [SerializeField] private List<NightGroundhogSpawns> m_nightGroundhogSpawns;
-
     /// <summary>
     /// Game data
     /// </summary>
     [SerializeField] private ScrObjGlobalData m_data;
 
+    [SerializeField] private AllGroundhogSpawns m_allGroundhogSpawns;
+
     private float m_secondsSinceNightBegin = 0;
+    private List<NightGroundhogSpawns> m_nightGroundhogSpawns;
 
     void Start()
     {
+        m_nightGroundhogSpawns = m_allGroundhogSpawns.GetNightGroundhogSpawns();
         GetSpawnsTonight().Setup();
     }
 
