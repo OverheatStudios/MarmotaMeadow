@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer m_image1;
-    [SerializeField] private SpriteRenderer m_image2;
+    [SerializeField] private MeshRenderer m_quad1;
+    [SerializeField] private MeshRenderer m_quad2;
+    [SerializeField] private MeshRenderer m_quad3;
+    [SerializeField] private MeshRenderer m_quad4;
     [SerializeField] private Sprite m_sprite;
     [SerializeField] private bool m_randomiseRotation = true;
 
     private void Start()
     {
-        m_image1.sprite = m_sprite;
-        m_image2.sprite = m_sprite;
+        Material material = CreateMaterialFromSprite();
+
+        MeshRenderer[] quads = new MeshRenderer[4] { m_quad1, m_quad2, m_quad3, m_quad4 };
+
+        foreach (var quad in quads)
+        {
+            quad.material = material;
+            quad.transform.localScale = new Vector3(5, 5, 5);
+        }
 
         if (m_randomiseRotation)
         {
@@ -21,6 +30,18 @@ public class Billboard : MonoBehaviour
             transform.rotation = Quaternion.Euler(rot);
         }
 
-        transform.position += m_image1.size.y / 2 * Vector3.up;
+        transform.position += m_quad1.bounds.size.y / 2 * Vector3.up;
+    }
+
+    private Material CreateMaterialFromSprite()
+    {
+        Material mat = new(Shader.Find("Unlit/Transparent Cutout"))
+        {
+            mainTexture = m_sprite.texture
+        };
+        mat.SetTexture("_MainTex", m_sprite.texture);
+        mat.SetFloat("_Cutoff", 0.1f); 
+        mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest; 
+        return mat;
     }
 }
