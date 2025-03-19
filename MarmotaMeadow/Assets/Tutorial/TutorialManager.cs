@@ -77,7 +77,6 @@ public class TutorialManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(tutorialData, true);
         File.WriteAllText(filePath, json);
-        print("saved");
     }
     
     private void Load()

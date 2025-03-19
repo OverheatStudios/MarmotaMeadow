@@ -23,11 +23,9 @@ public class ShopExitManager : MonoBehaviour
         if (m_inventoryManager.HasItemCategory<Seeds>())
         {
             ForceLeaveShop();
-            Debug.Log("Has seeds");
         }
         else
         {
-            Debug.Log("No seeds");
             foreach (GameObject go in m_shopUi)
             {
                 go.SetActive(false);

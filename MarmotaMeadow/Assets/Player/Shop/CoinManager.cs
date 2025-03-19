@@ -27,7 +27,6 @@ public class CoinManager : MonoBehaviour
     {
         filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
-        print("file path: " + filePath);
     }
 
     private void Load()
@@ -50,7 +49,6 @@ public class CoinManager : MonoBehaviour
         coinData.numberOfCoins = coins;
         string json = JsonUtility.ToJson(coinData, true);
         File.WriteAllText(filePath, json);
-        print("saved");
     }
 
     public void IncreaseCoins(float amount)

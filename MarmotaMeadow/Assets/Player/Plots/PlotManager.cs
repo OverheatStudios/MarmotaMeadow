@@ -26,7 +26,6 @@ public class PlotManager : MonoBehaviour
     {
         filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
-        print("file path: " + filePath);
     }
 
     void Update()
@@ -46,7 +45,6 @@ public class PlotManager : MonoBehaviour
         plots.numberOfPlots = numberOfPlots;
         string json = JsonUtility.ToJson(plots, true);
         File.WriteAllText(filePath, json);
-        print("saved");
     }
 
     private void Load()

@@ -49,7 +49,6 @@ public class ObjectPooling : MonoBehaviour
                 GameObject objectPulledOut = objectsOfType[^1];
                 objectsOfType.RemoveAt(objectsOfType.Count - 1);
                 objectPulledOut.SetActive(true);
-                Debug.Log("object take out" + objectPulledOut.name);
                 return objectPulledOut;
             }
         }
@@ -67,7 +66,6 @@ public class ObjectPooling : MonoBehaviour
             
             if (!objectsOfType.Contains(objectPulledOut))
             {
-                Debug.Log("object put back" + objectPulledOut.name);
                 objectPulledOut.transform.position = Vector3.zero;
                 objectPulledOut.SetActive(false);
                 objectsOfType.Add(objectPulledOut);

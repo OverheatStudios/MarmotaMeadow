@@ -155,7 +155,6 @@ public class InventoryMager : MonoBehaviour
     public InventoryItem GetInventoryItem(int index)
     {
         Assert.IsTrue(index >= 0 && index < inventorySlots.Count());
-        Debug.Log(inventorySlots[index]);
         InventorySlot slot = inventorySlots[index];
         InventoryItem item = inventorySlots[index].GetComponentInChildren<InventoryItem>();
         if (item == null) return null;
