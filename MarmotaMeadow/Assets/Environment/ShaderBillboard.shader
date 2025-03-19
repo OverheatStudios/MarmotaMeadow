@@ -5,6 +5,7 @@ Shader "Unlit/ShaderBillboard"
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1) 
         _Cutoff ("Alpha Cutoff", Range(0, 1)) = 0.5 
+        _WindIntensity ("WindIntensity", float) = 1
     }
     SubShader
     {
@@ -24,6 +25,7 @@ Shader "Unlit/ShaderBillboard"
             struct appdata
             {
                 float4 vertex : POSITION;
+                float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
             };
 
@@ -38,11 +40,22 @@ Shader "Unlit/ShaderBillboard"
             float4 _MainTex_ST;
             float4 _Color;
             float _Cutoff;
+            float _WindIntensity;
 
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
+
+                 // Wind
+                if (v.vertex.y > 0)
+                {
+                    float windOffset = sin(_Time.y) * _WindIntensity;
+                    worldPos.x += windOffset;
+                    worldPos.z += windOffset;
+                }
+
+                o.vertex = UnityWorldToClipPos(worldPos);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;

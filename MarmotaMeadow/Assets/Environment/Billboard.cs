@@ -9,8 +9,11 @@ public class Billboard : MonoBehaviour
     [SerializeField] private MeshRenderer m_quad3;
     [SerializeField] private MeshRenderer m_quad4;
     [SerializeField] private Sprite m_sprite;
+    [Tooltip("Should the Y rotation of the billboard be randomised on start?")]
     [SerializeField] private bool m_randomiseRotation = true;
     [SerializeField] private Shader m_shader;
+    [Tooltip("Maximum amount of units the wind can displace the top of the billboard, requires the billboard shader")]
+    [SerializeField] private float m_windIntensity = 0;
 
     private void Start()
     {
@@ -41,7 +44,11 @@ public class Billboard : MonoBehaviour
             mainTexture = m_sprite.texture
         };
         mat.SetTexture("_MainTex", m_sprite.texture);
-        mat.SetFloat("_Cutoff", 0.1f); 
+        mat.SetFloat("_Cutoff", 0.1f);
+        if (m_windIntensity != 0)
+        {
+            mat.SetFloat("_WindIntensity", m_windIntensity);
+        }
         mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest; 
         return mat;
     }
