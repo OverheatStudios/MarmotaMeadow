@@ -396,6 +396,7 @@ MonoBehaviour:
   m_sprite: {fileID: 0}
   m_randomiseRotation: 1
   m_shader: {fileID: 4800000, guid: 5b1d3e59dfa581f43bfa2edc80be48ce, type: 3}
+  m_windIntensity: 0
 --- !u!65 &7161770365322737369
 BoxCollider:
   m_ObjectHideFlags: 0

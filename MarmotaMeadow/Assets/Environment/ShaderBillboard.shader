@@ -5,7 +5,7 @@ Shader "Unlit/ShaderBillboard"
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1) 
         _Cutoff ("Alpha Cutoff", Range(0, 1)) = 0.5 
-        _WindIntensity ("WindIntensity", float) = 1
+        _WindIntensity ("WindIntensity", float) = 0
     }
     SubShader
     {

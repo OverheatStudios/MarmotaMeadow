@@ -52,4 +52,19 @@ public class Billboard : MonoBehaviour
         mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.AlphaTest; 
         return mat;
     }
+
+    public void SetSprite(Sprite sprite)
+    {
+        if (sprite == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        gameObject.SetActive(true);
+        m_sprite = sprite;
+        m_quad1.material.SetTexture("_MainTex", m_sprite.texture);
+        m_quad2.material.SetTexture("_MainTex", m_sprite.texture);
+        m_quad3.material.SetTexture("_MainTex", m_sprite.texture);
+        m_quad4.material.SetTexture("_MainTex", m_sprite.texture);
+    }
 }

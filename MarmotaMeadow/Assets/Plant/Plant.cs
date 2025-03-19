@@ -27,9 +27,8 @@ public class Plant : MonoBehaviour
     [SerializeField] private float throwAngle = 45f; // Angle of the throw (in degrees)
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private GameObject cropToSpawnLocation;
-    
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private SpriteRenderer spriteRenderer2;
+
+    [SerializeField] private Billboard m_billboard;
     
     [SerializeField] private UnityEvent gamePausedEvent;
     
@@ -47,8 +46,7 @@ public class Plant : MonoBehaviour
     void Start()
     {
         growthTimer = maxGrowthTimer;
-        spriteRenderer.sprite = null;
-        spriteRenderer2.sprite = null;
+        m_billboard.SetSprite(null);
         tealedGround.SetActive(false);
         untealedGround.SetActive(true);
         if (SceneManager.GetActiveScene().name == "NightScene")
@@ -64,8 +62,7 @@ public class Plant : MonoBehaviour
     {
         if (growthTimer < maxGrowthTimer/2 && state == PlantState.Planted)
         {
-            spriteRenderer.sprite = m_seed.ReturnGrowingSprite();
-            spriteRenderer2.sprite = m_seed.ReturnGrowingSprite();
+            m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
     }
 
@@ -97,8 +94,7 @@ public class Plant : MonoBehaviour
             StartCoroutine(nameof(CountdownRoutine));
             multiplier = m_seed.ReturnAmount();
             //some visual feedback
-            spriteRenderer.sprite = m_seed.ReturnPlantedSprite();
-            spriteRenderer2.sprite = m_seed.ReturnPlantedSprite();
+            m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             return true;
         }else if (item.item.name == "watering can" && state == PlantState.Planted)
         {
@@ -109,8 +105,7 @@ public class Plant : MonoBehaviour
             state = PlantState.Normal;
             stateText.text = state.ToString();
             image.sprite = null;
-            spriteRenderer.sprite = null;
-            spriteRenderer2.sprite = null;
+            m_billboard.SetSprite(null);
             HarvestCrop();
             tealedGround.SetActive(false);
             untealedGround.SetActive(true);
@@ -130,8 +125,7 @@ public class Plant : MonoBehaviour
 
         state = PlantState.Completed;
         stateText.text = state.ToString();
-        spriteRenderer.sprite = m_seed.ReturnFinishedSprite();
-        spriteRenderer2.sprite = m_seed.ReturnFinishedSprite();
+        m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
         StopAllCoroutines();
     }
     
