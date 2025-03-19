@@ -30,6 +30,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float m_crouchingSpeedMultiplier = 0.3f;
     [Tooltip("Height of players collider when crouching is crouch y offset * reduction multiplier")]
     [SerializeField] private float m_extraColliderReductionMultiplier = 1.25f;
+    [SerializeField] private bool m_isCrouchingEnabled = true;
 
     private float m_cameraStartingY;
     private bool m_isCrouching = false;
@@ -48,6 +49,8 @@ public class MovementScript : MonoBehaviour
 
     private void Update()
     {
+        if (!m_isCrouchingEnabled) return;
+
         m_secondsSinceCrouchStateChange += Time.deltaTime;
 
         // Crouch state changes

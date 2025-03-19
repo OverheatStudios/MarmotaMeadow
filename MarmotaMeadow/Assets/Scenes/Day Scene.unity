@@ -806,6 +806,10 @@ PrefabInstance:
       propertyPath: 'slots.Array.data[8]'
       value: 
       objectReference: {fileID: 1929457322}
+    - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_isCrouchingEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5373176862444775438, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_IsActive
       value: 0
