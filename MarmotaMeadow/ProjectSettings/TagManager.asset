@@ -13,6 +13,7 @@ TagManager:
   - Step2
   - ObjectPool
   - TutorialManager
+  - NotHarvestable
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - GroundhogAttack
   - Boundary
   - Player
-  - 
+  - NotHarvestable
   - 
   - 
   - 

@@ -10,6 +10,7 @@ public class Billboard : MonoBehaviour
     [SerializeField] private MeshRenderer m_quad4;
     [SerializeField] private Sprite m_sprite;
     [SerializeField] private bool m_randomiseRotation = true;
+    [SerializeField] private Shader m_shader;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class Billboard : MonoBehaviour
 
     private Material CreateMaterialFromSprite()
     {
-        Material mat = new(Shader.Find("Unlit/Transparent Cutout"))
+        Material mat = new(m_shader)
         {
             mainTexture = m_sprite.texture
         };
