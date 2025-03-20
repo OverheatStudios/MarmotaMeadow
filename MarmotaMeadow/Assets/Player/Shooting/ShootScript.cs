@@ -322,7 +322,7 @@ public class ShootScript : MonoBehaviour
         {
             // Hit a groundhog, damage it
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponentInParent<GroundhogScript>();
-            DamageGroundhog(groundhogScript);
+            DamageGroundhog(groundhogScript, hit.point);
             if (groundhogScript.IsAlive())
             {
                 // Cast ray against groundhogs mesh
@@ -372,10 +372,10 @@ public class ShootScript : MonoBehaviour
     /// Damage a groundhog
     /// </summary>
     /// <param name="groundhog">Groundhog to damage</param>
-    private void DamageGroundhog(GroundhogScript groundhog)
+    private void DamageGroundhog(GroundhogScript groundhog, Vector3 bulletWorldPosition)
     {
         float baseDamage = GetGunUnsafe().GetDamage();
-        groundhog.Damage(baseDamage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale));
+        groundhog.Damage(baseDamage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale), bulletWorldPosition);
     }
 
     /// <summary>

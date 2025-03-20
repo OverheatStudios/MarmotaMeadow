@@ -52,6 +52,8 @@ MonoBehaviour:
   m_minUptime: 2.25
   m_escapeObj: {fileID: 11400000, guid: e4ae48bd0aab330489f2012b07d0e0c6, type: 2}
   m_highPrecisionCollider: {fileID: 0}
+  m_bloodParticleSystem: {fileID: 504569150299133013, guid: c677897562f1c7e46812c5b895a9853e, type: 3}
+  m_bloodParticleOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &4910987842480756529
 PrefabInstance:
   m_ObjectHideFlags: 0

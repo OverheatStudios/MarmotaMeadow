@@ -31,6 +31,11 @@ public class GroundhogScript : MonoBehaviour
     [SerializeField, Tooltip("High precision collider of the groundhog, probably should be a mesh collider. This will be disabled most of the time and require enabling before use.")]
     private Collider m_highPrecisionCollider;
 
+    [SerializeField]
+    private GameObject m_bloodParticleSystem;
+
+    [SerializeField] private Vector3 m_bloodParticleOffset = new Vector3(0, 0, 0);
+
     private GroundhogState m_state = GroundhogState.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -112,9 +117,16 @@ public class GroundhogScript : MonoBehaviour
     /// Damage the groundhog, killing it if the new health is <= 0
     /// </summary>
     /// <param name="damage">Amount to damage by</param>
-    public void Damage(float damage)
+    /// <param name="bulletWorldPosition">World position of where the bullet hit the groundhog, set to Vector3.zero if not using</param>
+    public void Damage(float damage, Vector3 bulletWorldPosition)
     {
         m_health -= damage;
+
+        if (bulletWorldPosition != Vector3.zero)
+        {
+            GameObject ps = Instantiate(m_bloodParticleSystem);
+            ps.transform.position = bulletWorldPosition;
+        }
 
         // Update health bar
         m_healthBar.SetProgress(m_health, m_maxHealth, 0);
@@ -135,7 +147,7 @@ public class GroundhogScript : MonoBehaviour
     public void SetMaxHealth(float maxHealth)
     {
         Assert.IsTrue(m_maxHealth > 0);
-        Damage(m_maxHealth - maxHealth); // May heal if the new max health is greater
+        Damage(m_maxHealth - maxHealth, Vector3.zero); // May heal if the new max health is greater
         m_maxHealth = maxHealth;
 
         // Update health bar
