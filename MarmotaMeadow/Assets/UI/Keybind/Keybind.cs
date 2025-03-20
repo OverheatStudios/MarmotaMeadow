@@ -11,14 +11,32 @@ using UnityEngine.InputSystem;
 public class Keybind : MonoBehaviour
 {
     private static Keybind m_selectedKeybind;
-    private static Dictionary<string, GameControl> m_defaultKeys = new Dictionary<string, GameControl>
+    private static Dictionary<bool, Dictionary<string, GameControl>> m_defaultKeys = new Dictionary<bool, Dictionary<string, GameControl>>
     {
-        { "WalkForward", new(KeyCode.W) },
-        { "WalkBackwards", new(KeyCode.S) },
-        { "StrafeLeft", new(KeyCode.A )},
-        { "StrafeRight",new( KeyCode.D) },
-        { "Interact", new(KeyCode.Mouse0) }
-    };
+        {
+            false, new Dictionary<string, GameControl>
+            {
+                { "WalkForward", new(KeyCode.W) },
+                { "WalkBackwards", new(KeyCode.S) },
+                { "StrafeLeft", new(KeyCode.A )},
+                { "StrafeRight",new( KeyCode.D) },
+                { "Interact", new(KeyCode.Mouse0) }
+            }
+        },
+
+        {
+            true, new Dictionary<string, GameControl>
+            {
+                { "WalkForward", new(ControllerButton.Type.Y) },
+                { "WalkBackwards", new(ControllerButton.Type.X) },
+                { "StrafeLeft", new(ControllerButton.Type.X)},
+                { "StrafeRight",new( ControllerButton.Type.X) },
+                { "Interact", new(ControllerButton.Type.A) }
+            }
+        }
+    }
+
+        ;
     private static Dictionary<string, GameControl> m_keycodes = new Dictionary<string, GameControl>();
     private static float m_framesSinceKeybindChange = 0;
     public static bool DidKeybindsChange()
@@ -34,12 +52,12 @@ public class Keybind : MonoBehaviour
             GameControl key = null;
             try
             {
-                key = JsonUtility.FromJson<GameControl>(PlayerPrefs.GetString("keybind." + actionName));
+                key = JsonUtility.FromJson<GameControl>(PlayerPrefs.GetString(GetPlayerPrefsPrefix() + actionName));
             }
             catch (Exception) { };
             if (key == null)
             {
-                if (m_defaultKeys.ContainsKey(actionName)) return m_defaultKeys[actionName];
+                if (m_defaultKeys[IsControllerConnected()].ContainsKey(actionName)) return m_defaultKeys[IsControllerConnected()][actionName];
                 Debug.LogError("Missing key code for action: " + actionName);
                 return new(KeyCode.None);
             }
@@ -55,20 +73,45 @@ public class Keybind : MonoBehaviour
     private GameControl m_key;
     private float m_minWidth;
     private float m_backgroundX;
+    private bool m_controllerConnectedLastFrame;
+
+    private static bool IsControllerConnected()
+    {
+        return Gamepad.current != null;
+    }
+
+    private static string GetPlayerPrefsPrefix()
+    {
+        return GetPlayerPrefsPrefix(IsControllerConnected());
+    }
+
+    private static String GetPlayerPrefsPrefix(bool controller)
+    {
+        return "keybind." + (controller ? "controller." : "key.");
+    }
 
     private void Awake()
     {
         Assert.IsNotNull(m_selectedOverlay.GetComponent<RectTransform>());
 
+        LoadFromPrefs();
+    }
+
+    private void LoadFromPrefs()
+    {
+
+        m_controllerConnectedLastFrame = IsControllerConnected();
+        bool selected = IsSelected();
+
         m_key = null;
         try
         {
-            m_key = JsonUtility.FromJson<GameControl>(PlayerPrefs.GetString("keybind." + gameObject.name));
+            m_key = JsonUtility.FromJson<GameControl>(PlayerPrefs.GetString(GetPlayerPrefsPrefix() + gameObject.name));
         }
         catch (Exception) { };
         if (m_key == null)
         {
-            if (m_defaultKeys.ContainsKey(gameObject.name)) m_key = m_defaultKeys[gameObject.name];
+            if (m_defaultKeys[IsControllerConnected()].ContainsKey(gameObject.name)) m_key = m_defaultKeys[IsControllerConnected()][gameObject.name];
             else
             {
                 Debug.LogError("Missing key code for action: " + gameObject.name);
@@ -80,6 +123,11 @@ public class Keybind : MonoBehaviour
         m_minWidth = m_background.rect.width;
         m_backgroundX = m_background.transform.position.x;
         Deselect();
+
+        if (selected) Select();
+
+        m_framesSinceKeybindChange = 0;
+
     }
 
     private void Start()
@@ -91,7 +139,15 @@ public class Keybind : MonoBehaviour
     {
         m_framesSinceKeybindChange++;
 
-        if (IsSelected())
+        if (IsControllerConnected() != m_controllerConnectedLastFrame)
+        {
+
+            LoadFromPrefs();
+            return;
+        }
+        m_controllerConnectedLastFrame = IsControllerConnected();
+
+        if (IsSelected() && IsControllerConnected())
         {
             var pressedControllerButtons = GameControl.GetJustPressed();
             foreach (var button in pressedControllerButtons)
@@ -116,6 +172,8 @@ public class Keybind : MonoBehaviour
 
     private void OnGUI()
     {
+        if (IsControllerConnected()) return;
+
         Event e = Event.current;
         if (e.keyCode == KeyCode.None) return;
         if (e.type != EventType.KeyDown && e.type != EventType.MouseDown) return;
