@@ -4,27 +4,17 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.LowLevel;
 
 [System.Serializable]
 public class ControllerButton
 {
-    public enum Type
-    {
-        A, B, X, Y
-    }
 
-    [SerializeField] public Type WhatButton;
+    [SerializeField] public GamepadButton WhatButton;
 
     public ButtonControl GetButtonControl()
     {
-        return WhatButton switch
-        {
-            Type.A => Gamepad.current.aButton,
-            Type.B => Gamepad.current.bButton,
-            Type.X => Gamepad.current.xButton,
-            Type.Y => Gamepad.current.yButton,
-            _ => null,
-        };
+       return Gamepad.current[WhatButton];
     }
 }
 
@@ -33,24 +23,15 @@ public class GameControl
     [SerializeField] private KeyCode m_key;
     [SerializeField] private ControllerButton m_controllerButton;
 
-    public GameControl(KeyCode key)
+    public GameControl(KeyCode key, GamepadButton controllerButton)
     {
         m_key = key;
-        m_controllerButton = null;
-    }
-
-    public GameControl(ControllerButton.Type controllerButton)
-    {
-        m_key = KeyCode.None;
-        m_controllerButton = new()
-        {
-            WhatButton = controllerButton
-        };
+        m_controllerButton = new() { WhatButton = controllerButton };
     }
 
     public bool GetKey()
     {
-        if (m_key == KeyCode.None)
+        if (Gamepad.current != null)
         {
             return m_controllerButton.GetButtonControl().isPressed;
         }
@@ -62,7 +43,7 @@ public class GameControl
 
     public bool GetKeyUp()
     {
-        if (m_key == KeyCode.None)
+        if (Gamepad.current != null)
         {
             return m_controllerButton.GetButtonControl().wasReleasedThisFrame;
         }
@@ -86,14 +67,25 @@ public class GameControl
 
     public override string ToString()
     {
-        if (m_key != KeyCode.None) return m_key.ToString();
+        if (Gamepad.current == null) return m_key.ToString();
         else return m_controllerButton.WhatButton.ToString();
     }
 
-    public static List<GameControl> GetJustPressed()
+    public void SetKey(KeyCode key)
     {
-        List<GameControl> controls = new();
-        foreach (ControllerButton.Type button in System.Enum.GetValues(typeof(ControllerButton.Type)))
+        m_key = key;
+    }
+
+    public void SetControllerButton(GamepadButton button)
+    {
+        m_controllerButton = new() { WhatButton = button };
+    }
+
+    public static List<GamepadButton> GetJustPressed()
+    {
+        List<GamepadButton> controls = new();
+        if (Gamepad.current == null) return controls;
+        foreach (GamepadButton button in System.Enum.GetValues(typeof(GamepadButton)))
         {
             ControllerButton controllerButton = new()
             {
@@ -102,7 +94,7 @@ public class GameControl
 
             if (controllerButton.GetButtonControl().wasPressedThisFrame)
             {
-                controls.Add(new(button));
+                controls.Add(button);
             }
         }
         return controls;

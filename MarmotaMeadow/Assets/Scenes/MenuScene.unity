@@ -1162,7 +1162,7 @@ GameObject:
   - component: {fileID: 294178868}
   - component: {fileID: 294178867}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MenuUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4657,7 +4657,7 @@ PrefabInstance:
       objectReference: {fileID: 488005409}
     - target: {fileID: 5071806800715254327, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6558329928064121636, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
