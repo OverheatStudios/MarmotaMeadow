@@ -31,11 +31,6 @@ public class GroundhogScript : MonoBehaviour
     [SerializeField, Tooltip("High precision collider of the groundhog, probably should be a mesh collider. This will be disabled most of the time and require enabling before use.")]
     private Collider m_highPrecisionCollider;
 
-    [SerializeField]
-    private GameObject m_bloodParticleSystem;
-
-    [SerializeField] private Vector3 m_bloodParticleOffset = new Vector3(0, 0, 0);
-
     private GroundhogState m_state = GroundhogState.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -124,8 +119,8 @@ public class GroundhogScript : MonoBehaviour
 
         if (bulletWorldPosition != Vector3.zero)
         {
-            GameObject ps = Instantiate(m_bloodParticleSystem);
-            ps.transform.position = bulletWorldPosition;
+            GameObject ps = Instantiate(m_typeInfo.GetBloodParticle());
+            ps.transform.position = bulletWorldPosition + m_typeInfo.GetBloodParticleOffset();
         }
 
         // Update health bar
