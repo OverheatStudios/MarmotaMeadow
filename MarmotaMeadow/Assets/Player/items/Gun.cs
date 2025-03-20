@@ -28,6 +28,7 @@ public class Gun : BaseItem
     [SerializeField] private int m_reloadSfxLoopCount = 4;
     [SerializeField] private AudioClip m_shootSfx;
     [SerializeField] private AudioClip m_reloadFinishSfx;
+    [SerializeField] private CameraShakeSettings m_cameraShake;
 
     private void OnEnable()
     {
@@ -59,6 +60,8 @@ public class Gun : BaseItem
 
         reload.AddComponent<AutoDestroyScript>().SetDelay(reloadDuration + m_reloadFinishSfx.length + 0.01f, 0);
     }
+
+    public CameraShakeSettings GetCameraShake() { return m_cameraShake; }
 
     public AudioClip GetShootSfx()
     {

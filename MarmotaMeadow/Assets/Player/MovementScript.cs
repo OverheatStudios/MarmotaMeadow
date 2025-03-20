@@ -57,13 +57,14 @@ public class MovementScript : MonoBehaviour
         if (m_isCrouching && !Input.GetKey(KeyCode.DownArrow))
         {
             m_isCrouching = false;
-            m_secondsSinceCrouchStateChange =  m_secondsSinceCrouchStateChange >= m_crouchAnimationDuration ? 0 : m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
+            m_secondsSinceCrouchStateChange =   m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
         }
         else if (!m_isCrouching && Input.GetKey(KeyCode.DownArrow))
         {
             m_isCrouching = true;
-            m_secondsSinceCrouchStateChange = m_secondsSinceCrouchStateChange >= m_crouchAnimationDuration ? 0 : m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
+            m_secondsSinceCrouchStateChange = m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
         }
+        if (m_secondsSinceCrouchStateChange < 0) m_secondsSinceCrouchStateChange = 0;
 
         // Animation
         float t = Mathf.InverseLerp(0, m_crouchAnimationDuration, m_secondsSinceCrouchStateChange);
