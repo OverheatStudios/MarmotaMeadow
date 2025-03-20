@@ -1,6 +1,8 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class LineTracer : MonoBehaviour
 {
@@ -11,13 +13,19 @@ public class LineTracer : MonoBehaviour
     private Vector3 pointC;
     
     [SerializeField] private GameObject colliders;
-    [SerializeField] private GameObject m_camera;
     [SerializeField] private float m_maxDistance;
     [SerializeField] private LayerMask checkMask;
     [SerializeField] private GameObject trail;
+    
+    
+    [SerializeField] private float rangeY = 1f;
+    [SerializeField] private Plant plant;
+    
+    [SerializeField] private bool finished = false;
 
-    void Start()
+    private void OnEnable()
     {
+        finished = false;
         GenerateRandomPoints();
         DrawLine();
         AddColliders();
@@ -25,16 +33,16 @@ public class LineTracer : MonoBehaviour
 
     void Update()
     {
-        CheckForCollisions();
+        if(!finished)
+            CheckForCollisions();
     }
 
     void GenerateRandomPoints()
     {
-        float rangeY = 1f;
 
-        pointA = new Vector3(-1, Random.Range(-rangeY, rangeY), 0);
-        pointB = pointA * -1;
-        pointC = new Vector3((pointA.x + pointB.x) / 2, (pointA.y + pointB.y) / 2, 0);
+        pointA = new Vector3(transform.position.x + 0.5f, Random.Range(transform.position.y - rangeY, transform.position.y + rangeY), transform.position.z);
+        pointB = transform.position * 2 - pointA;
+        pointC = new Vector3((pointA.x + pointB.x) / 2, (pointA.y + pointB.y) / 2, transform.position.z);
     }
 
     void DrawLine()
@@ -63,7 +71,7 @@ public class LineTracer : MonoBehaviour
         if (Input.GetKey(Keybind.GetKeyCode("Interact")))
         {
             Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 5f; // Set the object's z position to a defined depth
+            mousePosition.z = 1f; // Set the object's z position to a defined depth
 
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             trail.transform.position = worldPosition;
@@ -79,7 +87,9 @@ public class LineTracer : MonoBehaviour
 
             if (transform.childCount == 0)
             {
-                Destroy(gameObject);
+                lineRenderer.positionCount = 0;
+                plant.HarvestCrop();
+                finished = true;
             }
         }
     }

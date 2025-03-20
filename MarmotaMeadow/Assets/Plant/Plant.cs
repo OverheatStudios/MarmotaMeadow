@@ -32,6 +32,8 @@ public class Plant : MonoBehaviour
     
     [SerializeField] private UnityEvent gamePausedEvent;
     
+    [SerializeField] private MovementScript playerMovement;
+    
     [SerializeField] private ObjectPooling objectPool;
     [SerializeField] private TutorialManager tutorialManager;
     
@@ -43,8 +45,24 @@ public class Plant : MonoBehaviour
 
     [SerializeField] private GameObject m_harvestingParticleSystem;
     [SerializeField] private Vector3 m_harvestingParticlesOffset = new Vector3(0, 0.15f, 0);
+    
+    
+    
+    [Header("Camera")]
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Transform targetCameraPosition;
+    [SerializeField] private float duration;
+    private Vector3 originalCameraPosition;
+    private Quaternion originalCameraRotation;
+    private bool isCameraInPosition = false;
+    
+    
+    [Header("MiniGame")]
+    [SerializeField] private GameObject miniGame;
+    [SerializeField] private GameObject line;
+    [SerializeField] private bool finishedMiniGame = true;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +76,7 @@ public class Plant : MonoBehaviour
         }
         objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
         tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
     }
 
     // Update is called once per frame
@@ -67,11 +86,17 @@ public class Plant : MonoBehaviour
         {
             m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
+        
+        if (isCameraInPosition && Input.GetMouseButtonDown(1)) // Right mouse button to reset camera
+        {
+            finishedMiniGame = true;
+            StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f));
+            isCameraInPosition = false;
+        }
     }
 
     public bool ChangeState(InventoryItem item)
     {
-
         if (item.item.name == "hoe" && state == PlantState.Normal && (tutorialManager.GetTutorialData().step == 3 || tutorialManager.GetTutorialData().isFinsihed))
         {
             state = PlantState.Tealed;
@@ -102,19 +127,14 @@ public class Plant : MonoBehaviour
         }else if (item.item.name == "watering can" && state == PlantState.Planted)
         {
             return true;
-        }else if (item.item.name == "harvesting tool" && state == PlantState.Completed)
+        }else if (item.item.name == "harvesting tool" && state == PlantState.Completed && !isCameraInPosition)
         {
+            playerMovement.enabled = false;
+            originalCameraPosition = mainCamera.transform.position;
+            originalCameraRotation = mainCamera.transform.rotation;
             multiplier += item.ReturnMultiplier();
-            state = PlantState.Normal;
-            stateText.text = state.ToString();
-            image.sprite = null;
-            m_billboard.SetSprite(null);
-            GameObject particles = Instantiate(m_harvestingParticleSystem);
-            particles.transform.SetParent(transform, false);
-            particles.transform.position += m_harvestingParticlesOffset;
-            HarvestCrop();
-            tealedGround.SetActive(false);
-            untealedGround.SetActive(true);
+            finishedMiniGame = false;
+            StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration));
             return true;
         }
         return false;
@@ -136,8 +156,18 @@ public class Plant : MonoBehaviour
     }
     
     // ReSharper disable Unity.PerformanceAnalysis
-    void HarvestCrop()
+    public void HarvestCrop()
     {
+        state = PlantState.Normal;
+        stateText.text = state.ToString();
+        image.sprite = null;
+        m_billboard.SetSprite(null);
+        GameObject particles = Instantiate(m_harvestingParticleSystem);
+        particles.transform.SetParent(transform, false);
+        particles.transform.position += m_harvestingParticlesOffset;
+        tealedGround.SetActive(false);
+        untealedGround.SetActive(true);
+        
         for (int i = 0; i < multiplier; i++)
         {
             GameObject spawnedItem = objectPool.TakeObjectOut("Crop");
@@ -154,6 +184,9 @@ public class Plant : MonoBehaviour
                 itemRb.velocity = throwDirection;
             }
         }
+        
+        finishedMiniGame = true;
+        StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration));
     }
     
     Vector3 CalculateArchVelocity(float angle, float distance)
@@ -176,6 +209,31 @@ public class Plant : MonoBehaviour
         Vector3 throwDirection = horizontalDirection * horizontalVelocity + Vector3.up * verticalVelocity;
 
         return throwDirection;
+        
     }
+    
+    private IEnumerator MoveCamera(Vector3 targetPosition, Quaternion targetRotation, float duration)
+    {
+        float elapsedTime = 0f;
+        Vector3 startPosition = mainCamera.transform.position;
+        Quaternion startRotation = mainCamera.transform.rotation;
 
+        while (elapsedTime < duration)
+        {
+            mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            mainCamera.transform.rotation = Quaternion.Lerp(startRotation, targetRotation, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        mainCamera.transform.position = targetPosition;
+        mainCamera.transform.rotation = targetRotation;
+        isCameraInPosition = !isCameraInPosition;
+        
+        miniGame.SetActive(!miniGame.activeInHierarchy);
+        line.SetActive(!line.activeInHierarchy);
+
+        
+        playerMovement.enabled = finishedMiniGame; 
+    }
 }
