@@ -25,7 +25,7 @@ public class Bed : MonoBehaviour
         if (!m_clicked)
             m_UI.SetActive(true);
 
-        if (Input.GetKeyDown(Keybind.GetKeyCode("Interact")) && tutorialManager.ReturnIsTutorialFinished())
+        if (Keybind.GetKeyCode("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
         {
             isInBed = true;
             m_confirmationUI.SetActive(true);

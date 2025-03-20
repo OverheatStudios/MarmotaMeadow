@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -5,37 +6,42 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
 
 public class Keybind : MonoBehaviour
 {
     private static Keybind m_selectedKeybind;
-    private static Dictionary<string, KeyCode> m_defaultKeys = new Dictionary<string, KeyCode>
+    private static Dictionary<string, GameControl> m_defaultKeys = new Dictionary<string, GameControl>
     {
-        { "WalkForward", KeyCode.W },
-        { "WalkBackwards", KeyCode.S },
-        { "StrafeLeft", KeyCode.A },
-        { "StrafeRight", KeyCode.D },
-        { "Interact", KeyCode.Mouse0 }
+        { "WalkForward", new(KeyCode.W) },
+        { "WalkBackwards", new(KeyCode.S) },
+        { "StrafeLeft", new(KeyCode.A )},
+        { "StrafeRight",new( KeyCode.D) },
+        { "Interact", new(KeyCode.Mouse0) }
     };
-    private static Dictionary<string, KeyCode> m_keycodes = new Dictionary<string, KeyCode>();
+    private static Dictionary<string, GameControl> m_keycodes = new Dictionary<string, GameControl>();
     private static float m_framesSinceKeybindChange = 0;
     public static bool DidKeybindsChange()
     {
         return m_framesSinceKeybindChange <= 2;
     }
 
-    public static KeyCode GetKeyCode(string actionName)
+    public static GameControl GetKeyCode(string actionName)
     {
         if (m_keycodes.ContainsKey(actionName)) return m_keycodes[actionName];
         else
         {
-            KeyCode key;
-            string storedKey = PlayerPrefs.GetString("keybind." + actionName);
-            if (!System.Enum.TryParse<KeyCode>(storedKey, out key))
+            GameControl key = null;
+            try
+            {
+                key = JsonUtility.FromJson<GameControl>(PlayerPrefs.GetString("keybind." + actionName));
+            }
+            catch (Exception) { };
+            if (key == null)
             {
                 if (m_defaultKeys.ContainsKey(actionName)) return m_defaultKeys[actionName];
                 Debug.LogError("Missing key code for action: " + actionName);
-                return KeyCode.None;
+                return new(KeyCode.None);
             }
             m_keycodes[actionName] = key;
             return key;
@@ -46,7 +52,7 @@ public class Keybind : MonoBehaviour
     [SerializeField] private RectTransform m_background;
     [SerializeField] private TextMeshProUGUI m_text;
     [SerializeField] private Vector2 m_padding = new Vector2(20, -25);
-    private KeyCode m_key;
+    private GameControl m_key;
     private float m_minWidth;
     private float m_backgroundX;
 
@@ -54,10 +60,20 @@ public class Keybind : MonoBehaviour
     {
         Assert.IsNotNull(m_selectedOverlay.GetComponent<RectTransform>());
 
-        string storedKey = PlayerPrefs.GetString("keybind." + gameObject.name);
-        if (!System.Enum.TryParse<KeyCode>(storedKey, out m_key))
+        m_key = null;
+        try
         {
-            m_key = m_defaultKeys[gameObject.name];
+            m_key = JsonUtility.FromJson<GameControl>(PlayerPrefs.GetString("keybind." + gameObject.name));
+        }
+        catch (Exception) { };
+        if (m_key == null)
+        {
+            if (m_defaultKeys.ContainsKey(gameObject.name)) m_key = m_defaultKeys[gameObject.name];
+            else
+            {
+                Debug.LogError("Missing key code for action: " + gameObject.name);
+                m_key = new(KeyCode.None);
+            }
         }
         m_keycodes[gameObject.name] = m_key;
 
@@ -66,9 +82,23 @@ public class Keybind : MonoBehaviour
         Deselect();
     }
 
+    private void Start()
+    {
+        Deselect();
+    }
+
     private void Update()
     {
         m_framesSinceKeybindChange++;
+
+        if (IsSelected())
+        {
+            var pressedControllerButtons = GameControl.GetJustPressed();
+            foreach (var button in pressedControllerButtons)
+            {
+                HandlePress(button);
+            }
+        }
 
         bool hovering = RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition);
         bool clicked = Input.GetMouseButtonDown(0);
@@ -86,19 +116,24 @@ public class Keybind : MonoBehaviour
 
     private void OnGUI()
     {
-        if (!IsSelected()) return;
-
         Event e = Event.current;
-        if (e.type != EventType.KeyDown && e.type != EventType.MouseDown) return;
         if (e.keyCode == KeyCode.None) return;
+        if (e.type != EventType.KeyDown && e.type != EventType.MouseDown) return;
+
+        if (!IsSelected()) return;
 
         if (e.keyCode == KeyCode.Mouse0)
         {
-            if (!RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition)) return; // Not hovering
+            if (!RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition)) return; // Not hovering, so we deselect
         }
 
-        m_key = e.keyCode;
-        PlayerPrefs.SetString("keybind." + gameObject.name, m_key.ToString());
+        HandlePress(new(e.keyCode));
+    }
+
+    private void HandlePress(GameControl control)
+    {
+        m_key = control;
+        PlayerPrefs.SetString("keybind." + gameObject.name, JsonUtility.ToJson(m_key));
         m_keycodes[gameObject.name] = m_key;
         m_framesSinceKeybindChange = 0;
         SetText(m_key.ToString());

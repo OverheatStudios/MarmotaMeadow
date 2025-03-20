@@ -87,13 +87,13 @@ public class MovementScript : MonoBehaviour
     {
         // Which direction is player trying to move
         Vector3 movement = Vector2.zero;
-        if (Input.GetKey(Keybind.GetKeyCode("WalkForward")))
+        if (Keybind.GetKeyCode("WalkForward").GetKey())
             movement.x += 1;
-        if (Input.GetKey(Keybind.GetKeyCode("StrafeLeft")))
+        if (Keybind.GetKeyCode("StrafeLeft").GetKey())
             movement.z -= 1;
-        if (Input.GetKey(Keybind.GetKeyCode("WalkBackwards")))
+        if (Keybind.GetKeyCode("WalkBackwards").GetKey())
             movement.x -= 1;
-        if (Input.GetKey(Keybind.GetKeyCode("StrafeRight")))
+        if (Keybind.GetKeyCode("StrafeRight").GetKey())
             movement.z += 1;
 
         // Scale movement vector
