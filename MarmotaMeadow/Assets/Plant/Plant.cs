@@ -39,7 +39,10 @@ public class Plant : MonoBehaviour
     [SerializeField] private GameObject untealedGround;
 
     [SerializeField] private GameObject m_tillingParticleSystem;
-    [SerializeField] private Vector3 m_tillingParticlesOffset = new Vector3 (0, 0.15f, 0);
+    [SerializeField] private Vector3 m_tillingParticlesOffset = new Vector3(0, 0.15f, 0);
+
+    [SerializeField] private GameObject m_harvestingParticleSystem;
+    [SerializeField] private Vector3 m_harvestingParticlesOffset = new Vector3(0, 0.15f, 0);
 
 
     // Start is called before the first frame update
@@ -106,6 +109,9 @@ public class Plant : MonoBehaviour
             stateText.text = state.ToString();
             image.sprite = null;
             m_billboard.SetSprite(null);
+            GameObject particles = Instantiate(m_harvestingParticleSystem);
+            particles.transform.SetParent(transform, false);
+            particles.transform.position += m_harvestingParticlesOffset;
             HarvestCrop();
             tealedGround.SetActive(false);
             untealedGround.SetActive(true);
