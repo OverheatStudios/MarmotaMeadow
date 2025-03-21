@@ -18,6 +18,9 @@ public class ControllerButton
     }
 }
 
+/// <summary>
+/// Contanis a KeyCode (keyboard/mouse) and a ControllerButton, will use the controller button if controller plugged in, else will use the key code
+/// </summary>
 public class GameControl
 {
     [SerializeField] private KeyCode m_key;
@@ -81,6 +84,20 @@ public class GameControl
         m_controllerButton = new() { WhatButton = button };
     }
 
+    public KeyCode GetKeyCode()
+    {
+        return m_key;
+    }
+
+    public GamepadButton GetControllerButton()
+    {
+        return m_controllerButton.WhatButton;
+    }
+
+    /// <summary>
+    /// What controller buttons are pressed 
+    /// </summary>
+    /// <returns>List of controller buttons that have just started being pressed this frame</returns>
     public static List<GamepadButton> GetJustPressed()
     {
         List<GamepadButton> controls = new();

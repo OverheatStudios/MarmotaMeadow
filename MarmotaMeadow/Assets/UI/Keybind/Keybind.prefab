@@ -303,6 +303,7 @@ MonoBehaviour:
   m_background: {fileID: 776984743738874386}
   m_text: {fileID: 3924824905707857598}
   m_padding: {x: 20, y: -10}
+  m_cursorHandlerScript: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
 --- !u!1 &8549033875959465277
 GameObject:
   m_ObjectHideFlags: 0

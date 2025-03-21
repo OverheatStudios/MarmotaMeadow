@@ -1,16 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "CursorHandlerScript", menuName = "Scriptable Objects/CursorHandlerScript")]
 public class CursorHandlerScript : ScriptableObject
 {
     private bool m_isUiOpen;
+    private VirtualMouse m_virtualMouse;
 
     private void OnEnable()
     {
         m_isUiOpen = false;
+        GetVirtualMouse();
+    }
+
+    private void OnDisable()
+    {
+        if (m_virtualMouse != null)
+        {
+            DestroyImmediate(m_virtualMouse.gameObject);
+        }
+    }
+
+    public VirtualMouse GetVirtualMouse()
+    {
+        if (m_virtualMouse == null)
+        {
+            m_virtualMouse = new GameObject().AddComponent<VirtualMouse>();
+            try
+            {
+                DontDestroyOnLoad(m_virtualMouse.gameObject);
+            }
+            catch (InvalidOperationException)
+            {
+                // in editor mode
+                DestroyImmediate(m_virtualMouse.gameObject);
+                return null;
+            }
+        }
+        return m_virtualMouse;
     }
 
     // TODO: Might be worth making this a stack so it supports multiple ui open at once (e.g if 2 ui open and 1 close, cursor should still be locked)
@@ -33,8 +64,8 @@ public class CursorHandlerScript : ScriptableObject
     {
         m_isUiOpen = false;
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     /// <summary>
@@ -45,5 +76,4 @@ public class CursorHandlerScript : ScriptableObject
     {
         return m_isUiOpen;
     }
-
 }
