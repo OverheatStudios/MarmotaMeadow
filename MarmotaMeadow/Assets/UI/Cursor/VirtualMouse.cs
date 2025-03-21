@@ -120,17 +120,17 @@ public class VirtualMouse : MonoBehaviour
 
     public bool IsLMBDown()
     {
-        return Input.GetMouseButtonDown(0) || Gamepad.current[m_mouseClickButton].wasPressedThisFrame;
+        return Input.GetMouseButtonDown(0) || (IsControllerInput() && Gamepad.current[m_mouseClickButton].wasPressedThisFrame);
     }
 
     public bool IsLMBUp()
     {
-        return Input.GetMouseButtonUp(0) || Gamepad.current[m_mouseClickButton].wasPressedThisFrame;
+        return Input.GetMouseButtonUp(0) || (IsControllerInput() && Gamepad.current[m_mouseClickButton].wasPressedThisFrame);
     }
 
     public bool IsLMB()
     {
-        return Input.GetMouseButton(0) || Gamepad.current[m_mouseClickButton].wasPressedThisFrame;
+        return Input.GetMouseButton(0) || (IsControllerInput() && Gamepad.current[m_mouseClickButton].wasPressedThisFrame);
     }
 
     public bool IsLMB(GameControl control)
