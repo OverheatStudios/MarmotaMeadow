@@ -120,3 +120,8 @@ MonoBehaviour:
   selectedColor:
     serializedVersion: 2
     rgba: 8447
+  inventory: {fileID: 0}
+  normalInventoryItem: {fileID: 0}
+  selectedInventoryItem: {fileID: 0}
+  m_heldItemText: {fileID: 0}
+  m_cursorHandlerScript: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}

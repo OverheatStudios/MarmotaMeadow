@@ -54,6 +54,8 @@ public class ShootScript : MonoBehaviour
 
     [SerializeField] private CameraScript m_cameraScript;
 
+    [SerializeField] private CameraShake m_cameraShake;
+
     [SerializeField] private Transform m_canvas;
     [SerializeField] private MovementScript m_movementScript;
     private ReloadAnimation m_reloadBar;
@@ -109,7 +111,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Shoot
-        if (Input.GetKeyDown(Keybind.GetKeyCode("Interact")))
+        if (GameInput.GetKeyCode("Interact").GetKeyDown())
         {
             if (!m_movementScript.IsCrouching())
             {
@@ -211,6 +213,7 @@ public class ShootScript : MonoBehaviour
         {
             ShootBullet();
         }
+        m_cameraShake.ShakeFor(gun.GetCameraShake(), true);
 
         m_cameraScript.ApplyRecoil(gun.GetRecoilForce());
     }

@@ -7,9 +7,9 @@ public class MultiKeyPressTrigger : TriggerBase
 {
     [Header("Key Press Configuration")]
     [SerializeField] private string[] requiredKeyActionNames;
-    private KeyCode[] requiredKeys;  // Keys the player must press
+    private GameControl[] requiredKeys;  // Keys the player must press
 
-    private HashSet<KeyCode> keysPressed = new HashSet<KeyCode>();
+    private HashSet<GameControl> keysPressed = new HashSet<GameControl>();
     private string m_originalText;
     [SerializeField] private bool isMouseWheel;
 
@@ -27,7 +27,7 @@ public class MultiKeyPressTrigger : TriggerBase
 
     private void Update()
     {
-        if (Keybind.DidKeybindsChange())
+        if (GameInput.DidKeybindsChange())
         {
             UpdateKeys();
         }
@@ -35,15 +35,15 @@ public class MultiKeyPressTrigger : TriggerBase
 
     void UpdateKeys()
     {
-        requiredKeys = new KeyCode[requiredKeyActionNames.Length];
+        requiredKeys = new GameControl[requiredKeyActionNames.Length];
         for (int i = 0; i < requiredKeyActionNames.Length; i++)
         {
-            requiredKeys[i] = Keybind.GetKeyCode(requiredKeyActionNames[i]);
+            requiredKeys[i] = GameInput.GetKeyCode(requiredKeyActionNames[i]);
         }
 
         StepText = m_originalText;
         var keys = new StringBuilder();
-        foreach (KeyCode key in requiredKeys) keys = keys.Append(key);
+        foreach (GameControl key in requiredKeys) keys = keys.Append(key);
         StepText = StepText.Replace("[KEYS]", keys.ToString());
     }
 
@@ -53,7 +53,7 @@ public class MultiKeyPressTrigger : TriggerBase
         {
             foreach (var key in requiredKeys)
             {
-                if (Input.GetKeyDown(key) && !keysPressed.Contains(key))
+                if (key.GetKeyDown() && !keysPressed.Contains(key))
                 {
                     keysPressed.Add(key);
                 }

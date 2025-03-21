@@ -34,3 +34,9 @@ MonoBehaviour:
   m_reloadSfxLoopCount: 2
   m_shootSfx: {fileID: 8300000, guid: 07463a5c4fb2a214b81b064d289ac73e, type: 3}
   m_reloadFinishSfx: {fileID: 8300000, guid: 792718eb04351f5448f3a51fbf32a085, type: 3}
+  m_cameraShake:
+    Duration: 0
+    Intensity: 1
+    Frequency: 1
+    TransitionInDuration: 0.1
+    TransitionOutDuration: 0.3

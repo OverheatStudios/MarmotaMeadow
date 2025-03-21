@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -5,73 +6,87 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Keybind : MonoBehaviour
 {
     private static Keybind m_selectedKeybind;
-    private static Dictionary<string, KeyCode> m_defaultKeys = new Dictionary<string, KeyCode>
-    {
-        { "WalkForward", KeyCode.W },
-        { "WalkBackwards", KeyCode.S },
-        { "StrafeLeft", KeyCode.A },
-        { "StrafeRight", KeyCode.D },
-        { "Interact", KeyCode.Mouse0 }
-    };
-    private static Dictionary<string, KeyCode> m_keycodes = new Dictionary<string, KeyCode>();
-    private static float m_framesSinceKeybindChange = 0;
-    public static bool DidKeybindsChange()
-    {
-        return m_framesSinceKeybindChange <= 2;
-    }
-
-    public static KeyCode GetKeyCode(string actionName)
-    {
-        if (m_keycodes.ContainsKey(actionName)) return m_keycodes[actionName];
-        else
-        {
-            KeyCode key;
-            string storedKey = PlayerPrefs.GetString("keybind." + actionName);
-            if (!System.Enum.TryParse<KeyCode>(storedKey, out key))
-            {
-                if (m_defaultKeys.ContainsKey(actionName)) return m_defaultKeys[actionName];
-                Debug.LogError("Missing key code for action: " + actionName);
-                return KeyCode.None;
-            }
-            m_keycodes[actionName] = key;
-            return key;
-        }
-    }
 
     [SerializeField] private GameObject m_selectedOverlay;
     [SerializeField] private RectTransform m_background;
     [SerializeField] private TextMeshProUGUI m_text;
     [SerializeField] private Vector2 m_padding = new Vector2(20, -25);
-    private KeyCode m_key;
+    [SerializeField] private CursorHandlerScript m_cursorHandlerScript;
+    private GameControl m_key;
     private float m_minWidth;
     private float m_backgroundX;
+    private bool m_controllerConnectedLastFrame;
+
+    private static bool IsControllerConnected()
+    {
+        return Gamepad.current != null;
+    }
 
     private void Awake()
     {
         Assert.IsNotNull(m_selectedOverlay.GetComponent<RectTransform>());
 
-        string storedKey = PlayerPrefs.GetString("keybind." + gameObject.name);
-        if (!System.Enum.TryParse<KeyCode>(storedKey, out m_key))
-        {
-            m_key = m_defaultKeys[gameObject.name];
-        }
-        m_keycodes[gameObject.name] = m_key;
+        LoadFromPrefs();
+    }
+
+    /// <summary>
+    /// Reset the keybind to initial state and load the key from player prefs
+    /// </summary>
+    private void LoadFromPrefs()
+    {
+
+        m_controllerConnectedLastFrame = IsControllerConnected();
+        bool selected = IsSelected();
+
+        m_key = GameInput.GetKeyCode(gameObject.name);
 
         m_minWidth = m_background.rect.width;
         m_backgroundX = m_background.transform.position.x;
+        Deselect();
+
+        if (selected) Select();
+
+        GameInput.m_framesSinceKeybindChange = 0;
+
+    }
+
+    private void Start()
+    {
         Deselect();
     }
 
     private void Update()
     {
-        m_framesSinceKeybindChange++;
+        GameInput.m_framesSinceKeybindChange++;
 
+        // Controller connected/disconnected
+        if (IsControllerConnected() != m_controllerConnectedLastFrame)
+        {
+            SetText(m_key.ToString());
+            m_controllerConnectedLastFrame = IsControllerConnected();
+        }
+
+        // Controller input
+        if (IsSelected() && IsControllerConnected())
+        {
+            var pressedControllerButtons = GameControl.GetJustPressed();
+            foreach (var button in pressedControllerButtons)
+            {
+                if (IsDeselectInput(new(KeyCode.None, button))) continue; // "clicking" outside the keybind
+                m_key.SetControllerButton(button);
+                HandleBoundKeyChange();
+            }
+        }
+
+        // Select & deselect
         bool hovering = RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition);
-        bool clicked = Input.GetMouseButtonDown(0);
+        bool clicked = m_cursorHandlerScript.GetVirtualMouse().IsLMBDown();
         if (!IsSelected() && hovering && clicked)
         {
             Select();
@@ -84,23 +99,46 @@ public class Keybind : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Keyboard and mouse input
+    /// </summary>
     private void OnGUI()
     {
-        if (!IsSelected()) return;
+        if (IsControllerConnected()) return;
 
         Event e = Event.current;
-        if (e.type != EventType.KeyDown && e.type != EventType.MouseDown) return;
         if (e.keyCode == KeyCode.None) return;
+        if (e.type != EventType.KeyDown && e.type != EventType.MouseDown) return;
 
-        if (e.keyCode == KeyCode.Mouse0)
+        if (!IsSelected()) return;
+        if (IsDeselectInput(new(e.keyCode, GamepadButton.Start))) return;
+
+        m_key.SetKey(e.keyCode);
+        HandleBoundKeyChange();
+    }
+
+    /// <summary>
+    /// Is the user attempting to deselect
+    /// </summary>
+    /// <param name="control">The user input</param>
+    /// <returns>True if the input is the user attempting to deselect the keybind, not bind the keybind to the input</returns>
+    private bool IsDeselectInput(GameControl control)
+    {
+        if (m_cursorHandlerScript.GetVirtualMouse().IsLMB(control))
         {
-            if (!RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition)) return; // Not hovering
+            return !RectTransformUtility.RectangleContainsScreenPoint(m_background, Input.mousePosition); // Not hovering, so we deselect
         }
+        return false;
+    }
 
-        m_key = e.keyCode;
-        PlayerPrefs.SetString("keybind." + gameObject.name, m_key.ToString());
-        m_keycodes[gameObject.name] = m_key;
-        m_framesSinceKeybindChange = 0;
+    /// <summary>
+    /// Update the keybind when the key is changed
+    /// </summary>
+    private void HandleBoundKeyChange()
+    {
+        PlayerPrefs.SetString("action_keybind." + gameObject.name, JsonUtility.ToJson(m_key));
+        GameInput.m_keycodes[gameObject.name] = m_key;
+        GameInput.m_framesSinceKeybindChange = 0;
         SetText(m_key.ToString());
     }
 
@@ -129,6 +167,11 @@ public class Keybind : MonoBehaviour
         SetText("-", false);
     }
 
+    /// <summary>
+    /// Change the text of the keybind, updating size too
+    /// </summary>
+    /// <param name="text">The new text</param>
+    /// <param name="shrinkWidth">If true, we are allowed to shrink the width, if false we'll only keep or grow the width</param>
     private void SetText(string text, bool shrinkWidth = true)
     {
         float width = Mathf.Max(m_minWidth, m_text.GetPreferredValues(text).x + m_padding.x);

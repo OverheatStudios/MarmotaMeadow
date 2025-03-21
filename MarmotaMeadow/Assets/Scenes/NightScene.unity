@@ -2846,6 +2846,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181789414}
   m_CullTransparentMesh: 1
+--- !u!1 &205675769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4274616188543242520, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+  m_PrefabInstance: {fileID: 5557785422135966027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &205675770 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7772325833652382186, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+  m_PrefabInstance: {fileID: 5557785422135966027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &205675771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205675769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82dedaa2ffd5448852c14168b7fcbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_cameraParent: {fileID: 205675770}
+  m_camera: {fileID: 1043104212}
 --- !u!4 &228685924 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
@@ -9046,6 +9070,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1885290936}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_cameraShake
+      value: 
+      objectReference: {fileID: 205675771}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_cooldownBar
       value: 
       objectReference: {fileID: 2109825258}
@@ -9117,6 +9145,10 @@ PrefabInstance:
       propertyPath: m_isNightSwayMultipliersEnabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4274616188543242520, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_Name
+      value: CameraShake
+      objectReference: {fileID: 0}
     - target: {fileID: 6394691437711549382, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.25
@@ -9182,7 +9214,10 @@ PrefabInstance:
     - {fileID: 1888573899974228293, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
     - {fileID: 7093838786055526527, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4274616188543242520, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 205675771}
   m_SourcePrefab: {fileID: 100100000, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
 --- !u!136 &5557785422135966028 stripped
 CapsuleCollider:

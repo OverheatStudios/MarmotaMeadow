@@ -68,7 +68,7 @@ public class LineTracer : MonoBehaviour
 
     void CheckForCollisions()
     {
-        if (Input.GetKey(Keybind.GetKeyCode("Interact")))
+        if (GameInput.GetKeyCode("Interact").GetKeyDown())
         {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = 1f; // Set the object's z position to a defined depth

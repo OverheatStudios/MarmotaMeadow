@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryActions : MonoBehaviour
 {
@@ -63,7 +64,9 @@ public class InventoryActions : MonoBehaviour
 
     void HandleSlotChange()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        bool isR1Pressed = Gamepad.current != null && Gamepad.current.rightShoulder.wasPressedThisFrame;
+        bool isL1Pressed = Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame;
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f || isR1Pressed)
         {
             int slot = m_selectedItemIndex + 1;
             if (slot >= 9)
@@ -72,7 +75,7 @@ public class InventoryActions : MonoBehaviour
             }
             SelectSlot(slot);
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0f || isL1Pressed)
         {
             int slot = m_selectedItemIndex - 1;
             if (slot <= -1)

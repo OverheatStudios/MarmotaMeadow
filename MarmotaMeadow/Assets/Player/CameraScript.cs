@@ -120,7 +120,7 @@ public class CameraScript : MonoBehaviour
         if (m_cursorHandler.IsUiOpen()) return;
 
         // Move camera based on how much mouse moved this frame
-        Vector2 mouseDelta = m_sensitivity * m_settings.GetSettings().GetCameraSensitivity() * Mouse.current.delta.ReadValue();
+        Vector2 mouseDelta = m_sensitivity * m_settings.GetSettings().GetCameraSensitivity() * m_cursorHandler.GetVirtualMouse().GetMouseDelta();
 
         mouseDelta += m_swaySinceLateUpdate;
         m_swaySinceLateUpdate = Vector2.zero;

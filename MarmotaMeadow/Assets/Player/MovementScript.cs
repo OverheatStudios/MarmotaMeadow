@@ -57,13 +57,14 @@ public class MovementScript : MonoBehaviour
         if (m_isCrouching && !Input.GetKey(KeyCode.DownArrow))
         {
             m_isCrouching = false;
-            m_secondsSinceCrouchStateChange =  m_secondsSinceCrouchStateChange >= m_crouchAnimationDuration ? 0 : m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
+            m_secondsSinceCrouchStateChange = m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
         }
         else if (!m_isCrouching && Input.GetKey(KeyCode.DownArrow))
         {
             m_isCrouching = true;
-            m_secondsSinceCrouchStateChange = m_secondsSinceCrouchStateChange >= m_crouchAnimationDuration ? 0 : m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
+            m_secondsSinceCrouchStateChange = m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
         }
+        if (m_secondsSinceCrouchStateChange < 0) m_secondsSinceCrouchStateChange = 0;
 
         // Animation
         float t = Mathf.InverseLerp(0, m_crouchAnimationDuration, m_secondsSinceCrouchStateChange);
@@ -86,17 +87,14 @@ public class MovementScript : MonoBehaviour
     {
         // Which direction is player trying to move
         Vector3 movement = Vector2.zero;
-        if (Input.GetKey(Keybind.GetKeyCode("WalkForward")))
-            movement.x += 1;
-        if (Input.GetKey(Keybind.GetKeyCode("StrafeLeft")))
-            movement.z -= 1;
-        if (Input.GetKey(Keybind.GetKeyCode("WalkBackwards")))
-            movement.x -= 1;
-        if (Input.GetKey(Keybind.GetKeyCode("StrafeRight")))
-            movement.z += 1;
+
+        // Get input and convert from 2d to 3d
+        Vector2 input = GameInput.GetPlayerMovementInputDirection();
+        movement.x = input.y;
+        movement.z = input.x;
 
         // Scale movement vector
-        movement = movement.normalized * (Time.deltaTime * m_speed * (IsCrouching() ? m_crouchingSpeedMultiplier : 1));
+        movement *= (Time.deltaTime * m_speed * (IsCrouching() ? m_crouchingSpeedMultiplier : 1));
 
         // Where is the camera facing
         Vector3 forward = m_camera.transform.forward;
