@@ -45,7 +45,7 @@ public class Actions : MonoBehaviour
 
     void InteractWithPlot()
     {
-        if (Keybind.GetKeyCode("Interact").GetKeyDown())
+        if (GameInput.GetKeyCode("Interact").GetKeyDown())
         {
 
             InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();

@@ -27,7 +27,7 @@ public class MultiKeyPressTrigger : TriggerBase
 
     private void Update()
     {
-        if (Keybind.DidKeybindsChange())
+        if (GameInput.DidKeybindsChange())
         {
             UpdateKeys();
         }
@@ -38,7 +38,7 @@ public class MultiKeyPressTrigger : TriggerBase
         requiredKeys = new GameControl[requiredKeyActionNames.Length];
         for (int i = 0; i < requiredKeyActionNames.Length; i++)
         {
-            requiredKeys[i] = Keybind.GetKeyCode(requiredKeyActionNames[i]);
+            requiredKeys[i] = GameInput.GetKeyCode(requiredKeyActionNames[i]);
         }
 
         StepText = m_originalText;
