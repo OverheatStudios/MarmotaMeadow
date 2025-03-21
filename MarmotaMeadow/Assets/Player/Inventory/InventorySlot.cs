@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IPointerClickHandler
+public class InventorySlot : MonoBehaviour//, IPointerClickHandler
 {
     public Image image;
     public Color32 normalColor;
@@ -15,13 +15,23 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Sprite normalInventoryItem;
     [SerializeField] private Sprite selectedInventoryItem;
     [SerializeField] private TextMeshProUGUI m_heldItemText;
+    [SerializeField] private CursorHandlerScript m_cursorHandlerScript;
     private static InventorySlot m_selectedSlot;
 
     void Start()
     {
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void Update()
+    {
+        if (!m_cursorHandlerScript.GetVirtualMouse().IsLMBDown()) return;
+        if (!RectTransformUtility.RectangleContainsScreenPoint(image.rectTransform, Input.mousePosition)) return;
+
+        OnPointerClick();
+    }
+
+    // public void OnPointerClick(PointerEventData eventData)
+    private void OnPointerClick()
     {
         //putting an item on an empty slot
         if (transform.childCount == 0)
