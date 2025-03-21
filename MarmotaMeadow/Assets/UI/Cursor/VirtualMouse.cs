@@ -16,6 +16,7 @@ public class VirtualMouse : MonoBehaviour
     [SerializeField] private float m_maxControllerMouseAcceleration = 3.0f;
     [Tooltip("How long to reach max acceleration in seconds")]
     [SerializeField] private float m_maxControllerMouseAccelerationAfter = 2.5f;
+    [SerializeField] private GamepadButton m_mouseClickButton = GamepadButton.A;
 
     private Vector2 m_mousePos;
     private Vector2 m_lastMousePos;
@@ -119,21 +120,21 @@ public class VirtualMouse : MonoBehaviour
 
     public bool IsLMBDown()
     {
-        return Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.V);
+        return Input.GetMouseButtonDown(0) || Gamepad.current[m_mouseClickButton].wasPressedThisFrame;
     }
 
     public bool IsLMBUp()
     {
-        return Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.V);
+        return Input.GetMouseButtonUp(0) || Gamepad.current[m_mouseClickButton].wasPressedThisFrame;
     }
 
     public bool IsLMB()
     {
-        return Input.GetMouseButton(0) || Input.GetKey(KeyCode.V);
+        return Input.GetMouseButton(0) || Gamepad.current[m_mouseClickButton].wasPressedThisFrame;
     }
 
     public bool IsLMB(GameControl control)
     {
-        return Gamepad.current == null ? control.GetKeyCode() == KeyCode.V : control.GetControllerButton() == GamepadButton.A;
+        return Gamepad.current == null ? control.GetKeyCode() == KeyCode.Mouse0 : control.GetControllerButton() == m_mouseClickButton;
     }
 }

@@ -4354,6 +4354,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799782335}
   m_CullTransparentMesh: 1
+--- !u!1 &1810370808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810370810}
+  - component: {fileID: 1810370809}
+  m_Layer: 0
+  m_Name: CreateVirtualMouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1810370809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810370808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682276a71815f584b86062617d1e2edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_cursorHandlerScript: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
+--- !u!4 &1810370810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810370808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1182.8225, y: 588.94324, z: 2.5382497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852196182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4686,3 +4731,4 @@ SceneRoots:
   - {fileID: 1699498436}
   - {fileID: 1543463185}
   - {fileID: 550415539}
+  - {fileID: 1810370810}
