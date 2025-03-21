@@ -97,7 +97,7 @@ public class Plant : MonoBehaviour
 
     public bool ChangeState(InventoryItem item)
     {
-        if (item.item.name == "hoe" && state == PlantState.Normal && (tutorialManager.GetTutorialData().step == 3 || tutorialManager.GetTutorialData().isFinsihed))
+        if (item.item.name == "hoe" && state == PlantState.Normal)
         {
             state = PlantState.Tealed;
             stateText.text = state.ToString();

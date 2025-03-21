@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UIElements.Experimental;
 
 public class MovementScript : MonoBehaviour
@@ -92,6 +93,7 @@ public class MovementScript : MonoBehaviour
         Vector2 input = GameInput.GetPlayerMovementInputDirection();
         movement.x = input.y;
         movement.z = input.x;
+        movement = movement.normalized;
 
         // Scale movement vector
         movement *= (Time.deltaTime * m_speed * (IsCrouching() ? m_crouchingSpeedMultiplier : 1));

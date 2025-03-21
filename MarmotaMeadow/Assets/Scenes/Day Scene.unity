@@ -3545,8 +3545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327ef470f24cebc47abd9a7b59f5d602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: "While having your Hoe selected and looking at a plot press the \u201CLeft
-    Mouse Button\u201D  "
+  StepText: 'Interact with the farm plot with your Hoe selected  '
   cameraObject: {fileID: 603934162}
   layerMask:
     serializedVersion: 2

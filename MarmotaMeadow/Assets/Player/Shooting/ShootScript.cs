@@ -111,7 +111,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Shoot
-        if (GameInput.GetKeyCode("Interact").GetKeyDown())
+        if (GameInput.GetKeybind("Interact").GetKeyDown())
         {
             if (!m_movementScript.IsCrouching())
             {

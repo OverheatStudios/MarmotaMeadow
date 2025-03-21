@@ -58,7 +58,7 @@ public class GameControl
 
     public bool GetKeyDown()
     {
-        if (m_key == KeyCode.None)
+        if (Gamepad.current != null)
         {
             return m_controllerButton.GetButtonControl().wasPressedThisFrame;
         }

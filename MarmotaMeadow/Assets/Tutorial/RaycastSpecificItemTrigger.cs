@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RaycastSpecificItemTrigger : TriggerBase
 {
@@ -20,11 +21,11 @@ public class RaycastSpecificItemTrigger : TriggerBase
     {
         while (true)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (GameInput.GetKeybind("Interact").GetKeyDown())
             {
                 InventoryItem heldItem = inventoryManager.GetHeldInventoryItem();
                 RaycastHit hit;
-                Ray ray = new Ray(cameraObject.transform.position, cameraObject.transform.forward);
+                Ray ray = new(cameraObject.transform.position, cameraObject.transform.forward);
         
                 if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
                 {

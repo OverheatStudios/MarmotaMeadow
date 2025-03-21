@@ -17,7 +17,7 @@ public class Bed : MonoBehaviour
 
     void Update()
     {
-        m_text.text = "Go to sleep? (" + GameInput.GetKeyCode("Interact") + ")";
+        m_text.text = "Go to sleep? (" + GameInput.GetKeybind("Interact") + ")";
     }
 
     private void OnMouseOver()
@@ -25,7 +25,7 @@ public class Bed : MonoBehaviour
         if (!m_clicked)
             m_UI.SetActive(true);
 
-        if (GameInput.GetKeyCode("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
+        if (GameInput.GetKeybind("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
         {
             isInBed = true;
             m_confirmationUI.SetActive(true);

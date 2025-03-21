@@ -53,7 +53,7 @@ public class CursorHandlerScript : ScriptableObject
     {
         m_isUiOpen = true;
 
-        Cursor.lockState = CursorLockMode.None;
+        m_virtualMouse.Unlock();
         Cursor.visible = true;
     }
 
@@ -64,8 +64,9 @@ public class CursorHandlerScript : ScriptableObject
     {
         m_isUiOpen = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        m_virtualMouse.Lock();
         Cursor.visible = false;
+
     }
 
     /// <summary>

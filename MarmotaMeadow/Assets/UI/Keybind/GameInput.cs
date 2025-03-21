@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem.LowLevel;
 using System.Runtime.CompilerServices;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting.FullSerializer;
 
 public static class GameInput
 {
@@ -16,9 +17,9 @@ public static class GameInput
     internal static float m_framesSinceKeybindChange = 0;
 
     /// <summary>
-    /// Get the direction a player is trying to mvoe (WASD or left joystick)
+    /// Get the direction a player is trying to move (WASD or left joystick)
     /// </summary>
-    /// <returns>Normalised direction</returns>
+    /// <returns>Not normalised direction</returns>
     public static Vector2 GetPlayerMovementInputDirection()
     {
         if (Gamepad.current == null)
@@ -28,9 +29,12 @@ public static class GameInput
             if (Input.GetKey(KeyCode.S)) dir.y--;
             if (Input.GetKey(KeyCode.D)) dir.x++;
             if (Input.GetKey(KeyCode.A)) dir.x--;
-            return dir.normalized;
+            return dir;
         }
-        else return Gamepad.current.leftStick.value.normalized;
+        else
+        {
+            return Gamepad.current.leftStick.value;
+        }
     }
 
     /// <summary>
@@ -47,7 +51,7 @@ public static class GameInput
     /// </summary>
     /// <param name="actionName">Action name</param>
     /// <returns>The control or the default control if none is bound, or null if the action is invalid</returns>
-    public static GameControl GetKeyCode(string actionName)
+    public static GameControl GetKeybind(string actionName)
     {
         if (m_keycodes.ContainsKey(actionName)) return m_keycodes[actionName];
         else

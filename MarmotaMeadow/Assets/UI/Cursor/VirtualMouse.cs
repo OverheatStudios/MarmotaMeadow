@@ -24,7 +24,14 @@ public class VirtualMouse : MonoBehaviour
 
     void Start()
     {
-        m_mousePos = Mouse.current == null ? Vector2.zero : Mouse.current.position.value;
+        if (Gamepad.current != null)
+        {
+            m_mousePos = new Vector2(Screen.width, Screen.height) / 2;
+        }
+        if (Mouse.current != null)
+        {
+            Mouse.current.WarpCursorPosition(m_mousePos);
+        }
         m_lastMousePos = m_mousePos;
     }
 
@@ -100,7 +107,11 @@ public class VirtualMouse : MonoBehaviour
 
             // move mouse
             m_mousePos += acceleration * deltaTime * m_controllerMouseSpeed * rightStick;
-            Mouse.current?.WarpCursorPosition(m_mousePos);
+
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                Mouse.current?.WarpCursorPosition(m_mousePos);
+            }
         }
         else if (Mouse.current != null)
         {
@@ -136,5 +147,16 @@ public class VirtualMouse : MonoBehaviour
     public bool IsLMB(GameControl control)
     {
         return Gamepad.current == null ? control.GetKeyCode() == KeyCode.Mouse0 : control.GetControllerButton() == m_mouseClickButton;
+    }
+
+    public void Lock()
+    {
+
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void Unlock()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 }

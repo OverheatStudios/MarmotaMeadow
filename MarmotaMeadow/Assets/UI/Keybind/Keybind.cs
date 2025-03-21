@@ -44,7 +44,7 @@ public class Keybind : MonoBehaviour
         m_controllerConnectedLastFrame = IsControllerConnected();
         bool selected = IsSelected();
 
-        m_key = GameInput.GetKeyCode(gameObject.name);
+        m_key = GameInput.GetKeybind(gameObject.name);
 
         m_minWidth = m_background.rect.width;
         m_backgroundX = m_background.transform.position.x;
