@@ -56,7 +56,7 @@ public class InventoryActions : MonoBehaviour
 
         HandleSlotChange();
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (GameInput.GetKeybind("OpenInventory").GetKeyDown()) 
         {
             ToggleInventory();
         }

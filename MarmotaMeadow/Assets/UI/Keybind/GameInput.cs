@@ -10,7 +10,9 @@ public static class GameInput
 {
     private static readonly Dictionary<string, GameControl> m_defaultKeys = new Dictionary<string, GameControl>
             {
-                { "Interact", new(KeyCode.Mouse0, GamepadButton.A) }
+                { "Interact", new(KeyCode.Mouse0, GamepadButton.A) },
+                { "OpenInventory", new(KeyCode.E, GamepadButton.X) },
+                { "Pause", new(KeyCode.Escape, GamepadButton.Start) }
         };
 
     internal static Dictionary<string, GameControl> m_keycodes = new Dictionary<string, GameControl>();
