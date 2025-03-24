@@ -24,14 +24,8 @@ public class VirtualMouse : MonoBehaviour
 
     void Start()
     {
-        if (Gamepad.current != null)
-        {
-            m_mousePos = new Vector2(Screen.width, Screen.height) / 2;
-        }
-        if (Mouse.current != null)
-        {
-            Mouse.current.WarpCursorPosition(m_mousePos);
-        }
+        m_mousePos = new Vector2(Screen.width, Screen.height) / 2;
+        Mouse.current?.WarpCursorPosition(m_mousePos);
         m_lastMousePos = m_mousePos;
     }
 
