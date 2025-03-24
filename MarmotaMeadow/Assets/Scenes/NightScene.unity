@@ -4887,6 +4887,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 1369510650}
   maxDistance: 1e+11
   specificItem: {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
+  yes: 0
 --- !u!4 &943998024
 Transform:
   m_ObjectHideFlags: 0
@@ -6045,7 +6046,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &1281366617
 RectTransform:
