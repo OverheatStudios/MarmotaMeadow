@@ -361,4 +361,9 @@ public class Plant : MonoBehaviour
 
         playerMovement.enabled = finishedMiniGame;
     }
+
+    public void IncreaseMultiplier(float amount)
+    {
+        multiplier = amount;
+    }
 }
