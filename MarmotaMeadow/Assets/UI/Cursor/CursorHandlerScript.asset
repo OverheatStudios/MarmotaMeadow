@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80272cd33a506984cabea63bdea86905, type: 3}
   m_Name: CursorHandlerScript
   m_EditorClassIdentifier: 
+  m_virtualMousePrefab: {fileID: 842424813187244922, guid: dba1ec6a840b4724c95dcc917b35e133, type: 3}

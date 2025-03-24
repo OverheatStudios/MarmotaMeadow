@@ -6983,9 +6983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fadeSeconds: 1.5
-  m_padding: 20
+  m_padding: 64
   m_moveSpeed: 150
-  m_offset: {x: 10, y: 10}
+  m_offset: {x: 64, y: 64}
 --- !u!1 &1488925750
 GameObject:
   m_ObjectHideFlags: 0
