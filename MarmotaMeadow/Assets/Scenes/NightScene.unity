@@ -9150,6 +9150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraShake
       objectReference: {fileID: 0}
+    - target: {fileID: 5945169492971177153, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 6394691437711549382, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.25

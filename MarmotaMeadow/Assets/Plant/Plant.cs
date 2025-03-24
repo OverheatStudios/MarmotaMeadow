@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using static UnityEditor.Progress;
+using UnityEngine.UIElements.Experimental;
 
 public class Plant : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class Plant : MonoBehaviour
         Planted,
         Completed
     }
-    
+
     [SerializeField] private PlantState state = PlantState.Normal;
     [SerializeField] private Seeds m_seed = null;
     [SerializeField] private TextMeshProUGUI stateText;
@@ -29,14 +32,14 @@ public class Plant : MonoBehaviour
     [SerializeField] private GameObject cropToSpawnLocation;
 
     [SerializeField] private Billboard m_billboard;
-    
+
     [SerializeField] private UnityEvent gamePausedEvent;
-    
+
     [SerializeField] private MovementScript playerMovement;
-    
+
     [SerializeField] private ObjectPooling objectPool;
     [SerializeField] private TutorialManager tutorialManager;
-    
+
     [SerializeField] private GameObject tealedGround;
     [SerializeField] private GameObject untealedGround;
 
@@ -45,9 +48,25 @@ public class Plant : MonoBehaviour
 
     [SerializeField] private GameObject m_harvestingParticleSystem;
     [SerializeField] private Vector3 m_harvestingParticlesOffset = new Vector3(0, 0.15f, 0);
-    
-    
-    
+
+    [Header("Tilling Minigame")]
+    [SerializeField] private GameObject m_tillSphere;
+    [SerializeField] private Collider m_tillCollider;
+    [Tooltip("How far can the user till from?")]
+    [SerializeField] private float m_maxRayTillDistance = 25;
+    [Tooltip("We'll do perAxisChecks^2 checks to determine the tilled percentage, more checks is more accurate but slower")]
+    [SerializeField] private int m_numTillCheckPointsPerAxis = 10;
+    [Tooltip("How long does the tilling animation last?")]
+    [SerializeField] private float m_tillingAnimationDuration = 0.4f;
+    [Tooltip("Maximum scale of tilled ground is this value + 1")]
+    [SerializeField] private float m_tillingAnimationStrength = 0.8f;
+    [Tooltip("What percentage tilled do you need for it to count as tilled? Wouldn't recommend >0.8")]
+    [Range(0, 1)][SerializeField] private float m_requiredTillingPercent = 0.5f;
+
+    private readonly List<GameObject> m_tillMasks = new();
+    private float m_secondsSinceTilled = -1; // If negative, not tilled
+    private Vector3 m_originalTilledGroundScale;
+
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform targetCameraPosition;
@@ -55,20 +74,20 @@ public class Plant : MonoBehaviour
     private Vector3 originalCameraPosition;
     private Quaternion originalCameraRotation;
     private bool isCameraInPosition = false;
-    
-    
+
     [Header("MiniGame")]
     [SerializeField] private GameObject miniGame;
     [SerializeField] private GameObject line;
     [SerializeField] private bool finishedMiniGame = true;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        m_originalTilledGroundScale = tealedGround.transform.localScale;
         growthTimer = maxGrowthTimer;
         m_billboard.SetSprite(null);
-        tealedGround.SetActive(false);
+        tealedGround.SetActive(true);
         untealedGround.SetActive(true);
         if (SceneManager.GetActiveScene().name == "NightScene")
         {
@@ -82,11 +101,13 @@ public class Plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (growthTimer < maxGrowthTimer/2 && state == PlantState.Planted)
+        HandleTillingAnimation();
+
+        if (growthTimer < maxGrowthTimer / 2 && state == PlantState.Planted)
         {
             m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
-        
+
         if (isCameraInPosition && Input.GetMouseButtonDown(1)) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
@@ -95,21 +116,122 @@ public class Plant : MonoBehaviour
         }
     }
 
+    private void HandleTillingAnimation()
+    {
+        if (m_secondsSinceTilled < 0) return;
+        
+        m_secondsSinceTilled += Time.deltaTime;
+        if (m_tillingAnimationDuration <= m_secondsSinceTilled)
+        {
+            tealedGround.transform.localScale = m_originalTilledGroundScale; 
+            return;
+        }
+
+        float t = Mathf.InverseLerp(0, m_tillingAnimationDuration, m_secondsSinceTilled) * 2;
+        if (t > 1) t = 2 - t; // Second half, going back to normal
+
+        t = Easing.InOutBounce(t);
+        tealedGround.transform.localScale = m_originalTilledGroundScale * (1 + m_tillingAnimationStrength * t);
+    }
+
+    private void CreateTillMask(Vector3 worldPos)
+    {
+        GameObject obj = Instantiate(m_tillSphere);
+        obj.transform.position = worldPos + Vector3.down * (obj.GetComponent<Renderer>().bounds.size.y / 2.0f);
+
+        Mask.AddScriptToObject(obj, new GameObject[1] { untealedGround });
+
+        m_tillMasks.Add(obj);
+    }
+
+    private void OnHoe(InventoryItem item)
+    {
+        RaycastHit hit;
+        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
+        if (!m_tillCollider.Raycast(ray, out hit, m_maxRayTillDistance)) return;
+
+        CreateTillMask(hit.point);
+
+        GameObject particles = Instantiate(m_tillingParticleSystem);
+        particles.transform.position = hit.point + m_tillingParticlesOffset;
+
+        if (GetTilledPercent() >= m_requiredTillingPercent)
+        {
+            HoeFinish(item);
+        }
+    }
+
+    /// <summary>
+    /// Check how much of the ground is tilled, this function is a little costly so don't run it too often.
+    /// Note that getting this to 100% tilled is quite hard, especially considering you till in circles.
+    /// </summary>
+    /// <returns>Tilled percent between 0 and 1</returns>
+    private float GetTilledPercent()
+    {
+        var bounds = untealedGround.GetComponent<Renderer>().bounds;
+
+        float checkDistanceX = (bounds.max.x - bounds.min.x) / (float)m_numTillCheckPointsPerAxis;
+        float checkDistanceZ = (bounds.max.z - bounds.min.z) / (float)m_numTillCheckPointsPerAxis;
+
+        float totalPercent = 0;
+
+        for (int x = 0; x < m_numTillCheckPointsPerAxis; x++)
+        {
+            for (int z = 0; z < m_numTillCheckPointsPerAxis; z++)
+            {
+                Vector3 point = new Vector3(
+                    Mathf.Lerp(bounds.min.x, bounds.max.x, x / (float)m_numTillCheckPointsPerAxis),
+                    0,
+                    Mathf.Lerp(bounds.min.z, bounds.max.z, z / (float)m_numTillCheckPointsPerAxis)
+                );
+
+                float closestX = float.MaxValue;
+                float closestZ = float.MaxValue;
+                foreach (GameObject obj in m_tillMasks)
+                {
+                    float xDistance = Mathf.Abs(obj.transform.position.x - point.x);
+                    float zDistance = Mathf.Abs(obj.transform.position.z - point.z);
+
+                    if (xDistance < closestX) closestX = xDistance;
+                    if (zDistance < closestZ) closestZ = zDistance;
+                }
+
+                float thisPercent = 0.5f * Mathf.InverseLerp(checkDistanceX, 0, closestX) + 0.5f * Mathf.InverseLerp(checkDistanceZ, 0, closestZ);
+                totalPercent += 1.0f / (float)(m_numTillCheckPointsPerAxis * m_numTillCheckPointsPerAxis) * thisPercent;
+            }
+        }
+
+        return totalPercent;
+    }
+
+    private void HoeFinish(InventoryItem item)
+    {
+        foreach (var obj in m_tillMasks)
+        {
+            Destroy(obj);
+        }
+        m_tillMasks.Clear();
+        untealedGround.SetActive(false);
+        tealedGround.SetActive(true);
+
+        state = PlantState.Tealed;
+        stateText.text = state.ToString();
+        multiplier += item.ReturnMultiplier();
+        tealedGround.SetActive(true);
+        untealedGround.SetActive(false);
+
+        m_originalTilledGroundScale = untealedGround.transform.localScale;
+        m_secondsSinceTilled = 0;
+    }
+
     public bool ChangeState(InventoryItem item)
     {
         if (item.item.name == "hoe" && state == PlantState.Normal)
         {
-            state = PlantState.Tealed;
-            stateText.text = state.ToString();
-            multiplier += item.ReturnMultiplier();
-            tealedGround.SetActive(true);
-            untealedGround.SetActive(false);
-
-            GameObject particles = Instantiate(m_tillingParticleSystem);
-            particles.transform.SetParent(transform, false);
-            particles.transform.position += m_tillingParticlesOffset;
+            OnHoe(item);
             return true;
-        }else if (item.item is Seeds seeds  && state == PlantState.Tealed)
+        }
+        else if (item.item is Seeds seeds && state == PlantState.Tealed)
         {
             //changing state
             state = PlantState.Planted;
@@ -124,10 +246,12 @@ public class Plant : MonoBehaviour
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             return true;
-        }else if (item.item.name == "watering can" && state == PlantState.Planted)
+        }
+        else if (item.item.name == "watering can" && state == PlantState.Planted)
         {
             return true;
-        }else if (item.item.name == "harvesting tool" && state == PlantState.Completed && !isCameraInPosition)
+        }
+        else if (item.item.name == "harvesting tool" && state == PlantState.Completed && !isCameraInPosition)
         {
             playerMovement.enabled = false;
             originalCameraPosition = mainCamera.transform.position;
@@ -139,12 +263,12 @@ public class Plant : MonoBehaviour
         }
         return false;
     }
-    
+
     private IEnumerator CountdownRoutine()
     {
         while (growthTimer > 0)
         {
-            growthText.text = "Grow Timer: "+ growthTimer.ToString();
+            growthText.text = "Grow Timer: " + growthTimer.ToString();
             yield return new WaitForSeconds(1f);
             growthTimer -= 1f;
         }
@@ -154,7 +278,7 @@ public class Plant : MonoBehaviour
         m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
         StopAllCoroutines();
     }
-    
+
     // ReSharper disable Unity.PerformanceAnalysis
     public void HarvestCrop()
     {
@@ -165,15 +289,16 @@ public class Plant : MonoBehaviour
         GameObject particles = Instantiate(m_harvestingParticleSystem);
         particles.transform.SetParent(transform, false);
         particles.transform.position += m_harvestingParticlesOffset;
-        tealedGround.SetActive(false);
+        tealedGround.SetActive(true);
         untealedGround.SetActive(true);
-        
+        m_secondsSinceTilled = -1;
+
         for (int i = 0; i < multiplier; i++)
         {
             GameObject spawnedItem = objectPool.TakeObjectOut("Crop");
             spawnedItem.transform.position = cropToSpawnLocation.transform.position;
             //GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
-        
+
             spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed.ReturnCrop());
 
             // Apply force to throw the item in an arch
@@ -184,11 +309,11 @@ public class Plant : MonoBehaviour
                 itemRb.velocity = throwDirection;
             }
         }
-        
+
         finishedMiniGame = true;
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration));
     }
-    
+
     Vector3 CalculateArchVelocity(float angle, float distance)
     {
         // Convert the angle to radians
@@ -209,9 +334,9 @@ public class Plant : MonoBehaviour
         Vector3 throwDirection = horizontalDirection * horizontalVelocity + Vector3.up * verticalVelocity;
 
         return throwDirection;
-        
+
     }
-    
+
     private IEnumerator MoveCamera(Vector3 targetPosition, Quaternion targetRotation, float duration)
     {
         float elapsedTime = 0f;
@@ -229,11 +354,11 @@ public class Plant : MonoBehaviour
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
-        
+
         miniGame.SetActive(!miniGame.activeInHierarchy);
         line.SetActive(!line.activeInHierarchy);
 
-        
-        playerMovement.enabled = finishedMiniGame; 
+
+        playerMovement.enabled = finishedMiniGame;
     }
 }
