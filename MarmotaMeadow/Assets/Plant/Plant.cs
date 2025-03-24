@@ -112,7 +112,6 @@ public class Plant : MonoBehaviour
         {
             finishedMiniGame = true;
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f));
-            isCameraInPosition = false;
         }
     }
 
