@@ -35,7 +35,7 @@ MonoBehaviour:
   m_shootSfx: {fileID: 8300000, guid: 42bf894da66280340835ba31371bc63a, type: 3}
   m_reloadFinishSfx: {fileID: 0}
   m_cameraShake:
-    Duration: 0
+    Duration: 0.25
     Intensity: 1
     Frequency: 1
     TransitionInDuration: 0.1
