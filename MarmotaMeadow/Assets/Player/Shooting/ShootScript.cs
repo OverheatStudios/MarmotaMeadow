@@ -20,11 +20,8 @@ public class ShootScript : MonoBehaviour
     [Tooltip("Sound to play on shoot")]
     [SerializeField] private AudioSource m_shootSound;
 
-    [Tooltip("Shooting cooldown bar background")]
-    [SerializeField] private Image m_cooldownBar;
-
-    [Tooltip("Shooting cooldown bar mask (progress)")]
-    [SerializeField] private Image m_cooldownBarMask;
+    [Tooltip("Shooting cooldown bar")]
+    [SerializeField] private ProgressBar m_cooldownBar;
 
     [Tooltip("Current and max ammo display")]
     [SerializeField] private TextMeshProUGUI m_ammoText;
@@ -72,7 +69,7 @@ public class ShootScript : MonoBehaviour
     void Start()
     {
         HideReloadUi();
-        m_cooldownBar.enabled = false;
+        m_cooldownBar.SetVisible(false);
     }
 
     void Update()
@@ -139,13 +136,13 @@ public class ShootScript : MonoBehaviour
         if (m_currentCooldown >= 0)
         {
             m_currentCooldown -= Time.deltaTime;
-            m_cooldownBar.enabled = true;
+            m_cooldownBar.SetVisible(true);
             HideReloadUi();
-            m_cooldownBarMask.fillAmount = (m_currentCooldown / Mathf.Max(m_lastCooldownSet, 0));
+            m_cooldownBar.SetProgress01(m_currentCooldown / Mathf.Max(m_lastCooldownSet, 0.01f));
             return true;
         }
 
-        m_cooldownBar.enabled = false;
+        m_cooldownBar.SetVisible(false);
         return false;
     }
 
@@ -405,7 +402,7 @@ public class ShootScript : MonoBehaviour
         gun.PlayReloadSfx();
         m_reloadBar.StartProgress(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000));
-     if (gun)   SetAmmo(gun.GetMaxAmmo());
+        if (gun) SetAmmo(gun.GetMaxAmmo());
     }
 
     /// <summary>
