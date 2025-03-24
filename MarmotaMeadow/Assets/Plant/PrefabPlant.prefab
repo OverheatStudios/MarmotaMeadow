@@ -152,14 +152,21 @@ MonoBehaviour:
   gamePausedEvent:
     m_PersistentCalls:
       m_Calls: []
+  playerMovement: {fileID: 0}
   objectPool: {fileID: 0}
   tutorialManager: {fileID: 0}
   tealedGround: {fileID: 5890157229871254127}
   untealedGround: {fileID: 4393602743807611939}
   m_tillingParticleSystem: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
-  m_tillingParticlesOffset: {x: 0, y: -1, z: 0}
+  m_tillingParticlesOffset: {x: 0, y: -0.6, z: 0}
   m_harvestingParticleSystem: {fileID: 504569150299133013, guid: 6fa672b3ca451554aae44f5769417e2a, type: 3}
-  m_harvestingParticlesOffset: {x: 0, y: 0.6, z: 0}
+  m_harvestingParticlesOffset: {x: 0, y: 0.25, z: 0}
+  mainCamera: {fileID: 0}
+  targetCameraPosition: {fileID: 0}
+  duration: 0
+  miniGame: {fileID: 0}
+  line: {fileID: 0}
+  finishedMiniGame: 1
 --- !u!65 &1895552561247250477
 BoxCollider:
   m_ObjectHideFlags: 0
