@@ -3051,7 +3051,7 @@ PrefabInstance:
     - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: pistolButton
       value: 
-      objectReference: {fileID: 817270918}
+      objectReference: {fileID: 1908660537}
     - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_upgradeslot
       value: 
@@ -3059,7 +3059,7 @@ PrefabInstance:
     - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: shotgunButton
       value: 
-      objectReference: {fileID: 1880309674}
+      objectReference: {fileID: 679412206}
     - target: {fileID: 6867083905136647469, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: inventory
       value: 
