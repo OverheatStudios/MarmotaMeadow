@@ -114,7 +114,7 @@ public class Plant : MonoBehaviour
             m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
 
-        if (isCameraInPosition && Input.GetMouseButtonDown(1)) // Right mouse button to reset camera
+        if (isCameraInPosition && GameInput.GetKeybind("ExitMinigame").GetKeyDown()) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));
