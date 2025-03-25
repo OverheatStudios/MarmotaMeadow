@@ -76,7 +76,8 @@ public class Plant : MonoBehaviour
     private Quaternion originalCameraRotation;
     private bool isCameraInPosition = false;
 
-    [Header("MiniGame")]
+    [Header("Line MiniGame")]
+    [SerializeField] private GameObject m_lineMinigameUi;
     [SerializeField] private GameObject harvestingMiniGame;
     [SerializeField] private GameObject wateringMinigame;
     [SerializeField] private GameObject line;
@@ -88,6 +89,7 @@ public class Plant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_lineMinigameUi.SetActive(false);
         m_originalTilledGroundScale = tealedGround.transform.localScale;
         growthTimer = maxGrowthTimer;
         m_billboard.SetSprite(null);
@@ -289,6 +291,8 @@ public class Plant : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public void HarvestCrop()
     {
+        m_lineMinigameUi.SetActive(false);
+
         state = PlantState.Normal;
         stateText.text = state.ToString();
         image.sprite = null;
@@ -363,6 +367,7 @@ public class Plant : MonoBehaviour
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
 
+        m_lineMinigameUi.SetActive(inHarvestMiniGame || inWaterMiniGame);
         harvestingMiniGame.SetActive(inHarvestMiniGame);
         wateringMinigame.SetActive(inWaterMiniGame);
         line.SetActive(!line.activeInHierarchy);
