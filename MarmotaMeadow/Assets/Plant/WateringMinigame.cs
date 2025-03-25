@@ -1,16 +1,18 @@
-using System;
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
 
-public class LineTracer : MonoBehaviour
+public class WateringMinigame : MonoBehaviour
 {
     public LineRenderer lineRenderer;
 
     private Vector3 pointA;
     private Vector3 pointB;
     private Vector3 pointC;
+    private Vector3 pointD;
+    private Vector3 pointE;
+    private Vector3 pointF;
+    private Vector3 pointG;
     
     [SerializeField] private GameObject colliders;
     [SerializeField] private float m_maxDistance;
@@ -40,16 +42,25 @@ public class LineTracer : MonoBehaviour
     void GenerateRandomPoints()
     {
 
-        pointA = new Vector3(transform.position.x + 0.5f, Random.Range(transform.position.y - rangeY, transform.position.y + rangeY), transform.position.z);
-        pointB = transform.position * 2 - pointA;
-        pointC = new Vector3((pointA.x + pointB.x) / 2, (pointA.y + pointB.y) / 2, transform.position.z);
+        pointA = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.25f, transform.position.z);
+        pointB = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.25f, transform.position.z);
+        pointC = new Vector3(transform.position.x + 0.3f, transform.position.y, transform.position.z);
+        pointD = transform.position * 2 - pointA;
+        pointE = transform.position * 2 - pointB;
+        pointF = transform.position * 2 - pointC;
+        pointG = pointA;
     }
 
     void DrawLine()
     {
-        lineRenderer.positionCount = 2;
+        lineRenderer.positionCount = 7;
         lineRenderer.SetPosition(0, pointA);
         lineRenderer.SetPosition(1, pointB);
+        lineRenderer.SetPosition(2, pointC);
+        lineRenderer.SetPosition(3, pointD);
+        lineRenderer.SetPosition(4, pointE);
+        lineRenderer.SetPosition(5, pointF);
+        lineRenderer.SetPosition(6, pointG);
     }
 
     void AddColliders()
@@ -57,6 +68,9 @@ public class LineTracer : MonoBehaviour
         GameObject A = Instantiate(colliders, pointA, Quaternion.identity);
         GameObject B = Instantiate(colliders, pointB, Quaternion.identity);
         GameObject C =Instantiate(colliders, pointC, Quaternion.identity);
+        GameObject D = Instantiate(colliders, pointD, Quaternion.identity);
+        GameObject E = Instantiate(colliders, pointE, Quaternion.identity);
+        GameObject F = Instantiate(colliders, pointF, Quaternion.identity);
         
         A.transform.parent = transform;
         A.name = "A";
@@ -64,6 +78,12 @@ public class LineTracer : MonoBehaviour
         B.name = "B";
         C.transform.parent = transform;
         C.name = "C";
+        D.transform.parent = transform;
+        D.name = "D";
+        E.transform.parent = transform;
+        E.name = "E";
+        F.transform.parent = transform;
+        F.name = "F";
     }
 
     void CheckForCollisions()
@@ -94,3 +114,4 @@ public class LineTracer : MonoBehaviour
         }
     }
 }
+

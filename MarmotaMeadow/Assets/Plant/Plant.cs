@@ -30,6 +30,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private float throwAngle = 45f; // Angle of the throw (in degrees)
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private GameObject cropToSpawnLocation;
+    [SerializeField] private float fertilizerMultiplier = 1.5f;
 
     [SerializeField] private Billboard m_billboard;
 
@@ -76,9 +77,12 @@ public class Plant : MonoBehaviour
     private bool isCameraInPosition = false;
 
     [Header("MiniGame")]
-    [SerializeField] private GameObject miniGame;
+    [SerializeField] private GameObject harvestingMiniGame;
+    [SerializeField] private GameObject wateringMinigame;
     [SerializeField] private GameObject line;
     [SerializeField] private bool finishedMiniGame = true;
+    [SerializeField] private bool inHarvestingMiniGame = false;
+    [SerializeField] private bool inWateringMiniGame = false;
 
 
     // Start is called before the first frame update
@@ -111,7 +115,7 @@ public class Plant : MonoBehaviour
         if (isCameraInPosition && Input.GetMouseButtonDown(1)) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
-            StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f));
+            StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));
         }
     }
 
@@ -225,7 +229,12 @@ public class Plant : MonoBehaviour
 
     public bool ChangeState(InventoryItem item)
     {
-        if (item.item.name == "hoe" && state == PlantState.Normal)
+        if (item.item.name == "Fertilizer" && state != PlantState.Completed)
+        {
+            multiplier += fertilizerMultiplier;
+            return true;
+        }
+        else if (item.item.name == "hoe" && state == PlantState.Normal)
         {
             OnHoe(item);
             return true;
@@ -255,9 +264,8 @@ public class Plant : MonoBehaviour
             playerMovement.enabled = false;
             originalCameraPosition = mainCamera.transform.position;
             originalCameraRotation = mainCamera.transform.rotation;
-            multiplier += item.ReturnMultiplier();
             finishedMiniGame = false;
-            StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration));
+            StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration, true, false));
             return true;
         }
         return false;
@@ -310,7 +318,8 @@ public class Plant : MonoBehaviour
         }
 
         finishedMiniGame = true;
-        StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration));
+        
+        StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
 
     Vector3 CalculateArchVelocity(float angle, float distance)
@@ -336,7 +345,7 @@ public class Plant : MonoBehaviour
 
     }
 
-    private IEnumerator MoveCamera(Vector3 targetPosition, Quaternion targetRotation, float duration)
+    private IEnumerator MoveCamera(Vector3 targetPosition, Quaternion targetRotation, float duration, bool inHarvestMiniGame, bool inWaterMiniGame)
     {
         float elapsedTime = 0f;
         Vector3 startPosition = mainCamera.transform.position;
@@ -354,10 +363,9 @@ public class Plant : MonoBehaviour
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
 
-        miniGame.SetActive(!miniGame.activeInHierarchy);
+        harvestingMiniGame.SetActive(inHarvestMiniGame);
+        wateringMinigame.SetActive(inWaterMiniGame);
         line.SetActive(!line.activeInHierarchy);
-
-
         playerMovement.enabled = finishedMiniGame;
     }
 

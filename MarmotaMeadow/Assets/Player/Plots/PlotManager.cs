@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class PlotData
 {
-    public int numberOfPlots = 1;
+    public int numberOfPlots = 0;
 }
 
 public class PlotManager : MonoBehaviour

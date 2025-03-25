@@ -28,6 +28,10 @@ public class CollisonsHandler : MonoBehaviour
             m_ObjectPooling.PutObjectBack("Crop", other.gameObject);
             //Destroy(other.gameObject);
             OnPlayerCollision?.Invoke();
+        }else if (other.gameObject.CompareTag("Fertilizer"))
+        {
+            m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
+            Destroy(other.gameObject);
         }
     }
 }

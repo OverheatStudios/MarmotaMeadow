@@ -3060,6 +3060,14 @@ PrefabInstance:
       propertyPath: shotgunButton
       value: 
       objectReference: {fileID: 679412206}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: items.Array.size
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'items.Array.data[16]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 48082ad859f3a574990d8513cbdf50ed, type: 2}
     - target: {fileID: 6867083905136647469, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: inventory
       value: 
@@ -5005,11 +5013,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_saveLocation: plotManager.json
   m_plots: []
+  m_plotsSpawned: []
   plots:
     numberOfPlots: 0
   numberOfPlots: 0
   m_plotPrefab: {fileID: 0}
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
+  scrObjGlobalData: {fileID: 0}
 --- !u!1 &817270918
 GameObject:
   m_ObjectHideFlags: 0
