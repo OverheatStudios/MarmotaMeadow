@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using static UnityEditor.Progress;
 using UnityEngine.UIElements.Experimental;
 
 public class Plant : MonoBehaviour
