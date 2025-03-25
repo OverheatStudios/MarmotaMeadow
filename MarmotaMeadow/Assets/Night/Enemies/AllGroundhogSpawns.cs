@@ -13,6 +13,16 @@ public class GroundhogSpawn : IComparable
     public float SpawnInterval = 1.0f;
     [HideInInspector] public float SecondsSinceLastSpawn = 0;
 
+    public GroundhogSpawn() { }
+    public GroundhogSpawn(GroundhogSpawn other)
+    {
+        SecondsSinceNightBeginning = other.SecondsSinceNightBeginning;
+        GroundhogType = other.GroundhogType;
+        NumberGroundhogs = other.NumberGroundhogs;
+        SpawnInterval = other.SpawnInterval;
+        SecondsSinceLastSpawn = 0;
+    }
+
     /// <summary>
     /// Check if a groundhog should spawn this frame, updates seconds since last spawn
     /// </summary>
@@ -45,6 +55,14 @@ public class NightGroundhogSpawns
     [Header("---NIGHT---")]
     public List<GroundhogSpawn> GroundhogsThisNight;
 
+    public NightGroundhogSpawns() { }
+    public NightGroundhogSpawns(NightGroundhogSpawns other)
+    {
+        GroundhogsThisNight = new();
+        foreach (var v in other.GroundhogsThisNight) GroundhogsThisNight.Add(new(v));
+    }
+
+
     /// <summary>
     /// Sort the list in descending order of spawn time
     /// </summary>
@@ -68,7 +86,9 @@ public class AllGroundhogSpawns : ScriptableObject
 
     public List<NightGroundhogSpawns> GetNightGroundhogSpawns()
     {
-        return new List<NightGroundhogSpawns>(m_nightGroundhogSpawns);
+        List<NightGroundhogSpawns> list = new();
+        foreach (var v in m_nightGroundhogSpawns) { list.Add(new(v)); }
+        return list;
     }
 
     /// <summary>
