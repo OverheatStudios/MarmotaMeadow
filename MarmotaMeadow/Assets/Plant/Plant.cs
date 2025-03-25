@@ -79,6 +79,7 @@ public class Plant : MonoBehaviour
 
     [Header("Line MiniGame")]
     [SerializeField] private GameObject m_lineMinigameUi;
+    [SerializeField] private TextMeshProUGUI m_lineMinigameExitUi;
     [SerializeField] private GameObject harvestingMiniGame;
     [SerializeField] private GameObject wateringMinigame;
     [SerializeField] private GameObject line;
@@ -108,6 +109,7 @@ public class Plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_lineMinigameExitUi.text = m_lineMinigameExitUi.text.Replace("[KEY]", GameInput.GetKeybind("ExitMinigame").ToString());
         HandleTillingAnimation();
 
         if (growthTimer < maxGrowthTimer / 2 && state == PlantState.Planted)
@@ -115,7 +117,7 @@ public class Plant : MonoBehaviour
             m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
 
-        if (isCameraInPosition && Input.GetMouseButtonDown(1)) // Right mouse button to reset camera
+        if (isCameraInPosition && GameInput.GetKeybind("ExitMinigame").GetKeyDown()) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));

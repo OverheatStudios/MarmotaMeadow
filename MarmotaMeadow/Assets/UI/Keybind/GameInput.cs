@@ -12,7 +12,8 @@ public static class GameInput
             {
                 { "Interact", new(KeyCode.Mouse0, GamepadButton.A) },
                 { "OpenInventory", new(KeyCode.E, GamepadButton.X) },
-                { "Pause", new(KeyCode.Escape, GamepadButton.Start) }
+                { "Pause", new(KeyCode.Escape, GamepadButton.Start) },
+                { "ExitMinigame", new(KeyCode.Mouse1, GamepadButton.Y) }
         };
 
     internal static Dictionary<string, GameControl> m_keycodes = new Dictionary<string, GameControl>();

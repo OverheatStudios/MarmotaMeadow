@@ -70,7 +70,14 @@ public class GameControl
 
     public override string ToString()
     {
-        if (Gamepad.current == null) return m_key.ToString();
+        if (Gamepad.current == null) {
+            return m_key switch
+            {
+                KeyCode.Mouse0 => "LMB",
+                KeyCode.Mouse1 => "RMB",
+                _ => m_key.ToString()
+            };
+        }
         else return m_controllerButton.WhatButton.ToString();
     }
 
