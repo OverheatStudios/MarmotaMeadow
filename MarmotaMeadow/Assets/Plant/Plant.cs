@@ -78,6 +78,7 @@ public class Plant : MonoBehaviour
 
     [Header("Line MiniGame")]
     [SerializeField] private GameObject m_lineMinigameUi;
+    [SerializeField] private TextMeshProUGUI m_lineMinigameExitUi;
     [SerializeField] private GameObject harvestingMiniGame;
     [SerializeField] private GameObject wateringMinigame;
     [SerializeField] private GameObject line;
@@ -107,6 +108,7 @@ public class Plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_lineMinigameExitUi.text = m_lineMinigameExitUi.text.Replace("[KEY]", GameInput.GetKeybind("ExitMinigame").ToString());
         HandleTillingAnimation();
 
         if (growthTimer < maxGrowthTimer / 2 && state == PlantState.Planted)
