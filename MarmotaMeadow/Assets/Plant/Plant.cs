@@ -31,6 +31,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private float throwDistance = 5f;
     [SerializeField] private GameObject cropToSpawnLocation;
     [SerializeField] private float fertilizerMultiplier = 1.5f;
+    [SerializeField] private bool planted;
 
     [SerializeField] private Billboard m_billboard;
 
@@ -118,6 +119,26 @@ public class Plant : MonoBehaviour
         {
             finishedMiniGame = true;
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));
+            if (!planted)
+            {
+                planted = true;
+            }
+        }
+
+        if (planted && state == PlantState.Planted)
+        {
+            
+            growthTimer -= Time.deltaTime;
+            growthText.text = "Grow Timer: " + growthTimer.ToString();
+
+            if (growthTimer <= 0)
+            {
+                planted = false;
+                growthTimer = maxGrowthTimer;
+                state = PlantState.Completed;
+                stateText.text = state.ToString();
+                m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
+            }
         }
     }
 
@@ -251,14 +272,19 @@ public class Plant : MonoBehaviour
             image.sprite = m_seed.ReturnImage();
             growthTimer = m_seed.ReturnGrowDuration();
             maxGrowthTimer = m_seed.ReturnGrowDuration();
-            StartCoroutine(nameof(CountdownRoutine));
+            planted = true;
             multiplier = m_seed.ReturnAmount();
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             return true;
         }
-        else if (item.item.name == "watering can" && state == PlantState.Planted)
+        else if (item.item.name == "watering can" && state == PlantState.Planted && planted)
         {
+            playerMovement.enabled = false;
+            originalCameraPosition = mainCamera.transform.position;
+            originalCameraRotation = mainCamera.transform.rotation;
+            finishedMiniGame = false;
+            StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration, false, true));
             return true;
         }
         else if (item.item.name == "harvesting tool" && state == PlantState.Completed && !isCameraInPosition)
@@ -271,21 +297,6 @@ public class Plant : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    private IEnumerator CountdownRoutine()
-    {
-        while (growthTimer > 0)
-        {
-            growthText.text = "Grow Timer: " + growthTimer.ToString();
-            yield return new WaitForSeconds(1f);
-            growthTimer -= 1f;
-        }
-
-        state = PlantState.Completed;
-        stateText.text = state.ToString();
-        m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
-        StopAllCoroutines();
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -355,6 +366,8 @@ public class Plant : MonoBehaviour
         Vector3 startPosition = mainCamera.transform.position;
         Quaternion startRotation = mainCamera.transform.rotation;
 
+        planted = !planted;
+
         while (elapsedTime < duration)
         {
             mainCamera.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
@@ -378,4 +391,14 @@ public class Plant : MonoBehaviour
     {
         multiplier = amount;
     }
+
+    public void WaterCrop()
+    {
+        m_lineMinigameUi.SetActive(false);
+        finishedMiniGame = true;
+        
+        StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
+    }
+    
+    
 }

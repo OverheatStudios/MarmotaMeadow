@@ -76,7 +76,7 @@ public class Actions : MonoBehaviour
                 if (heldItem.transform.childCount > 0)
                 {
                     if (hit.collider.GetComponent<Plant>().ChangeState(heldItem)
-                        & heldItem.item.IsStackable())
+                        && heldItem.item.IsStackable())
                     {
                         heldItem.DecreaseAmount();
                     }

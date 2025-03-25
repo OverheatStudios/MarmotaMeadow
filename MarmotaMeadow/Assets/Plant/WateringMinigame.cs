@@ -108,7 +108,7 @@ public class WateringMinigame : MonoBehaviour
             if (transform.childCount == 0)
             {
                 lineRenderer.positionCount = 0;
-                plant.HarvestCrop();
+                plant.WaterCrop();
                 finished = true;
             }
         }

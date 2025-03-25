@@ -5655,7 +5655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 2055365275}
-  colliders: {fileID: 0}
+  colliders: {fileID: 6875515042364160533, guid: 2c570cfa3f3ea704e849dd71ea50ca50, type: 3}
   m_maxDistance: 1000000
   checkMask:
     serializedVersion: 2
