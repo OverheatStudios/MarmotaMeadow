@@ -68,7 +68,7 @@ public class AllGroundhogSpawns : ScriptableObject
 
     public List<NightGroundhogSpawns> GetNightGroundhogSpawns()
     {
-        return m_nightGroundhogSpawns;
+        return new List<NightGroundhogSpawns>(m_nightGroundhogSpawns);
     }
 
     /// <summary>
