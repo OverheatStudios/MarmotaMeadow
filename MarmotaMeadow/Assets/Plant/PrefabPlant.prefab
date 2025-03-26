@@ -481,6 +481,7 @@ MonoBehaviour:
   throwDistance: 5
   cropToSpawnLocation: {fileID: 5862528567581457388}
   fertilizerMultiplier: 2
+  planted: 0
   m_billboard: {fileID: 7404725365386522899}
   gamePausedEvent:
     m_PersistentCalls:
@@ -495,6 +496,7 @@ MonoBehaviour:
   m_harvestingParticleSystem: {fileID: 504569150299133013, guid: 6fa672b3ca451554aae44f5769417e2a, type: 3}
   m_harvestingParticlesOffset: {x: 0, y: 0.25, z: 0}
   m_tillSphere: {fileID: 2643505425335099284, guid: 418af95bf1a1b984cba811d1842f661f, type: 3}
+  m_randomTillMaskRotation: 1
   m_tillCollider: {fileID: 6845314054838431704}
   m_maxRayTillDistance: 25
   m_numTillCheckPointsPerAxis: 10
@@ -881,7 +883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
   m_sharedMaterial: {fileID: 8289695555494012424, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
@@ -915,7 +917,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -946,7 +948,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 260.57205, y: 0, z: -166.26865, w: -58.826843}
+  m_margin: {x: 127.54658, y: 0, z: -296.08884, w: -58.826843}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -986,7 +988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89, y: -33}
+  m_AnchoredPosition: {x: -79, y: -33}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5384014170364273613

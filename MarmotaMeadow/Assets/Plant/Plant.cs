@@ -137,12 +137,13 @@ public class Plant : MonoBehaviour
 
         if (planted && state == PlantState.Planted)
         {
-            
+
             growthTimer -= Time.deltaTime;
-            growthText.text = "Grow Timer: " + growthTimer.ToString();
+            growthText.text = ((int)growthTimer).ToString();
 
             if (growthTimer <= 0)
             {
+                growthText.text = "Ready";
                 planted = false;
                 growthTimer = maxGrowthTimer;
                 state = PlantState.Completed;
@@ -422,9 +423,9 @@ public class Plant : MonoBehaviour
     {
         m_lineMinigameUi.SetActive(false);
         finishedMiniGame = true;
-        
+
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
-    
-    
+
+
 }
