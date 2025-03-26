@@ -34,10 +34,10 @@ public class PlotManager : MonoBehaviour
             switch (scrObjGlobalData.GetData().CurrentHealth)
             {
                 case 100:
-                    IncreaseMultiplierOnPlots(3);
+                    IncreaseMultiplierOnPlots(0);
                     break;
                 case 80:
-                    IncreaseMultiplierOnPlots(2);
+                    IncreaseMultiplierOnPlots(1);
                     break;
                 case 60:
                     IncreaseMultiplierOnPlots(2);
@@ -46,7 +46,7 @@ public class PlotManager : MonoBehaviour
                     IncreaseMultiplierOnPlots(2);
                     break;
                 case 20:
-                    IncreaseMultiplierOnPlots(1);
+                    IncreaseMultiplierOnPlots(3);
                     break;
             }
         }
@@ -57,10 +57,6 @@ public class PlotManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Save();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            IncreaseNumberOfPlots();
         }
     }
     
@@ -109,7 +105,7 @@ public class PlotManager : MonoBehaviour
     {
         for (int i = 0; i < m_plotsSpawned.Count; i++)
         {
-            m_plotsSpawned[i].gameObject.GetComponentInChildren<Plant>().IncreaseMultiplier(amount);
+            m_plotsSpawned[i].gameObject.GetComponentInChildren<Plant>().SetGrowTimerOffset(amount);
         }
     }
 }

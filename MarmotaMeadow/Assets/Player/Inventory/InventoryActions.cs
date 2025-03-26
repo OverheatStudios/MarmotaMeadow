@@ -19,6 +19,7 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private ToggleSettings m_toggleSettings;
     [SerializeField] private bool m_canSelectSlots = true;
+    [SerializeField] private GameObject m_toolTip;
     private float m_lateStartCalled = 0;
 
     private void Start()
@@ -114,7 +115,8 @@ public class InventoryActions : MonoBehaviour
             //UI
             m_inInventory = true;
             m_inventoryUI.SetActive(true);
-
+            m_toolTip.SetActive(true);
+            
             //Cursor
             m_cursorHandler.NotifyUiOpen();
         }
@@ -123,6 +125,7 @@ public class InventoryActions : MonoBehaviour
             //UI
             m_inInventory = false;
             m_inventoryUI.SetActive(false);
+            m_toolTip.SetActive(false);
 
             //Cursor
             m_cursorHandler.NotifyUiClosed();

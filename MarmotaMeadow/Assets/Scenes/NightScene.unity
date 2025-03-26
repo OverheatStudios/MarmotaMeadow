@@ -1474,6 +1474,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: m_toolTip
+      value: 
+      objectReference: {fileID: 1803594505}
+    - target: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_inventoryUI
       value: 
       objectReference: {fileID: 152034258}
@@ -7733,6 +7737,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784881174}
   m_CullTransparentMesh: 1
+--- !u!1 &1803594505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 544145648267474994, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+  m_PrefabInstance: {fileID: 152034257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1819919207
 PrefabInstance:
   m_ObjectHideFlags: 0

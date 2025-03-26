@@ -13,6 +13,12 @@ public class WateringMinigame : MonoBehaviour
     private Vector3 pointE;
     private Vector3 pointF;
     private Vector3 pointG;
+    private Vector3 pointH;
+    private Vector3 pointI;
+    private Vector3 pointJ;
+    private Vector3 pointK;
+    private Vector3 pointL;
+    private Vector3 pointM;
     
     [SerializeField] private GameObject colliders;
     [SerializeField] private float m_maxDistance;
@@ -49,6 +55,15 @@ public class WateringMinigame : MonoBehaviour
         pointE = transform.position * 2 - pointB;
         pointF = transform.position * 2 - pointC;
         pointG = pointA;
+        
+        pointH = (pointA + pointB) / 2;
+        pointI = (pointB + pointC) / 2;
+        pointJ = (pointC + pointD) / 2;
+        pointK = (pointD + pointE) / 2;
+        pointL = (pointE + pointF) / 2;
+        pointM = (pointF + pointG) / 2;
+        pointM = (pointG + pointH) / 2;
+        pointM = (pointH + pointI) / 2;
     }
 
     void DrawLine()
@@ -88,30 +103,28 @@ public class WateringMinigame : MonoBehaviour
 
     void CheckForCollisions()
     {
-        if (GameInput.GetKeybind("Interact").GetKey())
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 1f; // Set the object's z position to a defined depth
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 1f; // Set the object's z position to a defined depth
 
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            trail.transform.position = worldPosition;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        trail.transform.position = worldPosition;
             
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
-            {
-                Destroy(hit.collider.gameObject);
-                Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
-                Debug.Log(hit.collider.name);
-            }
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
+        { 
+            Destroy(hit.collider.gameObject);
+            Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
+            Debug.Log(hit.collider.name);
+        }
 
-            if (transform.childCount == 0)
-            {
-                lineRenderer.positionCount = 0;
-                plant.WaterCrop();
-                finished = true;
-            }
+        if (transform.childCount == 0)
+        {
+            lineRenderer.positionCount = 0;
+            plant.WaterCrop();
+            finished = true;
         }
     }
 }
+
 
