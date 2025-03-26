@@ -15,6 +15,8 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject m_upgradePriceIcon;
     [SerializeField] private TextMeshProUGUI m_sellPriceText;
     [SerializeField] private GameObject m_sellPriceIcon;
+    [SerializeField] private GameObject m_cannotSellText;
+    [SerializeField] private GameObject m_cannotUpgradeText;
 
     public void BuyItem(BaseItem item)
     {
@@ -38,17 +40,18 @@ public class Shop : MonoBehaviour
 
     public void Update()
     {
-        ShowPrice(inventoryMager.GetUpgradeSlot(), m_upgradePriceIcon, m_upgradePriceText, true);
-        ShowPrice(inventoryMager.GetSellSlot(), m_sellPriceIcon, m_sellPriceText, false);
+        ShowPrice(inventoryMager.GetUpgradeSlot(), m_upgradePriceIcon, m_upgradePriceText, m_cannotUpgradeText, true);
+        ShowPrice(inventoryMager.GetSellSlot(), m_sellPriceIcon, m_sellPriceText, m_cannotSellText, false);
     }
 
-    private void ShowPrice(InventorySlot inventorySlot, GameObject priceIcon, TextMeshProUGUI priceText, bool isUpgrade)
+    private void ShowPrice(InventorySlot inventorySlot, GameObject priceIcon, TextMeshProUGUI priceText, GameObject cannotText, bool isUpgrade)
     {
         InventoryItem item = inventorySlot?.GetComponentInChildren<InventoryItem>();
         if (item == null || item.ReturnAmount() == 0)
         {
             priceIcon.SetActive(false);
             priceText.gameObject.SetActive(false);
+            cannotText.SetActive(false);
         }
         else
         {
@@ -62,11 +65,15 @@ public class Shop : MonoBehaviour
                 price = crops.ReturnSellCoinsAmount() * item.ReturnAmount();
             }
 
-            if (price == -1) return;
+            if (price == -1)
+            {
+                cannotText.SetActive(true); return;
+            }
 
             priceIcon.SetActive(true);
             priceText.gameObject.SetActive(true);
             priceText.text = ((int)price).ToString();
+            cannotText.SetActive(false);
         }
     }
 
