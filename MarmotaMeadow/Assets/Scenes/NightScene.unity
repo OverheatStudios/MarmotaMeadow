@@ -350,11 +350,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b3aaa96604ab374e82bf05bda993431, type: 3}
---- !u!4 &43733692 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4855919210027787639, guid: d18c7414f4b44e241a5e919a56fe2d4d, type: 3}
-  m_PrefabInstance: {fileID: 4077419343439975789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &50881826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4413454870996427460, guid: 4f44c451e5f08704282ee47bf1db3d8f, type: 3}
@@ -4935,7 +4930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327ef470f24cebc47abd9a7b59f5d602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: Now Try and shoot a GroundHog
+  StepText: Shoot a groundhog!
   cameraObject: {fileID: 1675099862}
   layerMask:
     serializedVersion: 2
@@ -8740,12 +8735,12 @@ Transform:
   m_GameObject: {fileID: 2102512058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 279.58557, y: -354.732, z: -2.3593898}
+  m_LocalPosition: {x: 1420.1984, y: 267.2444, z: -9.947489}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 943998024}
-  m_Father: {fileID: 43733692}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2107245876 stripped
 RectTransform:
@@ -8919,10 +8914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4855919210027787639, guid: d18c7414f4b44e241a5e919a56fe2d4d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2102512060}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d18c7414f4b44e241a5e919a56fe2d4d, type: 3}
 --- !u!1001 &5557785422135966027
@@ -9234,6 +9226,7 @@ SceneRoots:
   - {fileID: 4077419343439975789}
   - {fileID: 883969915}
   - {fileID: 1281366617}
+  - {fileID: 2102512060}
   - {fileID: 505347546}
   - {fileID: 1034809902}
   - {fileID: 18795290}

@@ -749,52 +749,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264477642}
   m_CullTransparentMesh: 1
---- !u!1 &285759291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 285759293}
-  - component: {fileID: 285759292}
-  m_Layer: 0
-  m_Name: Step5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &285759292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285759291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e87be66a4ad9d1488b80411c632beb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StepText: Switch Inventories and see your night inventory
-  isActive: 0
---- !u!4 &285759293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285759291}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1096908354}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &346421629 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6867083905136647469, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
@@ -1572,52 +1526,6 @@ RectTransform:
   m_AnchoredPosition: {x: 70, y: -322}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &553316611
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 553316613}
-  - component: {fileID: 553316612}
-  m_Layer: 0
-  m_Name: Step4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &553316612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553316611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e87be66a4ad9d1488b80411c632beb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StepText: Now click on the button to buy more plots
-  isActive: 0
---- !u!4 &553316613
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553316611}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1096908354}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &568272400
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,12 +5907,9 @@ MonoBehaviour:
   - {fileID: 1438964967}
   - {fileID: 1899177111}
   - {fileID: 1574675283}
-  - {fileID: 553316612}
-  - {fileID: 285759292}
   tutorialText: {fileID: 151201019}
   m_tutorialTextBackground: {fileID: 151201017}
-  textToDisplay: Here you can also buy stuff but you are broke. Now go to the nighttime
-    by clicking the door
+  textToDisplay: Click the door to exit the shop.
   tutorialData:
     isFinsihed: 0
     step: 0
@@ -6025,8 +5930,6 @@ Transform:
   - {fileID: 1438964966}
   - {fileID: 1899177112}
   - {fileID: 1574675282}
-  - {fileID: 553316613}
-  - {fileID: 285759293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1102148061
@@ -6879,7 +6782,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 553316612}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NormalButtonTrigger, Assembly-CSharp
         m_MethodName: ButtonTrigger
         m_Mode: 1
@@ -7512,7 +7415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a95bf05015c9d4db00d430024ffe60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: Click on the corn and drag them to the sell slot and sell them
+  StepText: Sell your corn.
   active: 0
   Slot: {fileID: 1628408399}
   item: {fileID: 11400000, guid: 2f13af07a1eb8e146870e559498f7ac9, type: 2}
@@ -7925,8 +7828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a95bf05015c9d4db00d430024ffe60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: Click on the Hoe and drag them to the upgradel slot and upgrade them
-  active: 0
+  StepText: Upgrade your Hoe.
+  active: 1
   Slot: {fileID: 423985120}
   item: {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
 --- !u!1 &1580159234
@@ -9254,8 +9157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e87be66a4ad9d1488b80411c632beb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepText: Now try to buy some seeds
-  isActive: 0
+  StepText: Buy some seeds.
+  isActive: 1
 --- !u!4 &1899177112
 Transform:
   m_ObjectHideFlags: 0
