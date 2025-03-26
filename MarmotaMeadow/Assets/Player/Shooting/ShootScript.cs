@@ -375,6 +375,7 @@ public class ShootScript : MonoBehaviour
     private void DamageGroundhog(GroundhogScript groundhog, Vector3 bulletWorldPosition)
     {
         float baseDamage = GetGunUnsafe().GetDamage();
+        baseDamage += m_inventoryManager.GetHeldInventoryItem().ReturnMultiplier();
         groundhog.Damage(baseDamage * Random.Range(1.0f - m_randomDamageScale, 1.0f + m_randomDamageScale), bulletWorldPosition);
     }
 
