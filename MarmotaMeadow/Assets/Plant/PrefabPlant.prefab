@@ -495,6 +495,11 @@ MonoBehaviour:
   m_tillingParticlesOffset: {x: 0, y: 0, z: 0}
   m_harvestingParticleSystem: {fileID: 504569150299133013, guid: 6fa672b3ca451554aae44f5769417e2a, type: 3}
   m_harvestingParticlesOffset: {x: 0, y: 0.25, z: 0}
+  m_interactCooldown: 0.4
+  m_harvestSfx: {fileID: 8300000, guid: c8bc97235366d934385ec75fbb22586f, type: 3}
+  m_tillSfx: {fileID: 8300000, guid: 05fbd96024d0c3948b36404247f627ba, type: 3}
+  m_waterSfx: {fileID: 8300000, guid: be4dc7953f480f2449e36930d6de379b, type: 3}
+  m_plantSfx: {fileID: 8300000, guid: 3126e72d9f2d3134cb0d3cd56e2d98b6, type: 3}
   m_tillSphere: {fileID: 2643505425335099284, guid: 418af95bf1a1b984cba811d1842f661f, type: 3}
   m_randomTillMaskRotation: 1
   m_tillCollider: {fileID: 6845314054838431704}

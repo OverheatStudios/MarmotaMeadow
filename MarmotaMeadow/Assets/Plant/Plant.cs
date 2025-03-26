@@ -50,6 +50,16 @@ public class Plant : MonoBehaviour
     [SerializeField] private GameObject m_harvestingParticleSystem;
     [SerializeField] private Vector3 m_harvestingParticlesOffset = new Vector3(0, 0.15f, 0);
 
+    [Tooltip("Cooldown in seconds before player can interact after an interaction")]
+    [SerializeField] private float m_interactCooldown = 0.4f;
+    private float m_secondsSinceLastInteraction = 1239048;
+
+    [Header("Sfx")]
+    [SerializeField] private AudioClip m_harvestSfx;
+    [SerializeField] private AudioClip m_tillSfx;
+    [SerializeField] private AudioClip m_waterSfx;
+    [SerializeField] private AudioClip m_plantSfx;
+
     [Header("Tilling Minigame")]
     [SerializeField] private GameObject m_tillSphere;
     [SerializeField] private bool m_randomTillMaskRotation = true;
@@ -117,6 +127,7 @@ public class Plant : MonoBehaviour
         {
             return;
         }
+        m_secondsSinceLastInteraction += Time.deltaTime;
         m_tillingProgressText.text = "Tilling Progress: " + ((int)(Mathf.InverseLerp(0, m_requiredTillingPercent, m_currentTilledPercent) * 100)) + "%";
         m_tillingProgressText.gameObject.SetActive(state == PlantState.Tealed || state == PlantState.Normal);
 
@@ -201,6 +212,8 @@ public class Plant : MonoBehaviour
         GameObject particles = Instantiate(m_tillingParticleSystem);
         particles.transform.position = hit.point + m_tillingParticlesOffset;
 
+        AudioSource.PlayClipAtPoint(m_tillSfx, transform.position);
+
         m_currentTilledPercent = GetTilledPercent();
         if (m_currentTilledPercent >= m_requiredTillingPercent)
         {
@@ -272,6 +285,8 @@ public class Plant : MonoBehaviour
 
     public bool ChangeState(InventoryItem item)
     {
+        if (m_secondsSinceLastInteraction < m_interactCooldown) return false;
+
         if (item.item.name == "Fertilizer" && state != PlantState.Completed)
         {
             multiplier += fertilizerMultiplier;
@@ -284,6 +299,7 @@ public class Plant : MonoBehaviour
         }
         else if (item.item is Seeds seeds && state == PlantState.Tealed)
         {
+            AudioSource.PlayClipAtPoint(m_plantSfx, transform.position);
             // reset hoe percent
             m_currentTilledPercent = 0;
             //changing state
