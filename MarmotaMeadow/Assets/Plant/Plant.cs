@@ -52,6 +52,7 @@ public class Plant : MonoBehaviour
 
     [Header("Tilling Minigame")]
     [SerializeField] private GameObject m_tillSphere;
+    [SerializeField] private bool m_randomTillMaskRotation = true;
     [SerializeField] private Collider m_tillCollider;
     [Tooltip("How far can the user till from?")]
     [SerializeField] private float m_maxRayTillDistance = 25;
@@ -153,6 +154,11 @@ public class Plant : MonoBehaviour
     {
         GameObject obj = Instantiate(m_tillSphere);
         obj.transform.position = worldPos + Vector3.down * (obj.GetComponent<Renderer>().bounds.size.y / 2.0f);
+
+        if (m_randomTillMaskRotation)
+        {
+            obj.transform.rotation *= Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
+        }
 
         Mask.AddScriptToObject(obj, new GameObject[1] { untealedGround });
 
