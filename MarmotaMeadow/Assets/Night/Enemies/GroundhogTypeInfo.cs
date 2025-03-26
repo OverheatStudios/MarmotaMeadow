@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static GroundhogScript;
 
 public class GroundhogTypeInfo : MonoBehaviour
@@ -9,8 +11,23 @@ public class GroundhogTypeInfo : MonoBehaviour
     [SerializeField] private float m_healthScalar = 1.0f;
     [SerializeField] public GroundhogState CurrentState = GroundhogState.Rising;
     [SerializeField] private float m_minYBeforeDisappear = -0.5f;
-    [SerializeField]  private GameObject m_bloodParticleSystem;
+    [SerializeField] private GameObject m_bloodParticleSystem;
     [SerializeField] private Vector3 m_bloodParticleOffset = new Vector3(0, 0, 0);
+    [SerializeField] private AudioClip m_woundedSfx;
+    private AudioSource m_woundedSource;
+
+    private void Start()
+    {
+        m_woundedSource = new GameObject().AddComponent<AudioSource>();
+        m_woundedSource.clip = m_woundedSfx;
+        m_woundedSource.loop = false;
+    }
+
+    public void PlayWoundedSfx(Vector3 worldPos)
+    {
+        m_woundedSource.transform.position = worldPos;
+        m_woundedSource.Play();
+    }
 
     public float GetMinYBeforeDisappear()
     {

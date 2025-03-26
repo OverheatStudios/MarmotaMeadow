@@ -116,6 +116,10 @@ public class GroundhogScript : MonoBehaviour
     public void Damage(float damage, Vector3 bulletWorldPosition)
     {
         m_health -= damage;
+        if (damage > 0 && bulletWorldPosition != Vector3.zero)
+        {
+            m_typeInfo.PlayWoundedSfx(transform.position);
+        }
 
         if (bulletWorldPosition != Vector3.zero)
         {

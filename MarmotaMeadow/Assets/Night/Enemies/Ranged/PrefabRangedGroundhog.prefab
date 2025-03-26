@@ -107,6 +107,7 @@ MonoBehaviour:
   m_minYBeforeDisappear: -1.25
   m_bloodParticleSystem: {fileID: 504569150299133013, guid: b6c3a36d36c5ec040976273001cf441e, type: 3}
   m_bloodParticleOffset: {x: 0, y: 0, z: 0}
+  m_woundedSfx: {fileID: 8300000, guid: b4fce53707143d1458b07e41263270c6, type: 3}
 --- !u!114 &5640712418259507936
 MonoBehaviour:
   m_ObjectHideFlags: 0
