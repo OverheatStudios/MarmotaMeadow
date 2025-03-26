@@ -3470,6 +3470,7 @@ MonoBehaviour:
   coinData:
     numberOfCoins: 1
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
+  m_gainCoinSfx: {fileID: 0}
 --- !u!4 &538011458
 Transform:
   m_ObjectHideFlags: 0
@@ -4362,6 +4363,7 @@ GameObject:
   - component: {fileID: 799813478}
   - component: {fileID: 799813477}
   - component: {fileID: 799813476}
+  - component: {fileID: 799813479}
   m_Layer: 11
   m_Name: Balcony
   m_TagString: Untagged
@@ -4541,6 +4543,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0, y: 5, z: 1}
   m_Center: {x: -0.5, y: 1, z: 0}
+--- !u!114 &799813479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799813470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd017d4f1b86bf64881e2d4015ea6ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_floorType: 2
 --- !u!1001 &811406527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9091,7 +9106,7 @@ PrefabInstance:
       objectReference: {fileID: 1369510650}
     - target: {fileID: 8942070438449667077, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
