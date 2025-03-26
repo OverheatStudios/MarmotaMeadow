@@ -9,6 +9,7 @@ public class CollisonsHandler : MonoBehaviour
     [SerializeField] private InventoryMager m_inventory;
     public System.Action OnPlayerCollision; 
     [SerializeField] private ObjectPooling m_ObjectPooling;
+    [SerializeField] private AudioClip m_pickupItemSfx;
     void Start()
     {
         
@@ -24,6 +25,7 @@ public class CollisonsHandler : MonoBehaviour
         if (!isActiveAndEnabled) return;
         if (other.gameObject.CompareTag("Crop"))
         {
+            AudioSource.PlayClipAtPoint(m_pickupItemSfx, other.transform.position);
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
             m_ObjectPooling.PutObjectBack("Crop", other.gameObject);
             //Destroy(other.gameObject);

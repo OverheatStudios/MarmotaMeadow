@@ -11001,6 +11001,7 @@ MonoBehaviour:
   coinData:
     numberOfCoins: 1
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
+  m_gainCoinSfx: {fileID: 8300000, guid: 92884d88edffe3242a938ac99d701eba, type: 3}
 --- !u!4 &2142993338
 Transform:
   m_ObjectHideFlags: 0

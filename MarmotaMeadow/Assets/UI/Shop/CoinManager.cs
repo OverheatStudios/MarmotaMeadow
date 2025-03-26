@@ -21,6 +21,7 @@ public class CoinManager : MonoBehaviour
     private string filePath;
     [SerializeField] private CoinData coinData;
     [SerializeField] private SaveManager m_saveManager;
+    [SerializeField] private AudioClip m_gainCoinSfx;
     // Start is called before the first frame update
 
     void Start()
@@ -54,6 +55,7 @@ public class CoinManager : MonoBehaviour
     public void IncreaseCoins(float amount)
     {
         coins += amount;
+        AudioSource.PlayClipAtPoint(m_gainCoinSfx, Camera.main.transform.position);
         if (CoinsText) CoinsText.text = GetCoins().ToString();
     }
 

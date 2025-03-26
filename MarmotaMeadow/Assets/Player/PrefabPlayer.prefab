@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventory: {fileID: 0}
   m_ObjectPooling: {fileID: 0}
+  m_pickupItemSfx: {fileID: 8300000, guid: 0a9994ac58e00e74e99c5d0ec380976c, type: 3}
 --- !u!1 &4274616188543242520
 GameObject:
   m_ObjectHideFlags: 0
