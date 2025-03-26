@@ -20,10 +20,10 @@ public class Plant : MonoBehaviour
 
     [SerializeField] private PlantState state = PlantState.Normal;
     [SerializeField] private Seeds m_seed = null;
-    [SerializeField] private TextMeshProUGUI stateText;
     [SerializeField] private TextMeshProUGUI growthText;
-    [SerializeField] private Image image;
+    [SerializeField] private TextMeshProUGUI m_tillingProgressText;
     [SerializeField] private float growthTimer = 0f;
+    [SerializeField] private GameObject m_clockIconGrowthTimer;
     [SerializeField] private float maxGrowthTimer;
     [SerializeField] private float multiplier = 1.0f;
     [SerializeField] private GameObject cropToSpawn;
@@ -67,6 +67,7 @@ public class Plant : MonoBehaviour
     private readonly List<GameObject> m_tillMasks = new();
     private float m_secondsSinceTilled = -1; // If negative, not tilled
     private Vector3 m_originalTilledGroundScale;
+    private float m_currentTilledPercent = 0;
 
     [Header("Camera")]
     [SerializeField] private Camera mainCamera;
@@ -93,6 +94,7 @@ public class Plant : MonoBehaviour
         m_lineMinigameUi.SetActive(false);
         m_originalTilledGroundScale = tealedGround.transform.localScale;
         growthTimer = maxGrowthTimer;
+        m_tillingProgressText.gameObject.SetActive(state == PlantState.Normal);
         m_billboard.SetSprite(null);
         tealedGround.SetActive(true);
         untealedGround.SetActive(true);
@@ -103,11 +105,17 @@ public class Plant : MonoBehaviour
         objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
         tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
+        m_clockIconGrowthTimer.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        m_tillingProgressText.text = "Tilling Progress: " + ((int)(Mathf.InverseLerp(0, m_requiredTillingPercent, m_currentTilledPercent) * 100)) + "%";
+        m_tillingProgressText.gameObject.SetActive(state == PlantState.Tealed || state == PlantState.Normal);
+
+        m_clockIconGrowthTimer.SetActive(state == PlantState.Planted);
+        growthText.gameObject.SetActive(state == PlantState.Planted || state == PlantState.Completed);
         m_lineMinigameExitUi.text = m_lineMinigameExitUi.text.Replace("[KEY]", GameInput.GetKeybind("ExitMinigame").ToString());
         HandleTillingAnimation();
 
@@ -126,11 +134,11 @@ public class Plant : MonoBehaviour
     private void HandleTillingAnimation()
     {
         if (m_secondsSinceTilled < 0) return;
-        
+
         m_secondsSinceTilled += Time.deltaTime;
         if (m_tillingAnimationDuration <= m_secondsSinceTilled)
         {
-            tealedGround.transform.localScale = m_originalTilledGroundScale; 
+            tealedGround.transform.localScale = m_originalTilledGroundScale;
             return;
         }
 
@@ -162,7 +170,8 @@ public class Plant : MonoBehaviour
         GameObject particles = Instantiate(m_tillingParticleSystem);
         particles.transform.position = hit.point + m_tillingParticlesOffset;
 
-        if (GetTilledPercent() >= m_requiredTillingPercent)
+        m_currentTilledPercent = GetTilledPercent();
+        if (m_currentTilledPercent >= m_requiredTillingPercent)
         {
             HoeFinish(item);
         }
@@ -222,7 +231,6 @@ public class Plant : MonoBehaviour
         tealedGround.SetActive(true);
 
         state = PlantState.Tealed;
-        stateText.text = state.ToString();
         multiplier += item.ReturnMultiplier();
         tealedGround.SetActive(true);
         untealedGround.SetActive(false);
@@ -245,12 +253,12 @@ public class Plant : MonoBehaviour
         }
         else if (item.item is Seeds seeds && state == PlantState.Tealed)
         {
+            // reset hoe percent
+            m_currentTilledPercent = 0;
             //changing state
             state = PlantState.Planted;
-            stateText.text = state.ToString();
             //adding the seed
             m_seed = seeds;
-            image.sprite = m_seed.ReturnImage();
             growthTimer = m_seed.ReturnGrowDuration();
             maxGrowthTimer = m_seed.ReturnGrowDuration();
             StartCoroutine(nameof(CountdownRoutine));
@@ -279,13 +287,12 @@ public class Plant : MonoBehaviour
     {
         while (growthTimer > 0)
         {
-            growthText.text = "Grow Timer: " + growthTimer.ToString();
+            growthText.text = growthTimer > 0 ? growthTimer.ToString() : "Ready";
             yield return new WaitForSeconds(1f);
             growthTimer -= 1f;
         }
 
         state = PlantState.Completed;
-        stateText.text = state.ToString();
         m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
         StopAllCoroutines();
     }
@@ -296,8 +303,6 @@ public class Plant : MonoBehaviour
         m_lineMinigameUi.SetActive(false);
 
         state = PlantState.Normal;
-        stateText.text = state.ToString();
-        image.sprite = null;
         m_billboard.SetSprite(null);
         GameObject particles = Instantiate(m_harvestingParticleSystem);
         particles.transform.SetParent(transform, false);
@@ -324,7 +329,7 @@ public class Plant : MonoBehaviour
         }
 
         finishedMiniGame = true;
-        
+
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
 
