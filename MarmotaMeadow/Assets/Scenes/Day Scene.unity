@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9025984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9025985}
+  - component: {fileID: 9025986}
+  m_Layer: 0
+  m_Name: Step3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9025985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025984}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 566637405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9025986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ec452381c3f5441bc628f41ec9d285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepText: Water the plant
+  plant: {fileID: 812279203127018572}
+  eventChoice: 3
 --- !u!1 &48460529
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +543,7 @@ GameObject:
   - component: {fileID: 90031396}
   - component: {fileID: 90031397}
   m_Layer: 0
-  m_Name: Step5
+  m_Name: Step6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -555,7 +602,7 @@ GameObject:
   - component: {fileID: 248866497}
   - component: {fileID: 248866498}
   m_Layer: 0
-  m_Name: Step3
+  m_Name: Step4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,6 +900,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387447062}
   m_CullTransparentMesh: 1
+--- !u!1 &390127796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 544145648267474994, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+  m_PrefabInstance: {fileID: 2494471893789471758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540026667
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +969,7 @@ MonoBehaviour:
   triggers:
   - {fileID: 1486997976}
   - {fileID: 1493068378}
+  - {fileID: 9025986}
   - {fileID: 248866498}
   - {fileID: 1905170685}
   - {fileID: 90031397}
@@ -942,6 +995,7 @@ Transform:
   m_Children:
   - {fileID: 1486997975}
   - {fileID: 1493068377}
+  - {fileID: 9025985}
   - {fileID: 248866497}
   - {fileID: 1905170684}
   - {fileID: 90031396}
@@ -961,11 +1015,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2501186632336930741, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_Height
-      value: 2.11
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 2501186632336930741, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_Radius
-      value: 0.54
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2501186632336930741, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_Enabled
@@ -1123,11 +1177,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 603934165}
   m_SourcePrefab: {fileID: 100100000, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
---- !u!1 &603934162 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8133200046893287152, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
-  m_PrefabInstance: {fileID: 603934161}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &603934163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7772325833652382186, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
@@ -3748,18 +3797,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486997974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327ef470f24cebc47abd9a7b59f5d602, type: 3}
+  m_Script: {fileID: 11500000, guid: 91ec452381c3f5441bc628f41ec9d285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StepText: Till the Farm Plot.
-  cameraObject: {fileID: 603934162}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  inventoryManager: {fileID: 1804676360}
-  maxDistance: 1000
-  specificItem: {fileID: 11400000, guid: 8c690c5024b741e498aa8314102947d0, type: 2}
-  yes: 0
+  plant: {fileID: 812279203127018572}
+  eventChoice: 1
 --- !u!1 &1493068376
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,18 +3844,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493068376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327ef470f24cebc47abd9a7b59f5d602, type: 3}
+  m_Script: {fileID: 11500000, guid: 91ec452381c3f5441bc628f41ec9d285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StepText: Plant some Corn.
-  cameraObject: {fileID: 603934162}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  inventoryManager: {fileID: 1804676360}
-  maxDistance: 1000
-  specificItem: {fileID: 11400000, guid: cbc03137cf0f77444ab58bdf02821b06, type: 2}
-  yes: 0
+  plant: {fileID: 812279203127018572}
+  eventChoice: 2
 --- !u!114 &1628700277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3347500824976187573, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
@@ -4058,6 +4095,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700839918}
   m_CullTransparentMesh: 1
+--- !u!1 &1717236826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8865579511690387235, guid: bee8eeac5ac3686468a7b76a83d1f087, type: 3}
+  m_PrefabInstance: {fileID: 812279203127018570}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1731346468 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7965537367107466392, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
@@ -4404,7 +4446,7 @@ GameObject:
   - component: {fileID: 1905170684}
   - component: {fileID: 1905170685}
   m_Layer: 0
-  m_Name: Step4
+  m_Name: Step5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4434,18 +4476,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1905170683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327ef470f24cebc47abd9a7b59f5d602, type: 3}
+  m_Script: {fileID: 11500000, guid: 91ec452381c3f5441bc628f41ec9d285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StepText: Harvest the Corn using your Scythe.
-  cameraObject: {fileID: 603934162}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  inventoryManager: {fileID: 1804676360}
-  maxDistance: 1000
-  specificItem: {fileID: 11400000, guid: b4c1704e071c1c042973d78a7859956c, type: 2}
-  yes: 0
+  plant: {fileID: 812279203127018572}
+  eventChoice: 4
 --- !u!1 &1910408950
 GameObject:
   m_ObjectHideFlags: 0
@@ -5400,6 +5436,14 @@ PrefabInstance:
       propertyPath: scrObjGlobalData
       value: 
       objectReference: {fileID: 11400000, guid: 12ce8c3d61969ce48a212418a998e083, type: 2}
+    - target: {fileID: 6374093376916602433, guid: 1b3aaa96604ab374e82bf05bda993431, type: 3}
+      propertyPath: m_plotsSpawned.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374093376916602433, guid: 1b3aaa96604ab374e82bf05bda993431, type: 3}
+      propertyPath: 'm_plotsSpawned.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1717236826}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6379,6 +6423,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: m_toolTip
+      value: 
+      objectReference: {fileID: 390127796}
     - target: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_toggleSettings
       value: 

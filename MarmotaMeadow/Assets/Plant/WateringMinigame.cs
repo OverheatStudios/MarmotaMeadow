@@ -88,30 +88,28 @@ public class WateringMinigame : MonoBehaviour
 
     void CheckForCollisions()
     {
-        if (GameInput.GetKeybind("Interact").GetKey())
-        {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = 1f; // Set the object's z position to a defined depth
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 1f; // Set the object's z position to a defined depth
 
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            trail.transform.position = worldPosition;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        trail.transform.position = worldPosition;
             
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
-            {
-                Destroy(hit.collider.gameObject);
-                Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
-                Debug.Log(hit.collider.name);
-            }
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
+        { 
+            Destroy(hit.collider.gameObject);
+            Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
+            Debug.Log(hit.collider.name);
+        }
 
-            if (transform.childCount == 0)
-            {
-                lineRenderer.positionCount = 0;
-                plant.WaterCrop();
-                finished = true;
-            }
+        if (transform.childCount == 0)
+        {
+            lineRenderer.positionCount = 0;
+            plant.WaterCrop();
+            finished = true;
         }
     }
 }
+
 

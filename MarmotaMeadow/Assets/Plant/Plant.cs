@@ -14,6 +14,7 @@ public class Plant : MonoBehaviour
         Normal,
         Tealed,
         Planted,
+        Waterd,
         Completed
     }
 
@@ -25,6 +26,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private GameObject m_clockIconGrowthTimer;
     [SerializeField] private float maxGrowthTimer;
     [SerializeField] private float multiplier = 1.0f;
+    [SerializeField] private float growOffset = 0;
     [SerializeField] private GameObject cropToSpawn;
     [SerializeField] private float throwAngle = 45f; // Angle of the throw (in degrees)
     [SerializeField] private float throwDistance = 5f;
@@ -87,6 +89,11 @@ public class Plant : MonoBehaviour
     [SerializeField] private bool finishedMiniGame = true;
     [SerializeField] private bool inHarvestingMiniGame = false;
     [SerializeField] private bool inWateringMiniGame = false;
+    
+    public System.Action OnTealed;
+    public System.Action OnPlanted;
+    public System.Action OnWatered;
+    public System.Action OnHarvested;
 
 
     // Start is called before the first frame update
@@ -115,12 +122,12 @@ public class Plant : MonoBehaviour
         m_tillingProgressText.text = "Tilling Progress: " + ((int)(Mathf.InverseLerp(0, m_requiredTillingPercent, m_currentTilledPercent) * 100)) + "%";
         m_tillingProgressText.gameObject.SetActive(state == PlantState.Tealed || state == PlantState.Normal);
 
-        m_clockIconGrowthTimer.SetActive(state == PlantState.Planted);
-        growthText.gameObject.SetActive(state == PlantState.Planted || state == PlantState.Completed);
+        m_clockIconGrowthTimer.SetActive(state == PlantState.Waterd);
+        growthText.gameObject.SetActive(state == PlantState.Waterd || state == PlantState.Completed);
         m_lineMinigameExitUi.text = m_lineMinigameExitUi.text.Replace("[KEY]", GameInput.GetKeybind("ExitMinigame").ToString());
         HandleTillingAnimation();
 
-        if (growthTimer < maxGrowthTimer / 2 && state == PlantState.Planted)
+        if (growthTimer < maxGrowthTimer / 2 && state == PlantState.Waterd)
         {
             m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
@@ -135,7 +142,7 @@ public class Plant : MonoBehaviour
             }
         }
 
-        if (planted && state == PlantState.Planted)
+        if (planted && state == PlantState.Waterd)
         {
 
             growthTimer -= Time.deltaTime;
@@ -257,6 +264,7 @@ public class Plant : MonoBehaviour
         tealedGround.SetActive(true);
 
         state = PlantState.Tealed;
+        OnTealed?.Invoke();
         multiplier += item.ReturnMultiplier();
         tealedGround.SetActive(true);
         untealedGround.SetActive(false);
@@ -285,16 +293,18 @@ public class Plant : MonoBehaviour
             state = PlantState.Planted;
             //adding the seed
             m_seed = seeds;
-            growthTimer = m_seed.ReturnGrowDuration();
-            maxGrowthTimer = m_seed.ReturnGrowDuration();
+            growthTimer = m_seed.ReturnGrowDuration() + growOffset;
+            maxGrowthTimer = m_seed.ReturnGrowDuration() + growOffset;
             planted = true;
             multiplier = m_seed.ReturnAmount();
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
+            OnPlanted?.Invoke();
             return true;
         }
-        else if (item.item.name == "watering can" && state == PlantState.Planted && planted)
+        else if (item.item.name == "watering can" && state == PlantState.Planted && planted && !inWateringMiniGame)
         {
+            inWateringMiniGame = true;
             playerMovement.enabled = false;
             originalCameraPosition = mainCamera.transform.position;
             originalCameraRotation = mainCamera.transform.rotation;
@@ -360,7 +370,7 @@ public class Plant : MonoBehaviour
         }
 
         finishedMiniGame = true;
-
+        OnHarvested?.Invoke();
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
 
@@ -406,6 +416,8 @@ public class Plant : MonoBehaviour
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
+        
+        inWateringMiniGame = inWaterMiniGame;
 
         m_lineMinigameUi.SetActive(inHarvestMiniGame || inWaterMiniGame);
         harvestingMiniGame.SetActive(inHarvestMiniGame);
@@ -423,8 +435,14 @@ public class Plant : MonoBehaviour
     {
         m_lineMinigameUi.SetActive(false);
         finishedMiniGame = true;
-
+        state = PlantState.Waterd;
+        OnWatered?.Invoke();
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
+    }
+
+    public void SetGrowTimerOffset(float offset)
+    {
+        growOffset += offset;
     }
 
 

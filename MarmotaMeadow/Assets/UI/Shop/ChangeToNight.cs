@@ -19,7 +19,7 @@ public class ChangeToNight : MonoBehaviour
         
         if (scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() < 0)
         {
-            text.text = "Complete the tutorial First";
+            text.text = "";
         }else if(maxTime > 0 && !isNight && !bed.ReturnIsInBed() && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
         {
             maxTime -= Time.deltaTime;
