@@ -111,6 +111,16 @@ public class InventoryMager : MonoBehaviour
         });
     }
 
+    public InventorySlot GetUpgradeSlot()
+    {
+        return m_upgradeslot?.GetComponent<InventorySlot>();
+    }
+
+    public InventorySlot GetSellSlot()
+    {
+        return m_sellSlot?.GetComponent<InventorySlot>();
+    }
+
     public bool AddItem(BaseItem item)
     {
         for (int i = 0; i < inventorySlots.Length; i++)

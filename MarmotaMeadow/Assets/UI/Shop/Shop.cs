@@ -11,6 +11,10 @@ public class Shop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI CoinsText;
     [SerializeField] private PlotManager plotManager;
     [SerializeField] private CoinManager coinManager;
+    [SerializeField] private TextMeshProUGUI m_upgradePriceText;
+    [SerializeField] private GameObject m_upgradePriceIcon;
+    [SerializeField] private TextMeshProUGUI m_sellPriceText;
+    [SerializeField] private GameObject m_sellPriceIcon;
 
     public void BuyItem(BaseItem item)
     {
@@ -22,6 +26,48 @@ public class Shop : MonoBehaviour
         }
         inventoryMager.AddItem(item);
         coinManager.DecreaseCoins(item.ReturnBuyCoinsAmount());
+    }
+
+    private void Start()
+    {
+        m_upgradePriceText.gameObject.SetActive(false);
+        m_upgradePriceIcon.SetActive(false);
+        m_sellPriceText.gameObject.SetActive(false);
+        m_sellPriceIcon.SetActive(false);
+    }
+
+    public void Update()
+    {
+        ShowPrice(inventoryMager.GetUpgradeSlot(), m_upgradePriceIcon, m_upgradePriceText, true);
+        ShowPrice(inventoryMager.GetSellSlot(), m_sellPriceIcon, m_sellPriceText, false);
+    }
+
+    private void ShowPrice(InventorySlot inventorySlot, GameObject priceIcon, TextMeshProUGUI priceText, bool isUpgrade)
+    {
+        InventoryItem item = inventorySlot?.GetComponentInChildren<InventoryItem>();
+        if (item == null || item.ReturnAmount() == 0)
+        {
+            priceIcon.SetActive(false);
+            priceText.gameObject.SetActive(false);
+        }
+        else
+        {
+            float price = -1;
+            if (isUpgrade && item.item is Tool tool)
+            {
+                price = tool.ReturnToolLevelCost();
+            }
+            else if (!isUpgrade && item.item is Crops crops)
+            {
+                price = crops.ReturnSellCoinsAmount() * item.ReturnAmount();
+            }
+
+            if (price == -1) return;
+
+            priceIcon.SetActive(true);
+            priceText.gameObject.SetActive(true);
+            priceText.text = ((int)price).ToString();
+        }
     }
 
     public void AddCoins(float coins)
