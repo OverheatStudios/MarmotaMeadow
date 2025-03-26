@@ -18,7 +18,7 @@ public class VirtualMouse : MonoBehaviour
     [SerializeField] private float m_maxControllerMouseAccelerationAfter = 2.5f;
     [Tooltip("Button on controller which causes a LMB click")]
     [SerializeField] private GamepadButton m_mouseClickButton = GamepadButton.A;
-
+    [SerializeField] private AudioClip m_buttonClickSfx;
     [SerializeField] private Texture2D m_cursorTexture;
     [SerializeField] private Texture2D m_cursorTexturePressed;
     [SerializeField] private Vector2 m_cursorHotspot = new(118, 58);
@@ -59,10 +59,15 @@ public class VirtualMouse : MonoBehaviour
         HandleMouseMovement(deltaTime);
     }
 
+    private void PlayButtonClickSfx()
+    {
+        if (!m_buttonClickSfx) return;
+        AudioSource.PlayClipAtPoint(m_buttonClickSfx, Camera.main.transform.position);
+    }
+
     private void HandleMouseClickUI()
     {
         if (!IsLMBDown()) return;
-        if (Input.GetMouseButtonDown(0)) return; // was a normal click so the on click will be triggered by unity
 
         var raycastResults = RaycastMouse();
         foreach (var result in raycastResults)
@@ -72,6 +77,9 @@ public class VirtualMouse : MonoBehaviour
             var buttons = obj.GetComponentsInChildren<Button>();
             foreach (var button in buttons)
             {
+                PlayButtonClickSfx();
+                if (Input.GetMouseButtonDown(0)) continue; // was a normal click so the on click will be triggered by unity
+
                 button.onClick.Invoke();
             }
         }

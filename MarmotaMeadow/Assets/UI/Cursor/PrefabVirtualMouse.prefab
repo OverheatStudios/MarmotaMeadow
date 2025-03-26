@@ -48,6 +48,7 @@ MonoBehaviour:
   m_maxControllerMouseAcceleration: 3
   m_maxControllerMouseAccelerationAfter: 2.5
   m_mouseClickButton: 6
+  m_buttonClickSfx: {fileID: 8300000, guid: 09270acaabcca0f4db372b100bb50fad, type: 3}
   m_cursorTexture: {fileID: 2800000, guid: 81671a0ba2879d24595e31213e558c97, type: 3}
   m_cursorTexturePressed: {fileID: 2800000, guid: 17361d626747b1648bf8bd64490e5837, type: 3}
   m_cursorHotspot: {x: 118, y: 58}
