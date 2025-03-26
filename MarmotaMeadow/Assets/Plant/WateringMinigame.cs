@@ -13,6 +13,12 @@ public class WateringMinigame : MonoBehaviour
     private Vector3 pointE;
     private Vector3 pointF;
     private Vector3 pointG;
+    private Vector3 pointH;
+    private Vector3 pointI;
+    private Vector3 pointJ;
+    private Vector3 pointK;
+    private Vector3 pointL;
+    private Vector3 pointM;
     
     [SerializeField] private GameObject colliders;
     [SerializeField] private float m_maxDistance;
@@ -49,6 +55,15 @@ public class WateringMinigame : MonoBehaviour
         pointE = transform.position * 2 - pointB;
         pointF = transform.position * 2 - pointC;
         pointG = pointA;
+        
+        pointH = (pointA + pointB) / 2;
+        pointI = (pointB + pointC) / 2;
+        pointJ = (pointC + pointD) / 2;
+        pointK = (pointD + pointE) / 2;
+        pointL = (pointE + pointF) / 2;
+        pointM = (pointF + pointG) / 2;
+        pointM = (pointG + pointH) / 2;
+        pointM = (pointH + pointI) / 2;
     }
 
     void DrawLine()
