@@ -17,9 +17,10 @@ public class TutorialManager : MonoBehaviour
     private string filePath;
     public TriggerBase[] triggers;
     public TextMeshProUGUI tutorialText;
+    [SerializeField] private GameObject m_tutorialTextBackground;
     public String textToDisplay;
-    
-    
+
+
     [SerializeField] ToturialData tutorialData;
     [SerializeField] private SaveManager m_saveManager;
 
@@ -27,7 +28,7 @@ public class TutorialManager : MonoBehaviour
     {
         filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
-        
+
         if (!tutorialData.isFinsihed)
         {
             ShowStep(tutorialData.step);
@@ -41,13 +42,15 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialText.text = triggers[stepIndex].StepText;
         }
+
+        m_tutorialTextBackground.SetActive(tutorialText.text.Length > 0 && tutorialText.isActiveAndEnabled);
     }
 
     void ShowStep(int stepIndex)
     {
         if (stepIndex < triggers.Length)
         {
-            
+
             if (triggers.Length > stepIndex && triggers[stepIndex])
             {
                 triggers[stepIndex].ActivateTrigger();
@@ -67,26 +70,26 @@ public class TutorialManager : MonoBehaviour
         tutorialData.step++;
         ShowStep(tutorialData.step);
     }
-    
+
     public void OnDestroy()
     {
         Save();
     }
-    
+
     public void Save()
     {
         string json = JsonUtility.ToJson(tutorialData, true);
         File.WriteAllText(filePath, json);
     }
-    
+
     private void Load()
     {
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
             ToturialData data = JsonUtility.FromJson<ToturialData>(json);
-            
-            if (data != null) 
+
+            if (data != null)
             {
                 tutorialData = data;
             }

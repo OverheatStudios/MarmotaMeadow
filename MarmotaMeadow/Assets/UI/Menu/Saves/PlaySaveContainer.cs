@@ -1,28 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem.Composites;
 using UnityEngine.UIElements;
 
 public class PlaySaveContainer : MonoBehaviour
 {
-    [SerializeField] private Transform m_scrollViewContent;
+    private static int NUM_SAVES_PER_PAGE = 3;
+    [SerializeField] private RectTransform m_scrollViewContent;
     [SerializeField] private SaveManager m_saveManager;
     [SerializeField] private GameObject m_playSaveButtonPrefab;
-    [SerializeField] private Vector3 m_buttonOffset = new Vector3(400, -50, 0);
-    [SerializeField] private float m_buttonSeperation = 20;
+    [SerializeField] private float m_ySpacing = 200;
+    [SerializeField] private float m_yOffset = 100;
+    [SerializeField] private GameObject m_prevPageButton;
+    [SerializeField] private GameObject m_nextPageButton;
+    [SerializeField] private TextMeshProUGUI m_pageText;
+
+    private int m_page;
+    private string[] m_saves;
+    private GameObject[] m_buttons = new GameObject[3];
 
     private void Start()
     {
-        string[] saves = m_saveManager.GetSaves();
-        for (int i = 0; i  < saves.Length; ++i)
-        {
-            GameObject button = Instantiate(m_playSaveButtonPrefab, m_scrollViewContent);
-            PlaySave playSave = button.GetComponent<PlaySave>();
-            playSave.SetSaveName(saves[i]);
+        m_saves = m_saveManager.GetSaves();
 
-            RectTransform rect = button.GetComponent<RectTransform>();
-            button.transform.position += m_buttonOffset + (m_buttonSeperation + Mathf.Abs(rect.sizeDelta.y)) * i * Vector3.down;
+        SetPage(0);
+    }
+
+    private void SetPage(int page)
+    {
+        m_page = page = Mathf.Clamp(page, 0, GetMaxPage());
+
+        m_pageText.text = new StringBuilder().Append("Page ").Append(m_page + 1).Append(" / ").Append(GetMaxPage() + 1).ToString();
+
+        // Display save buttons
+        for (int i = 0; i < NUM_SAVES_PER_PAGE; ++i)
+        {
+            if (m_buttons[i] != null)
+            {
+                Destroy(m_buttons[i]);
+            }
+
+            int saveIndex = m_page * 3 + i;
+            if (saveIndex >= m_saves.Length) continue;
+
+            GameObject button = Instantiate(m_playSaveButtonPrefab, m_scrollViewContent);
+            button.transform.position += Vector3.up * GetYCoordinateOffset(i);
+
+            PlaySave playSave = button.GetComponent<PlaySave>();
+            playSave.SetSaveName(m_saves[saveIndex]);
+
+            m_buttons[i] = button;
         }
+
+        // Page buttons
+        m_prevPageButton.SetActive(m_page > 0);
+        m_nextPageButton.SetActive(m_page < GetMaxPage());
+    }
+
+    public void NextPage()
+    {
+        SetPage(m_page + 1);
+    }
+
+    public void PreviousPage()
+    {
+        SetPage(m_page - 1);
+    }
+
+    private int GetMaxPage()
+    {
+        return Mathf.Max(0, Mathf.CeilToInt(m_saves.Length / (float)NUM_SAVES_PER_PAGE) - 1);
+    }
+
+    private float GetYCoordinateOffset(int index)
+    {
+        Assert.IsTrue(index >= 0);
+        Assert.IsTrue(index <= NUM_SAVES_PER_PAGE - 1);
+        return ((NUM_SAVES_PER_PAGE - (index + 2))) * m_ySpacing + m_yOffset;
     }
 }
