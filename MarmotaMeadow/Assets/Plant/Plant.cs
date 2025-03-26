@@ -146,7 +146,6 @@ public class Plant : MonoBehaviour
                 planted = false;
                 growthTimer = maxGrowthTimer;
                 state = PlantState.Completed;
-                stateText.text = state.ToString();
                 m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
             }
         }
