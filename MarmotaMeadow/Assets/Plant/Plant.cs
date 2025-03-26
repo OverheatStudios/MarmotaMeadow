@@ -99,6 +99,8 @@ public class Plant : MonoBehaviour
         m_billboard.SetSprite(null);
         tealedGround.SetActive(true);
         untealedGround.SetActive(true);
+        m_clockIconGrowthTimer.SetActive(false);
+        growthText.gameObject.SetActive(false);
         if (SceneManager.GetActiveScene().name == "NightScene")
         {
             return;
@@ -106,12 +108,15 @@ public class Plant : MonoBehaviour
         objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
         tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
-        m_clockIconGrowthTimer.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "NightScene")
+        {
+            return;
+        }
         m_tillingProgressText.text = "Tilling Progress: " + ((int)(Mathf.InverseLerp(0, m_requiredTillingPercent, m_currentTilledPercent) * 100)) + "%";
         m_tillingProgressText.gameObject.SetActive(state == PlantState.Tealed || state == PlantState.Normal);
 
