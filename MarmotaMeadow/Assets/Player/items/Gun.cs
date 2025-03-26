@@ -29,10 +29,16 @@ public class Gun : BaseItem
     [SerializeField] private AudioClip m_shootSfx;
     [SerializeField] private AudioClip m_reloadFinishSfx;
     [SerializeField] private CameraShakeSettings m_cameraShake;
+    [SerializeField] private int m_upgradeCost = 5;
 
     private void OnEnable()
     {
         m_currentAmmo = m_maxAmmo;
+    }
+
+    public int GetUpgradeCost()
+    {
+        return m_upgradeCost;
     }
 
     public void PlayReloadSfx()

@@ -60,6 +60,10 @@ public class Shop : MonoBehaviour
             {
                 price = tool.ReturnToolLevelCost();
             }
+            else if (isUpgrade && item.item is Gun gun)
+            {
+                price = gun.GetUpgradeCost();
+            }
             else if (!isUpgrade && item.item is Crops crops)
             {
                 price = crops.ReturnSellCoinsAmount() * item.ReturnAmount();
@@ -103,6 +107,13 @@ public class Shop : MonoBehaviour
             if (coinManager.GetCoins() < tool.ReturnToolLevelCost()) return;
 
             coinManager.DecreaseCoins(tool.ReturnToolLevelCost());
+            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
+        }
+        else if (item.GetComponentInChildren<InventoryItem>().item is Gun gun)
+        {
+            if (coinManager.GetCoins() < gun.GetUpgradeCost()) return;
+
+            coinManager.DecreaseCoins(gun.GetUpgradeCost());
             item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
         }
     }
