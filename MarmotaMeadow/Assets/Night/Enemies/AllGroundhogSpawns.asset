@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nightGroundhogSpawns:
   - GroundhogsThisNight:
-    - SecondsSinceNightBeginning: 15
+    - SecondsSinceNightBeginning: 3
       GroundhogType: 1
       NumberGroundhogs: 4
       SpawnInterval: 15
