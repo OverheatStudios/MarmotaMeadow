@@ -130,4 +130,9 @@ public class MenuButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
     }
+
+    public void OpenURL(string url)
+    {
+        Application.OpenURL(url);
+    }
 }
