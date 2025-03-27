@@ -59,6 +59,11 @@ public class DebugMenuScript : MonoBehaviour
         SceneManager.LoadScene("NightScene", LoadSceneMode.Single);
     }
 
+    public void ButtonLoadShopScene()
+    {
+        SceneManager.LoadScene("Shop", LoadSceneMode.Single);
+    }
+
     public void ButtonLoadDayScene()
     {
         SceneManager.LoadScene("Day Scene", LoadSceneMode.Single);
