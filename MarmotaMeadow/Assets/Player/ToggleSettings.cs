@@ -50,7 +50,7 @@ public class ToggleSettings : MonoBehaviour
             }
             m_cursorHandler.NotifyUiOpen();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && toggle)
+        else if (GameInput.GetKeybind("Pause").GetKeyDown() && toggle)
         {
             PlantToggler(toggle);
             toggle = false;

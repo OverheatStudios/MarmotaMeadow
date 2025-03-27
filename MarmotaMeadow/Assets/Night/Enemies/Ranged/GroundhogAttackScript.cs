@@ -54,6 +54,7 @@ public class GroundhogAttackScript : MonoBehaviour
     {
         m_secondsToAttack -= Time.deltaTime;
         if (m_secondsToAttack >= 0) return;
+        if (m_typeInfo.CurrentState != GroundhogScript.GroundhogState.Idle) return; // don't attack while going up or down
 
         m_secondsToAttack = GetAttackCooldown();
         Attack();

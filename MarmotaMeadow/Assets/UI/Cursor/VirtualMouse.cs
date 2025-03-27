@@ -16,7 +16,13 @@ public class VirtualMouse : MonoBehaviour
     [SerializeField] private float m_maxControllerMouseAcceleration = 3.0f;
     [Tooltip("How long to reach max acceleration in seconds")]
     [SerializeField] private float m_maxControllerMouseAccelerationAfter = 2.5f;
+    [Tooltip("Button on controller which causes a LMB click")]
     [SerializeField] private GamepadButton m_mouseClickButton = GamepadButton.A;
+    [SerializeField] private AudioClip m_buttonClickSfx;
+    [SerializeField] private Texture2D m_cursorTexture;
+    [SerializeField] private Texture2D m_cursorTexturePressed;
+    [SerializeField] private Vector2 m_cursorHotspot = new(118, 58);
+    [SerializeField] private SettingsScriptableObject m_settings;
 
     private Vector2 m_mousePos;
     private Vector2 m_lastMousePos;
@@ -24,20 +30,22 @@ public class VirtualMouse : MonoBehaviour
 
     void Start()
     {
-        if (Gamepad.current != null)
-        {
-            m_mousePos = new Vector2(Screen.width, Screen.height) / 2;
-        }
-        if (Mouse.current != null)
-        {
-            Mouse.current.WarpCursorPosition(m_mousePos);
-        }
-        m_lastMousePos = m_mousePos;
+        m_mousePos = new Vector2(Screen.width, Screen.height) / 2;
+        Mouse.current?.WarpCursorPosition(m_mousePos);
+        m_lastMousePos = m_mousePos; 
+        UpdateCursorTex();
     }
 
     private void Update()
     {
         HandleMouseClickUI();
+
+        if (IsLMBDown() || IsLMBUp()) UpdateCursorTex();
+    }
+
+    private void UpdateCursorTex()
+    {
+        Cursor.SetCursor(IsLMB() ? m_cursorTexturePressed : m_cursorTexture, m_cursorHotspot, CursorMode.Auto);
     }
 
     void LateUpdate()
@@ -52,10 +60,15 @@ public class VirtualMouse : MonoBehaviour
         HandleMouseMovement(deltaTime);
     }
 
+    private void PlayButtonClickSfx()
+    {
+        if (!m_buttonClickSfx) return;
+        AudioSource.PlayClipAtPoint(m_buttonClickSfx, Camera.main.transform.position, m_settings.GetSettings().GetGameVolume());
+    }
+
     private void HandleMouseClickUI()
     {
         if (!IsLMBDown()) return;
-        if (Input.GetMouseButtonDown(0)) return; // was a normal click so the on click will be triggered by unity
 
         var raycastResults = RaycastMouse();
         foreach (var result in raycastResults)
@@ -65,6 +78,9 @@ public class VirtualMouse : MonoBehaviour
             var buttons = obj.GetComponentsInChildren<Button>();
             foreach (var button in buttons)
             {
+                PlayButtonClickSfx();
+                if (Input.GetMouseButtonDown(0)) continue; // was a normal click so the on click will be triggered by unity
+
                 button.onClick.Invoke();
             }
         }

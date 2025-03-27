@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f684fb996e77894e9f56564f32233b9, type: 3}
   m_Name: ItemRifle
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 0}
+  m_handModelPrefab: {fileID: 4046243830329892476, guid: 7d99268b2bead464ab5b2be909a8a271, type: 3}
   m_isMinecraftModel: 0
   m_itemName: Rifle
   m_isStackable: 0
@@ -35,8 +35,10 @@ MonoBehaviour:
   m_shootSfx: {fileID: 8300000, guid: 42bf894da66280340835ba31371bc63a, type: 3}
   m_reloadFinishSfx: {fileID: 0}
   m_cameraShake:
-    Duration: 0
+    Duration: 0.25
     Intensity: 1
     Frequency: 1
     TransitionInDuration: 0.1
     TransitionOutDuration: 0.3
+  m_upgradeCost: 5
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}

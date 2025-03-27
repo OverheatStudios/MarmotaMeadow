@@ -494,6 +494,7 @@ MonoBehaviour:
   m_spriteDied: {fileID: 21300000, guid: 995460e7c4c1f0841abbcedb4c52a0cc, type: 3}
   m_spriteBankrupt: {fileID: 21300000, guid: f3d324a2a125e644494bc4767201901f, type: 3}
   m_background: {fileID: 1050984634}
+  m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
 --- !u!1 &1703521450
 GameObject:
   m_ObjectHideFlags: 0

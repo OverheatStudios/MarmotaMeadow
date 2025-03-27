@@ -18,6 +18,7 @@ public class MenuButtonScript : MonoBehaviour
 
     [Header("Audio Settings")]
     [SerializeField] private UiSlider m_musicVolumeSlider;
+    [SerializeField] private UiSlider m_gameVolumeSlider;
 
     [Header("Video Settings")]
     [SerializeField] private Toggle m_dynamicCrosshairToggle;
@@ -28,6 +29,7 @@ public class MenuButtonScript : MonoBehaviour
     private void Start()
     {
         m_musicVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetMusicVolume(val));
+        m_gameVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetGameVolume(val));
 
         m_dynamicCrosshairToggle.onValueChanged.AddListener(val => m_settings.GetSettings().SetDynamicCrosshair(val));
 
@@ -39,6 +41,7 @@ public class MenuButtonScript : MonoBehaviour
         if (!m_settings.IsUiDirty()) return;
 
         m_musicVolumeSlider.SetValue(m_settings.GetSettings().GetMusicVolume());
+        m_gameVolumeSlider.SetValue(m_settings.GetSettings().GetGameVolume());
 
         m_dynamicCrosshairToggle.isOn = m_settings.GetSettings().IsDynamicCrosshair();
 

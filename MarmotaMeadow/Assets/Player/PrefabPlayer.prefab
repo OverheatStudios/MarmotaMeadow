@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventoryManager: {fileID: 0}
   m_minecraftHeldItemPos: {x: 0.6, y: -0.3, z: 1}
-  m_minecraftHeldItemRot: {x: 180, y: 270, z: 180}
+  m_minecraftHeldItemRot: {x: 0, y: 270, z: 0}
   m_minecraftHeldItemScale: {x: 0.9, y: 0.9, z: 0.8}
 --- !u!1 &2661324106007050100
 GameObject:
@@ -171,6 +171,14 @@ MonoBehaviour:
   m_crouchingSpeedMultiplier: 0.3
   m_extraColliderReductionMultiplier: 1.25
   m_isCrouchingEnabled: 1
+  m_collisionsHandler: {fileID: 8942070438449667077}
+  m_walkingSfx:
+  - First: 1
+    Second: {fileID: 8300000, guid: 410400416afaf1c469ef45ba9587b467, type: 3}
+  - First: 2
+    Second: {fileID: 8300000, guid: 9a70aa8366ed7ee4698a0ae71868778f, type: 3}
+  m_walkingSfxFadeOutDuration: 0.2
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
 --- !u!23 &7827074693464386728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -287,6 +295,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventory: {fileID: 0}
   m_ObjectPooling: {fileID: 0}
+  m_pickupItemSfx: {fileID: 8300000, guid: 0a9994ac58e00e74e99c5d0ec380976c, type: 3}
+  m_playerCollider: {fileID: 2501186632336930741}
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
 --- !u!1 &4274616188543242520
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +382,6 @@ MonoBehaviour:
   m_data: {fileID: 11400000, guid: 12ce8c3d61969ce48a212418a998e083, type: 2}
   m_shootSound: {fileID: 6608403481258858457}
   m_cooldownBar: {fileID: 0}
-  m_cooldownBarMask: {fileID: 0}
   m_ammoText: {fileID: 0}
   m_reloadText: {fileID: 0}
   m_randomDamageScale: 0.2
@@ -384,8 +394,10 @@ MonoBehaviour:
   m_inventoryManager: {fileID: 0}
   m_cursorHandler: {fileID: 0}
   m_cameraScript: {fileID: 0}
+  m_cameraShake: {fileID: 0}
   m_canvas: {fileID: 0}
-  m_movementScript: {fileID: 0}
+  m_movementScript: {fileID: 3726438974270153959}
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
 --- !u!82 &6608403481258858457
 AudioSource:
   m_ObjectHideFlags: 0

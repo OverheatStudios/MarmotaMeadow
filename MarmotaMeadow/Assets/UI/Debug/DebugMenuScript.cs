@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DebugMenuScript : MonoBehaviour
 {
+    public static bool ForceDisableCheats = false;
+
     /// <summary>
     /// If true, debug menu can be opened with ctrl+d, else it can't be opened
     /// </summary>
     [SerializeField] private bool m_canOpenDebugMenu = true;
     [SerializeField] private GameObject m_mainDebugPanel;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
+    [SerializeField] private ScrObjGameOver m_gameOverReason;
+    [SerializeField] private TextMeshProUGUI m_cheatDisableText;
 
     private bool m_isDebugMenuOpen = false;
 
     void Start()
     {
-       CloseDebugMenu();
+        CloseDebugMenu();
     }
 
     void Update()
@@ -36,6 +41,7 @@ public class DebugMenuScript : MonoBehaviour
         m_isDebugMenuOpen = true;
         m_cursorHandler.NotifyUiOpen();
         SetActiveRecursive(m_mainDebugPanel, true);
+        m_cheatDisableText.gameObject.SetActive(ForceDisableCheats);
     }
 
     void CloseDebugMenu()
@@ -59,6 +65,11 @@ public class DebugMenuScript : MonoBehaviour
         SceneManager.LoadScene("NightScene", LoadSceneMode.Single);
     }
 
+    public void ButtonLoadShopScene()
+    {
+        SceneManager.LoadScene("Shop", LoadSceneMode.Single);
+    }
+
     public void ButtonLoadDayScene()
     {
         SceneManager.LoadScene("Day Scene", LoadSceneMode.Single);
@@ -67,5 +78,23 @@ public class DebugMenuScript : MonoBehaviour
     public void ButtonLoadMenuScene()
     {
         SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+    }
+
+    public void GameOverDie()
+    {
+        m_gameOverReason.GameOverReason = ScrObjGameOver.Reason.Died;
+        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+    }
+
+    public void GameOverDebt()
+    {
+        m_gameOverReason.GameOverReason = ScrObjGameOver.Reason.Bankrupt;
+        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+    }
+
+    public void GameOverWin()
+    {
+        m_gameOverReason.GameOverReason = ScrObjGameOver.Reason.Won;
+        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
     }
 }

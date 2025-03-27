@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &842424813187244922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8630177566541802172}
+  - component: {fileID: 8095390883297675814}
+  m_Layer: 0
+  m_Name: PrefabVirtualMouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8630177566541802172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842424813187244922}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1279.5114, y: 555.73157, z: 8.216547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8095390883297675814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842424813187244922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf3b9d11a7901540944ba5ce0c2bca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_controllerMouseSpeed: 500
+  m_maxControllerMouseAcceleration: 3
+  m_maxControllerMouseAccelerationAfter: 2.5
+  m_mouseClickButton: 6
+  m_buttonClickSfx: {fileID: 8300000, guid: c202a28dffbfe124ab9fdad96bcab582, type: 3}
+  m_cursorTexture: {fileID: 2800000, guid: 81671a0ba2879d24595e31213e558c97, type: 3}
+  m_cursorTexturePressed: {fileID: 2800000, guid: 17361d626747b1648bf8bd64490e5837, type: 3}
+  m_cursorHotspot: {x: 118, y: 58}
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}

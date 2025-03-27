@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "CursorHandlerScript", menuName = "Scriptable Objects/CursorHandlerScript")]
 public class CursorHandlerScript : ScriptableObject
 {
+    [SerializeField] private GameObject m_virtualMousePrefab;
+
     private bool m_isUiOpen;
     private VirtualMouse m_virtualMouse;
 
@@ -29,7 +31,7 @@ public class CursorHandlerScript : ScriptableObject
     {
         if (m_virtualMouse == null)
         {
-            m_virtualMouse = new GameObject().AddComponent<VirtualMouse>();
+            m_virtualMouse = Instantiate(m_virtualMousePrefab).GetComponent<VirtualMouse>();
             try
             {
                 DontDestroyOnLoad(m_virtualMouse.gameObject);
