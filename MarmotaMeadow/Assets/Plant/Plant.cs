@@ -88,7 +88,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private float duration;
     private Vector3 originalCameraPosition;
     private Quaternion originalCameraRotation;
-    private bool isCameraInPosition = false;
+    [SerializeField] private bool isCameraInPosition = false;
 
     [Header("Line MiniGame")]
     [SerializeField] private GameObject m_lineMinigameUi;
@@ -218,8 +218,7 @@ public class Plant : MonoBehaviour
 
         GameObject particles = Instantiate(m_tillingParticleSystem);
         particles.transform.position = hit.point + m_tillingParticlesOffset;
-
-        //AudioSource.PlayClipAtPoint(m_tillSfx, transform.position);
+        AudioSource.PlayClipAtPoint(m_tillSfx, transform.position);
 
         m_currentTilledPercent = GetTilledPercent();
         if (m_currentTilledPercent >= m_requiredTillingPercent)
@@ -307,7 +306,7 @@ public class Plant : MonoBehaviour
         }
         else if (item.item is Seeds seeds && state == PlantState.Tealed)
         {
-            //AudioSource.PlayClipAtPoint(m_plantSfx, transform.position);
+            AudioSource.PlayClipAtPoint(m_plantSfx, transform.position);
             // reset hoe percent
             m_currentTilledPercent = 0;
             //changing state
@@ -333,8 +332,9 @@ public class Plant : MonoBehaviour
             StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration, false, true));
             return true;
         }
-        else if (item.item.name == "harvesting tool" && state == PlantState.Completed && !isCameraInPosition)
+        else if (item.item.name == "harvesting tool" && state == PlantState.Completed && !inHarvestingMiniGame)
         {
+            inHarvestingMiniGame = true;
             playerMovement.enabled = false;
             originalCameraPosition = mainCamera.transform.position;
             originalCameraRotation = mainCamera.transform.rotation;
@@ -439,6 +439,7 @@ public class Plant : MonoBehaviour
         isCameraInPosition = !isCameraInPosition;
         
         inWateringMiniGame = inWaterMiniGame;
+        inHarvestingMiniGame = inHarvestMiniGame;
 
         m_lineMinigameUi.SetActive(inHarvestMiniGame || inWaterMiniGame);
         harvestingMiniGame.SetActive(inHarvestMiniGame);

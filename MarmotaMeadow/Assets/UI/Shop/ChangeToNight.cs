@@ -12,6 +12,7 @@ public class ChangeToNight : MonoBehaviour
     [SerializeField] private bool isNight;
     [SerializeField] private Bed bed;
     [SerializeField] ScrObjGlobalData scrObjGlobalData;
+    [SerializeField] private GameObject moon;
 
     void Update()
     {
@@ -20,6 +21,7 @@ public class ChangeToNight : MonoBehaviour
         if (scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() < 0)
         {
             text.text = "";
+            moon.SetActive(false);
         }else if(maxTime > 0 && !isNight && !bed.ReturnIsInBed() && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
         {
             maxTime -= Time.deltaTime;

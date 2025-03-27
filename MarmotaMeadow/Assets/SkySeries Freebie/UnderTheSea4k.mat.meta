@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 9f85ba99fcc6fb745b5eaa89654c61ae
+guid: 119ec07f1c7ed204db46bd8465fd5a50
+timeCreated: 1518751561
+licenseType: Store
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103633
+  packageName: Skybox Series Free
+  packageVersion: 4.3
+  assetPath: Assets/SkySeries Freebie/UnderTheSea4k.mat
+  uploadId: 472193

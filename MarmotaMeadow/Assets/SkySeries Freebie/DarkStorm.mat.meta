@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: eb9b0ca991dfa684baf758e7d0cd8d2d
+guid: 2039a0ad0a9d05549928b70362f54902
+timeCreated: 1521702194
+licenseType: Store
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103633
+  packageName: Skybox Series Free
+  packageVersion: 4.3
+  assetPath: Assets/SkySeries Freebie/DarkStorm.mat
+  uploadId: 472193

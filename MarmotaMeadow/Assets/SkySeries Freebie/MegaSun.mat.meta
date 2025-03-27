@@ -1,8 +1,16 @@
 fileFormatVersion: 2
-guid: 0614fab721ee9fa4585a009123382341
+guid: cede08c9fc471e64884909cd4bbeaf59
+timeCreated: 1509146910
+licenseType: Store
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 0
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103633
+  packageName: Skybox Series Free
+  packageVersion: 4.3
+  assetPath: Assets/SkySeries Freebie/MegaSun.mat
+  uploadId: 472193

@@ -1,7 +1,15 @@
 fileFormatVersion: 2
-guid: d43a1993877c26f4790a42dc18aa1d40
+guid: add36ebe5ee5af347a876cdf41d00709
+timeCreated: 1509147461
+licenseType: Store
 TextScriptImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 103633
+  packageName: Skybox Series Free
+  packageVersion: 4.3
+  assetPath: Assets/SkySeries Freebie/Hdri setup.txt
+  uploadId: 472193
