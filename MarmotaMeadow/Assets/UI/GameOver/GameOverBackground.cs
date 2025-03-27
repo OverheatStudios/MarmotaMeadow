@@ -10,6 +10,7 @@ public class GameOverBackground : MonoBehaviour
     [SerializeField] private Sprite m_spriteDied;
     [SerializeField] private Sprite m_spriteBankrupt;
     [SerializeField] private Image m_background;
+    [SerializeField] private SaveManager m_saveManager;
 
     private void Start()
     {
@@ -25,5 +26,7 @@ public class GameOverBackground : MonoBehaviour
                 m_background.sprite = m_spriteBankrupt;
                 break;
         }
+
+        StartCoroutine(m_saveManager.MarkSaveGameOver(m_saveManager.GetCurrentSavePath()));
     }
 }

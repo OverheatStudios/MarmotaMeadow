@@ -1,14 +1,19 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "SaveManager", menuName = "Scriptable Objects/SaveManager")]
 public class SaveManager : ScriptableObject
 {
+    private const bool DEBUG = true;
+
     /// <summary>
     /// New saves will be created by copying this, should be relative to the assets (data) folder
     /// </summary>
@@ -21,16 +26,22 @@ public class SaveManager : ScriptableObject
     /// </summary>
     [SerializeField] private string m_savesDirectoryName;
 
+    [SerializeField]
+    [Tooltip("Where are saves that are gameover stored")] private string m_gameOverSaves = "GameOverSaves.json";
+
     /// <summary>
     /// Name of current save folder
     /// </summary>
     private string m_currentSaveName;
     public TMP_InputField SaveNameInputField;
     public TextMeshProUGUI SaveNameErrorText;
+    private string m_gameOverSavesPath;
+    private ListWrapper<string> m_savesThatAreGameOver = new();
 
     private void OnEnable()
     {
         if (!GameRunning.IsGameRunning()) return;
+        m_gameOverSavesPath = Path.Combine(Application.dataPath, m_gameOverSaves);
         m_currentSaveName = TEST_SAVE;
 
         if (!Directory.Exists(GetBaseSaveDirectoryPath()))
@@ -43,10 +54,24 @@ public class SaveManager : ScriptableObject
             Directory.CreateDirectory(GetSavesDirectoryPath());
         }
 
-        SwitchSave(m_currentSaveName);
-        if (!Directory.Exists(GetCurrentSavePath()))
+        if (DEBUG)
         {
-            CreateSave(GetCurrentSavePath());
+            SwitchSave(m_currentSaveName);
+            if (!Directory.Exists(GetCurrentSavePath()))
+            {
+                CreateSave(GetCurrentSavePath());
+            }
+        }
+
+        // Read game over saves
+        if (File.Exists(m_gameOverSavesPath))
+        {
+            string json = File.ReadAllText(m_gameOverSavesPath);
+            m_savesThatAreGameOver = JsonUtility.FromJson<ListWrapper<string>>(json);
+            m_savesThatAreGameOver ??= new();
+        } else
+        {
+            m_savesThatAreGameOver = new(); // Required since its a scriptable object
         }
     }
 
@@ -92,6 +117,28 @@ public class SaveManager : ScriptableObject
         }
     }
 
+    public IEnumerator MarkSaveGameOver(string currentSavePath)
+    {
+        Assert.IsTrue(SceneManager.GetActiveScene().name == "GameOverScene");
+
+        if (!File.Exists(m_gameOverSavesPath))
+        {
+            File.Create(m_gameOverSavesPath);
+        }
+
+        string path = GetCurrentSavePath();
+        string saveName = Path.GetFileName(path);
+        if (saveName == "Test" && DEBUG) yield return null;
+        if (!m_savesThatAreGameOver.List.Contains(saveName))
+        {
+            m_savesThatAreGameOver.List.Add(saveName);
+
+            string json = JsonUtility.ToJson(m_savesThatAreGameOver);
+            File.WriteAllText(m_gameOverSavesPath, json);
+        }
+        yield return null;
+    }
+
     private bool IsSaveNameValid(string saveName)
     {
         foreach (char c in saveName)
@@ -108,7 +155,7 @@ public class SaveManager : ScriptableObject
     public bool DoesSaveExist(string saveName)
     {
         string[] saves = GetSaves();
-        for (int i = 0; i < saves.Length;i++)
+        for (int i = 0; i < saves.Length; i++)
         {
             saves[i] = saves[i].ToLower();
         }
@@ -153,6 +200,22 @@ public class SaveManager : ScriptableObject
             saves[i] = Path.GetFileName(folder);
         }
         return saves;
+    }
+
+    /// <summary>
+    /// Get the name of all saves that aren't game over
+    /// </summary>
+    /// <returns>List of directory names</returns>
+    public List<string> GetPlayableSaves()
+    {
+        string[] saves = GetSaves();
+        List<string> playable = new();
+        foreach (string save in saves)
+        {
+            if (m_savesThatAreGameOver.List.Contains(save)) continue;
+            playable.Add(save);
+        }
+        return playable;
     }
 
     /// <summary>
