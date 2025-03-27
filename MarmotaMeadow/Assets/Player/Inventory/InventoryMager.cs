@@ -74,12 +74,6 @@ public class InventoryMager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            //AddItem(item);
-            AddItem(item2);
-        }
-
         if (inventoryItem)
         {
             inventoryItem.transform.position = Input.mousePosition;

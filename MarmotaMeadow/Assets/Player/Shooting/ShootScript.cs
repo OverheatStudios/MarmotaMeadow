@@ -75,6 +75,8 @@ public class ShootScript : MonoBehaviour
 
     void Update()
     {
+        m_reloadText.text = "Press " + GameInput.GetKeybind("Reload").ToString() + " to reload";
+
         // Is holding gun?
         if (m_inventoryManager.GetHeldItem() is not Gun gun)
         {
@@ -83,7 +85,7 @@ public class ShootScript : MonoBehaviour
             m_reloadBar = null;
             return;
         }
-
+        
         // Cooldown
         if (HandleCooldown()) return;
 
@@ -95,7 +97,7 @@ public class ShootScript : MonoBehaviour
         if (m_cursorHandler.IsUiOpen()) return;
 
         // Reloading
-        if (Input.GetKeyDown(KeyCode.R))
+        if (GameInput.GetKeybind("Reload").GetKeyDown())
         {
             AttemptAmmoReload();
             return;
@@ -156,6 +158,8 @@ public class ShootScript : MonoBehaviour
     private void ShowReloadUi()
     {
         HideReloadUi();
+
+        if (m_reloadBar && m_reloadBar.IsRunning()) return;
 
         if (m_noBulletsToReload)
         {
@@ -404,8 +408,8 @@ public class ShootScript : MonoBehaviour
         float reloadCooldown = gun.GetReloadCooldownSeconds();
         gun.PlayReloadSfx();
         m_reloadBar.StartProgress(reloadCooldown);
-        await Task.Delay((int)(reloadCooldown * 1000));
-        if (gun) SetAmmo(gun.GetMaxAmmo());
+        await Task.Delay((int)(reloadCooldown * 1000 - 10));
+        if (gun == m_inventoryManager.GetHeldInventoryItem().item) SetAmmo(gun.GetMaxAmmo());
     }
 
     /// <summary>
