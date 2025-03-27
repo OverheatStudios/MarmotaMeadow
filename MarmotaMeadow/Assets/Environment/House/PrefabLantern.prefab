@@ -163,12 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae4429c32d85c840bea9f61572a1670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_minFlickerTime: 0.25
-  m_maxFlickerTime: 0.5
+  m_minFlickerTime: 1.5
+  m_maxFlickerTime: 3
   m_colors:
-  - {r: 1, g: 0.8549239, b: 0, a: 0}
-  - {r: 0.6698113, g: 0.40626156, b: 0.11058204, a: 0}
-  - {r: 1, g: 0.7028302, b: 0.7028302, a: 0}
+  - {r: 1, g: 0.19862816, b: 0, a: 0}
+  - {r: 0.67058825, g: 0.22690324, b: 0.10980391, a: 0}
+  - {r: 0.8301887, g: 0.4259761, b: 0.16055535, a: 0}
   m_light: {fileID: 8927381566361575146}
 --- !u!1001 &7420215817429722214
 PrefabInstance:
