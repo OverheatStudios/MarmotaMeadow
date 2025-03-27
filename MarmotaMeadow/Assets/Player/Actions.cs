@@ -75,13 +75,17 @@ public class Actions : MonoBehaviour
 
                 if (heldItem.transform.childCount > 0)
                 {
-                    if (!hit.collider.GetComponent<Plant>().ChangeState(heldItem))
+                    if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) == false)
                     {
                         StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                     }
-                    else if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) && heldItem.item.IsStackable())
+                    else 
                     {
-                        heldItem.DecreaseAmount();
+                        hit.collider.GetComponent<Plant>().ChangeState(heldItem);
+                        if (heldItem.item.IsStackable())
+                        {
+                            heldItem.DecreaseAmount();
+                        }
                     }
                 }
             }

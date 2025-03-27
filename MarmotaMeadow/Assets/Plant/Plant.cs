@@ -219,7 +219,7 @@ public class Plant : MonoBehaviour
         GameObject particles = Instantiate(m_tillingParticleSystem);
         particles.transform.position = hit.point + m_tillingParticlesOffset;
 
-        AudioSource.PlayClipAtPoint(m_tillSfx, transform.position);
+        //AudioSource.PlayClipAtPoint(m_tillSfx, transform.position);
 
         m_currentTilledPercent = GetTilledPercent();
         if (m_currentTilledPercent >= m_requiredTillingPercent)
@@ -307,7 +307,7 @@ public class Plant : MonoBehaviour
         }
         else if (item.item is Seeds seeds && state == PlantState.Tealed)
         {
-            AudioSource.PlayClipAtPoint(m_plantSfx, transform.position);
+            //AudioSource.PlayClipAtPoint(m_plantSfx, transform.position);
             // reset hoe percent
             m_currentTilledPercent = 0;
             //changing state
