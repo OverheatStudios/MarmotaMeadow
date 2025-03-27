@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DebugMenuScript : MonoBehaviour
 {
+    public static bool ForceDisableCheats = false;
+
     /// <summary>
     /// If true, debug menu can be opened with ctrl+d, else it can't be opened
     /// </summary>
@@ -12,12 +15,13 @@ public class DebugMenuScript : MonoBehaviour
     [SerializeField] private GameObject m_mainDebugPanel;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private ScrObjGameOver m_gameOverReason;
+    [SerializeField] private TextMeshProUGUI m_cheatDisableText;
 
     private bool m_isDebugMenuOpen = false;
 
     void Start()
     {
-       CloseDebugMenu();
+        CloseDebugMenu();
     }
 
     void Update()
@@ -37,6 +41,7 @@ public class DebugMenuScript : MonoBehaviour
         m_isDebugMenuOpen = true;
         m_cursorHandler.NotifyUiOpen();
         SetActiveRecursive(m_mainDebugPanel, true);
+        m_cheatDisableText.gameObject.SetActive(ForceDisableCheats);
     }
 
     void CloseDebugMenu()

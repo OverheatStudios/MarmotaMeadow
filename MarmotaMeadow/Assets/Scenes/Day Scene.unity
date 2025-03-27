@@ -7249,6 +7249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventoryManager: {fileID: 1804676360}
   m_cornSeeds: {fileID: 11400000, guid: cbc03137cf0f77444ab58bdf02821b06, type: 2}
+  m_infiniteDayToggle: {fileID: 1651950843}
 --- !u!1001 &4768367600618884328
 PrefabInstance:
   m_ObjectHideFlags: 0

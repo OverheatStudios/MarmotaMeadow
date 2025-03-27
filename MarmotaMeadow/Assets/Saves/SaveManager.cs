@@ -12,7 +12,11 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName = "SaveManager", menuName = "Scriptable Objects/SaveManager")]
 public class SaveManager : ScriptableObject
 {
+#if UNITY_EDITOR
     private const bool DEBUG = true;
+#else
+    private const bool DEBUG = false;
+#endif
 
     /// <summary>
     /// New saves will be created by copying this, should be relative to the assets (data) folder
@@ -69,7 +73,8 @@ public class SaveManager : ScriptableObject
             string json = File.ReadAllText(m_gameOverSavesPath);
             m_savesThatAreGameOver = JsonUtility.FromJson<ListWrapper<string>>(json);
             m_savesThatAreGameOver ??= new();
-        } else
+        }
+        else
         {
             m_savesThatAreGameOver = new(); // Required since its a scriptable object
         }
