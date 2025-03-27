@@ -86,6 +86,13 @@ public class WateringMinigame : MonoBehaviour
         GameObject D = Instantiate(colliders, pointD, Quaternion.identity);
         GameObject E = Instantiate(colliders, pointE, Quaternion.identity);
         GameObject F = Instantiate(colliders, pointF, Quaternion.identity);
+        GameObject G = Instantiate(colliders, pointG, Quaternion.identity);
+        GameObject H = Instantiate(colliders, pointH, Quaternion.identity);
+        GameObject I = Instantiate(colliders, pointI, Quaternion.identity);
+        GameObject J = Instantiate(colliders, pointJ, Quaternion.identity);
+        GameObject K = Instantiate(colliders, pointK, Quaternion.identity);
+        GameObject L = Instantiate(colliders, pointL, Quaternion.identity);
+        GameObject M = Instantiate(colliders, pointM, Quaternion.identity);
         
         A.transform.parent = transform;
         A.name = "A";
@@ -99,6 +106,20 @@ public class WateringMinigame : MonoBehaviour
         E.name = "E";
         F.transform.parent = transform;
         F.name = "F";
+        G.transform.parent = transform;
+        G.name = "G";
+        H.transform.parent = transform;
+        H.name = "H";
+        I.transform.parent = transform;
+        I.name = "I";
+        J.transform.parent = transform;
+        J.name = "J";
+        K.transform.parent = transform;
+        K.name = "K";
+        L.transform.parent = transform;
+        L.name = "L";
+        M.transform.parent = transform;
+        M.name = "M";
     }
 
     void CheckForCollisions()

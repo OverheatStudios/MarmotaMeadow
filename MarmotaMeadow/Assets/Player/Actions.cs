@@ -75,8 +75,11 @@ public class Actions : MonoBehaviour
 
                 if (heldItem.transform.childCount > 0)
                 {
-                    if (hit.collider.GetComponent<Plant>().ChangeState(heldItem)
-                        && heldItem.item.IsStackable())
+                    if (!hit.collider.GetComponent<Plant>().ChangeState(heldItem))
+                    {
+                        StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
+                    }
+                    else if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) && heldItem.item.IsStackable())
                     {
                         heldItem.DecreaseAmount();
                     }
@@ -130,5 +133,55 @@ public class Actions : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         mesh.material.color = originalColor;
+    }
+    
+    IEnumerator ShowRedToonOverlay(GameObject obj)
+    {
+        var meshes = obj.GetComponentsInChildren<MeshRenderer>();
+        if (meshes.Length > 0)
+        {
+
+            // Set colour
+            obj.layer = m_defaultLayer;
+            Coroutine[] coroutines = new Coroutine[meshes.Length];
+            for (int i = 0; i < meshes.Length; i++)
+            {
+                coroutines[i] = StartCoroutine(ShowRedToonOverlayForMesh(meshes[i]));
+            }
+
+            // Wait for colour to go back to original
+            foreach (var coroutine in coroutines)
+            {
+                yield return coroutine;
+            }
+
+            // Reset the layer
+            for (int whatLayer = 0; whatLayer < 32; ++whatLayer)
+            {
+                if ((m_plantLayerMask & (1 << whatLayer)) == 0) continue;
+                obj.layer = whatLayer;
+                break;
+            }
+        }
+    }
+
+    IEnumerator ShowRedToonOverlayForMesh(MeshRenderer mesh)
+    {
+        Material mat = mesh.material;
+        Color originalColor = mat.GetColor("_BaseColor"); // Use _BaseColor instead of _Color
+        mat.SetColor("_BaseColor", originalColor * m_redColor); // Modify the base color
+        float dt = 1.0f / (float)m_numColorChanges;
+        float delay = m_redFadeDuration / (float)m_numColorChanges;
+        Color modifiedColor = mat.GetColor("_BaseColor");
+
+        yield return new WaitForSeconds(m_redDuration);
+
+        for (float t = 0; t < 1; t += dt)
+        {
+            mat.SetColor("_BaseColor", Color.Lerp(modifiedColor, originalColor, t));
+            yield return new WaitForSeconds(delay);
+        }
+    
+        mat.SetColor("_BaseColor", originalColor);
     }
 }
