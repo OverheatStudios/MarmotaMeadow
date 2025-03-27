@@ -39,9 +39,10 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private List<Pair<FloorType, AudioClip>> m_walkingSfx;
     [Tooltip("How long will we spend fading the walking footsteps sfx when the player stops walking")]
     [SerializeField] private float m_walkingSfxFadeOutDuration = 0.2f;
+    [SerializeField] private SettingsScriptableObject m_settings;
     private AudioSource m_walkingSource;
     private FloorType m_lastCollidedFloorLastFrame = FloorType.None;
-
+    
     private float m_cameraStartingY;
     private bool m_isCrouching = false;
     private float m_secondsSinceCrouchStateChange;
@@ -94,7 +95,7 @@ public class MovementScript : MonoBehaviour
         if (m_walkingSource == null) return;
 
         float volume = Mathf.InverseLerp(m_walkingSfxFadeOutDuration, 0, m_secondsSinceStoppedWalking);
-        m_walkingSource.volume = volume;
+        m_walkingSource.volume = volume * m_settings.GetSettings().GetGameVolume();
     }
 
     private IEnumerator DestroyIn(float seconds, GameObject obj)

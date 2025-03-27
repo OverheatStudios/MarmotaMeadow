@@ -12,10 +12,24 @@ using UnityEngine.Assertions;
 public class Settings
 {
     [SerializeField] private float m_musicVolume = 0.5f; // 0 to 1 range
+    [SerializeField] private float m_gameVolume= 0.5f; // 0 to 1 range
     [SerializeField] private bool m_dynamicCrosshair = true;
     [SerializeField] private float m_cameraSensitivity = 0.5f; // 0.1 to 1 range
 
     private bool m_dirty;
+
+    public float GetGameVolume()
+    {
+        return m_gameVolume;
+    }
+
+    public void SetGameVolume(float volume)
+    {
+        if (volume == m_gameVolume) return;
+        m_gameVolume = volume;
+        m_dirty = true;
+        ValidateSettings();
+    }
 
     public float GetMusicVolume()
     {

@@ -14,6 +14,7 @@ public class GroundhogTypeInfo : MonoBehaviour
     [SerializeField] private GameObject m_bloodParticleSystem;
     [SerializeField] private Vector3 m_bloodParticleOffset = new Vector3(0, 0, 0);
     [SerializeField] private AudioClip m_woundedSfx;
+    [SerializeField] private SettingsScriptableObject m_settings;
     private AudioSource m_woundedSource;
 
     private void Start()
@@ -26,6 +27,7 @@ public class GroundhogTypeInfo : MonoBehaviour
     public void PlayWoundedSfx(Vector3 worldPos)
     {
         m_woundedSource.transform.position = worldPos;
+        m_woundedSource.volume = m_settings.GetSettings().GetGameVolume();
         m_woundedSource.Play();
     }
 

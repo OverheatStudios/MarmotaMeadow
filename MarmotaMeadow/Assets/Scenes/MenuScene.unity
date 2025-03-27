@@ -1804,6 +1804,7 @@ MonoBehaviour:
   m_saves: {fileID: 996460821}
   m_newSave: {fileID: 1180995402}
   m_musicVolumeSlider: {fileID: 1263848274}
+  m_gameVolumeSlider: {fileID: 1501883225289336350}
   m_dynamicCrosshairToggle: {fileID: 2029933989}
   m_cameraSensitivitySlider: {fileID: 80531935}
 --- !u!1 &515072584
@@ -4203,6 +4204,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
+--- !u!114 &1501883225289336350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6835947103449929398, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
+  m_PrefabInstance: {fileID: 1501883225289336349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fce8919ebc7294da7f40f3d629f717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

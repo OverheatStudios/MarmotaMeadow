@@ -17,6 +17,7 @@ public class Plant : MonoBehaviour
         Completed
     }
 
+    [SerializeField] private SettingsScriptableObject m_settings;
     [SerializeField] private PlantState state = PlantState.Normal;
     [SerializeField] private Seeds m_seed = null;
     [SerializeField] private TextMeshProUGUI growthText;
@@ -212,7 +213,7 @@ public class Plant : MonoBehaviour
         GameObject particles = Instantiate(m_tillingParticleSystem);
         particles.transform.position = hit.point + m_tillingParticlesOffset;
 
-        AudioSource.PlayClipAtPoint(m_tillSfx, transform.position);
+        AudioSource.PlayClipAtPoint(m_tillSfx, transform.position, m_settings.GetSettings().GetGameVolume());
 
         m_currentTilledPercent = GetTilledPercent();
         if (m_currentTilledPercent >= m_requiredTillingPercent)
@@ -299,7 +300,7 @@ public class Plant : MonoBehaviour
         }
         else if (item.item is Seeds seeds && state == PlantState.Tealed)
         {
-            AudioSource.PlayClipAtPoint(m_plantSfx, transform.position);
+            AudioSource.PlayClipAtPoint(m_plantSfx, transform.position, m_settings.GetSettings().GetGameVolume());
             // reset hoe percent
             m_currentTilledPercent = 0;
             //changing state

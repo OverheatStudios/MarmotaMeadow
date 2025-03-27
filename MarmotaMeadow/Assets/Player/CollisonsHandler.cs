@@ -11,6 +11,7 @@ public class CollisonsHandler : MonoBehaviour
     [SerializeField] private ObjectPooling m_ObjectPooling;
     [SerializeField] private AudioClip m_pickupItemSfx;
     [SerializeField] private Collider m_playerCollider;
+    [SerializeField] private SettingsScriptableObject m_settings;
     private FloorType m_lastCollidedFloorType = FloorType.None;
 
     // Update is called once per frame
@@ -45,7 +46,7 @@ public class CollisonsHandler : MonoBehaviour
 
         if (other.gameObject.CompareTag("Crop"))
         {
-            AudioSource.PlayClipAtPoint(m_pickupItemSfx, other.transform.position);
+            AudioSource.PlayClipAtPoint(m_pickupItemSfx, other.transform.position, m_settings.GetSettings().GetGameVolume());
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
             m_ObjectPooling.PutObjectBack("Crop", other.gameObject);
             //Destroy(other.gameObject);
