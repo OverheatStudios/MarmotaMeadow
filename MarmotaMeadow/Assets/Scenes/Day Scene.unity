@@ -1533,18 +1533,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2501186632336930741, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
-      propertyPath: m_Height
-      value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2501186632336930741, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2501186632336930741, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3097902270475952157, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1643,7 +1631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6394691437711549382, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.49
+      value: 1.83
       objectReference: {fileID: 0}
     - target: {fileID: 6394691437711549382, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_LocalPosition.z
