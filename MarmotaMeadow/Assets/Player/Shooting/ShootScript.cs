@@ -55,6 +55,7 @@ public class ShootScript : MonoBehaviour
 
     [SerializeField] private Transform m_canvas;
     [SerializeField] private MovementScript m_movementScript;
+    [SerializeField] private SettingsScriptableObject m_settings;
     private ReloadAnimation m_reloadBar;
 
     private const float MAX_RAY_DISTANCE = 100f;
@@ -311,6 +312,7 @@ public class ShootScript : MonoBehaviour
         if (gun.GetShootSfx())
         {
             m_shootSound.clip = gun.GetShootSfx();
+            m_shootSound.volume = m_settings.GetSettings().GetGameVolume();
             m_shootSound.Play();
         }
 

@@ -30,6 +30,7 @@ public class Gun : BaseItem
     [SerializeField] private AudioClip m_reloadFinishSfx;
     [SerializeField] private CameraShakeSettings m_cameraShake;
     [SerializeField] private int m_upgradeCost = 5;
+    [SerializeField] private SettingsScriptableObject m_settings;
 
     private void OnEnable()
     {
@@ -51,6 +52,7 @@ public class Gun : BaseItem
         AudioSource reloadSource = reload.AddComponent<AudioSource>();
         reloadSource.clip = m_reloadSfx;
         reloadSource.loop = true;
+        reloadSource.volume = m_settings.GetSettings().GetGameVolume();
         reloadSource.Play();
 
         float reloadDuration = m_reloadSfxLoopCount * m_reloadSfx.length + 0.01f;
@@ -62,6 +64,7 @@ public class Gun : BaseItem
 
         AudioSource pumpSource = pump.AddComponent<AudioSource>();
         pumpSource.clip = m_reloadFinishSfx;
+        pumpSource.volume = m_settings.GetSettings().GetGameVolume();
         pumpSource.PlayDelayed(reloadDuration);
 
         reload.AddComponent<AutoDestroyScript>().SetDelay(reloadDuration + m_reloadFinishSfx.length + 0.01f, 0);

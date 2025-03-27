@@ -93,6 +93,8 @@ public class Shop : MonoBehaviour
 
     public void SellItem(InventorySlot item)
     {
+        if (item == null || item.GetComponentInChildren<InventoryItem>() == null || item.GetComponentInChildren<InventoryItem>().item == null) return;
+
         if (item.GetComponentInChildren<InventoryItem>().item is Crops crop)
         {
             coinManager.IncreaseCoins(crop.ReturnSellCoinsAmount() * item.GetComponentInChildren<InventoryItem>().ReturnAmount());
@@ -102,6 +104,7 @@ public class Shop : MonoBehaviour
 
     public void UpgradeTool(InventorySlot item)
     {
+        if (item == null || item.GetComponentInChildren<InventoryItem>() == null || item.GetComponentInChildren<InventoryItem>().item == null) return;
         if (item.GetComponentInChildren<InventoryItem>().item is Tool tool)
         {
             if (coinManager.GetCoins() < tool.ReturnToolLevelCost()) return;

@@ -20,14 +20,28 @@ public class NightDebugMenu : MonoBehaviour
 
     private void Start()
     {
-        m_infiniteAmmoToggle.isOn = PlayerPrefs.GetInt("infiniteAmmo", 0) != 0;
-        m_shootScript.SetInfiniteAmmoCheat(m_infiniteAmmoToggle);
+        if (DebugMenuScript.ForceDisableCheats)
+        {
+            m_infiniteAmmoToggle.isOn = false;
+            m_shootScript.SetInfiniteAmmoCheat(m_infiniteAmmoToggle);
 
-        m_infiniteHealthToggle.isOn = PlayerPrefs.GetInt("infiniteHealth", 0) != 0;
-        m_data.SetInfiniteHealthCheatStatus(m_infiniteHealthToggle);
+            m_infiniteHealthToggle.isOn = false;
+            m_data.SetInfiniteHealthCheatStatus(m_infiniteHealthToggle);
 
-        m_night1Toggle.isOn = PlayerPrefs.GetInt("alwaysNight1", 0) != 0;
-        m_data.SetNight1CheatStatus(m_night1Toggle);
+            m_night1Toggle.isOn = false;
+            m_data.SetNight1CheatStatus(m_night1Toggle);
+        }
+        else
+        {
+            m_infiniteAmmoToggle.isOn = PlayerPrefs.GetInt("infiniteAmmo", 0) != 0;
+            m_shootScript.SetInfiniteAmmoCheat(m_infiniteAmmoToggle);
+
+            m_infiniteHealthToggle.isOn = PlayerPrefs.GetInt("infiniteHealth", 0) != 0;
+            m_data.SetInfiniteHealthCheatStatus(m_infiniteHealthToggle);
+
+            m_night1Toggle.isOn = PlayerPrefs.GetInt("alwaysNight1", 0) != 0;
+            m_data.SetNight1CheatStatus(m_night1Toggle);
+        }
     }
 
     public void GiveShotgun()

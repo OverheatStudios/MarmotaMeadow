@@ -22,6 +22,7 @@ public class VirtualMouse : MonoBehaviour
     [SerializeField] private Texture2D m_cursorTexture;
     [SerializeField] private Texture2D m_cursorTexturePressed;
     [SerializeField] private Vector2 m_cursorHotspot = new(118, 58);
+    [SerializeField] private SettingsScriptableObject m_settings;
 
     private Vector2 m_mousePos;
     private Vector2 m_lastMousePos;
@@ -62,7 +63,7 @@ public class VirtualMouse : MonoBehaviour
     private void PlayButtonClickSfx()
     {
         if (!m_buttonClickSfx) return;
-        AudioSource.PlayClipAtPoint(m_buttonClickSfx, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(m_buttonClickSfx, Camera.main.transform.position, m_settings.GetSettings().GetGameVolume());
     }
 
     private void HandleMouseClickUI()

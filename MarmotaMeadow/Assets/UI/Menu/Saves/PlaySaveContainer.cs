@@ -21,12 +21,12 @@ public class PlaySaveContainer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_pageText;
 
     private int m_page;
-    private string[] m_saves;
+    private List<string> m_saves;
     private GameObject[] m_buttons = new GameObject[3];
 
     private void Start()
     {
-        m_saves = m_saveManager.GetSaves();
+        m_saves = m_saveManager.GetPlayableSaves();
 
         SetPage(0);
     }
@@ -46,7 +46,7 @@ public class PlaySaveContainer : MonoBehaviour
             }
 
             int saveIndex = m_page * 3 + i;
-            if (saveIndex >= m_saves.Length) continue;
+            if (saveIndex >= m_saves.Count) continue;
 
             GameObject button = Instantiate(m_playSaveButtonPrefab, m_scrollViewContent);
             button.transform.position += Vector3.up * GetYCoordinateOffset(i);
@@ -74,7 +74,7 @@ public class PlaySaveContainer : MonoBehaviour
 
     private int GetMaxPage()
     {
-        return Mathf.Max(0, Mathf.CeilToInt(m_saves.Length / (float)NUM_SAVES_PER_PAGE) - 1);
+        return Mathf.Max(0, Mathf.CeilToInt(m_saves.Count / (float)NUM_SAVES_PER_PAGE) - 1);
     }
 
     private float GetYCoordinateOffset(int index)
