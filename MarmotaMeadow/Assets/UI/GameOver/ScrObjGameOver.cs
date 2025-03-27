@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScrObjGameOver", menuName = "Scriptable Objects/ScrObjGameOver")]
 public class ScrObjGameOver : ScriptableObject
 {
+    [System.Serializable]
     public enum Reason
     {
         Bankrupt, Won, Died
