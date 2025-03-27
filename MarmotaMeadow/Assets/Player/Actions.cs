@@ -97,27 +97,25 @@ public class Actions : MonoBehaviour
         var meshes = obj.GetComponentsInChildren<MeshRenderer>();
         if (meshes.Length > 0)
         {
-
-            // Set colour
-            obj.layer = m_defaultLayer;
-            Coroutine[] coroutines = new Coroutine[meshes.Length];
-            for (int i = 0; i < meshes.Length; i++)
+            obj.TryGetComponent<RedOverlayMarker>(out RedOverlayMarker marker);
+            if (marker == null)
             {
-                coroutines[i] = StartCoroutine(ShowRedOverlayForMesh(meshes[i]));
-            }
+                marker = obj.AddComponent<RedOverlayMarker>();
 
-            // Wait for colour to go back to original
-            foreach (var coroutine in coroutines)
-            {
-                yield return coroutine;
-            }
+                // Set colour
+                Coroutine[] coroutines = new Coroutine[meshes.Length];
+                for (int i = 0; i < meshes.Length; i++)
+                {
+                    coroutines[i] = StartCoroutine(ShowRedOverlayForMesh(meshes[i]));
+                }
 
-            // Reset the layer
-            for (int whatLayer = 0; whatLayer < 32; ++whatLayer)
-            {
-                if ((m_notHarvestableLayer & (1 << whatLayer)) == 0) continue;
-                obj.layer = whatLayer;
-                break;
+                // Wait for colour to go back to original
+                foreach (var coroutine in coroutines)
+                {
+                    yield return coroutine;
+                }
+
+                Destroy(marker);
             }
         }
     }
@@ -138,33 +136,31 @@ public class Actions : MonoBehaviour
         }
         mesh.material.color = originalColor;
     }
-    
+
     IEnumerator ShowRedToonOverlay(GameObject obj)
     {
         var meshes = obj.GetComponentsInChildren<MeshRenderer>();
         if (meshes.Length > 0)
         {
-
-            // Set colour
-            obj.layer = m_defaultLayer;
-            Coroutine[] coroutines = new Coroutine[meshes.Length];
-            for (int i = 0; i < meshes.Length; i++)
+            obj.TryGetComponent<RedOverlayMarker>(out RedOverlayMarker marker);
+            if (marker == null)
             {
-                coroutines[i] = StartCoroutine(ShowRedToonOverlayForMesh(meshes[i]));
-            }
+                marker = obj.AddComponent<RedOverlayMarker>();
 
-            // Wait for colour to go back to original
-            foreach (var coroutine in coroutines)
-            {
-                yield return coroutine;
-            }
+                // Set colour
+                Coroutine[] coroutines = new Coroutine[meshes.Length];
+                for (int i = 0; i < meshes.Length; i++)
+                {
+                    coroutines[i] = StartCoroutine(ShowRedToonOverlayForMesh(meshes[i]));
+                }
 
-            // Reset the layer
-            for (int whatLayer = 0; whatLayer < 32; ++whatLayer)
-            {
-                if ((m_plantLayerMask & (1 << whatLayer)) == 0) continue;
-                obj.layer = whatLayer;
-                break;
+                // Wait for colour to go back to original
+                foreach (var coroutine in coroutines)
+                {
+                    yield return coroutine;
+                }
+
+                Destroy(marker);
             }
         }
     }
