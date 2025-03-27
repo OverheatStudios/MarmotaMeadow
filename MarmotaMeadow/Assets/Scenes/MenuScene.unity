@@ -488,7 +488,7 @@ MonoBehaviour:
   m_scrollViewContent: {fileID: 98295622}
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
   m_playSaveButtonPrefab: {fileID: 1324904113926507743, guid: fb245a82acccf174db05e765c4b041cb, type: 3}
-  m_ySpacing: 225
+  m_ySpacing: 175
   m_yOffset: 75
   m_prevPageButton: {fileID: 384108807}
   m_nextPageButton: {fileID: 314557137}

@@ -81,6 +81,6 @@ public class PlaySaveContainer : MonoBehaviour
     {
         Assert.IsTrue(index >= 0);
         Assert.IsTrue(index <= NUM_SAVES_PER_PAGE - 1);
-        return ((NUM_SAVES_PER_PAGE - (index + 2))) * m_ySpacing + m_yOffset;
+        return ((NUM_SAVES_PER_PAGE - (index + 2))) * m_ySpacing + m_yOffset * Screen.height / 1920.0f;
     }
 }
