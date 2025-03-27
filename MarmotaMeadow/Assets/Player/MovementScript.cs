@@ -171,7 +171,7 @@ public class MovementScript : MonoBehaviour
             right = right.normalized;
 
             // Move
-            m_rigidbody.velocity = forward * movement.x + right * movement.z;
+            m_rigidbody.velocity = forward * movement.x + m_rigidbody.velocity.y * Vector3.up + right * movement.z;
         } else
         {
             m_isWalking = false;

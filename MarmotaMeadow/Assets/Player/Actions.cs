@@ -172,20 +172,40 @@ public class Actions : MonoBehaviour
     IEnumerator ShowRedToonOverlayForMesh(MeshRenderer mesh)
     {
         Material mat = mesh.material;
-        Color originalColor = mat.GetColor("_BaseColor"); // Use _BaseColor instead of _Color
-        mat.SetColor("_BaseColor", originalColor * m_redColor); // Modify the base color
-        float dt = 1.0f / (float)m_numColorChanges;
-        float delay = m_redFadeDuration / (float)m_numColorChanges;
-        Color modifiedColor = mat.GetColor("_BaseColor");
 
-        yield return new WaitForSeconds(m_redDuration);
-
-        for (float t = 0; t < 1; t += dt)
+        if (mat.HasProperty("_BaseColor"))
         {
-            mat.SetColor("_BaseColor", Color.Lerp(modifiedColor, originalColor, t));
-            yield return new WaitForSeconds(delay);
-        }
+            Color originalColor = mat.GetColor("_BaseColor"); // Use _BaseColor instead of _Color
+            mat.SetColor("_BaseColor", originalColor * m_redColor); // Modify the base color
+            float dt = 1.0f / (float)m_numColorChanges;
+            float delay = m_redFadeDuration / (float)m_numColorChanges;
+            Color modifiedColor = mat.GetColor("_BaseColor");
+
+            yield return new WaitForSeconds(m_redDuration);
+
+            for (float t = 0; t < 1; t += dt)
+            {
+                mat.SetColor("_BaseColor", Color.Lerp(modifiedColor, originalColor, t));
+                yield return new WaitForSeconds(delay);
+            }
     
-        mat.SetColor("_BaseColor", originalColor);
+            mat.SetColor("_BaseColor", originalColor);
+        }
+        else
+        {
+            Color originalColor = mesh.material.color;
+            mesh.material.color *= m_redColor;
+            float dt = 1.0f / (float)m_numColorChanges;
+            float delay = m_redFadeDuration / (float)m_numColorChanges;
+            Color modifiedColor = mesh.material.color;
+            yield return new WaitForSeconds(m_redDuration);
+
+            for (float t = 0; t < 1; t += dt)
+            {
+                mesh.material.color = Color.Lerp(modifiedColor, originalColor, t);
+                yield return new WaitForSeconds(delay);
+            }
+            mesh.material.color = originalColor;
+        }
     }
 }
