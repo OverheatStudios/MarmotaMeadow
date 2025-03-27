@@ -126,6 +126,7 @@ public class Plant : MonoBehaviour
         objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
         tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -140,7 +141,7 @@ public class Plant : MonoBehaviour
         m_tillingProgressText.gameObject.SetActive(state == PlantState.Tealed || state == PlantState.Normal);
 
         m_clockIconGrowthTimer.SetActive(state == PlantState.Waterd);
-        growthText.gameObject.SetActive(state == PlantState.Waterd || state == PlantState.Completed);
+        growthText.gameObject.SetActive(state == PlantState.Waterd || state == PlantState.Completed || state == PlantState.Planted);
         m_lineMinigameExitUi.text = m_lineMinigameExitUi.text.Replace("[KEY]", GameInput.GetKeybind("ExitMinigame").ToString());
         HandleTillingAnimation();
 
@@ -322,6 +323,7 @@ public class Plant : MonoBehaviour
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             OnPlanted?.Invoke();
+            growthText.text = "Requires Watering";
             return true;
         }
         else if (item.item.name == "watering can" && state == PlantState.Planted && planted && !inWateringMiniGame)
@@ -346,21 +348,7 @@ public class Plant : MonoBehaviour
         }
         return false;
     }
-
-    private IEnumerator CountdownRoutine()
-    {
-        while (growthTimer > 0)
-        {
-            growthText.text = growthTimer > 0 ? growthTimer.ToString() : "Ready";
-            yield return new WaitForSeconds(1f);
-            growthTimer -= 1f;
-        }
-
-        state = PlantState.Completed;
-        m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
-        StopAllCoroutines();
-    }
-
+    
     // ReSharper disable Unity.PerformanceAnalysis
     public void HarvestCrop()
     {
@@ -374,6 +362,8 @@ public class Plant : MonoBehaviour
         tealedGround.SetActive(true);
         untealedGround.SetActive(true);
         m_secondsSinceTilled = -1;
+        
+        AudioSource.PlayClipAtPoint(m_harvestSfx, transform.position, m_settings.GetSettings().GetGameVolume());
 
         for (int i = 0; i < multiplier; i++)
         {
@@ -461,6 +451,7 @@ public class Plant : MonoBehaviour
         finishedMiniGame = true;
         state = PlantState.Waterd;
         OnWatered?.Invoke();
+        AudioSource.PlayClipAtPoint(m_waterSfx, transform.position, m_settings.GetSettings().GetGameVolume());
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
 
