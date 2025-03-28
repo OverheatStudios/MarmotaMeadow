@@ -65,11 +65,12 @@ public class TooltipManager : MonoBehaviour
             if (m_tooltips[i].Seconds < m_fadeSeconds)
             {
                 float alpha = m_fadeSeconds == 0 ? 0 : Mathf.InverseLerp(0, m_fadeSeconds, m_tooltips[i].Seconds);
-                if (alpha <= 0)
+                if (alpha <= 0 || m_tooltips[i].Seconds <= 0)
                 {
                     var rect = m_tooltips[i].Tooltip.GetComponent<RectTransform>();
                     m_yOffset += rect.sizeDelta.y + m_padding;
                     m_tooltips.RemoveAt(i);
+                    Destroy(rect.gameObject);
                     --i;
                     continue;
                 }
