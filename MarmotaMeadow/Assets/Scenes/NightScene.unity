@@ -6288,7 +6288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &943998023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10979,11 +10979,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_saveLocation: NightTutorialManager.json
-  triggers:
-  - {fileID: 943998023}
+  triggers: []
   tutorialText: {fileID: 206889192}
   m_tutorialTextBackground: {fileID: 206889193}
-  textToDisplay: Survive the night!
+  textToDisplay: 
   tutorialData:
     isFinsihed: 0
     step: 0

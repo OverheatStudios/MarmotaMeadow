@@ -20,7 +20,7 @@ public class NightDebugMenu : MonoBehaviour
 
     private void Start()
     {
-        if (DebugMenuScript.ForceDisableCheats)
+        if (DebugMenuScript.ForceDisableCheats || true)
         {
             m_infiniteAmmoToggle.isOn = false;
             m_shootScript.SetInfiniteAmmoCheat(m_infiniteAmmoToggle);
@@ -30,6 +30,8 @@ public class NightDebugMenu : MonoBehaviour
 
             m_night1Toggle.isOn = false;
             m_data.SetNight1CheatStatus(m_night1Toggle);
+
+            m_night1Toggle.gameObject.SetActive(false);
         }
         else
         {
