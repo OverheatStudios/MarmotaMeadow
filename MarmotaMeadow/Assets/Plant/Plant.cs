@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UIElements.Experimental;
+using static UnityEditor.Progress;
 
 public class Plant : MonoBehaviour
 {
@@ -103,6 +104,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private bool inWateringMiniGame = false;
     [SerializeField] private float toolMultiplier;
     
+
     public System.Action OnTealed;
     public System.Action OnPlanted;
     public System.Action OnWatered;
@@ -355,7 +357,7 @@ public class Plant : MonoBehaviour
         }
         return false;
     }
-    
+
     // ReSharper disable Unity.PerformanceAnalysis
     public void HarvestCrop()
     {
@@ -373,6 +375,7 @@ public class Plant : MonoBehaviour
         multiplier += toolMultiplier;
         toolMultiplier = 0;
         
+
         AudioSource.PlayClipAtPoint(m_harvestSfx, transform.position, m_settings.GetSettings().GetGameVolume());
 
         for (int i = 0; i < multiplier; i++)
@@ -441,7 +444,7 @@ public class Plant : MonoBehaviour
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
-        
+
         inWateringMiniGame = inWaterMiniGame;
         inHarvestingMiniGame = inHarvestMiniGame;
 
@@ -457,8 +460,10 @@ public class Plant : MonoBehaviour
         multiplier = amount;
     }
 
-    public void WaterCrop()
+    public void WaterCrop(float multiplier)
     {
+        this.multiplier += multiplier;
+        print("added multiplier: " + multiplier);
         m_lineMinigameUi.SetActive(false);
         finishedMiniGame = true;
         state = PlantState.Waterd;

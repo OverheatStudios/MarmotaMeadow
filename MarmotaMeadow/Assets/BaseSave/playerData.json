@@ -4,13 +4,13 @@
             "slotName": "ToolBarSlot",
             "amount": 1,
             "multiplier": 0.0,
-            "item": "harvesting tool"
+            "item": "hoe"
         },
         {
             "slotName": "ToolBarSlot 1",
             "amount": 1,
             "multiplier": 0.0,
-            "item": "hoe"
+            "item": "harvesting tool"
         },
 	{
             "slotName": "ToolBarSlot 2",
