@@ -10,15 +10,14 @@ public class DayCountdownHandlerScript : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_countdownText;
     [SerializeField] private ScrObjGlobalData m_data;
-    [Header("Config")]
-    [Tooltip("Length of each night in seconds, length of last night is used for any nights past the last, must have at least one entry")]
-    [SerializeField] private List<float> m_nightLengths;
+    [SerializeField] private AllGroundhogSpawns m_allGroundhogSpawns;
+    [Tooltip("Number of seconds between groundhog spawning ending and night ending")]
+    [SerializeField] private float m_nightBufferSeconds = 8;
     private float m_secondsRemaining = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        Assert.IsTrue(m_nightLengths != null && m_nightLengths.Count > 0);
         Assert.IsTrue(m_data.GetData().GetNightCounter() >= 0);
         m_secondsRemaining = GetNightLengthSeconds();
     }
@@ -42,7 +41,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     /// <returns>Number of seconds the current night should last</returns>
     private float GetNightLengthSeconds()
     {
-        return m_nightLengths[Mathf.Min(m_nightLengths.Count - 1, m_data.GetData().GetNightCounter())];
+        return m_allGroundhogSpawns.GetMinimumNightLength(m_data.GetData().GetNightCounter()) + m_nightBufferSeconds;
     }
 
     private void SwitchDayScene()
