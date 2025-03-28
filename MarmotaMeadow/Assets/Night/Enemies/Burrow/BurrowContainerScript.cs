@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class BurrowContainerScript : MonoBehaviour
 {
@@ -12,9 +13,13 @@ public class BurrowContainerScript : MonoBehaviour
         get { return m_currentBurrowCount; }
     }
 
+    [Tooltip("Burrow count per night")]
+    [SerializeField] private List<int> m_burrowCountPerNight = new();
+
     // Start is called before the first frame update
     void Start()
     {
+        Assert.IsTrue(m_burrowCountPerNight.Count > 0);
         EnableBurrows();
     }
 
@@ -52,41 +57,7 @@ public class BurrowContainerScript : MonoBehaviour
     /// <returns>Number of burrows, 1 to (max burrows)</returns>
     private int GetBurrowCount(int whatNight, int maxBurrowCount)
     {
-        int numBurrows = 1;
-        switch (whatNight)
-        {
-            case 0:
-                numBurrows = 3;
-                break;
-            case 1:
-                numBurrows = 5;
-                break;
-            case 2:
-                numBurrows = 6;
-                break;
-            case 3:
-                numBurrows = 8;
-                break;
-            case 4:
-                numBurrows = 9;
-                break;
-            case 5:
-                numBurrows = 10;
-                break;
-            case 6:
-                numBurrows = 11;
-                break;
-            case 7:
-                numBurrows = 12;
-                break;
-            case 8:
-                numBurrows = 13;
-                break;
-            default:
-                numBurrows = 14;
-                break;
-        }
-
+        int numBurrows = m_burrowCountPerNight[Mathf.Min(m_burrowCountPerNight.Count-1, whatNight)];
         return Mathf.Min(numBurrows, maxBurrowCount);
     }
 }
