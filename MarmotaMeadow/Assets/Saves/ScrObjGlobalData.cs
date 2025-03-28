@@ -92,7 +92,7 @@ public class ScrObjGlobalData : ScriptableObject
 
     public void IncrementNightCounter()
     {
-        if (!m_isNight1CheatEnabled && m_globalData.GetNightCounterPossiblyNegative() >= 0) return;
+        if (m_isNight1CheatEnabled && m_globalData.GetNightCounterPossiblyNegative() >= 0) return;
         m_globalData.SetNightCounter(m_globalData.GetNightCounterPossiblyNegative() + 1);
     }
 

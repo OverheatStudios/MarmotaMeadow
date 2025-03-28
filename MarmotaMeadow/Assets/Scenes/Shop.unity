@@ -6169,13 +6169,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_saveLocation: ShopTutorialManager.json
-  triggers:
-  - {fileID: 1438964967}
-  - {fileID: 1899177111}
-  - {fileID: 1574675283}
+  triggers: []
   tutorialText: {fileID: 151201019}
   m_tutorialTextBackground: {fileID: 151201017}
-  textToDisplay: Click the door to exit the shop.
+  textToDisplay: Click the door to exit the shop once you are finished.
   tutorialData:
     isFinsihed: 0
     step: 0
@@ -7659,7 +7656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1438964966
 Transform:
   m_ObjectHideFlags: 0
@@ -7963,7 +7960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1574675282
 Transform:
   m_ObjectHideFlags: 0
@@ -9599,7 +9596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1899177111
 MonoBehaviour:
   m_ObjectHideFlags: 0
