@@ -55,7 +55,7 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            float price = -1;
+            float price = 0;
             if (isUpgrade && item.item is Tool tool)
             {
                 price = tool.ReturnToolLevelCost();
@@ -68,10 +68,15 @@ public class Shop : MonoBehaviour
             {
                 price = crops.ReturnSellCoinsAmount() * item.ReturnAmount();
             }
-
-            if (price == -1)
+            else if (!isUpgrade && item.item is Seeds seeds)
             {
-                cannotText.SetActive(true); return;
+                price = seeds.GetSellPrice() * item.ReturnAmount();
+            }
+
+            if (price == 0)
+            {
+                cannotText.SetActive(true);
+                return;
             }
 
             priceIcon.SetActive(true);
@@ -97,7 +102,16 @@ public class Shop : MonoBehaviour
 
         if (item.GetComponentInChildren<InventoryItem>().item is Crops crop)
         {
-            coinManager.IncreaseCoins(crop.ReturnSellCoinsAmount() * item.GetComponentInChildren<InventoryItem>().ReturnAmount());
+            float price = crop.ReturnSellCoinsAmount() * item.GetComponentInChildren<InventoryItem>().ReturnAmount();
+            if (price == 0) return;
+            coinManager.IncreaseCoins(price);
+            item.GetComponentInChildren<InventoryItem>().SetAmount(0);
+        }
+        else if (item.GetComponentInChildren<InventoryItem>().item is Seeds seeds)
+        {
+            float price = seeds.GetSellPrice() * item.GetComponentInChildren<InventoryItem>().ReturnAmount();
+            if (price == 0) return;
+            coinManager.IncreaseCoins(price);
             item.GetComponentInChildren<InventoryItem>().SetAmount(0);
         }
     }
@@ -107,14 +121,14 @@ public class Shop : MonoBehaviour
         if (item == null || item.GetComponentInChildren<InventoryItem>() == null || item.GetComponentInChildren<InventoryItem>().item == null) return;
         if (item.GetComponentInChildren<InventoryItem>().item is Tool tool)
         {
-            if (coinManager.GetCoins() < tool.ReturnToolLevelCost()) return;
+            if (coinManager.GetCoins() < tool.ReturnToolLevelCost() || tool.ReturnToolLevelCost() == 0) return;
 
             coinManager.DecreaseCoins(tool.ReturnToolLevelCost());
             item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
         }
         else if (item.GetComponentInChildren<InventoryItem>().item is Gun gun)
         {
-            if (coinManager.GetCoins() < gun.GetUpgradeCost()) return;
+            if (coinManager.GetCoins() < gun.GetUpgradeCost() || gun.GetUpgradeCost() == 0) return;
 
             coinManager.DecreaseCoins(gun.GetUpgradeCost());
             item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
