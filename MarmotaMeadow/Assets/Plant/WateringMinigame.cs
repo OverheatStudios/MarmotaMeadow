@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class WateringMinigame : MonoBehaviour
 {
@@ -19,20 +20,25 @@ public class WateringMinigame : MonoBehaviour
     private Vector3 pointK;
     private Vector3 pointL;
     private Vector3 pointM;
-    
+
     [SerializeField] private GameObject colliders;
     [SerializeField] private float m_maxDistance;
     [SerializeField] private LayerMask checkMask;
     [SerializeField] private GameObject trail;
-    
-    
+
+
     [SerializeField] private float rangeY = 1f;
     [SerializeField] private Plant plant;
-    
+
     [SerializeField] private bool finished = false;
+
+    private float m_multiplier = 0;
 
     private void OnEnable()
     {
+        InventoryMager inv = InventoryMager.FindAnyObjectByType<InventoryMager>();
+        m_multiplier += inv.GetHeldInventoryItem().ReturnMultiplier();
+
         finished = false;
         GenerateRandomPoints();
         DrawLine();
@@ -41,7 +47,7 @@ public class WateringMinigame : MonoBehaviour
 
     void Update()
     {
-        if(!finished)
+        if (!finished)
             CheckForCollisions();
     }
 
@@ -80,7 +86,7 @@ public class WateringMinigame : MonoBehaviour
     {
         GameObject A = Instantiate(colliders, pointA, Quaternion.identity);
         GameObject B = Instantiate(colliders, pointB, Quaternion.identity);
-        GameObject C =Instantiate(colliders, pointC, Quaternion.identity);
+        GameObject C = Instantiate(colliders, pointC, Quaternion.identity);
         GameObject D = Instantiate(colliders, pointD, Quaternion.identity);
         GameObject E = Instantiate(colliders, pointE, Quaternion.identity);
         GameObject F = Instantiate(colliders, pointF, Quaternion.identity);
@@ -91,7 +97,7 @@ public class WateringMinigame : MonoBehaviour
         GameObject K = Instantiate(colliders, pointK, Quaternion.identity);
         GameObject L = Instantiate(colliders, pointL, Quaternion.identity);
         GameObject M = Instantiate(colliders, pointM, Quaternion.identity);
-        
+
         A.transform.parent = transform;
         A.name = "A";
         B.transform.parent = transform;
@@ -127,11 +133,11 @@ public class WateringMinigame : MonoBehaviour
 
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         trail.transform.position = worldPosition;
-            
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
-        { 
+        if (Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
+        {
             Destroy(hit.collider.gameObject);
             Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
             Debug.Log(hit.collider.name);
@@ -140,7 +146,7 @@ public class WateringMinigame : MonoBehaviour
         if (transform.childCount == 0)
         {
             lineRenderer.positionCount = 0;
-            plant.WaterCrop();
+            plant.WaterCrop(m_multiplier);
             finished = true;
         }
     }
