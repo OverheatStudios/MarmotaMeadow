@@ -15,17 +15,7 @@ MonoBehaviour:
   m_nightGroundhogSpawns:
   - GroundhogsThisNight:
     - SecondsSinceNightBeginning: 3
-      GroundhogType: 1
-      NumberGroundhogs: 4
-      SpawnInterval: 15
-      SecondsSinceLastSpawn: 15
-    - SecondsSinceNightBeginning: 3
       GroundhogType: 0
-      NumberGroundhogs: 18
+      NumberGroundhogs: 10
       SpawnInterval: 3
-      SecondsSinceLastSpawn: 1.0679544
-    - SecondsSinceNightBeginning: 3
-      GroundhogType: 2
-      NumberGroundhogs: 2
-      SpawnInterval: 30
-      SecondsSinceLastSpawn: 1.0679544
+      SecondsSinceLastSpawn: 0

@@ -110,4 +110,16 @@ public class AllGroundhogSpawns : ScriptableObject
         }
         return count;
     }
+
+    public float GetMinimumNightLength(int night)
+    {
+        night = Mathf.Min(m_nightGroundhogSpawns.Count - 1, night);
+        float length = 0;
+        foreach (var spawnSet in m_nightGroundhogSpawns[night].GroundhogsThisNight)
+        {
+            float spawnSetLength = spawnSet.NumberGroundhogs * spawnSet.SpawnInterval + spawnSet.SecondsSinceNightBeginning;
+            length = Mathf.Max(length, spawnSetLength);
+        }
+        return length + 0.01f;
+    }
 }
