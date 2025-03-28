@@ -326,6 +326,7 @@ public class ShootScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, MAX_RAY_DISTANCE, m_enemyLayer))
         {
+            print("shot and collided");
             // Hit a groundhog, damage it
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponentInParent<GroundhogScript>();
             DamageGroundhog(groundhogScript, hit.point);

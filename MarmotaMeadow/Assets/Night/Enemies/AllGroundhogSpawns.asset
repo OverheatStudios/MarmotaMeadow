@@ -14,8 +14,104 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_nightGroundhogSpawns:
   - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 6
+      GroundhogType: 0
+      NumberGroundhogs: 9
+      SpawnInterval: 5
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 20
+      GroundhogType: 1
+      NumberGroundhogs: 1
+      SpawnInterval: 3
+      SecondsSinceLastSpawn: 0
+  - GroundhogsThisNight:
     - SecondsSinceNightBeginning: 3
       GroundhogType: 0
       NumberGroundhogs: 10
+      SpawnInterval: 4.5
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 10
+      GroundhogType: 1
+      NumberGroundhogs: 2
+      SpawnInterval: 10
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 33
+      GroundhogType: 2
+      NumberGroundhogs: 1
       SpawnInterval: 3
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 4
+      GroundhogType: 0
+      NumberGroundhogs: 5
+      SpawnInterval: 5.5
+      SecondsSinceLastSpawn: 0
+  - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 0
+      NumberGroundhogs: 12
+      SpawnInterval: 4
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 5
+      GroundhogType: 1
+      NumberGroundhogs: 4
+      SpawnInterval: 8
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 12
+      GroundhogType: 2
+      NumberGroundhogs: 3
+      SpawnInterval: 15
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 7
+      GroundhogType: 0
+      NumberGroundhogs: 7
+      SpawnInterval: 6
+      SecondsSinceLastSpawn: 0
+  - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 0
+      NumberGroundhogs: 12
+      SpawnInterval: 3.5
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 10
+      GroundhogType: 1
+      NumberGroundhogs: 4
+      SpawnInterval: 8
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 2
+      NumberGroundhogs: 4
+      SpawnInterval: 10
+      SecondsSinceLastSpawn: 0
+  - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 1
+      NumberGroundhogs: 6
+      SpawnInterval: 5
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 10
+      GroundhogType: 2
+      NumberGroundhogs: 4
+      SpawnInterval: 10
+      SecondsSinceLastSpawn: 0
+  - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 1
+      NumberGroundhogs: 6
+      SpawnInterval: 5
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 5
+      GroundhogType: 2
+      NumberGroundhogs: 8
+      SpawnInterval: 5
+      SecondsSinceLastSpawn: 0
+  - GroundhogsThisNight:
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 1
+      NumberGroundhogs: 8
+      SpawnInterval: 4
+      SecondsSinceLastSpawn: 0
+    - SecondsSinceNightBeginning: 3
+      GroundhogType: 2
+      NumberGroundhogs: 10
+      SpawnInterval: 4
       SecondsSinceLastSpawn: 0

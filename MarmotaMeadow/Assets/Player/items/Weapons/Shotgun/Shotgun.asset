@@ -18,15 +18,15 @@ MonoBehaviour:
   m_isStackable: 0
   m_image: {fileID: 21300000, guid: 952d5b4b57e88744f8b5a05542eaa3a0, type: 3}
   m_maxAmount: 1
-  m_damage: 10
+  m_damage: 20
   m_numBulletsPerShot: 6
-  m_shootCooldownSeconds: 0.4
-  m_reloadCooldownSeconds: 1
+  m_shootCooldownSeconds: 0.3
+  m_reloadCooldownSeconds: 0.5
   m_maxAmmo: 2
   m_spread: 0.05
   m_bulletHoleSize: 0.15
-  m_swapCooldownSeconds: 1.5
-  m_purchasePrice: 20
+  m_swapCooldownSeconds: 0.3
+  m_purchasePrice: 150
   m_requiresBullets: 1
   m_recoilForce: 5
   m_reloadBarPrefab: {fileID: 4414279777620984797, guid: 8329d6b572d3c0a47b9032fbeb118c5b, type: 3}
@@ -40,5 +40,5 @@ MonoBehaviour:
     Frequency: 1
     TransitionInDuration: 0.1
     TransitionOutDuration: 0.3
-  m_upgradeCost: 5
+  m_upgradeCost: 10
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
