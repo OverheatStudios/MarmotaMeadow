@@ -40,6 +40,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private UnityEvent gamePausedEvent;
 
     [SerializeField] private MovementScript playerMovement;
+    [SerializeField] private Rigidbody playerRb;
 
     [SerializeField] private ObjectPooling objectPool;
     [SerializeField] private TutorialManager tutorialManager;
@@ -100,6 +101,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private bool finishedMiniGame = true;
     [SerializeField] private bool inHarvestingMiniGame = false;
     [SerializeField] private bool inWateringMiniGame = false;
+    [SerializeField] private float toolMultiplier;
     
     public System.Action OnTealed;
     public System.Action OnPlanted;
@@ -126,6 +128,7 @@ public class Plant : MonoBehaviour
         objectPool = GameObject.FindGameObjectWithTag("ObjectPool").GetComponent<ObjectPooling>();
         tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager").GetComponent<TutorialManager>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<MovementScript>();
+        playerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
@@ -319,7 +322,7 @@ public class Plant : MonoBehaviour
             growthTimer = m_seed.ReturnGrowDuration() + growOffset;
             maxGrowthTimer = m_seed.ReturnGrowDuration() + growOffset;
             planted = true;
-            multiplier = m_seed.ReturnAmount();
+            multiplier += m_seed.ReturnAmount();
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             OnPlanted?.Invoke();
@@ -330,9 +333,11 @@ public class Plant : MonoBehaviour
         {
             inWateringMiniGame = true;
             playerMovement.enabled = false;
+            playerRb.velocity = Vector2.zero;
             originalCameraPosition = mainCamera.transform.position;
             originalCameraRotation = mainCamera.transform.rotation;
             finishedMiniGame = false;
+            toolMultiplier = item.ReturnMultiplier();
             StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration, false, true));
             return true;
         }
@@ -340,9 +345,11 @@ public class Plant : MonoBehaviour
         {
             inHarvestingMiniGame = true;
             playerMovement.enabled = false;
+            playerRb.velocity = Vector2.zero;
             originalCameraPosition = mainCamera.transform.position;
             originalCameraRotation = mainCamera.transform.rotation;
             finishedMiniGame = false;
+            toolMultiplier = item.ReturnMultiplier();
             StartCoroutine(MoveCamera(targetCameraPosition.position, targetCameraPosition.rotation, duration, true, false));
             return true;
         }
@@ -363,6 +370,9 @@ public class Plant : MonoBehaviour
         untealedGround.SetActive(true);
         m_secondsSinceTilled = -1;
         
+        multiplier += toolMultiplier;
+        toolMultiplier = 0;
+        
         AudioSource.PlayClipAtPoint(m_harvestSfx, transform.position, m_settings.GetSettings().GetGameVolume());
 
         for (int i = 0; i < multiplier; i++)
@@ -382,6 +392,8 @@ public class Plant : MonoBehaviour
             }
         }
 
+        multiplier += 0;
+        
         finishedMiniGame = true;
         OnHarvested?.Invoke();
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
@@ -452,6 +464,8 @@ public class Plant : MonoBehaviour
         state = PlantState.Waterd;
         OnWatered?.Invoke();
         AudioSource.PlayClipAtPoint(m_waterSfx, transform.position, m_settings.GetSettings().GetGameVolume());
+        multiplier += toolMultiplier;
+        toolMultiplier = 0;
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
 

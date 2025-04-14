@@ -71,10 +71,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        toolTip.SetActive(true);
-        toolTip.transform.position = toolTipLocation.transform.position;
-        toolTipText[0].text = "Lvl: " + level;
-        toolTipText[1].text = "Multiplier: " + multiplier;
+        if (item is Tool || item is Gun)
+        {
+            toolTip.SetActive(true);
+            toolTip.transform.position = toolTipLocation.transform.position;
+            toolTipText[0].text = "Lvl: " + multiplier;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

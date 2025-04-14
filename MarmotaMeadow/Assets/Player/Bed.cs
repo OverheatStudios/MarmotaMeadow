@@ -14,6 +14,7 @@ public class Bed : MonoBehaviour
     [SerializeField] private TutorialManager tutorialManager;
     [SerializeField] private bool isInBed;
     [SerializeField] private TextMeshProUGUI m_text;
+    [SerializeField] private InventoryMager inventoryMager;
 
     void Update()
     {
@@ -43,6 +44,12 @@ public class Bed : MonoBehaviour
 
     public void Confirm()
     {
+        GameObject[] notPikedUpCrops = GameObject.FindGameObjectsWithTag("Crop");
+
+        for (int i = 0; i < notPikedUpCrops.Length; i++)
+        {
+            inventoryMager.AddItem(notPikedUpCrops[i].GetComponent<SpawnedItem>().ReturnItem());
+        }
         SceneManager.LoadScene("Shop");
     }
 
