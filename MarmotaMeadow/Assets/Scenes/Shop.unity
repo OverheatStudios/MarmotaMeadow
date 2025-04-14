@@ -1336,6 +1336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 395203438}
   - component: {fileID: 395203439}
+  - component: {fileID: 395203440}
   m_Layer: 5
   m_Name: Buy Wheat
   m_TagString: Untagged
@@ -1385,6 +1386,20 @@ MonoBehaviour:
     Yield: AVERAGE
 
     Sell Price: AVERAGE'
+--- !u!114 &395203440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395203437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: c161442496246ec448402b77019a170e, type: 2}
+  text: {fileID: 2080101896}
 --- !u!1 &415542554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478727313}
   - component: {fileID: 478727314}
+  - component: {fileID: 478727315}
   m_Layer: 5
   m_Name: BuyPistolAmmo
   m_TagString: Untagged
@@ -1816,6 +1832,20 @@ MonoBehaviour:
   m_itemIcon: {fileID: 375878119}
   m_tooltip: {fileID: 1525874017}
   m_tooltipText: Pistol Ammo Pack
+--- !u!114 &478727315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478727312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 7bfcb18f8420aad40b364c55cb584c74, type: 2}
+  text: {fileID: 2044775808}
 --- !u!1 &480937694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5534,6 +5564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 817270919}
   - component: {fileID: 817270920}
+  - component: {fileID: 817270921}
   m_Layer: 5
   m_Name: Buy Pistol
   m_TagString: Untagged
@@ -5586,6 +5617,20 @@ MonoBehaviour:
     Max Ammo: 6
 
 '
+--- !u!114 &817270921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817270918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
+  text: {fileID: 1845758444}
 --- !u!1 &840110004
 GameObject:
   m_ObjectHideFlags: 0
@@ -5774,6 +5819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 936125727}
   - component: {fileID: 936125728}
+  - component: {fileID: 936125729}
   m_Layer: 5
   m_Name: Buy Corn
   m_TagString: Untagged
@@ -5823,6 +5869,20 @@ MonoBehaviour:
     Yield: MEDIUM
 
     Sell Price: LOW'
+--- !u!114 &936125729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936125726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: cbc03137cf0f77444ab58bdf02821b06, type: 2}
+  text: {fileID: 1692390413}
 --- !u!1 &943250376
 GameObject:
   m_ObjectHideFlags: 0
@@ -6865,6 +6925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1177284151}
   - component: {fileID: 1177284152}
+  - component: {fileID: 1177284153}
   m_Layer: 5
   m_Name: Buy Tomato
   m_TagString: Untagged
@@ -6914,6 +6975,20 @@ MonoBehaviour:
     Yield: HIGH
 
     Sell Price: LOW'
+--- !u!114 &1177284153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177284150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: e1cb7fa50bfacef4e880fc6cd537c4d0, type: 2}
+  text: {fileID: 104590341}
 --- !u!1 &1196194444
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,6 +7512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1328839007}
   - component: {fileID: 1328839008}
+  - component: {fileID: 1328839009}
   m_Layer: 5
   m_Name: Buy Carrot
   m_TagString: Untagged
@@ -7486,6 +7562,20 @@ MonoBehaviour:
     Yield: LOW
 
     Sell Price: LOW'
+--- !u!114 &1328839009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328839006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 473e67b3f9f7bf1429de8f67bcac0051, type: 2}
+  text: {fileID: 568272402}
 --- !u!1 &1358878336
 GameObject:
   m_ObjectHideFlags: 0
@@ -9819,6 +9909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880309675}
   - component: {fileID: 1880309676}
+  - component: {fileID: 1880309677}
   m_Layer: 5
   m_Name: Buy Sotgun
   m_TagString: Untagged
@@ -9874,6 +9965,20 @@ MonoBehaviour:
     Ammo: 2
 
 '
+--- !u!114 &1880309677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880309674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: d66b7cfbf3722ad4e938c931bdb2b70d, type: 2}
+  text: {fileID: 1196194446}
 --- !u!1 &1888305249
 GameObject:
   m_ObjectHideFlags: 0
@@ -10515,6 +10620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1969821840}
   - component: {fileID: 1969821841}
+  - component: {fileID: 1969821842}
   m_Layer: 5
   m_Name: BuyShotgunAmmo
   m_TagString: Untagged
@@ -10560,6 +10666,20 @@ MonoBehaviour:
   m_itemIcon: {fileID: 1000125291}
   m_tooltip: {fileID: 1525874017}
   m_tooltipText: Shotgun Ammo Pack
+--- !u!114 &1969821842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969821839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 5561a2fc7aea06d4e9da82da4cb0c5c6, type: 2}
+  text: {fileID: 724965553}
 --- !u!1 &1977881783
 GameObject:
   m_ObjectHideFlags: 0
@@ -10914,6 +11034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2033063906}
   - component: {fileID: 2033063907}
+  - component: {fileID: 2033063908}
   m_Layer: 5
   m_Name: Buy Cabadge
   m_TagString: Untagged
@@ -10963,6 +11084,20 @@ MonoBehaviour:
     Yield: LOW
 
     Sell Price: HIGH'
+--- !u!114 &2033063908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033063905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 5365fbd2c29e13149a30373f31a844c0, type: 2}
+  text: {fileID: 610850473}
 --- !u!1 &2039255386
 GameObject:
   m_ObjectHideFlags: 0
