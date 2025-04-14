@@ -1335,6 +1335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395203438}
+  - component: {fileID: 395203439}
   m_Layer: 5
   m_Name: Buy Wheat
   m_TagString: Untagged
@@ -1365,6 +1366,25 @@ RectTransform:
   m_AnchoredPosition: {x: -869, y: -227}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &395203439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395203437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 917634144}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Wheat Seeds
+
+    Yield: AVERAGE
+
+    Sell Price: AVERAGE'
 --- !u!1 &415542554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,6 +1770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 478727313}
+  - component: {fileID: 478727314}
   m_Layer: 5
   m_Name: BuyPistolAmmo
   m_TagString: Untagged
@@ -1780,6 +1801,21 @@ RectTransform:
   m_AnchoredPosition: {x: 70, y: -322}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &478727314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478727312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 375878119}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: Pistol Ammo Pack
 --- !u!1 &480937694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,6 +1890,146 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480937694}
+  m_CullTransparentMesh: 1
+--- !u!1 &499450370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499450371}
+  - component: {fileID: 499450373}
+  - component: {fileID: 499450372}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &499450371
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499450370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1525874018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 98.5, y: 23.813}
+  m_SizeDelta: {x: 239.0348, y: 87.2607}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &499450372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499450370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Corn Seeds
+
+    Growth Amount: 3-5
+
+    Sell Price: $5'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
+  m_sharedMaterial: {fileID: 8289695555494012424, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 27.3
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -52.776306, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &499450373
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499450370}
   m_CullTransparentMesh: 1
 --- !u!1 &568272400
 GameObject:
@@ -3930,6 +4106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3428214656644104937, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1086045805}
+    - targetCorrespondingSourceObject: {fileID: 3428214656644104937, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1525874018}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
 --- !u!114 &586559278 stripped
@@ -5278,6 +5457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 784540511}
   - component: {fileID: 784540512}
+  - component: {fileID: 784540513}
   m_Layer: 5
   m_Name: Buy Plot
   m_TagString: Untagged
@@ -5329,6 +5509,21 @@ MonoBehaviour:
   m_plotPrefab: {fileID: 0}
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
   scrObjGlobalData: {fileID: 0}
+--- !u!114 &784540513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784540510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 597923143}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: Extra Farm Plot
 --- !u!1 &817270918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5338,6 +5533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 817270919}
+  - component: {fileID: 817270920}
   m_Layer: 5
   m_Name: Buy Pistol
   m_TagString: Untagged
@@ -5369,6 +5565,27 @@ RectTransform:
   m_AnchoredPosition: {x: 71, y: -146}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &817270920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817270918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 999092553}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Pistol
+
+    Damage: 18
+
+    Max Ammo: 6
+
+'
 --- !u!1 &840110004
 GameObject:
   m_ObjectHideFlags: 0
@@ -5556,6 +5773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 936125727}
+  - component: {fileID: 936125728}
   m_Layer: 5
   m_Name: Buy Corn
   m_TagString: Untagged
@@ -5586,6 +5804,25 @@ RectTransform:
   m_AnchoredPosition: {x: -702, y: -227}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &936125728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936125726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 782158593}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Corn Seeds
+
+    Yield: MEDIUM
+
+    Sell Price: LOW'
 --- !u!1 &943250376
 GameObject:
   m_ObjectHideFlags: 0
@@ -6627,6 +6864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177284151}
+  - component: {fileID: 1177284152}
   m_Layer: 5
   m_Name: Buy Tomato
   m_TagString: Untagged
@@ -6657,6 +6895,25 @@ RectTransform:
   m_AnchoredPosition: {x: -796, y: -69}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1177284152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177284150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 1328769327}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Tomato Seeds
+
+    Yield: HIGH
+
+    Sell Price: LOW'
 --- !u!1 &1196194444
 GameObject:
   m_ObjectHideFlags: 0
@@ -7179,6 +7436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1328839007}
+  - component: {fileID: 1328839008}
   m_Layer: 5
   m_Name: Buy Carrot
   m_TagString: Untagged
@@ -7209,6 +7467,25 @@ RectTransform:
   m_AnchoredPosition: {x: -432, y: -80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1328839008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328839006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 1643272383}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Carrot Seeds
+
+    Yield: LOW
+
+    Sell Price: LOW'
 --- !u!1 &1358878336
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,6 +7917,81 @@ MonoBehaviour:
   m_sellPriceIcon: {fileID: 192715600}
   m_cannotSellText: {fileID: 1823036626}
   m_cannotUpgradeText: {fileID: 1760337247}
+--- !u!1 &1411561770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411561771}
+  - component: {fileID: 1411561773}
+  - component: {fileID: 1411561772}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1411561771
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411561770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1525874018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 126.1718, y: 23.8133}
+  m_SizeDelta: {x: 352.3436, y: 124.2628}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1411561772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411561770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 59d69a2522b86d94aa82fd45db62bff7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1411561773
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411561770}
+  m_CullTransparentMesh: 1
 --- !u!1 &1438964965
 GameObject:
   m_ObjectHideFlags: 0
@@ -7944,6 +8296,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5ccf2404dc81149aac44ccb11aebb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1525874017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525874018}
+  m_Layer: 5
+  m_Name: ShopItemTooltip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1525874018
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525874017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1411561771}
+  - {fileID: 499450371}
+  m_Father: {fileID: 1402321756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1574675281
 GameObject:
   m_ObjectHideFlags: 0
@@ -8930,6 +9319,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1739611258}
+  - component: {fileID: 1739611259}
   m_Layer: 5
   m_Name: Upgrade Tool
   m_TagString: Untagged
@@ -8961,6 +9351,21 @@ RectTransform:
   m_AnchoredPosition: {x: -266, y: 319}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1739611259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739611257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 2048772160}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: Increases Crop Harvest Yield
 --- !u!1 &1760337247
 GameObject:
   m_ObjectHideFlags: 0
@@ -9413,6 +9818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1880309675}
+  - component: {fileID: 1880309676}
   m_Layer: 5
   m_Name: Buy Sotgun
   m_TagString: Untagged
@@ -9444,6 +9850,30 @@ RectTransform:
   m_AnchoredPosition: {x: -128, y: -147}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1880309676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880309674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 1957016345}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Shotgun
+
+    Shoots 6 bullets per shot
+
+    Damage: 20
+
+    Max
+    Ammo: 2
+
+'
 --- !u!1 &1888305249
 GameObject:
   m_ObjectHideFlags: 0
@@ -10084,6 +10514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1969821840}
+  - component: {fileID: 1969821841}
   m_Layer: 5
   m_Name: BuyShotgunAmmo
   m_TagString: Untagged
@@ -10114,6 +10545,21 @@ RectTransform:
   m_AnchoredPosition: {x: -129, y: -321}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1969821841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969821839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 1000125291}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: Shotgun Ammo Pack
 --- !u!1 &1977881783
 GameObject:
   m_ObjectHideFlags: 0
@@ -10467,6 +10913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033063906}
+  - component: {fileID: 2033063907}
   m_Layer: 5
   m_Name: Buy Cabadge
   m_TagString: Untagged
@@ -10497,6 +10944,25 @@ RectTransform:
   m_AnchoredPosition: {x: -699, y: -393}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2033063907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033063905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 475933245}
+  m_tooltip: {fileID: 1525874017}
+  m_tooltipText: 'Cabbage Seeds
+
+    Yield: LOW
+
+    Sell Price: HIGH'
 --- !u!1 &2039255386
 GameObject:
   m_ObjectHideFlags: 0
