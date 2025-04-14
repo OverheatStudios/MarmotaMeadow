@@ -36,6 +36,8 @@ public class Actions : MonoBehaviour
     [SerializeField] private AudioClip m_errorSfx;
     [SerializeField] private TooltipManager m_tooltipManager;
     [SerializeField] private GameObject m_goToSleepTooltip;
+    [SerializeField] private GameObject m_cantHarvestTooltip;
+    [SerializeField] private GameObject m_wrongToolSelectedTooltip;
 
     private void Start()
     {
@@ -75,6 +77,7 @@ public class Actions : MonoBehaviour
                     GameObject obj = hit.collider.gameObject;
                     StartCoroutine(ShowRedOverlay(obj));
                     AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
+                    m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
                     return;
                 }
 
@@ -87,6 +90,7 @@ public class Actions : MonoBehaviour
                         {
                             StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                             AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
+                            m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
                         }
                     }
                     else 

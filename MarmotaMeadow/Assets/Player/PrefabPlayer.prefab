@@ -113,6 +113,8 @@ MonoBehaviour:
   m_errorSfx: {fileID: 0}
   m_tooltipManager: {fileID: 0}
   m_goToSleepTooltip: {fileID: 0}
+  m_cantHarvestTooltip: {fileID: 0}
+  m_wrongToolSelectedTooltip: {fileID: 0}
 --- !u!1 &3097902270475952157
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +184,7 @@ MonoBehaviour:
     Second: {fileID: 8300000, guid: 9a70aa8366ed7ee4698a0ae71868778f, type: 3}
   m_walkingSfxFadeOutDuration: 0.2
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
+  m_maxNegativeYVelocity: 1
 --- !u!23 &7827074693464386728
 MeshRenderer:
   m_ObjectHideFlags: 0

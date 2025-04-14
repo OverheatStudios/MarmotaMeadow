@@ -39,6 +39,12 @@ public class MovementScript : MonoBehaviour
     [Tooltip("How long will we spend fading the walking footsteps sfx when the player stops walking")]
     [SerializeField] private float m_walkingSfxFadeOutDuration = 0.2f;
     [SerializeField] private SettingsScriptableObject m_settings;
+    [Tooltip("What is the maximum allowed magnitude of the players Y velocity when it is negative? Prevents being launched up when going up stairs")]
+    [SerializeField] private float m_maxNegativeYVelocity = 1.0f;
+    [Tooltip("How is players movement reduced when in air?")]
+    [SerializeField] private float m_airPenaltyMultiplier = 0.5f;
+    [Tooltip("What speed must the player be moving downwards to be considered in the air?")]
+    [SerializeField] private float m_downwardVelocityForAir = 1.0f;
     private AudioSource m_walkingSource;
     private FloorType m_lastCollidedFloorLastFrame = FloorType.None;
     
@@ -57,6 +63,8 @@ public class MovementScript : MonoBehaviour
         m_colliderHeightStarting = m_playerCollider.height;
         m_cameraStartingY = m_camera.transform.localPosition.y;
         m_secondsSinceCrouchStateChange = m_crouchAnimationDuration;
+        Assert.IsTrue(m_maxNegativeYVelocity >= 0);
+        Assert.IsTrue(m_downwardVelocityForAir >= 0);
     }
 
     private void HandleWalkingSfx()
@@ -159,6 +167,7 @@ public class MovementScript : MonoBehaviour
 
             // Scale movement vector
             movement *= (Time.deltaTime * m_speed * (IsCrouching() ? m_crouchingSpeedMultiplier : 1));
+            if (m_rigidbody.velocity.y < -m_downwardVelocityForAir) movement *= m_airPenaltyMultiplier;
 
             // Where is the camera facing
             Vector3 forward = m_camera.transform.forward;
@@ -174,8 +183,11 @@ public class MovementScript : MonoBehaviour
         } else
         {
             m_isWalking = false;
-            m_rigidbody.velocity = Vector3.zero;
+            m_rigidbody.velocity = Vector3.zero + m_rigidbody.velocity.y * Vector3.up;
         }
+
+        // Prevent player being launched by going up stairs
+        if (m_rigidbody.velocity.y > m_maxNegativeYVelocity) m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, m_maxNegativeYVelocity, m_rigidbody.velocity.z);
     }
     public bool IsCrouching()
     {
