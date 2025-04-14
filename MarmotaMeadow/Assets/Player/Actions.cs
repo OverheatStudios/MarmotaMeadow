@@ -34,6 +34,8 @@ public class Actions : MonoBehaviour
     [Tooltip("When a not harvestable is red, we'll put it on this layer temporarily")]
     [SerializeField] private int m_defaultLayer;
     [SerializeField] private AudioClip m_errorSfx;
+    [SerializeField] private TooltipManager m_tooltipManager;
+    [SerializeField] private GameObject m_goToSleepTooltip;
 
     private void Start()
     {
@@ -54,6 +56,7 @@ public class Actions : MonoBehaviour
             if (heldItem == null) return;
             if (m_changeToNight.ReturnIsNight() && m_inventoryManager.GetHeldInventoryItem().item.name == "hoe")
             {
+                m_tooltipManager.ShowTooltip(Instantiate(m_goToSleepTooltip));
                 return;
             }
 

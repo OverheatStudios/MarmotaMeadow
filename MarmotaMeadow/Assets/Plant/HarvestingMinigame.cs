@@ -80,7 +80,6 @@ public class HarvestingMinigame : MonoBehaviour
         { 
             Destroy(hit.collider.gameObject);
             Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
-            Debug.Log(hit.collider.name);
         }
 
         if (transform.childCount == 0)
