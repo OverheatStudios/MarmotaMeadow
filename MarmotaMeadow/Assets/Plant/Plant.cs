@@ -486,7 +486,6 @@ public class Plant : MonoBehaviour
     public void WaterCrop(float multiplier)
     {
         this.multiplier += multiplier;
-        print("added multiplier: " + multiplier);
         m_lineMinigameUi.SetActive(false);
         finishedMiniGame = true;
         state = PlantState.Waterd;
