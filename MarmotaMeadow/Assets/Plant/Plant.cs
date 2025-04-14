@@ -6,7 +6,6 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UIElements.Experimental;
-using static UnityEditor.Progress;
 
 public class Plant : MonoBehaviour
 {
