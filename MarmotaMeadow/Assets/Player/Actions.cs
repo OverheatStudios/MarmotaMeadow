@@ -33,6 +33,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private int m_numColorChanges = 100;
     [Tooltip("When a not harvestable is red, we'll put it on this layer temporarily")]
     [SerializeField] private int m_defaultLayer;
+    [SerializeField] private AudioClip m_errorSfx;
 
     private void Start()
     {
@@ -70,18 +71,24 @@ public class Actions : MonoBehaviour
                     if (!farmToolHeld) return;
                     GameObject obj = hit.collider.gameObject;
                     StartCoroutine(ShowRedOverlay(obj));
+                    AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
                     return;
                 }
 
                 if (heldItem.transform.childCount > 0)
                 {
-                    if (hit.collider.GetComponent<Plant>().ChangeState(heldItem) == false)
+                    Plant plant = hit.collider.GetComponent<Plant>();
+                    if (plant.ChangeState(heldItem) == false)
                     {
-                        StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
+                        if (plant.CanGiveErrorFeedback())
+                        {
+                            StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
+                            AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
+                        }
                     }
                     else 
                     {
-                        hit.collider.GetComponent<Plant>().ChangeState(heldItem);
+                       plant.ChangeState(heldItem);
                         if (heldItem.item.IsStackable())
                         {
                             heldItem.DecreaseAmount();

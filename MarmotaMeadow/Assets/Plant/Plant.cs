@@ -35,6 +35,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private GameObject cropToSpawnLocation;
     [SerializeField] private float fertilizerMultiplier = 1.5f;
     [SerializeField] private bool planted;
+    [SerializeField] private float m_secondsWithoutErrorFeedbackAfterStateChange = 1.5f; // So player doesn't get error sound when spam clicking
 
     [SerializeField] private Billboard m_billboard;
 
@@ -109,7 +110,8 @@ public class Plant : MonoBehaviour
     public System.Action OnPlanted;
     public System.Action OnWatered;
     public System.Action OnHarvested;
-
+    private float m_secondsSinceStateChange = 0;
+    private PlantState m_stateLastFrame;
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +125,7 @@ public class Plant : MonoBehaviour
         untealedGround.SetActive(true);
         m_clockIconGrowthTimer.SetActive(false);
         growthText.gameObject.SetActive(false);
+        m_stateLastFrame = state;
         if (SceneManager.GetActiveScene().name == "NightScene")
         {
             return;
@@ -141,10 +144,21 @@ public class Plant : MonoBehaviour
         {
             return;
         }
+
+        // How long since the plant state changed?
+        m_secondsSinceStateChange += Time.deltaTime;
+        if (m_stateLastFrame != state)
+        {
+            m_stateLastFrame = state;
+            m_secondsSinceStateChange = 0;
+        }
+
+        // Tilling minigame
         m_secondsSinceLastInteraction += Time.deltaTime;
         m_tillingProgressText.text = "Tilling Progress: " + ((int)(Mathf.InverseLerp(0, m_requiredTillingPercent, m_currentTilledPercent) * 100)) + "%";
         m_tillingProgressText.gameObject.SetActive(state == PlantState.Tealed || state == PlantState.Normal);
 
+        // UI
         m_clockIconGrowthTimer.SetActive(state == PlantState.Waterd);
         growthText.gameObject.SetActive(state == PlantState.Waterd || state == PlantState.Completed || state == PlantState.Planted);
         m_lineMinigameExitUi.text = m_lineMinigameExitUi.text.Replace("[KEY]", GameInput.GetKeybind("ExitMinigame").ToString());
@@ -155,6 +169,7 @@ public class Plant : MonoBehaviour
             m_billboard.SetSprite(m_seed.ReturnGrowingSprite());
         }
 
+        // Exit line minigame
         if (isCameraInPosition && GameInput.GetKeybind("ExitMinigame").GetKeyDown()) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
@@ -165,6 +180,7 @@ public class Plant : MonoBehaviour
             }
         }
 
+        // Grow the crop
         if (planted && state == PlantState.Waterd)
         {
 
@@ -296,6 +312,11 @@ public class Plant : MonoBehaviour
 
         m_originalTilledGroundScale = untealedGround.transform.localScale;
         m_secondsSinceTilled = 0;
+    }
+
+    public bool CanGiveErrorFeedback()
+    {
+        return m_secondsSinceStateChange >= m_secondsWithoutErrorFeedbackAfterStateChange;
     }
 
     public bool ChangeState(InventoryItem item)

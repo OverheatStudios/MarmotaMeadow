@@ -487,6 +487,7 @@ MonoBehaviour:
   cropToSpawnLocation: {fileID: 5862528567581457388}
   fertilizerMultiplier: 2
   planted: 0
+  m_secondsWithoutErrorFeedbackAfterStateChange: 0.9
   m_billboard: {fileID: 7404725365386522899}
   gamePausedEvent:
     m_PersistentCalls:
