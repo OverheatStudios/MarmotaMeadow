@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,47 @@ public class RandomSaveName : MonoBehaviour
 {
     [SerializeField] private TMP_InputField m_nameInput;
     [SerializeField] private SaveManager m_saveManager;
+
+    private string[] m_badWords = new string[]
+{
+    "Emancipation",
+    "Barrymore",
+    "White",
+    "Leather",
+    "Reformer",
+    "Special",
+    "Seduction",
+    "Hierarchy",
+    "Attraction",
+    "Junior",
+    "Cutter",
+    "Cholera",
+    "Diversity",
+    "Docking",
+    "Period",
+    "Violation",
+    "Orientalism",
+    "Brown",
+    "Priesthood",
+    "Liberation",
+    "Policeman",
+    "Vegetable",
+    "China",
+    "Peasant",
+    "Male",
+    "Sister",
+    "Domination",
+    "Rough",
+    "Foreign",
+    "Nationality",
+    "Booty",
+    "Obscenity",
+    "Disarmament",
+    "Political",
+    "Left",
+    "Disability"
+};
+
 
     // https://gist.github.com/petergombos/2e1f7f0c0c4bf514ac56ee0f8ff12015
     private string[] m_adjectives = {
@@ -1497,7 +1539,10 @@ public class RandomSaveName : MonoBehaviour
         for (int i = 0; i < 100; ++i)
         {
             string adj = m_adjectives[Random.Range(0, m_adjectives.Length)].ToLower().FirstCharacterToUpper();
+            if (m_badWords.Contains(adj)) continue;
             string noun = m_nouns[Random.Range(0, m_nouns.Length)].ToLower().FirstCharacterToUpper();
+            if (m_badWords.Contains(noun)) continue;
+
             string name = adj + " " + noun;
             if (m_saveManager.DoesSaveExist(name)) continue;
 
