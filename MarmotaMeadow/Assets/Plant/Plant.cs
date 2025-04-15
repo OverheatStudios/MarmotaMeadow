@@ -500,5 +500,8 @@ public class Plant : MonoBehaviour
         growOffset += offset;
     }
 
-
+    public bool IsPreTilledState()
+    {
+        return state == PlantState.Normal;
+    }
 }

@@ -55,11 +55,6 @@ public class Actions : MonoBehaviour
             InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
 
             if (heldItem == null) return;
-            if (m_changeToNight.ReturnIsNight() && m_inventoryManager.GetHeldInventoryItem().item.name == "hoe")
-            {
-                m_tooltipManager.ShowTooltip(Instantiate(m_goToSleepTooltip));
-                return;
-            }
 
             RaycastHit hit;
             Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
@@ -76,20 +71,29 @@ public class Actions : MonoBehaviour
                     GameObject obj = hit.collider.gameObject;
                     StartCoroutine(ShowRedOverlay(obj));
                     AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                    m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
+                    m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
                     return;
                 }
 
                 if (heldItem.transform.childCount > 0)
                 {
                     Plant plant = hit.collider.GetComponent<Plant>();
+
+                    bool dayTimerAt0 = m_changeToNight.ReturnIsNight();
+                    bool tryingToStartNewFarm = m_inventoryManager.GetHeldInventoryItem().item.name == "hoe" && plant.IsPreTilledState();
+                    if (dayTimerAt0 && tryingToStartNewFarm)
+                    {
+                        m_tooltipManager.ShowTooltip(Instantiate(m_goToSleepTooltip));
+                        return;
+                    }
+
                     if (plant.ChangeState(heldItem) == false)
                     {
                         if (plant.CanGiveErrorFeedback())
                         {
                             StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                             AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                            m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                            m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
                         }
                     }
                     else 

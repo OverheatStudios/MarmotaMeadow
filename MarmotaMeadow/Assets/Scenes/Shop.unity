@@ -12335,7 +12335,7 @@ MonoBehaviour:
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
   m_gainCoinSfx: {fileID: 8300000, guid: 813826d156d13d449a80992e3f0d7aae, type: 3}
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
-  m_coinDisplay: {fileID: 0}
+  m_coinDisplay: {fileID: 1996407033}
   m_coinAnimationDuration: 0.2
   m_coinAnimationIntensity: 0.2
 --- !u!4 &2142993338
@@ -12363,7 +12363,7 @@ SceneRoots:
   - {fileID: 1127846375}
   - {fileID: 1470416032}
   - {fileID: 457967529}
-  - {fileID: 2142993338}
   - {fileID: 1096908354}
   - {fileID: 248083640}
   - {fileID: 603851270}
+  - {fileID: 2142993338}
