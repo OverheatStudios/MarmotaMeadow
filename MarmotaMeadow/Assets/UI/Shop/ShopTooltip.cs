@@ -11,9 +11,11 @@ public class ShopTooltip : MonoBehaviour
     private static ShopTooltip m_latestScript;
     [SerializeField] private RectTransform m_itemIcon;
     [SerializeField] private GameObject m_tooltip;
+    [SerializeField] private Vector2 m_tooltipOffset = new(50, 50);
     [TextArea]
     [SerializeField] private string m_tooltipText;
     private TextMeshProUGUI m_tooltipTextComponent;
+    private static bool m_isVisible = true;
 
     private void Start()
     {
@@ -25,9 +27,6 @@ public class ShopTooltip : MonoBehaviour
 
     private void Update()
     {
-        //print(m_itemIcon.position + ", " + m_itemIcon.sizeDelta);
-        //print(Input.mousePosition);
-
         if (m_isAnyIconHovered) return; // Some other icon already is hovered
 
         // Are we hovered
@@ -37,7 +36,7 @@ public class ShopTooltip : MonoBehaviour
         if (mousePos.x < min.x || mousePos.y < min.y || mousePos.x > max.x || mousePos.y > max.y) return; // Not hovering
 
         m_isAnyIconHovered = true;
-        m_tooltip.transform.position = m_itemIcon.position + new Vector3(50, 50, 0);
+        m_tooltip.transform.position = m_itemIcon.position + (Vector3)m_tooltipOffset;
         m_tooltipTextComponent.text = m_tooltipText;
     }
 
@@ -45,7 +44,17 @@ public class ShopTooltip : MonoBehaviour
     {
         Assert.IsNotNull(m_latestScript);
         if (this != m_latestScript) return; // Only a single script should do this per frame
-        m_tooltip.SetActive(m_isAnyIconHovered);
+        m_tooltip.SetActive(m_isAnyIconHovered && m_isVisible);
         m_isAnyIconHovered = false;
+    }
+
+    public void SetText(string text)
+    {
+        m_tooltipText = text;
+    }
+
+    public void SetVisible(bool visible)
+    {
+        m_isVisible = visible;
     }
 }
