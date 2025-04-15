@@ -25,6 +25,11 @@ public class GroundhogTypeInfo : MonoBehaviour
         m_woundedSource.loop = false;
     }
 
+    private void OnDestroy()
+    {
+        Destroy(m_woundedSource);
+    }
+
     public void PlayWoundedSfx(Vector3 worldPos)
     {
         m_woundedSource.transform.position = worldPos;
