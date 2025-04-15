@@ -929,7 +929,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8942070438449667077, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
   m_PrefabInstance: {fileID: 603934161}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 782961913}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ba68395afc122a4f88dbba41402f2df, type: 3}
@@ -2624,6 +2624,7 @@ MonoBehaviour:
   isInBed: 0
   m_text: {fileID: 2042355491}
   inventoryMager: {fileID: 1804676360}
+  m_player: {fileID: 782961913}
 --- !u!65 &778297265
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2714,6 +2715,11 @@ Transform:
   - {fileID: 2001587558}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &782961913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3097902270475952157, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+  m_PrefabInstance: {fileID: 603934161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &871564791
 Mesh:
   m_ObjectHideFlags: 0

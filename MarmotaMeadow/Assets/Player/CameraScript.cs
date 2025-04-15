@@ -39,6 +39,10 @@ public class CameraScript : MonoBehaviour
     [Tooltip("Recoil velocity is multiplied by this value every fixed frame")]
     [SerializeField] private float m_recoilDeveloMultiplier = 0.9f;
 
+    [Header("Other")]
+    [Tooltip("How far can player interact with stuff?")]
+    [SerializeField] private float m_maxInteractDistance = 10.0f;
+
     private float m_pitch = 0f;
     private Vector2 m_currentSwayVector = Vector2.zero;
     private Vector2 m_lastSwayVector = Vector2.zero;
@@ -48,7 +52,9 @@ public class CameraScript : MonoBehaviour
     private float m_pauseTimeRemaining = 0;
     private float m_recoilVelocity = 0;
 
-    void Start()
+    private static CameraScript m_currentCameraScript;
+
+    private void Start()
     {
         m_cursorHandler.NotifyUiClosed();
 
@@ -62,6 +68,16 @@ public class CameraScript : MonoBehaviour
         Assert.IsTrue(m_swayMinPause >= 0);
 
         Assert.IsTrue(m_nightAimSwayMultipliers.Length > 0);
+
+        m_currentCameraScript = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (m_currentCameraScript == this)
+        {
+            m_currentCameraScript = null;
+        }
     }
 
     private void Update()
@@ -86,6 +102,13 @@ public class CameraScript : MonoBehaviour
             m_swaySinceLateUpdate += m_currentSwayVector * progressThisFrame;
             m_swayProgress += progressThisFrame;
         }
+    }
+
+    public static float GetMaxInteractDistance()
+    {
+        if (m_currentCameraScript != null) return m_currentCameraScript.m_maxInteractDistance;
+        Debug.LogError("Checking max interact distance when there is no camera script");
+        return 10.0f;
     }
 
     private float GetNightSwayMultiplier()

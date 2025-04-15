@@ -15,6 +15,7 @@ public class Bed : MonoBehaviour
     [SerializeField] private bool isInBed;
     [SerializeField] private TextMeshProUGUI m_text;
     [SerializeField] private InventoryMager inventoryMager;
+    [SerializeField] private GameObject m_player;
 
     void Update()
     {
@@ -23,6 +24,14 @@ public class Bed : MonoBehaviour
 
     private void OnMouseOver()
     {
+        float distanceSquared = (m_player.transform.position - transform.position).sqrMagnitude;
+        if (distanceSquared > Mathf.Pow(CameraScript.GetMaxInteractDistance(), 2))
+        {
+            m_UI.SetActive(false);
+            m_confirmationUI.SetActive(false);
+            return;
+        }
+
         if (!m_clicked)
             m_UI.SetActive(true);
 

@@ -605,7 +605,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3114,7 +3114,7 @@ PrefabInstance:
     - target: {fileID: 3604151010446247028, guid: 9e35c295bafcc69419b0b6228093d463, type: 3}
       propertyPath: m_handleSprite
       value: 
-      objectReference: {fileID: 21300000, guid: d4031a1eb0e7230419ff5d86a8fb45e9, type: 3}
+      objectReference: {fileID: 21300000, guid: 23254d82cc52bf649b229d9ee56f7e35, type: 3}
     - target: {fileID: 3604151010446247028, guid: 9e35c295bafcc69419b0b6228093d463, type: 3}
       propertyPath: m_handleSpriteMinValue
       value: 
