@@ -17,17 +17,20 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject m_sellPriceIcon;
     [SerializeField] private GameObject m_cannotSellText;
     [SerializeField] private GameObject m_cannotUpgradeText;
+    [SerializeField] private BuyMultiplier m_buyMultiplier;
 
     public void BuyItem(BaseItem item)
     {
+        int multiplier = item.IsStackable() ? m_buyMultiplier.GetCurrentMultiplier() : 1;
+        float price = item.ReturnBuyCoinsAmount() * multiplier;
         Assert.IsTrue(item != null);
-        Assert.IsTrue(item.ReturnBuyCoinsAmount() > 0);
-        if (coinManager.GetCoins() < item.ReturnBuyCoinsAmount())
+        Assert.IsTrue(price > 0);
+        if (coinManager.GetCoins() < price)
         {
             return;
         }
-        inventoryMager.AddItem(item);
-        coinManager.DecreaseCoins(item.ReturnBuyCoinsAmount());
+        inventoryMager.AddItem(item, multiplier);
+        coinManager.DecreaseCoins(price);
     }
 
     private void Start()
@@ -58,15 +61,15 @@ public class Shop : MonoBehaviour
             float price = 0;
             if (isUpgrade && item.item is Tool tool)
             {
-                price = tool.ReturnToolLevelCost();
+                price = tool.ReturnToolLevelCost() * m_buyMultiplier.GetCurrentMultiplier();
             }
             else if (isUpgrade && item.item is Gun gun)
             {
-                price = gun.GetUpgradeCost();
+                price = gun.GetUpgradeCost() * m_buyMultiplier.GetCurrentMultiplier();
             }
             else if (!isUpgrade && item.item is Crops crops)
             {
-                price = crops.ReturnSellCoinsAmount() * item.ReturnAmount();
+                price = crops.ReturnSellCoinsAmount() * item.ReturnAmount() * m_buyMultiplier.GetCurrentMultiplier();
             }
             else if (!isUpgrade && item.item is Seeds seeds)
             {
@@ -118,20 +121,21 @@ public class Shop : MonoBehaviour
 
     public void UpgradeTool(InventorySlot item)
     {
+        int multiplier = m_buyMultiplier.GetCurrentMultiplier();
         if (item == null || item.GetComponentInChildren<InventoryItem>() == null || item.GetComponentInChildren<InventoryItem>().item == null) return;
         if (item.GetComponentInChildren<InventoryItem>().item is Tool tool)
         {
-            if (coinManager.GetCoins() < tool.ReturnToolLevelCost() || tool.ReturnToolLevelCost() == 0) return;
+            if (coinManager.GetCoins() < tool.ReturnToolLevelCost() * multiplier || tool.ReturnToolLevelCost() == 0) return;
 
-            coinManager.DecreaseCoins(tool.ReturnToolLevelCost());
-            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
+            coinManager.DecreaseCoins(tool.ReturnToolLevelCost()* multiplier);
+            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier(multiplier);
         }
         else if (item.GetComponentInChildren<InventoryItem>().item is Gun gun)
         {
-            if (coinManager.GetCoins() < gun.GetUpgradeCost() || gun.GetUpgradeCost() == 0) return;
+            if (coinManager.GetCoins() < gun.GetUpgradeCost()* multiplier || gun.GetUpgradeCost() == 0) return;
 
-            coinManager.DecreaseCoins(gun.GetUpgradeCost());
-            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier();
+            coinManager.DecreaseCoins(gun.GetUpgradeCost()* multiplier);
+            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier(multiplier);
         }
     }
 

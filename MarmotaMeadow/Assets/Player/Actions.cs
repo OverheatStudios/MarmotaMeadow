@@ -15,7 +15,6 @@ public class Actions : MonoBehaviour
 
     [Header("Interactions")]
     [SerializeField] private GameObject m_camera;
-    [SerializeField] private float m_maxDistance;
     [SerializeField] private LayerMask m_plantLayerMask;
     [SerializeField] private GameObject m_intereactedPlant;
     [SerializeField] ChangeToNight m_changeToNight;
@@ -28,7 +27,7 @@ public class Actions : MonoBehaviour
     [Tooltip("How long should they take to fade back to original colour")]
     [SerializeField] private float m_redFadeDuration = 0.8f;
     [Tooltip("When at 100% \"redness\", original colour is multiplied by this")] 
-    [SerializeField] private Color m_redColor = new Color(0.5f, 0, 0);
+    [SerializeField] private Color m_redColor = new(0.5f, 0, 0);
     [Tooltip("How many times should we change the colour when fading? 100 means we modify the colour in 1/100*abs(originalColour*redColor-originalColour) decrements/increments")]
     [SerializeField] private int m_numColorChanges = 100;
     [Tooltip("When a not harvestable is red, we'll put it on this layer temporarily")]
@@ -38,6 +37,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private GameObject m_goToSleepTooltip;
     [SerializeField] private GameObject m_cantHarvestTooltip;
     [SerializeField] private GameObject m_wrongToolSelectedTooltip;
+    [SerializeField] private LayerMask m_blockInteractionsLayer;
 
     private void Start()
     {
@@ -56,11 +56,6 @@ public class Actions : MonoBehaviour
             InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
 
             if (heldItem == null) return;
-            if (m_changeToNight.ReturnIsNight() && m_inventoryManager.GetHeldInventoryItem().item.name == "hoe")
-            {
-                m_tooltipManager.ShowTooltip(Instantiate(m_goToSleepTooltip));
-                return;
-            }
 
             RaycastHit hit;
             Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
@@ -68,29 +63,44 @@ public class Actions : MonoBehaviour
             LayerMask checkMask = m_plantLayerMask;
             bool farmToolHeld = m_inventoryManager.GetHeldInventoryItem().item.name == "harvesting tool" || m_inventoryManager.GetHeldInventoryItem().item.name == "hoe";
             if (farmToolHeld) checkMask |= m_notHarvestableLayer;
+            checkMask |= m_blockInteractionsLayer;
 
-            if (Physics.Raycast(ray, out hit, m_maxDistance, checkMask, QueryTriggerInteraction.Collide))
+            if (Physics.Raycast(ray, out hit, CameraScript.GetMaxInteractDistance(), checkMask, QueryTriggerInteraction.Collide))
             {
+                if ((m_blockInteractionsLayer & (1 << hit.collider.gameObject.layer)) != 0)
+                {
+                    return; // interaction blocked, something was in the way (e.g house)
+                }
+
                 if ((m_notHarvestableLayer & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     if (!farmToolHeld) return;
                     GameObject obj = hit.collider.gameObject;
                     StartCoroutine(ShowRedOverlay(obj));
                     AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                    m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
+                    m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
                     return;
                 }
 
                 if (heldItem.transform.childCount > 0)
                 {
                     Plant plant = hit.collider.GetComponent<Plant>();
+
+                    bool dayTimerAt0 = m_changeToNight.ReturnIsNight();
+                    bool tryingToStartNewFarm = m_inventoryManager.GetHeldInventoryItem().item.name == "hoe" && plant.IsPreTilledState();
+                    if (dayTimerAt0 && tryingToStartNewFarm)
+                    {
+                        m_tooltipManager.ShowTooltip(Instantiate(m_goToSleepTooltip));
+                        return;
+                    }
+
                     if (plant.ChangeState(heldItem) == false)
                     {
                         if (plant.CanGiveErrorFeedback())
                         {
                             StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                             AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                            m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                            m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
                         }
                     }
                     else 

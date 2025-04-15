@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
@@ -14,7 +15,7 @@ public class PlotData
 
 public class PlotManager : MonoBehaviour
 {
-    
+    public static int MAX_PLOTS = 5;
     [SerializeField] private string m_saveLocation;
     private string filePath;
     [SerializeField] private List<GameObject> m_plots;
@@ -27,28 +28,13 @@ public class PlotManager : MonoBehaviour
 
     void Start()
     {
+        Assert.IsTrue(m_plots.Count == MAX_PLOTS || m_plots.Count == 0);
         filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
         if (scrObjGlobalData && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
         {
-            switch (scrObjGlobalData.GetData().CurrentHealth)
-            {
-                case 100:
-                    IncreaseMultiplierOnPlots(0);
-                    break;
-                case 80:
-                    IncreaseMultiplierOnPlots(1);
-                    break;
-                case 60:
-                    IncreaseMultiplierOnPlots(2);
-                    break;
-                case 40:
-                    IncreaseMultiplierOnPlots(2);
-                    break;
-                case 20:
-                    IncreaseMultiplierOnPlots(3);
-                    break;
-            }
+            float howGood = Mathf.InverseLerp(0, 100, scrObjGlobalData.GetData().CurrentHealth);
+            IncreaseGrowthTimerOnPlots(Mathf.Lerp(8, 0, howGood));
         }
     }
 
@@ -101,11 +87,16 @@ public class PlotManager : MonoBehaviour
         Save();
     }
 
-    void IncreaseMultiplierOnPlots(float amount)
+    void IncreaseGrowthTimerOnPlots(float amount)
     {
         for (int i = 0; i < m_plotsSpawned.Count; i++)
         {
             m_plotsSpawned[i].gameObject.GetComponentInChildren<Plant>().SetGrowTimerOffset(amount);
         }
+    }
+
+    public int GetNumberPlotsMinus1()
+    {
+        return numberOfPlots;
     }
 }

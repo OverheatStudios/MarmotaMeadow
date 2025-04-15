@@ -31,6 +31,8 @@ public class GroundhogScript : MonoBehaviour
     [SerializeField, Tooltip("High precision collider of the groundhog, probably should be a mesh collider. This will be disabled most of the time and require enabling before use.")]
     private Collider m_highPrecisionCollider;
 
+    private CoinManager m_coinManager;
+
     private GroundhogState m_state = GroundhogState.Rising;
     /// <summary>
     /// Seconds remaining that the groundhog will stay idle
@@ -49,6 +51,11 @@ public class GroundhogScript : MonoBehaviour
 
         // Update health bar
         m_healthBar.SetProgress(m_health, m_maxHealth, 0);
+    }
+
+    public void SetCoinManager(CoinManager coinManager)
+    {
+        m_coinManager = coinManager;
     }
 
     private void Start()
@@ -133,6 +140,7 @@ public class GroundhogScript : MonoBehaviour
         if (m_health <= 0)
         {
             m_data.GetData().GroundhogsKilled++;
+            m_coinManager.IncreaseCoins(m_typeInfo.GetCoinsDropped());
             Destroy(gameObject, 0.01f);
             return;
         }

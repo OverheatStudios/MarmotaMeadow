@@ -6,7 +6,6 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UIElements.Experimental;
-using static UnityEditor.Progress;
 
 public class Plant : MonoBehaviour
 {
@@ -312,8 +311,6 @@ public class Plant : MonoBehaviour
 
         m_originalTilledGroundScale = untealedGround.transform.localScale;
         m_secondsSinceTilled = 0;
-
-        print("finish hoe");
     }
 
     public bool CanGiveErrorFeedback()
@@ -501,5 +498,8 @@ public class Plant : MonoBehaviour
         growOffset += offset;
     }
 
-
+    public bool IsPreTilledState()
+    {
+        return state == PlantState.Normal;
+    }
 }

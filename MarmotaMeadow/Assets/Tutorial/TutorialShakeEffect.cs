@@ -14,7 +14,6 @@ public class TutorialShakeEffect : MonoBehaviour
     [Tooltip("Offset per velocity change is intensity * velocityChangeInterval pixels")]
     [SerializeField] private float m_minShakeIntensity = 20.0f;
     [SerializeField] private float m_maxShakeIntensity = 40.0f;
-    [SerializeField] private float m_secondsToGoBackToOrigin = 0.08f;
     [SerializeField] private float m_velocityChangeInterval = 0.1f;
     private Vector3 m_currentShakeOffset = Vector3.zero;
     private float m_secondsUntilShakingBegins = 0;

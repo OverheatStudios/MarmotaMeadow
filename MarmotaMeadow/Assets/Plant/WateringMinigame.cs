@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class WateringMinigame : MonoBehaviour
 {
@@ -26,8 +23,6 @@ public class WateringMinigame : MonoBehaviour
     [SerializeField] private LayerMask checkMask;
     [SerializeField] private GameObject trail;
 
-
-    [SerializeField] private float rangeY = 1f;
     [SerializeField] private Plant plant;
 
     [SerializeField] private bool finished = false;

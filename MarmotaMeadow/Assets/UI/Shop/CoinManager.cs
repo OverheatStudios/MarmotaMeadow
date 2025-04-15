@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 
 [System.Serializable]
@@ -23,12 +24,17 @@ public class CoinManager : MonoBehaviour
     [SerializeField] private SaveManager m_saveManager;
     [SerializeField] private AudioClip m_gainCoinSfx;
     [SerializeField] private SettingsScriptableObject m_settings;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject m_coinDisplay;
+    [SerializeField] private float m_coinAnimationDuration = 0.25f;
+    [SerializeField] private float m_coinAnimationIntensity = 0.2f;
+    private Vector3 m_coinDisplayStartingScale;
+    private float m_secondsSinceCoinAnimationStarted = -1;
 
     void Start()
     {
         filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
+        m_coinDisplayStartingScale = m_coinDisplay.transform.localScale;
     }
 
     private void Load()
@@ -46,6 +52,19 @@ public class CoinManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (m_secondsSinceCoinAnimationStarted >= 0)
+        {
+            m_secondsSinceCoinAnimationStarted += Time.deltaTime;
+            float t = Mathf.InverseLerp(0, m_coinAnimationDuration, m_secondsSinceCoinAnimationStarted);
+            if (t > 0.5f) t = 1.0f - t;
+            t *= 2;
+            Assert.IsTrue(t >= 0 && t <= 1);
+            m_coinDisplay.transform.localScale = Vector3.Lerp(m_coinDisplayStartingScale, m_coinDisplayStartingScale + Vector3.one * m_coinAnimationIntensity, t);
+        }
+    }
+
     public void Save()
     {
         coinData.numberOfCoins = coins;
@@ -57,6 +76,7 @@ public class CoinManager : MonoBehaviour
     {
         coins += amount;
         AudioSource.PlayClipAtPoint(m_gainCoinSfx, Camera.main.transform.position, m_settings.GetSettings().GetGameVolume());
+        m_secondsSinceCoinAnimationStarted = 0;
         if (CoinsText) CoinsText.text = GetCoins().ToString();
     }
 
@@ -69,6 +89,7 @@ public class CoinManager : MonoBehaviour
     public void DecreaseCoins(float amount)
     {
         coins -= amount;
+        m_secondsSinceCoinAnimationStarted = 0;
         CoinsText.text = GetCoins().ToString();
     }
 

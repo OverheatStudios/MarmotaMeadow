@@ -767,6 +767,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
   - {fileID: 11400000, guid: 7bfcb18f8420aad40b364c55cb584c74, type: 2}
   - {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
+  - {fileID: 11400000, guid: 473e67b3f9f7bf1429de8f67bcac0051, type: 2}
   pistolButton: {fileID: 0}
   shotgunButton: {fileID: 0}
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
@@ -803,6 +804,7 @@ MonoBehaviour:
   m_cursorHandler: {fileID: 11400000, guid: 4d79f097bb021704ca78c7d8637e8990, type: 2}
   m_toggleSettings: {fileID: 0}
   m_canSelectSlots: 1
+  m_toolTip: {fileID: 0}
 --- !u!114 &3877222016503559965
 MonoBehaviour:
   m_ObjectHideFlags: 0
