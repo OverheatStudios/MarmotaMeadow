@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 840164467554708816}
   - component: {fileID: 2594669183110137106}
   - component: {fileID: 6608403481258858457}
+  - component: {fileID: 3183371221008993282}
   m_Layer: 12
   m_Name: Shooting
   m_TagString: Untagged
@@ -408,6 +409,7 @@ MonoBehaviour:
   m_canvas: {fileID: 0}
   m_movementScript: {fileID: 3726438974270153959}
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
+  m_gunUpgrades: {fileID: 3183371221008993282}
 --- !u!82 &6608403481258858457
 AudioSource:
   m_ObjectHideFlags: 0
@@ -505,6 +507,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3183371221008993282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373176862444775438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727269e93c9d2ed45aa7aa22f059ddd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8133200046893287152
 GameObject:
   m_ObjectHideFlags: 0

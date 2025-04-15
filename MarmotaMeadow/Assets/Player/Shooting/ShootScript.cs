@@ -56,6 +56,8 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private Transform m_canvas;
     [SerializeField] private MovementScript m_movementScript;
     [SerializeField] private SettingsScriptableObject m_settings;
+    [SerializeField] private GunUpgrades m_gunUpgrades;
+
     private ReloadAnimation m_reloadBar;
 
     private const float MAX_RAY_DISTANCE = 100f;
@@ -111,7 +113,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Shoot
-        if (GameInput.GetKeybind("Interact").GetKeyDown())
+        if (GameInput.GetKeybind("Interact").GetKey())
         {
             if (!m_movementScript.IsCrouching())
             {
@@ -207,11 +209,12 @@ public class ShootScript : MonoBehaviour
         Gun gun = GetGunUnsafe();
         Assert.IsTrue(gun.GetNumBullets() >= 1);
 
-        if (!m_isInfiniteAmmoCheatEnabled)
+        if (!m_isInfiniteAmmoCheatEnabled && m_gunUpgrades.ShouldConsumeAmmo())
         {
             SetAmmo(GetGunUnsafe().GetCurrentAmmo() - 1);
         }
-        for (int i = 0; i < gun.GetNumBullets(); ++i)
+        int extraBullets = m_gunUpgrades.GetExtraBullets();
+        for (int i = 0; i < gun.GetNumBullets() + extraBullets; ++i)
         {
             ShootBullet();
         }
@@ -301,6 +304,7 @@ public class ShootScript : MonoBehaviour
     /// <param name="shootCooldown">Cooldown in seconds</param>
     private void SetShootCooldown(float shootCooldown)
     {
+        shootCooldown *= m_gunUpgrades.GetReloadSpeedScalar();
         m_currentCooldown = shootCooldown;
         m_lastCooldownSet = shootCooldown;
     }
