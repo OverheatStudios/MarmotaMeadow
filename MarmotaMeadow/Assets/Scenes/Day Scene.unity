@@ -9079,12 +9079,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: items.Array.size
-      value: 17
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: 'items.Array.data[16]'
       value: 
       objectReference: {fileID: 11400000, guid: 48082ad859f3a574990d8513cbdf50ed, type: 2}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'items.Array.data[17]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f889842aa6526b47aa70b403fc1f1f7, type: 2}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: 'items.Array.data[18]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 473e67b3f9f7bf1429de8f67bcac0051, type: 2}
     - target: {fileID: 6903841661947521471, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

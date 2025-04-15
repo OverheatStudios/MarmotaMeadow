@@ -46,7 +46,6 @@ public class InventoryActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_canSelectSlots) return;
 
         m_lateStartCalled++;
         if (m_lateStartCalled == 2)
@@ -55,7 +54,7 @@ public class InventoryActions : MonoBehaviour
             return;
         }
 
-        HandleSlotChange();
+        if (m_canSelectSlots) HandleSlotChange();
 
         if (GameInput.GetKeybind("OpenInventory").GetKeyDown()) 
         {
