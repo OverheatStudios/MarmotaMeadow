@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
@@ -14,7 +15,7 @@ public class PlotData
 
 public class PlotManager : MonoBehaviour
 {
-    
+    public static int MAX_PLOTS = 5;
     [SerializeField] private string m_saveLocation;
     private string filePath;
     [SerializeField] private List<GameObject> m_plots;
@@ -27,6 +28,7 @@ public class PlotManager : MonoBehaviour
 
     void Start()
     {
+        Assert.IsTrue(m_plots.Count == MAX_PLOTS || m_plots.Count == 0);
         filePath = m_saveManager.GetFilePath(m_saveLocation);
         Load();
         if (scrObjGlobalData && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
@@ -91,5 +93,10 @@ public class PlotManager : MonoBehaviour
         {
             m_plotsSpawned[i].gameObject.GetComponentInChildren<Plant>().SetGrowTimerOffset(amount);
         }
+    }
+
+    public int GetNumberPlotsMinus1()
+    {
+        return numberOfPlots;
     }
 }
