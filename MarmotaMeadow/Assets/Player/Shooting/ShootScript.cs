@@ -17,9 +17,6 @@ public class ShootScript : MonoBehaviour
     [Tooltip("Game data")]
     [SerializeField] private ScrObjGlobalData m_data;
 
-    [Tooltip("Sound to play on shoot")]
-    [SerializeField] private AudioSource m_shootSound;
-
     [Tooltip("Shooting cooldown bar")]
     [SerializeField] private ProgressBar m_cooldownBar;
 
@@ -57,6 +54,7 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private MovementScript m_movementScript;
     [SerializeField] private SettingsScriptableObject m_settings;
     [SerializeField] private GunUpgrades m_gunUpgrades;
+    [SerializeField] private float m_shootVolume = 0.4f;
 
     private ReloadAnimation m_reloadBar;
 
@@ -68,11 +66,20 @@ public class ShootScript : MonoBehaviour
     private bool m_isInfiniteAmmoCheatEnabled = false;
     private Bullet m_bulletForHeldGun = null; // possibly null
     private bool m_noBulletsToReload = false;
+    private float[] m_shootSoundTimestamps = new float[3];
+    [Tooltip("3 sounds per interval seconds")]
+    [SerializeField] private float m_shootSoundInterval = 0.4f;
+    private int m_currentShootSoundIndex = 0;
 
     void Start()
     {
         HideReloadUi();
         m_cooldownBar.SetVisible(false);
+
+        for (int i = 0; i < m_shootSoundTimestamps.Length; i++)
+        {
+            m_shootSoundTimestamps[i] = 0;
+        }
     }
 
     void Update()
@@ -87,7 +94,7 @@ public class ShootScript : MonoBehaviour
             m_reloadBar = null;
             return;
         }
-        
+
         // Cooldown
         if (HandleCooldown()) return;
 
@@ -304,9 +311,22 @@ public class ShootScript : MonoBehaviour
     /// <param name="shootCooldown">Cooldown in seconds</param>
     private void SetShootCooldown(float shootCooldown)
     {
-        shootCooldown *= m_gunUpgrades.GetReloadSpeedScalar();
+        shootCooldown *= m_gunUpgrades.GetShootSpeedScalar();
         m_currentCooldown = shootCooldown;
         m_lastCooldownSet = shootCooldown;
+    }
+
+    private void TryPlayShootSound(Gun gun)
+    {
+        if (!gun.GetShootSfx()) return;
+
+        float now = Time.time;
+        if (m_shootSoundTimestamps[m_currentShootSoundIndex] < now)
+        {
+            m_shootSoundTimestamps[m_currentShootSoundIndex] = now + m_shootSoundInterval;
+            m_currentShootSoundIndex = (m_currentShootSoundIndex + 1) % m_shootSoundTimestamps.Length;
+            AudioSource.PlayClipAtPoint(gun.GetShootSfx(), transform.position, m_settings.GetSettings().GetGameVolume() * m_shootVolume);
+        }
     }
 
     /// <summary>
@@ -317,12 +337,7 @@ public class ShootScript : MonoBehaviour
         SetShootCooldown(GetGunUnsafe().GetShootCooldownSeconds());
 
         Gun gun = GetGunUnsafe();
-        if (gun.GetShootSfx())
-        {
-            m_shootSound.clip = gun.GetShootSfx();
-            m_shootSound.volume = m_settings.GetSettings().GetGameVolume();
-            m_shootSound.Play();
-        }
+        TryPlayShootSound(gun);
 
         // See if bullet hit anything
         Ray ray = new Ray(m_camera.transform.position, GetRandomBulletDirection());

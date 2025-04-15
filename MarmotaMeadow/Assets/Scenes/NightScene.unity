@@ -13228,11 +13228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881943545}
   m_CullTransparentMesh: 1
---- !u!82 &1885290936 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6608403481258858457, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
-  m_PrefabInstance: {fileID: 5557785422135966027}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1885290938 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
@@ -14424,7 +14419,7 @@ PrefabInstance:
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_shootSound
       value: 
-      objectReference: {fileID: 1885290936}
+      objectReference: {fileID: 0}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_cameraShake
       value: 
@@ -14485,6 +14480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3183371221008993282, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_saveManager
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
     - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_crouchYOffset
       value: 1.25

@@ -9,6 +9,8 @@ public class Multiplier
 {
     public Image Image;
     public int MultiplierAmount;
+    public Sprite m_selectedSprite;
+    public Sprite m_defaultSprite;
 }
 
 public class BuyMultiplier : MonoBehaviour
@@ -16,7 +18,7 @@ public class BuyMultiplier : MonoBehaviour
    [SerializeField] private Multiplier[] m_multipliers;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
 
-    private int m_activeMultiplierIndex = -1;
+    private int m_activeMultiplierIndex = -1; // We set active multiplier to 0 at start which also sets all the sprites
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class BuyMultiplier : MonoBehaviour
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(multiplier.Image.rectTransform, Input.mousePosition))
             {
-                SetActiveMultiplier(i);
+                SetActiveMultiplier(i); // was clicked
                 return;
             }
             i++;
@@ -50,6 +52,10 @@ public class BuyMultiplier : MonoBehaviour
         return m_multipliers[m_activeMultiplierIndex].MultiplierAmount;
     }
 
+    /// <summary>
+    /// Enable a specific multiplier and disable all others
+    /// </summary>
+    /// <param name="index">Index to enable</param>
     private void SetActiveMultiplier(int index)
     {
         if (index == m_activeMultiplierIndex) return;
@@ -61,10 +67,10 @@ public class BuyMultiplier : MonoBehaviour
         {
             if (i == m_activeMultiplierIndex)
             {
-                m_multipliers[i].Image.color = Color.red;
+                m_multipliers[i].Image.sprite = m_multipliers[i].m_selectedSprite;
             } else
             {
-                m_multipliers[i].Image.color = Color.white;
+                m_multipliers[i].Image.sprite = m_multipliers[i].m_defaultSprite;
             }
         }
     }
