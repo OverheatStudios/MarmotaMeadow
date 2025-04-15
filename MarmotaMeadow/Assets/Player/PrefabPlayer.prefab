@@ -114,6 +114,9 @@ MonoBehaviour:
   m_goToSleepTooltip: {fileID: 0}
   m_cantHarvestTooltip: {fileID: 0}
   m_wrongToolSelectedTooltip: {fileID: 0}
+  m_blockInteractionsLayer:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!1 &3097902270475952157
 GameObject:
   m_ObjectHideFlags: 0

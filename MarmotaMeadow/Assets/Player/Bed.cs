@@ -16,6 +16,8 @@ public class Bed : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_text;
     [SerializeField] private InventoryMager inventoryMager;
     [SerializeField] private GameObject m_player;
+    [SerializeField] private LayerMask m_bedLayer;
+    [SerializeField] private Camera m_camera;
 
     void Update()
     {
@@ -24,6 +26,7 @@ public class Bed : MonoBehaviour
 
     private void OnMouseOver()
     {
+        // Is within interaction distance?
         float distanceSquared = (m_player.transform.position - transform.position).sqrMagnitude;
         if (distanceSquared > Mathf.Pow(CameraScript.GetMaxInteractDistance(), 2))
         {
@@ -32,7 +35,15 @@ public class Bed : MonoBehaviour
             return;
         }
 
-        if (!m_clicked)
+        // Anything in way?
+        Ray ray = new Ray(m_camera.transform.position, m_camera.transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, CameraScript.GetMaxInteractDistance(), m_bedLayer))
+        {
+            if (hit.collider.gameObject != gameObject) return; // Hit something else
+        }
+
+            if (!m_clicked)
             m_UI.SetActive(true);
 
         if (GameInput.GetKeybind("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())

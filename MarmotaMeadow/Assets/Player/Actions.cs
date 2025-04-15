@@ -37,6 +37,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private GameObject m_goToSleepTooltip;
     [SerializeField] private GameObject m_cantHarvestTooltip;
     [SerializeField] private GameObject m_wrongToolSelectedTooltip;
+    [SerializeField] private LayerMask m_blockInteractionsLayer;
 
     private void Start()
     {
@@ -62,9 +63,15 @@ public class Actions : MonoBehaviour
             LayerMask checkMask = m_plantLayerMask;
             bool farmToolHeld = m_inventoryManager.GetHeldInventoryItem().item.name == "harvesting tool" || m_inventoryManager.GetHeldInventoryItem().item.name == "hoe";
             if (farmToolHeld) checkMask |= m_notHarvestableLayer;
+            checkMask |= m_blockInteractionsLayer;
 
             if (Physics.Raycast(ray, out hit, CameraScript.GetMaxInteractDistance(), checkMask, QueryTriggerInteraction.Collide))
             {
+                if ((m_blockInteractionsLayer & (1 << hit.collider.gameObject.layer)) != 0)
+                {
+                    return; // interaction blocked, something was in the way (e.g house)
+                }
+
                 if ((m_notHarvestableLayer & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     if (!farmToolHeld) return;

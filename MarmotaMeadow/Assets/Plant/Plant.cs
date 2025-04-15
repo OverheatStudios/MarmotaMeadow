@@ -311,8 +311,6 @@ public class Plant : MonoBehaviour
 
         m_originalTilledGroundScale = untealedGround.transform.localScale;
         m_secondsSinceTilled = 0;
-
-        print("finish hoe");
     }
 
     public bool CanGiveErrorFeedback()
