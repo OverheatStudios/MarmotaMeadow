@@ -31,24 +31,8 @@ public class PlotManager : MonoBehaviour
         Load();
         if (scrObjGlobalData && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
         {
-            switch (scrObjGlobalData.GetData().CurrentHealth)
-            {
-                case 100:
-                    IncreaseMultiplierOnPlots(0);
-                    break;
-                case 80:
-                    IncreaseMultiplierOnPlots(1);
-                    break;
-                case 60:
-                    IncreaseMultiplierOnPlots(2);
-                    break;
-                case 40:
-                    IncreaseMultiplierOnPlots(2);
-                    break;
-                case 20:
-                    IncreaseMultiplierOnPlots(3);
-                    break;
-            }
+            float howGood = Mathf.InverseLerp(0, 100, scrObjGlobalData.GetData().CurrentHealth);
+            IncreaseGrowthTimerOnPlots(Mathf.Lerp(8, 0, howGood));
         }
     }
 
@@ -101,7 +85,7 @@ public class PlotManager : MonoBehaviour
         Save();
     }
 
-    void IncreaseMultiplierOnPlots(float amount)
+    void IncreaseGrowthTimerOnPlots(float amount)
     {
         for (int i = 0; i < m_plotsSpawned.Count; i++)
         {
