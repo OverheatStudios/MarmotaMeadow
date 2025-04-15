@@ -49,6 +49,11 @@ public class InventoryMager : MonoBehaviour
             m_isLoaded = true;
         }
 
+        CheckIfBuyGunButtonsShouldBeDestroyed();
+    }
+
+    private void CheckIfBuyGunButtonsShouldBeDestroyed()
+    {
         if (pistolButton)
         {
             if (HasBoughtPistol())
@@ -136,6 +141,8 @@ public class InventoryMager : MonoBehaviour
             if (!inventoryItem)
             {
                 SpawnNewItem(item, slot);
+
+                CheckIfBuyGunButtonsShouldBeDestroyed();
                 return true;
             }
         }
