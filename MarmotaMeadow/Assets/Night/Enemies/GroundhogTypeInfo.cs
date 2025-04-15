@@ -15,6 +15,7 @@ public class GroundhogTypeInfo : MonoBehaviour
     [SerializeField] private Vector3 m_bloodParticleOffset = new Vector3(0, 0, 0);
     [SerializeField] private AudioClip m_woundedSfx;
     [SerializeField] private SettingsScriptableObject m_settings;
+    [SerializeField] private float m_coinsDropped = 5.0f;
     private AudioSource m_woundedSource;
 
     private void Start()
@@ -54,5 +55,10 @@ public class GroundhogTypeInfo : MonoBehaviour
     public Vector3 GetBloodParticleOffset()
     {
         return m_bloodParticleOffset;
+    }
+
+    public float GetCoinsDropped()
+    {
+        return m_coinsDropped;
     }
 }

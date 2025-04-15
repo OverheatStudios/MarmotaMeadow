@@ -11,6 +11,8 @@ public class BurrowScript : MonoBehaviour
     [Tooltip("Each night groundhogs gain this amount more max health, if this is 5 for element 1 (second element) then on night 1 (second night) groundhogs have 105% health")]
     [SerializeField] private List<float> m_groundhogBonusHealthPercentages;
 
+    [SerializeField] private CoinManager m_coinManager;
+
     /// <summary>
     /// The current groundhog object in this burrow, may be null
     /// </summary>
@@ -37,6 +39,7 @@ public class BurrowScript : MonoBehaviour
 
         GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(type);
 
+        groundhogScript.SetCoinManager(m_coinManager);
         m_groundhog = groundhogScript.gameObject;
         m_groundhog.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 

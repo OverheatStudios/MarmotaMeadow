@@ -33,7 +33,7 @@ MonoBehaviour:
     - SecondsSinceNightBeginning: 10
       GroundhogType: 1
       NumberGroundhogs: 2
-      SpawnInterval: 10
+      SpawnInterval: 15
       SecondsSinceLastSpawn: 0
     - SecondsSinceNightBeginning: 33
       GroundhogType: 2
