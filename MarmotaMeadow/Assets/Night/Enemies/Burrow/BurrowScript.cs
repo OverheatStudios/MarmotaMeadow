@@ -13,6 +13,9 @@ public class BurrowScript : MonoBehaviour
 
     [SerializeField] private CoinManager m_coinManager;
 
+    [SerializeField] private GameObject m_groundhogSpawnParticles;
+    [SerializeField] private Vector3 m_particleSpawnOffset = Vector3.up * 0.5f;
+
     /// <summary>
     /// The current groundhog object in this burrow, may be null
     /// </summary>
@@ -35,6 +38,8 @@ public class BurrowScript : MonoBehaviour
     /// </summary>
     public void SpawnGroundhog(int night, GroundhogType type)
     {
+        Instantiate(m_groundhogSpawnParticles).transform.position = transform.position + m_particleSpawnOffset;
+
         if (m_groundhog != null) Destroy(m_groundhog);
 
         GroundhogScript groundhogScript = m_groundhogTypes.InstantiateGroundhog(type);

@@ -669,6 +669,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.17
@@ -2717,6 +2753,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.139999
@@ -3047,6 +3119,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.099999
@@ -4830,6 +4938,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.61
@@ -4891,6 +5035,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.07
@@ -5179,6 +5359,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.78
@@ -5826,6 +6042,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.599999
@@ -7763,6 +8015,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.16
@@ -9264,6 +9552,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.969999
@@ -9448,6 +9772,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.139999
@@ -10151,6 +10511,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.099999
@@ -10212,6 +10608,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.06
@@ -10411,6 +10843,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.41
@@ -10871,6 +11339,42 @@ PrefabInstance:
       propertyPath: m_coinManager
       value: 
       objectReference: {fileID: 538011457}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_particleSpawnOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogSpawnParticles
+      value: 
+      objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: m_groundhogBonusHealthPercentages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[2]'
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[3]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[4]'
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[5]'
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
+      propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[6]'
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.43
