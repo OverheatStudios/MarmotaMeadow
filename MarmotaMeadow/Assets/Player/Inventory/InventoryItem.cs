@@ -99,9 +99,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         return count;
     }
 
-    public void IncreaseMultiplier()
+    public void IncreaseMultiplier(int amount = 1)
     {
-        multiplier++;
+        multiplier+=amount;
     }
 
     public void SetMultiplier(float mult)
@@ -118,9 +118,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             countText.text = count.ToString();
     }
 
-    public void IncreaseAmount()
+    public void IncreaseAmount(int amount = 1)
     {
-        count++;
+        count += amount;
         countText.text = count.ToString();
     }
 

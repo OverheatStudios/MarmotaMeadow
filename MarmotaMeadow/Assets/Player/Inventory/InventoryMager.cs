@@ -120,15 +120,16 @@ public class InventoryMager : MonoBehaviour
         return m_sellSlot?.GetComponent<InventorySlot>();
     }
 
-    public bool AddItem(BaseItem item)
+    public bool AddItem(BaseItem item, int amount = 1)
     {
+        if (amount < 1) return true;
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem inventoryItem = slot.GetComponentInChildren<InventoryItem>();
             if (inventoryItem && inventoryItem.item == item && inventoryItem.count <= inventoryItem.item.ReturnMaxAmount() && inventoryItem.item.IsStackable())
             {
-                inventoryItem.IncreaseAmount();
+                inventoryItem.IncreaseAmount(amount);
                 inventoryItem.RefreshCount();
                 return true;
             }
@@ -141,6 +142,7 @@ public class InventoryMager : MonoBehaviour
             if (!inventoryItem)
             {
                 SpawnNewItem(item, slot);
+                AddItem(item, amount - 1);
 
                 CheckIfBuyGunButtonsShouldBeDestroyed();
                 return true;
