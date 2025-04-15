@@ -12336,8 +12336,8 @@ MonoBehaviour:
   m_gainCoinSfx: {fileID: 8300000, guid: 813826d156d13d449a80992e3f0d7aae, type: 3}
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
   m_coinDisplay: {fileID: 0}
-  m_coinAnimationDuration: 0.25
-  m_coinAnimationIntensity: 1.2
+  m_coinAnimationDuration: 0.2
+  m_coinAnimationIntensity: 0.2
 --- !u!4 &2142993338
 Transform:
   m_ObjectHideFlags: 0
