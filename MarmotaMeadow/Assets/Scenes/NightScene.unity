@@ -7554,6 +7554,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 152034258}
     - target: {fileID: 8240789429235171806, guid: 4f44c451e5f08704282ee47bf1db3d8f, type: 3}
+      propertyPath: m_inventoryActions
+      value: 
+      objectReference: {fileID: 1369510653}
+    - target: {fileID: 8240789429235171806, guid: 4f44c451e5f08704282ee47bf1db3d8f, type: 3}
       propertyPath: m_disableWhenInSettings.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -10715,6 +10719,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3f861133b41720489b85cd42da2eef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1369510653 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+  m_PrefabInstance: {fileID: 152034257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6bd2cef6d359048b7f74522b2b34c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1392350971 stripped
