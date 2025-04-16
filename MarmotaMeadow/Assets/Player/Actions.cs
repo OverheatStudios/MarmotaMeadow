@@ -38,6 +38,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private GameObject m_cantHarvestTooltip;
     [SerializeField] private GameObject m_wrongToolSelectedTooltip;
     [SerializeField] private LayerMask m_blockInteractionsLayer;
+    [SerializeField] private CursorHandlerScript m_cursorHandler;
 
     private void Start()
     {
@@ -50,7 +51,7 @@ public class Actions : MonoBehaviour
 
     void InteractWithPlot()
     {
-        if (GameInput.GetKeybind("Interact").GetKeyDown() )
+        if (GameInput.GetKeybind("Interact").GetKeyDown() && !m_cursorHandler.IsUiOpen() )
         {
 
             InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
@@ -94,22 +95,55 @@ public class Actions : MonoBehaviour
                         return;
                     }
 
-                    if (plant.ChangeState(heldItem) == false)
+                    
+                    if (hit.collider.GetComponent<Plant>())
                     {
-                        if (plant.CanGiveErrorFeedback())
+                        if (plant.ChangeState(heldItem) == false)
                         {
                             StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                             AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
                             m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
+                            if (plant.CanGiveErrorFeedback())
+                            {
+                                StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
+                                AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
+                                m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                            }
+                        }
+                        else 
+                        {
+                            plant.ChangeState(heldItem);
+                            if (heldItem.item.IsStackable())
+                            {
+                                heldItem.DecreaseAmount();
+                            }
                         }
                     }
-                    else 
+                    else
                     {
-                       plant.ChangeState(heldItem);
-                        if (heldItem.item.IsStackable())
+                        if (hit.collider.gameObject.GetComponentInParent<Plant>())
                         {
-                            heldItem.DecreaseAmount();
+                            plant = hit.collider.gameObject.GetComponentInParent<Plant>();
+                            
+                            if (plant.ChangeState(heldItem) == false)
+                            {
+                                if (plant.CanGiveErrorFeedback())
+                                {
+                                    StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
+                                    AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
+                                    m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                                }
+                            }
+                            else 
+                            {
+                                plant.ChangeState(heldItem);
+                                if (heldItem.item.IsStackable())
+                                {
+                                    heldItem.DecreaseAmount();
+                                }
+                            }
                         }
+                        
                     }
                 }
             }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WateringMinigame : MonoBehaviour
 {
-    public LineRenderer lineRenderer;
 
     private Vector3 pointA;
     private Vector3 pointB;
@@ -17,6 +16,9 @@ public class WateringMinigame : MonoBehaviour
     private Vector3 pointK;
     private Vector3 pointL;
     private Vector3 pointM;
+    private Vector3 pointN;
+    private Vector3 pointO;
+    private Vector3 pointP;
 
     [SerializeField] private GameObject colliders;
     [SerializeField] private float m_maxDistance;
@@ -31,12 +33,14 @@ public class WateringMinigame : MonoBehaviour
 
     private void OnEnable()
     {
-        InventoryMager inv = InventoryMager.FindAnyObjectByType<InventoryMager>();
-        m_multiplier += inv.GetHeldInventoryItem().ReturnMultiplier();
+        if (FindAnyObjectByType<InventoryMager>())
+        {
+            InventoryMager inv = InventoryMager.FindAnyObjectByType<InventoryMager>();
+            m_multiplier += inv.GetHeldInventoryItem().ReturnMultiplier();
+        }
 
         finished = false;
         GenerateRandomPoints();
-        DrawLine();
         AddColliders();
     }
 
@@ -49,32 +53,24 @@ public class WateringMinigame : MonoBehaviour
     void GenerateRandomPoints()
     {
 
-        pointA = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.25f, transform.position.z);
-        pointB = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.25f, transform.position.z);
-        pointC = new Vector3(transform.position.x + 0.3f, transform.position.y, transform.position.z);
-        pointD = transform.position * 2 - pointA;
-        pointE = transform.position * 2 - pointB;
-        pointF = transform.position * 2 - pointC;
-
-        pointG = pointA;
-        pointH = (pointA + pointB) / 2;
-        pointI = (pointB + pointC) / 2;
-        pointJ = (pointC + pointD) / 2;
-        pointK = (pointD + pointE) / 2;
-        pointL = (pointE + pointF) / 2;
-        pointM = (pointF + pointG) / 2;
-    }
-
-    void DrawLine()
-    {
-        lineRenderer.positionCount = 7;
-        lineRenderer.SetPosition(0, pointA);
-        lineRenderer.SetPosition(1, pointB);
-        lineRenderer.SetPosition(2, pointC);
-        lineRenderer.SetPosition(3, pointD);
-        lineRenderer.SetPosition(4, pointE);
-        lineRenderer.SetPosition(5, pointF);
-        lineRenderer.SetPosition(6, pointG);
+        pointA = new Vector3(transform.position.x - 0.2f, transform.position.y + 0.37f, transform.position.z);
+        pointB = new Vector3(transform.position.x, transform.position.y + 0.42f, transform.position.z);
+        pointC = new Vector3(transform.position.x + 0.2f, transform.position.y + 0.37f, transform.position.z);
+        pointD = new Vector3(transform.position.x + 0.42f, transform.position.y, transform.position.z);
+        pointI = new Vector3(transform.position.x - 0.31f, transform.position.y + 0.28f, transform.position.z);
+        pointK = new Vector3(transform.position.x + 0.31f, transform.position.y + 0.28f, transform.position.z);
+        pointM = new Vector3(transform.position.x - 0.39f, transform.position.y + 0.15f, transform.position.z);
+        pointN = new Vector3(transform.position.x + 0.39f, transform.position.y + 0.15f, transform.position.z);
+        
+        
+        pointE = transform.position * 2 - pointD;
+        pointF = transform.position * 2 - pointB;
+        pointG = transform.position * 2 - pointC;
+        pointH = transform.position * 2 - pointA;
+        pointJ = transform.position * 2 - pointI;
+        pointL = transform.position * 2 - pointK;
+        pointO = transform.position * 2 - pointM;
+        pointP = transform.position * 2 - pointN;
     }
 
     void AddColliders()
@@ -92,6 +88,9 @@ public class WateringMinigame : MonoBehaviour
         GameObject K = Instantiate(colliders, pointK, Quaternion.identity);
         GameObject L = Instantiate(colliders, pointL, Quaternion.identity);
         GameObject M = Instantiate(colliders, pointM, Quaternion.identity);
+        GameObject N = Instantiate(colliders, pointN, Quaternion.identity);
+        GameObject O = Instantiate(colliders, pointO, Quaternion.identity);
+        GameObject P = Instantiate(colliders, pointP, Quaternion.identity);
 
         A.transform.parent = transform;
         A.name = "A";
@@ -119,6 +118,12 @@ public class WateringMinigame : MonoBehaviour
         L.name = "L";
         M.transform.parent = transform;
         M.name = "M";
+        N.transform.parent = transform;
+        N.name = "N";
+        O.transform.parent = transform;
+        O.name = "O";
+        P.transform.parent = transform;
+        P.name = "P";
     }
 
     void CheckForCollisions()
@@ -139,7 +144,6 @@ public class WateringMinigame : MonoBehaviour
 
         if (transform.childCount == 0)
         {
-            lineRenderer.positionCount = 0;
             plant.WaterCrop(m_multiplier);
             finished = true;
         }

@@ -15,6 +15,7 @@ TagManager:
   - TutorialManager
   - NotHarvestable
   - Fertilizer
+  - collider
   layers:
   - Default
   - TransparentFX
@@ -32,9 +33,9 @@ TagManager:
   - NotHarvestable
   - Collisions
   - BlockInteractions
-  - 
-  - 
-  - 
+  - Crop
+  - PlayerPickUpCollider
+  - Minigame
   - 
   - 
   - 
