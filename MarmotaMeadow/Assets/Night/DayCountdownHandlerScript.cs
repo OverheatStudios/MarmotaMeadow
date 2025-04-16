@@ -13,6 +13,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     [SerializeField] private AllGroundhogSpawns m_allGroundhogSpawns;
     [Tooltip("Number of seconds between groundhog spawning ending and night ending")]
     [SerializeField] private float m_nightBufferSeconds = 8;
+    [SerializeField] private NightCounter m_nightCounter;
     private float m_secondsRemaining = 0;
 
     // Start is called before the first frame update
@@ -31,7 +32,10 @@ public class DayCountdownHandlerScript : MonoBehaviour
 
         if (m_secondsRemaining < 0)
         {
-            SwitchDayScene();
+            if (m_nightCounter.NotifyNightEnd())
+            {
+                SwitchDayScene();
+            }
         }
     }
 

@@ -16,25 +16,10 @@ public class GroundhogTypeInfo : MonoBehaviour
     [SerializeField] private AudioClip m_woundedSfx;
     [SerializeField] private SettingsScriptableObject m_settings;
     [SerializeField] private float m_coinsDropped = 5.0f;
-    private AudioSource m_woundedSource;
-
-    private void Start()
-    {
-        m_woundedSource = new GameObject().AddComponent<AudioSource>();
-        m_woundedSource.clip = m_woundedSfx;
-        m_woundedSource.loop = false;
-    }
-
-    private void OnDestroy()
-    {
-        Destroy(m_woundedSource);
-    }
 
     public void PlayWoundedSfx(Vector3 worldPos)
     {
-        m_woundedSource.transform.position = worldPos;
-        m_woundedSource.volume = m_settings.GetSettings().GetGameVolume();
-        m_woundedSource.Play();
+        AudioSource.PlayClipAtPoint(m_woundedSfx, worldPos, m_settings.GetSettings().GetGameVolume());
     }
 
     public float GetMinYBeforeDisappear()

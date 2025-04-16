@@ -15,7 +15,7 @@ public class NightCounter : MonoBehaviour
     /// Shuold be called before going to night scene
     /// </summary>
     /// <returns>True if shold go to night scene, false if we went to game over scene</returns>
-    public bool NotifyPreNightStart()
+    public bool NotifyNightEnd()
     {
         m_data.IncrementNightCounter();
         if (m_data.GetData().GetNightCounter() >= m_numNights.GetFinalNightPlusOne())

@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 6642502}
   - component: {fileID: 6642501}
   - component: {fileID: 6642503}
+  - component: {fileID: 6642504}
   m_Layer: 5
   m_Name: DayCountdownText
   m_TagString: Untagged
@@ -273,6 +274,23 @@ MonoBehaviour:
   m_data: {fileID: 11400000, guid: 12ce8c3d61969ce48a212418a998e083, type: 2}
   m_allGroundhogSpawns: {fileID: 11400000, guid: 35ab8ec9992b8fd499015e89b14f015c, type: 2}
   m_nightBufferSeconds: 4
+  m_nightCounter: {fileID: 6642504}
+--- !u!114 &6642504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e087054eeb1bd4192b1d5e3e3f4499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_data: {fileID: 11400000, guid: 12ce8c3d61969ce48a212418a998e083, type: 2}
+  m_gameOverReason: {fileID: 11400000, guid: 21d68235d8190f94cbb5ae7107498522, type: 2}
+  m_numNights: {fileID: 11400000, guid: d8ab42140c743754ba7bab0050ba00c1, type: 2}
+  m_coinManager: {fileID: 538011457}
 --- !u!1001 &18795290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5484,6 +5502,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3657704076558721881, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.793
+      objectReference: {fileID: 0}
     - target: {fileID: 3715658935721838246, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7846,7 +7868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.100000024
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6920507018020034476, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_LocalPosition.z

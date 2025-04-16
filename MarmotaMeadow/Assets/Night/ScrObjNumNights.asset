@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212889abca8065c4f82d42b9664fc7a2, type: 3}
   m_Name: ScrObjNumNights
   m_EditorClassIdentifier: 
-  m_numNights: 6
+  m_numNights: 3
   m_moneyRequired: 1000
