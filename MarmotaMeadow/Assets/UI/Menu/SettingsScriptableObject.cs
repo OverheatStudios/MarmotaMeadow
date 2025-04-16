@@ -12,9 +12,10 @@ using UnityEngine.Assertions;
 public class Settings
 {
     [SerializeField] private float m_musicVolume = 0.5f; // 0 to 1 range
-    [SerializeField] private float m_gameVolume= 0.5f; // 0 to 1 range
+    [SerializeField] private float m_gameVolume = 0.5f; // 0 to 1 range
     [SerializeField] private bool m_dynamicCrosshair = true;
     [SerializeField] private float m_cameraSensitivity = 0.5f; // 0.1 to 1 range
+    [SerializeField] private float m_difficulty = 1.0f; // 1.0f to 3.0f range
 
     private bool m_dirty;
 
@@ -36,6 +37,19 @@ public class Settings
         return m_musicVolume;
     }
 
+    public void SetDifficulty(float difficulty)
+    {
+        if (difficulty == m_difficulty) return;
+        m_difficulty = difficulty;
+        m_dirty = true;
+        ValidateSettings();
+    }
+
+    public float GetDifficulty()
+    {
+        return m_difficulty;
+    }
+
     public void SetMusicVolume(float value)
     {
         if (value == m_musicVolume) return;
@@ -51,7 +65,7 @@ public class Settings
 
     public void SetDynamicCrosshair(bool enabled)
     {
-        if (enabled ==  m_dynamicCrosshair) return; 
+        if (enabled == m_dynamicCrosshair) return;
         m_dynamicCrosshair = enabled;
         m_dirty = true;
         ValidateSettings();
@@ -64,7 +78,7 @@ public class Settings
 
     public void SetCameraSensitivity(float sens)
     {
-        if (sens == m_cameraSensitivity) return;    
+        if (sens == m_cameraSensitivity) return;
         m_cameraSensitivity = sens;
         m_dirty = true;
         ValidateSettings();
@@ -77,8 +91,11 @@ public class Settings
 
         // don't need to validate dynamic crosshair
 
-        if (m_cameraSensitivity < 0) SetCameraSensitivity(0);   
+        if (m_cameraSensitivity < 0) SetCameraSensitivity(0);
         if (m_cameraSensitivity > 1) SetCameraSensitivity(1);
+
+        if (m_difficulty < 1) SetDifficulty(1);
+        if (m_difficulty > 3) SetDifficulty(3);
     }
 
     public void Reset()
@@ -86,6 +103,7 @@ public class Settings
         SetMusicVolume(0.5f);
         SetDynamicCrosshair(true);
         SetCameraSensitivity(0.5f);
+        SetDifficulty(1);
     }
 
     public void MarkClean()

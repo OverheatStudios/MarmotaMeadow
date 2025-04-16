@@ -17,6 +17,7 @@ public class ToggleSettings : MonoBehaviour
     [SerializeField] private GameObject m_mainInventoryUi;
     [SerializeField] private GameObject m_bedConfirmUi;
     [SerializeField] private GameObject[] m_disableWhenInSettings;
+    [SerializeField] private InventoryActions m_inventoryActions;
 
     // Update is called once per frame
     void Update()
@@ -31,6 +32,8 @@ public class ToggleSettings : MonoBehaviour
 
     void Toggler()
     {
+        if (m_inventoryActions.IsInventoryOpen()) return;
+
         if (Input.GetKeyDown(KeyCode.Escape) && !toggle)
         {
             PlantToggler(toggle);

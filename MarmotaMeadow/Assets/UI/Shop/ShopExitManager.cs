@@ -8,14 +8,10 @@ public class ShopExitManager : MonoBehaviour
     [SerializeField] private InventoryMager m_inventoryManager;
     [SerializeField] private GameObject[] m_shopUi;
     [SerializeField] private GameObject m_confirmUi;
-    [SerializeField] private NightCounter m_nightCounter;
 
     public void ForceLeaveShop()
     {
-        if (m_nightCounter.NotifyPreNightStart())
-        {
-            SceneManager.LoadScene("NightScene", LoadSceneMode.Single);
-        }
+        SceneManager.LoadScene("NightScene", LoadSceneMode.Single);
     }
 
     public void TryLeaveShop()

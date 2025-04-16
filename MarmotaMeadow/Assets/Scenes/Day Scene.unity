@@ -1835,6 +1835,10 @@ PrefabInstance:
       value: 8192
       objectReference: {fileID: 0}
     - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_jumpVelocity
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_isCrouchingEnabled
       value: 0
       objectReference: {fileID: 0}
@@ -10132,6 +10136,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+--- !u!114 &2494471893789471759 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5935117403572180540, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+  m_PrefabInstance: {fileID: 2494471893789471758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6bd2cef6d359048b7f74522b2b34c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3921283106605280822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12276,6 +12291,10 @@ PrefabInstance:
       propertyPath: m_mainInventoryUi
       value: 
       objectReference: {fileID: 1387715243}
+    - target: {fileID: 8240789429235171806, guid: 4f44c451e5f08704282ee47bf1db3d8f, type: 3}
+      propertyPath: m_inventoryActions
+      value: 
+      objectReference: {fileID: 2494471893789471759}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v0.6.0-beta
+  m_text: v0.6.1-gun-test
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
   m_sharedMaterial: {fileID: 8289695555494012424, guid: c4f3505b128b32449ad39570491d9e6d, type: 2}
@@ -2050,6 +2050,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473597133}
   m_CullTransparentMesh: 1
+--- !u!114 &478187968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5263773609963261949, guid: 31a6deedecced0247a5ff1e9e36a9cf7, type: 3}
+  m_PrefabInstance: {fileID: 1501883225289336349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fce8919ebc7294da7f40f3d629f717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &488005407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2107,6 +2118,7 @@ MonoBehaviour:
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
   m_saves: {fileID: 996460821}
   m_newSave: {fileID: 1180995402}
+  m_difficultySlider: {fileID: 478187968}
   m_musicVolumeSlider: {fileID: 1263848274}
   m_gameVolumeSlider: {fileID: 1501883225289336350}
   m_dynamicCrosshairToggle: {fileID: 2029933989}

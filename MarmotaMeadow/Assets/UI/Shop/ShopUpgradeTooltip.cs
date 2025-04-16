@@ -17,7 +17,6 @@ public class ShopUpgradeTooltip : MonoBehaviour
             m_shopTooltip.SetVisible(false);
             return;
         }
-        print("item: " + inventoryItem);
 
         m_shopTooltip.SetText(inventoryItem.item is Gun ? m_gunText : m_toolText);
         m_shopTooltip.SetVisible(true);
