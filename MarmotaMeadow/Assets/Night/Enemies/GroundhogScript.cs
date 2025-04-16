@@ -31,6 +31,9 @@ public class GroundhogScript : MonoBehaviour
     [SerializeField, Tooltip("High precision collider of the groundhog, probably should be a mesh collider. This will be disabled most of the time and require enabling before use.")]
     private Collider m_highPrecisionCollider;
 
+    [SerializeField] 
+    private SettingsScriptableObject m_settings;
+
     private CoinManager m_coinManager;
 
     private GroundhogState m_state = GroundhogState.Rising;
@@ -63,7 +66,7 @@ public class GroundhogScript : MonoBehaviour
         m_typeInfo = GetComponentInChildren<GroundhogTypeInfo>();
         m_highPrecisionCollider = m_typeInfo.GetHighPrecisionCollider();
 
-        SetMaxHealth(m_maxHealth * m_typeInfo.GetHealthScalar());
+        SetMaxHealth(m_maxHealth * m_typeInfo.GetHealthScalar() * m_settings.GetSettings().GetDifficulty());
         SetState(GroundhogState.Rising);
     }
 
