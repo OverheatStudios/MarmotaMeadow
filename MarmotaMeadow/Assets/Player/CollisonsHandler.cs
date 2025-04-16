@@ -49,7 +49,11 @@ public class CollisonsHandler : MonoBehaviour
                 break;
             }
         }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isActiveAndEnabled) return;
 
         if (other.gameObject.CompareTag("Crop"))
         {
