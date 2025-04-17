@@ -36,7 +36,7 @@ public class InventoryMager : MonoBehaviour
 
     private int m_selectedItemIndex = -1;
     private bool m_isLoaded = false;
-    
+
     [SerializeField] private GameObject m_upgradeslot;
     [SerializeField] private GameObject m_sellSlot;
 
@@ -220,7 +220,8 @@ public class InventoryMager : MonoBehaviour
                 // Remove the whole stack
                 count -= slotItem.count;
                 slotItem.DecreaseAmount(slotItem.count);
-            } else
+            }
+            else
             {
                 // The stack contains more items than we want to remove
                 slotItem.DecreaseAmount(count);
@@ -265,8 +266,8 @@ public class InventoryMager : MonoBehaviour
                 inventoryDataList.Add(inventoryData);
             }
         }
-        
-        
+
+
         //Checking if there is an item on the upgrade slot
         if (m_upgradeslot && m_upgradeslot.transform.childCount >= 0)
         {
@@ -283,7 +284,7 @@ public class InventoryMager : MonoBehaviour
                 AddItem(m_upgradeslot.GetComponentInChildren<InventoryItem>().item);
             }
         }
-        
+
         //Checking if there is an item on the sell slot
         if (m_sellSlot && m_sellSlot.transform.childCount >= 0)
         {
@@ -300,7 +301,7 @@ public class InventoryMager : MonoBehaviour
                 AddItem(m_sellSlot.GetComponentInChildren<InventoryItem>().item);
             }
         }
-        
+
 
         // Wrap the list in a wrapper class
         InventoryWrapper wrapper = new InventoryWrapper { inventoryDataList = inventoryDataList };
@@ -395,7 +396,7 @@ public class InventoryMager : MonoBehaviour
         {
             if (inventorySlots[i].transform.childCount > 0)
             {
-                if(inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
+                if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
                 {
                     return true;
                 }
@@ -407,7 +408,7 @@ public class InventoryMager : MonoBehaviour
     private bool HasBoughtShotgun()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
-        {   
+        {
             if (inventorySlots[i].transform.childCount > 0)
             {
                 if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "Shotgun")
@@ -429,6 +430,12 @@ public class InventoryMager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public bool HasItemInHand()
+    {
+        var item = GetHeldInventoryItem();
+        return item != null && item.item != null;
     }
 }
 

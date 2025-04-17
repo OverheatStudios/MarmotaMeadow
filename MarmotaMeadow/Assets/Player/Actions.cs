@@ -88,7 +88,7 @@ public class Actions : MonoBehaviour
                     Plant plant = hit.collider.GetComponent<Plant>();
 
                     bool dayTimerAt0 = m_changeToNight.ReturnIsNight();
-                    bool tryingToStartNewFarm = m_inventoryManager.GetHeldInventoryItem().item.name == "hoe" && plant.IsPreTilledState();
+                    bool tryingToStartNewFarm = m_inventoryManager.HasItemInHand() && m_inventoryManager.GetHeldInventoryItem().item.name == "hoe" && plant.IsPreTilledState();
                     if (dayTimerAt0 && tryingToStartNewFarm)
                     {
                         m_tooltipManager.ShowTooltip(Instantiate(m_goToSleepTooltip));

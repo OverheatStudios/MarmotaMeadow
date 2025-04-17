@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public enum FloorType
 {
@@ -13,6 +14,7 @@ public class FloorTypeScript : MonoBehaviour
 
     public FloorType GetFloorType()
     {
+        Assert.IsTrue(m_floorType != FloorType.None);
         return m_floorType;
     }
 }

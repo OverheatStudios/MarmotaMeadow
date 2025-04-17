@@ -70,17 +70,19 @@ public class MovementScript : MonoBehaviour
 
     private void HandleWalkingSfx()
     {
+        if (!m_collisionsHandler.IsProbablyGrounded())
+        {
+            StopFootstepSound();
+            m_lastCollidedFloorLastFrame = FloorType.None;
+            return;
+        }
+
         // Do we need to play another?
         if (m_lastCollidedFloorLastFrame == m_collisionsHandler.GetLastCollidedFloorType()) return;
         m_lastCollidedFloorLastFrame = m_collisionsHandler.GetLastCollidedFloorType();
 
         // Stop the last walking sound effect
-        if (m_walkingSource != null)
-        {
-            m_walkingSource.loop = false;
-            StartCoroutine(DestroyIn(m_walkingSource.clip.length, m_walkingSource.gameObject));
-            m_walkingSource = null;
-        }
+       StopFootstepSound();
 
         // Start new one
         m_walkingSource = new GameObject().AddComponent<AudioSource>();
@@ -93,6 +95,16 @@ public class MovementScript : MonoBehaviour
         }
         m_walkingSource.volume = 0; // will be set in UpdateWalkingSfxVolume
         m_walkingSource.Play();
+    }
+
+    private void StopFootstepSound()
+    {
+        if (m_walkingSource != null)
+        {
+            m_walkingSource.loop = false;
+            StartCoroutine(DestroyIn(m_walkingSource.clip.length, m_walkingSource.gameObject));
+            m_walkingSource = null;
+        }
     }
 
     private void UpdateWalkingSfxVolume()
