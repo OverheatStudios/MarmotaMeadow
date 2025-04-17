@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GroundhogProjectile : MonoBehaviour
 {
     [SerializeField] private LayerMask m_playerLayer;
     [SerializeField] private ScrObjGlobalData m_data;
     [SerializeField] private float m_lifespanSeconds = 5.0f;
+    [SerializeField] private SettingsScriptableObject m_settings;
 
     public float Damage = 1;
     private float m_timeSinceSpawn = 0;
@@ -25,7 +27,8 @@ public class GroundhogProjectile : MonoBehaviour
         if (((1 << other.gameObject.layer) & m_playerLayer) != 0)
         {
             Destroy(gameObject);
-            m_data.Damage((int)Damage);
+            m_data.Damage((int)(Damage * m_settings.GetSettings().GetDifficulty()));
+            HurtUI.PlayAnimation();
         }
     }
 }

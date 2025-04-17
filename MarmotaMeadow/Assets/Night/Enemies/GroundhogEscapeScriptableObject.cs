@@ -9,7 +9,6 @@ public class GroundhogEscapeScriptableObject : ScriptableObject
     [SerializeField] private int m_damage = 10;
     [SerializeField] private ScrObjGlobalData m_data;
     [SerializeField] private SettingsScriptableObject m_settings;
-
     [SerializeField] private GameObject m_damageTooltip;
 
     /// <summary>
@@ -19,5 +18,6 @@ public class GroundhogEscapeScriptableObject : ScriptableObject
     {
         m_data.Damage((int) (m_damage * m_settings.GetSettings().GetDifficulty()));
         TooltipManager.Get().ShowTooltip(m_damageTooltip);
+        HurtUI.PlayAnimation();
     }
 }
