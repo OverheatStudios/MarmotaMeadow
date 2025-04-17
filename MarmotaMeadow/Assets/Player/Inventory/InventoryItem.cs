@@ -36,6 +36,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         toolTip = GameObject.FindGameObjectWithTag("ToolTip");
         toolTipText = toolTip.GetComponentsInChildren<TextMeshProUGUI>();
+        RefreshCount();
     }
 
     // Update is called once per frame
@@ -92,7 +93,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void RefreshCount()
     {
-        countText.text = count.ToString();
+        countText.text = item.IsStackable() ? count.ToString() : "";
     }
 
     public float ReturnMultiplier()
