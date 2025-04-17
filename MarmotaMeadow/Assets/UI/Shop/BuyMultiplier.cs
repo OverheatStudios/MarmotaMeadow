@@ -72,6 +72,8 @@ public class BuyMultiplier : MonoBehaviour
             {
                 m_multipliers[i].Image.sprite = m_multipliers[i].m_defaultSprite;
             }
+
+            m_multipliers[i].Image.preserveAspect = true;
         }
     }
 }
