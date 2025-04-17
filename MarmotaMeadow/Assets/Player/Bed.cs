@@ -18,14 +18,10 @@ public class Bed : MonoBehaviour
     [SerializeField] private GameObject m_player;
     [SerializeField] private LayerMask m_bedLayer;
     [SerializeField] private Camera m_camera;
-
-    void Update()
+    private void Update()
     {
         m_text.text = "Go to sleep? (" + GameInput.GetKeybind("Interact") + ")";
-    }
 
-    private void OnMouseOver()
-    {
         // Is within interaction distance?
         float distanceSquared = (m_player.transform.position - transform.position).sqrMagnitude;
         if (distanceSquared > Mathf.Pow(CameraScript.GetMaxInteractDistance(), 2))
@@ -40,7 +36,11 @@ public class Bed : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, CameraScript.GetMaxInteractDistance(), m_bedLayer))
         {
-            if (hit.collider.gameObject != gameObject) return; // Hit something else
+            if (hit.collider.gameObject != gameObject)
+            {
+                m_UI.SetActive(false);
+                return; // Hit something else
+            }
         }
 
             if (!m_clicked)
@@ -55,12 +55,6 @@ public class Bed : MonoBehaviour
             m_UI.SetActive(false);
         }
     }
-
-    private void OnMouseExit()
-    {
-        m_UI.SetActive(false);
-    }
-
 
     public void Confirm()
     {

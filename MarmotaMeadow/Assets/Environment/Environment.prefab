@@ -74409,6 +74409,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7074681897062545621, guid: b3cf4b1794d71a74ca1bf3a217f349e2, type: 3}
+      propertyPath: m_Name
+      value: Bed
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3cf4b1794d71a74ca1bf3a217f349e2, type: 3}
       propertyPath: m_Name
       value: door
