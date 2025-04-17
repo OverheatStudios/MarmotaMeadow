@@ -30,6 +30,7 @@ public class GroundhogAttackScript : MonoBehaviour
     [SerializeField] private float m_additionalYVelocity = 2.0f;
     [Tooltip("Position offset for the spawn location of the projectile, useful for preventing the projectile spawning in the ground")]
     [SerializeField] private Vector3 m_projectileSpawnOffset = new Vector3(0, 1, 0);
+    [SerializeField] private SettingsScriptableObject m_settings;
 
     private float m_secondsToAttack;
 
@@ -69,7 +70,7 @@ public class GroundhogAttackScript : MonoBehaviour
         proj.transform.position = transform.position + m_projectileSpawnOffset;
         proj.transform.localScale = Vector3.one * Random.Range(m_minScale, m_maxScale);
         Rigidbody rb = proj.GetComponent<Rigidbody>();
-        proj.GetComponent<GroundhogProjectile>().Damage = m_projectileDamage;
+        proj.GetComponent<GroundhogProjectile>().Damage = m_projectileDamage * m_settings.GetSettings().GetDifficulty();
 
         // Throw at player
         Vector3 toPlayer = target - transform.position;
@@ -80,7 +81,7 @@ public class GroundhogAttackScript : MonoBehaviour
 
     private float GetAttackCooldown()
     {
-        return Random.Range(m_minAttackInterval, m_maxAttackInterval);
+        return Random.Range(m_minAttackInterval, m_maxAttackInterval) / m_settings.GetSettings().GetDifficulty();
     }
 
     private float GetSpeed()

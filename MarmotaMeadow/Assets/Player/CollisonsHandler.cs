@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,10 @@ public class CollisonsHandler : MonoBehaviour
     [SerializeField] private AudioClip m_pickupItemSfx;
     [SerializeField] private Collider m_playerCollider;
     [SerializeField] private SettingsScriptableObject m_settings;
+    [Tooltip("Any collider below player y + this value is considered floor")]
+    [SerializeField] private float m_floorLeniency = 0.1f;
     private FloorType m_lastCollidedFloorType = FloorType.None;
+    private int m_lastGroundedFrame = -1;
 
     // Update is called once per frame
     void Update()
@@ -33,16 +37,23 @@ public class CollisonsHandler : MonoBehaviour
         // Get floor type
         FloorTypeScript floorTypeScript;
         other.gameObject.TryGetComponent<FloorTypeScript>(out floorTypeScript);
+
+        m_contacts.Clear();
+        other.GetContacts(m_contacts);
         if (floorTypeScript)
         {
-            m_contacts.Clear();
-            other.GetContacts(m_contacts);
             foreach (ContactPoint contactPoint in m_contacts)
             {
-                if (contactPoint.point.y > m_playerCollider.bounds.min.y) continue;
+                if (contactPoint.point.y - m_floorLeniency > m_playerCollider.bounds.min.y) continue;
                 m_lastCollidedFloorType = floorTypeScript.GetFloorType();
+                break;
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isActiveAndEnabled) return;
 
         if (other.gameObject.CompareTag("Crop"))
         {
@@ -57,7 +68,27 @@ public class CollisonsHandler : MonoBehaviour
             m_inventory.AddItem(other.gameObject.GetComponent<SpawnedItem>().ReturnItem());
             Destroy(other.gameObject);
         }
+    }
 
+    private void OnCollisionStay(Collision other)
+    {
+        if (!isActiveAndEnabled || m_lastGroundedFrame == Time.frameCount) return;
 
+        if (true)
+        {
+            m_contacts.Clear();
+            other.GetContacts(m_contacts);
+            foreach (ContactPoint contactPoint in m_contacts)
+            {
+                if (contactPoint.point.y - m_floorLeniency > m_playerCollider.bounds.min.y) continue;
+                m_lastGroundedFrame = Time.frameCount;
+                return;
+            }
+        }
+    }
+
+    public bool IsProbablyGrounded()
+    {
+        return m_lastGroundedFrame + 10 >= Time.frameCount;
     }
 }

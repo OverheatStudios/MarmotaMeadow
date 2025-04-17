@@ -75,7 +75,13 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             toolTip.SetActive(true);
             toolTip.transform.position = toolTipLocation.transform.position;
-            toolTipText[0].text = "Lvl: " + multiplier;
+            toolTipText[0].text = item.GetItemName() + "<br>" +"Lvl: " + multiplier;
+        }
+        else
+        {
+            toolTip.SetActive(true);
+            toolTip.transform.position = toolTipLocation.transform.position;
+            toolTipText[0].text = item.GetItemName();
         }
     }
 

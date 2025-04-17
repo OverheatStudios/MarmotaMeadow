@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.572016, y: 2.9198349, z: 1.4}
-  m_Center: {x: -0.08600792, y: 0.9599174, z: 0}
+  m_Size: {x: 2.2427995, y: 3.1519969, z: 2.3445368}
+  m_Center: {x: -0.4213996, y: 1.0759984, z: 0.08714771}
 --- !u!1 &8707210447567435520
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,11 +132,12 @@ MonoBehaviour:
   m_maxProjectileSpeed: 7
   m_minProjectileInaccuracy: 0.01
   m_maxProjectileInaccuracy: 0.025
-  m_projectileDamage: 15
+  m_projectileDamage: 5
   m_minVelocityScalar: 1
   m_maxVelocityScalar: 2
   m_additionalYVelocity: 3
   m_projectileSpawnOffset: {x: 0.2, y: 0.5, z: 0.2}
+  m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
 --- !u!1001 &3567448813041620309
 PrefabInstance:
   m_ObjectHideFlags: 0

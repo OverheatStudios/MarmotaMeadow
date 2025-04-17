@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
 public class MovementScript : MonoBehaviour
@@ -43,17 +44,18 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float m_maxNegativeYVelocity = 1.0f;
     [Tooltip("How is players movement reduced when in air?")]
     [SerializeField] private float m_airPenaltyMultiplier = 0.5f;
-    [Tooltip("What speed must the player be moving downwards to be considered in the air?")]
-    [SerializeField] private float m_downwardVelocityForAir = 1.0f;
+    [Tooltip("What is the players Y velocity set to when they jump?")]
+    [SerializeField] private float m_jumpVelocity = 10;
     private AudioSource m_walkingSource;
     private FloorType m_lastCollidedFloorLastFrame = FloorType.None;
-    
+
     private float m_cameraStartingY;
     private bool m_isCrouching = false;
     private float m_secondsSinceCrouchStateChange;
     private float m_colliderCenterStartingY;
     private float m_colliderHeightStarting;
     private float m_secondsSinceStoppedWalking = 0;
+    private float m_lastJumpTimestamp = -1;
     private bool m_isWalking = false;
 
     void Start()
@@ -64,7 +66,6 @@ public class MovementScript : MonoBehaviour
         m_cameraStartingY = m_camera.transform.localPosition.y;
         m_secondsSinceCrouchStateChange = m_crouchAnimationDuration;
         Assert.IsTrue(m_maxNegativeYVelocity >= 0);
-        Assert.IsTrue(m_downwardVelocityForAir >= 0);
     }
 
     private void HandleWalkingSfx()
@@ -153,6 +154,8 @@ public class MovementScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        bool isGrounded = m_collisionsHandler.IsProbablyGrounded();
+
         // Which direction is player trying to move
         Vector3 movement = Vector3.zero;
 
@@ -167,7 +170,7 @@ public class MovementScript : MonoBehaviour
 
             // Scale movement vector
             movement *= (Time.deltaTime * m_speed * (IsCrouching() ? m_crouchingSpeedMultiplier : 1));
-            if (m_rigidbody.velocity.y < -m_downwardVelocityForAir) movement *= m_airPenaltyMultiplier;
+            if (Mathf.Abs(m_rigidbody.velocity.y) > 0.01f) movement *= m_airPenaltyMultiplier;
 
             // Where is the camera facing
             Vector3 forward = m_camera.transform.forward;
@@ -180,15 +183,26 @@ public class MovementScript : MonoBehaviour
 
             // Move
             m_rigidbody.velocity = forward * movement.x + m_rigidbody.velocity.y * Vector3.up + right * movement.z;
-        } else
+        }
+        else
         {
             m_isWalking = false;
             m_rigidbody.velocity = Vector3.zero + m_rigidbody.velocity.y * Vector3.up;
         }
 
         // Prevent player being launched by going up stairs
-        if (m_rigidbody.velocity.y > m_maxNegativeYVelocity) m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, m_maxNegativeYVelocity, m_rigidbody.velocity.z);
+        if (m_rigidbody.velocity.y > m_maxNegativeYVelocity && isGrounded && m_lastJumpTimestamp + 0.1f > Time.time) m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, m_maxNegativeYVelocity, m_rigidbody.velocity.z);
+
+        // Jumping
+        if (isGrounded && GameInput.GetKeybind("Jump").GetKey())
+        {
+            Vector3 velo = m_rigidbody.velocity;
+            velo.y = m_jumpVelocity;
+            m_rigidbody.velocity = velo;
+            m_lastJumpTimestamp = Time.time;
+        }
     }
+
     public bool IsCrouching()
     {
         return m_isCrouching;

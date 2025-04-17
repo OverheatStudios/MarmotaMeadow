@@ -12,6 +12,7 @@ public class AutomaticItemPrice : MonoBehaviour
     
     void Update()
     {
-        text.text = "" + item.ReturnBuyCoinsAmount() * m_buyMultiplier.GetCurrentMultiplier();
+        int multiplier = item.IsStackable() ? m_buyMultiplier.GetCurrentMultiplier() : 1;
+        text.text = "" + item.ReturnBuyCoinsAmount() * multiplier;
     }
 }

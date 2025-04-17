@@ -26,7 +26,7 @@ MonoBehaviour:
   m_spread: 0.05
   m_bulletHoleSize: 0.15
   m_swapCooldownSeconds: 0.3
-  m_purchasePrice: 150
+  m_purchasePrice: 600
   m_requiresBullets: 1
   m_recoilForce: 5
   m_reloadBarPrefab: {fileID: 4414279777620984797, guid: 8329d6b572d3c0a47b9032fbeb118c5b, type: 3}

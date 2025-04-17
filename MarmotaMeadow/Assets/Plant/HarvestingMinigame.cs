@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class HarvestingMinigame : MonoBehaviour
 {
-    public LineRenderer lineRenderer;
 
     private Vector3 pointA;
     private Vector3 pointB;
@@ -27,7 +26,6 @@ public class HarvestingMinigame : MonoBehaviour
     {
         finished = false;
         GenerateRandomPoints();
-        DrawLine();
         AddColliders();
     }
 
@@ -40,16 +38,9 @@ public class HarvestingMinigame : MonoBehaviour
     void GenerateRandomPoints()
     {
 
-        pointA = new Vector3(transform.position.x + 0.5f, Random.Range(transform.position.y - rangeY, transform.position.y + rangeY), transform.position.z);
-        pointB = transform.position * 2 - pointA;
-        pointC = new Vector3((pointA.x + pointB.x) / 2, (pointA.y + pointB.y) / 2, transform.position.z);
-    }
-
-    void DrawLine()
-    {
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, pointA);
-        lineRenderer.SetPosition(1, pointB);
+        pointA = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        pointB = new Vector3(transform.position.x - 0.47f, transform.position.y + 0.47f, transform.position.z);
+        pointC = transform.position * 2 - pointB;
     }
 
     void AddColliders()
@@ -64,6 +55,9 @@ public class HarvestingMinigame : MonoBehaviour
         B.name = "B";
         C.transform.parent = transform;
         C.name = "C";
+
+
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
     }
 
     void CheckForCollisions()
@@ -84,7 +78,6 @@ public class HarvestingMinigame : MonoBehaviour
 
         if (transform.childCount == 0)
         {
-            lineRenderer.positionCount = 0;
             plant.HarvestCrop();
             finished = true;
         }

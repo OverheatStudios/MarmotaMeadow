@@ -23,7 +23,7 @@ MonoBehaviour:
   m_shootCooldownSeconds: 0.6
   m_reloadCooldownSeconds: 0.8
   m_maxAmmo: 2
-  m_spread: 0.05
+  m_spread: 0
   m_bulletHoleSize: 0.2
   m_swapCooldownSeconds: 1
   m_purchasePrice: 0

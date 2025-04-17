@@ -34,7 +34,7 @@ public class InventorySlot : MonoBehaviour//, IPointerClickHandler
     private void OnPointerClick()
     {
         //putting an item on an empty slot
-        if (transform.childCount == 0)
+        if (transform.childCount == 0 && inventory.ReturnInventoryItem())
         {
             inventory.ReturnInventoryItem().transform.SetParent(transform);
             inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(true);

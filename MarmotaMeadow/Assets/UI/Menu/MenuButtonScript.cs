@@ -15,6 +15,7 @@ public class MenuButtonScript : MonoBehaviour
     [SerializeField] private SettingsScriptableObject m_settings;
     [SerializeField] private GameObject m_saves;
     [SerializeField] private GameObject m_newSave;
+    [SerializeField] private UiSlider m_difficultySlider;
 
     [Header("Audio Settings")]
     [SerializeField] private UiSlider m_musicVolumeSlider;
@@ -28,6 +29,7 @@ public class MenuButtonScript : MonoBehaviour
 
     private void Start()
     {
+        m_difficultySlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetDifficulty(Mathf.Lerp(1, 3, val)));
         m_musicVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetMusicVolume(val));
         m_gameVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetGameVolume(val));
 
@@ -42,6 +44,7 @@ public class MenuButtonScript : MonoBehaviour
 
         m_musicVolumeSlider.SetValue(m_settings.GetSettings().GetMusicVolume());
         m_gameVolumeSlider.SetValue(m_settings.GetSettings().GetGameVolume());
+        m_difficultySlider.SetValue(Mathf.InverseLerp(1, 3, m_settings.GetSettings().GetDifficulty()));
 
         m_dynamicCrosshairToggle.isOn = m_settings.GetSettings().IsDynamicCrosshair();
 

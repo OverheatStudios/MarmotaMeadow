@@ -35,6 +35,8 @@ public class Plant : MonoBehaviour
     [SerializeField] private float fertilizerMultiplier = 1.5f;
     [SerializeField] private bool planted;
     [SerializeField] private float m_secondsWithoutErrorFeedbackAfterStateChange = 1.5f; // So player doesn't get error sound when spam clicking
+    [SerializeField] private BoxCollider extraCollider;
+    [SerializeField] private float extraColliderYoffset;
 
     [SerializeField] private Billboard m_billboard;
 
@@ -172,6 +174,13 @@ public class Plant : MonoBehaviour
         if (isCameraInPosition && GameInput.GetKeybind("ExitMinigame").GetKeyDown()) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
+            GameObject[] colliders = GameObject.FindGameObjectsWithTag("collider");
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Destroy(colliders[i]);
+            }
+            
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));
             if (!planted)
             {
@@ -193,6 +202,7 @@ public class Plant : MonoBehaviour
                 growthTimer = maxGrowthTimer;
                 state = PlantState.Completed;
                 m_billboard.SetSprite(m_seed.ReturnFinishedSprite());
+                extraCollider.size = new Vector3(extraCollider.size.x, extraCollider.size.y + extraColliderYoffset, extraCollider.size.z);
             }
         }
     }
@@ -410,22 +420,28 @@ public class Plant : MonoBehaviour
             Rigidbody itemRb = spawnedItem.GetComponent<Rigidbody>();
             if (itemRb != null)
             {
-                Vector3 throwDirection = CalculateArchVelocity(throwAngle, throwDistance);
+                Vector3 throwDirection = CalculateArchVelocity();
                 itemRb.velocity = throwDirection;
             }
         }
 
-        multiplier += 0;
+        multiplier = 0;
         
         finishedMiniGame = true;
         OnHarvested?.Invoke();
+        extraCollider.size = new Vector3(extraCollider.size.x, 1, extraCollider.size.z);
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
 
-    Vector3 CalculateArchVelocity(float angle, float distance)
+    Vector3 CalculateArchVelocity()
     {
-        // Convert the angle to radians
-        float angleRad = angle * Mathf.Deg2Rad;
+        float minAngle = 10;
+        float maxAngle = 60;
+        float angleRad = UnityEngine.Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
+        
+        float min = 1.5f;
+        float max = 7.0f;
+        float distance = UnityEngine.Random.Range(min, max);
 
         // Calculate the initial velocity using projectile motion formulas
         float gravity = Physics.gravity.magnitude;
