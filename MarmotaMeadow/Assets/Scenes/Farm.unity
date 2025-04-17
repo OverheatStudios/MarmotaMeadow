@@ -274,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 431907246}
     - target: {fileID: 859860818247307928, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 15153
+      value: 15729
       objectReference: {fileID: 0}
     - target: {fileID: 1011765645397078243, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 722505655}
     - target: {fileID: 1518903816714018285, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 26426
+      value: 27002
       objectReference: {fileID: 0}
     - target: {fileID: 1852109913629307509, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 1285131905}
     - target: {fileID: 2771833616698206418, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 44289
+      value: 44865
       objectReference: {fileID: 0}
     - target: {fileID: 4416109097068604201, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 377709263}
     - target: {fileID: 4416109097068604201, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 23992
+      value: 24568
       objectReference: {fileID: 0}
     - target: {fileID: 6046534395779033801, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Name
@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 333511317}
     - target: {fileID: 6120248815360731522, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 3055
+      value: 3631
       objectReference: {fileID: 0}
     - target: {fileID: 6226137328656016326, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
@@ -378,7 +378,7 @@ PrefabInstance:
       objectReference: {fileID: 1199237630}
     - target: {fileID: 7604738284729408429, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 64311
+      value: 64887
       objectReference: {fileID: 0}
     - target: {fileID: 7834428173087068986, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
@@ -386,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 177119196}
     - target: {fileID: 7834428173087068986, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 24494
+      value: 25070
       objectReference: {fileID: 0}
     - target: {fileID: 8271276064762174576, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
@@ -394,7 +394,7 @@ PrefabInstance:
       objectReference: {fileID: 1416384098}
     - target: {fileID: 8271276064762174576, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_VersionIndex
-      value: 12792
+      value: 13368
       objectReference: {fileID: 0}
     - target: {fileID: 8812139325481488423, guid: 6dcde39165b02894aa7e4ba04e7658c7, type: 3}
       propertyPath: m_Mesh
@@ -2715,6 +2715,7 @@ MonoBehaviour:
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
   m_saves: {fileID: 0}
   m_newSave: {fileID: 0}
+  m_difficultySlider: {fileID: 0}
   m_musicVolumeSlider: {fileID: 1079496447}
   m_gameVolumeSlider: {fileID: 0}
   m_dynamicCrosshairToggle: {fileID: 1079496446}
@@ -3619,7 +3620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7936a77d35b13e48b07bee8a703650e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 518220435}
   colliders: {fileID: 6875515042364160533, guid: 2c570cfa3f3ea704e849dd71ea50ca50, type: 3}
   m_maxDistance: 1000
   checkMask:
@@ -7721,7 +7721,7 @@ Transform:
   m_GameObject: {fileID: 1571331806}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.46, y: 2.6, z: -6.71}
+  m_LocalPosition: {x: -2.121, y: 2.046, z: -5.488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
