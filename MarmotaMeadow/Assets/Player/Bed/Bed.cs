@@ -18,6 +18,17 @@ public class Bed : MonoBehaviour
     [SerializeField] private GameObject m_player;
     [SerializeField] private LayerMask m_bedLayer;
     [SerializeField] private Camera m_camera;
+    [SerializeField] private MeshRenderer[] m_highlightMeshes;
+    [SerializeField] private Color m_highlightColor;
+
+    private void Start()
+    {
+        foreach (var mesh in m_highlightMeshes)
+        {
+            mesh.material.color = m_highlightColor;
+        }
+    }
+
     private void Update()
     {
         m_text.text = "Go to sleep? (" + GameInput.GetKeybind("Interact") + ")";
@@ -28,6 +39,7 @@ public class Bed : MonoBehaviour
         {
             m_UI.SetActive(false);
             m_confirmationUI.SetActive(false);
+            foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(false);
             return;
         }
 
@@ -39,12 +51,13 @@ public class Bed : MonoBehaviour
             if (hit.collider.gameObject != gameObject)
             {
                 m_UI.SetActive(false);
+                foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(false);
                 return; // Hit something else
             }
         }
 
-            if (!m_clicked)
-            m_UI.SetActive(true);
+        if (!m_clicked) m_UI.SetActive(true);
+        foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(true);
 
         if (GameInput.GetKeybind("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
         {
