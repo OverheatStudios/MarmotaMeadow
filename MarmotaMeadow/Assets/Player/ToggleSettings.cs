@@ -34,7 +34,7 @@ public class ToggleSettings : MonoBehaviour
     {
         if (m_inventoryActions.IsInventoryOpen()) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !toggle)
+        if (GameInput.GetKeybind("Pause").GetKeyDown() && !toggle)
         {
             PlantToggler(toggle);
             toggle = true;

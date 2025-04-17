@@ -56,7 +56,7 @@ public class InventoryActions : MonoBehaviour
 
         if (m_canSelectSlots) HandleSlotChange();
 
-        bool tryingToCloseInventory = Input.GetKeyDown(KeyCode.Escape) && IsInventoryOpen();
+        bool tryingToCloseInventory = GameInput.GetKeybind("Pause").GetKeyDown() && IsInventoryOpen();
         if (GameInput.GetKeybind("OpenInventory").GetKeyDown() || tryingToCloseInventory) 
         {
             ToggleInventory();
