@@ -105,6 +105,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private bool inHarvestingMiniGame = false;
     [SerializeField] private bool inWateringMiniGame = false;
     [SerializeField] private float toolMultiplier;
+    [SerializeField] private GameObject m_cropUiCanvas;
     
 
     public System.Action OnTealed;
@@ -143,8 +144,10 @@ public class Plant : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "NightScene")
         {
+            m_cropUiCanvas.SetActive(false);
             return;
         }
+        m_cropUiCanvas.SetActive(!m_lineMinigameExitUi.isActiveAndEnabled); // Hides "requires watering" and "ready" text during line minigames
 
         // How long since the plant state changed?
         m_secondsSinceStateChange += Time.deltaTime;
