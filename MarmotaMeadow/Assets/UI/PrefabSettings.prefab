@@ -1067,10 +1067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: {fileID: 4138886722577906880}
-  m_usingController: Controller support enabled, disconnect your controller to use
-    mouse and keyboard.
-  m_notUsingController: Controller support disabled, connect your controller to enable
-    it.
+  m_usingController: Controller Support Enabled
+  m_notUsingController: No Controller Detected
 --- !u!1 &2794456606568153707
 GameObject:
   m_ObjectHideFlags: 0

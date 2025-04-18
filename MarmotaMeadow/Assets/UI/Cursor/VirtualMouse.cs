@@ -122,14 +122,18 @@ public class VirtualMouse : MonoBehaviour
             float acceleration = Mathf.Lerp(1, m_maxControllerMouseAcceleration, Mathf.InverseLerp(0, m_maxControllerMouseAccelerationAfter, m_secondsControllerHasBeenMovingMouse));
 
             // move mouse
-            m_mousePos += acceleration * deltaTime * m_controllerMouseSpeed * rightStick;
+            Vector2 deltaPos = acceleration * deltaTime * m_controllerMouseSpeed * rightStick;
+            m_mousePos += deltaPos;
 
             if (Cursor.lockState == CursorLockMode.None)
             {
                 Mouse.current?.WarpCursorPosition(m_mousePos);
             }
+
+            if (deltaPos.magnitude > 0) return;
         }
-        else if (Mouse.current != null)
+        
+        if (Mouse.current != null)
         {
             m_mousePos = Mouse.current.position.value;
         }

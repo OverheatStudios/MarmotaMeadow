@@ -13,7 +13,7 @@ public class ControllerButton
 
     public ButtonControl GetButtonControl()
     {
-       return Gamepad.current[WhatButton];
+        return Gamepad.current[WhatButton];
     }
 }
 
@@ -33,43 +33,35 @@ public class GameControl
 
     public bool GetKey()
     {
-        if (Gamepad.current != null)
+        if (Gamepad.current != null && m_controllerButton.GetButtonControl().isPressed)
         {
-            return m_controllerButton.GetButtonControl().isPressed;
+            return true;
         }
-        else
-        {
-            return Input.GetKey(m_key);
-        }
+        return Input.GetKey(m_key);
     }
 
     public bool GetKeyUp()
     {
-        if (Gamepad.current != null)
+        if (Gamepad.current != null && m_controllerButton.GetButtonControl().wasReleasedThisFrame)
         {
-            return m_controllerButton.GetButtonControl().wasReleasedThisFrame;
+            return true;
         }
-        else
-        {
-            return Input.GetKeyUp(m_key);
-        }
+        return Input.GetKeyUp(m_key);
     }
 
     public bool GetKeyDown()
     {
-        if (Gamepad.current != null)
+        if (Gamepad.current != null && m_controllerButton.GetButtonControl().wasPressedThisFrame)
         {
-            return m_controllerButton.GetButtonControl().wasPressedThisFrame;
+            return true;
         }
-        else
-        {
-            return Input.GetKeyDown(m_key);
-        }
+        return Input.GetKeyDown(m_key);
     }
 
     public override string ToString()
     {
-        if (Gamepad.current == null) {
+        if (Gamepad.current == null)
+        {
             return m_key switch
             {
                 KeyCode.Mouse0 => "LMB",
