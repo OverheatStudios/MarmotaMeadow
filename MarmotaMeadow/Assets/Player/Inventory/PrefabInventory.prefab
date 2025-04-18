@@ -805,6 +805,7 @@ MonoBehaviour:
   m_toggleSettings: {fileID: 0}
   m_canSelectSlots: 1
   m_toolTip: {fileID: 0}
+  m_inventoryBackground: {fileID: 2511570085175462040}
 --- !u!114 &3877222016503559965
 MonoBehaviour:
   m_ObjectHideFlags: 0

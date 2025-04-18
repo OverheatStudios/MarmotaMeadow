@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 
 public class InventoryActions : MonoBehaviour
@@ -20,6 +21,7 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private ToggleSettings m_toggleSettings;
     [SerializeField] private bool m_canSelectSlots = true;
     [SerializeField] private GameObject m_toolTip;
+    [SerializeField] private RectTransform m_inventoryBackground;
     private float m_lateStartCalled = 0;
 
     private void Start()
@@ -57,7 +59,8 @@ public class InventoryActions : MonoBehaviour
         if (m_canSelectSlots) HandleSlotChange();
 
         bool tryingToCloseInventory = GameInput.GetKeybind("Pause").GetKeyDown() && IsInventoryOpen();
-        if (GameInput.GetKeybind("OpenInventory").GetKeyDown() || tryingToCloseInventory) 
+        bool clickedOffInventory = IsInventoryOpen() && m_cursorHandler.GetVirtualMouse().IsLMBDown() && !RectTransformUtility.RectangleContainsScreenPoint(m_inventoryBackground, Input.mousePosition);
+        if (GameInput.GetKeybind("OpenInventory").GetKeyDown() || tryingToCloseInventory || clickedOffInventory)
         {
             ToggleInventory();
         }
@@ -116,7 +119,7 @@ public class InventoryActions : MonoBehaviour
             m_inInventory = true;
             m_inventoryUI.SetActive(true);
             m_toolTip.SetActive(true);
-            
+
             //Cursor
             m_cursorHandler.NotifyUiOpen();
         }
