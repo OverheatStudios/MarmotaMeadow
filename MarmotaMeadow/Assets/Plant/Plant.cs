@@ -177,14 +177,8 @@ public class Plant : MonoBehaviour
         if (isCameraInPosition && GameInput.GetKeybind("ExitMinigame").GetKeyDown()) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
-            GameObject[] colliders = GameObject.FindGameObjectsWithTag("collider");
-
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                Destroy(colliders[i]);
-            }
-            
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));
+            
             if (!planted)
             {
                 planted = true;

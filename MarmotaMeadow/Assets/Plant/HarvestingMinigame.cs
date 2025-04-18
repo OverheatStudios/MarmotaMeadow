@@ -21,12 +21,23 @@ public class HarvestingMinigame : MonoBehaviour
     [SerializeField] private Plant plant;
     
     [SerializeField] private bool finished = false;
+    [SerializeField] private AudioClip soundEffect;
 
     private void OnEnable()
     {
         finished = false;
         GenerateRandomPoints();
         AddColliders();
+    }
+
+    private void OnDisable()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        } 
     }
 
     void Update()
@@ -71,9 +82,13 @@ public class HarvestingMinigame : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, m_maxDistance, checkMask))
-        { 
-            Destroy(hit.collider.gameObject);
-            Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);
+        {
+            if (hit.collider.gameObject.CompareTag("collider"))
+            {
+                AudioSource.PlayClipAtPoint(soundEffect, transform.position);
+                Destroy(hit.collider.gameObject);
+                Debug.DrawRay(ray.origin, ray.direction * m_maxDistance, Color.red, 2f);   
+            }
         }
 
         if (transform.childCount == 0)

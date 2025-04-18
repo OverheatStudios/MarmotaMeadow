@@ -571,7 +571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1709236398
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -677,11 +677,12 @@ MonoBehaviour:
   m_maxDistance: 100000
   checkMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
   trail: {fileID: 1372470737}
   rangeY: 10000
   plant: {fileID: 0}
   finished: 0
+  soundEffect: {fileID: 0}
 --- !u!1 &1841903690
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1841903691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,6 +723,7 @@ MonoBehaviour:
   trail: {fileID: 1372470737}
   plant: {fileID: 0}
   finished: 0
+  soundEffect: {fileID: 8300000, guid: 0a9994ac58e00e74e99c5d0ec380976c, type: 3}
 --- !u!64 &1841903692
 MeshCollider:
   m_ObjectHideFlags: 0

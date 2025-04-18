@@ -70,6 +70,7 @@ public class PlotManager : MonoBehaviour
             {
                 for (int i = 0; i < numberOfPlots; i++)
                 {
+                    if(i > m_plots.Count - 1) break;
                     GameObject plot = Instantiate(m_plotPrefab, m_plots[i].transform);
                     m_plotsSpawned.Add(plot);
                 }
