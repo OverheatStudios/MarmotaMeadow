@@ -145,6 +145,8 @@ public class Plant : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "NightScene")
         {
             m_cropUiCanvas.SetActive(false);
+            m_lineMinigameExitUi.gameObject.SetActive(false);
+            m_lineMinigameUi.gameObject.SetActive(false);
             return;
         }
         m_cropUiCanvas.SetActive(!m_lineMinigameExitUi.isActiveAndEnabled); // Hides "requires watering" and "ready" text during line minigames

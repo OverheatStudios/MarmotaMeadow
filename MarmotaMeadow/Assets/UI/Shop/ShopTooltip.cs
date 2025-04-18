@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class ShopTooltip : MonoBehaviour
 {
-    private static bool m_isAnyIconHovered = false;
+    private static ShopTooltip m_hoveredTooltip = null;
     private static ShopTooltip m_latestScript;
     [SerializeField] private RectTransform m_itemIcon;
     [SerializeField] private GameObject m_tooltip;
@@ -15,7 +15,7 @@ public class ShopTooltip : MonoBehaviour
     [TextArea]
     [SerializeField] private string m_tooltipText;
     private TextMeshProUGUI m_tooltipTextComponent;
-    private static bool m_isVisible = true;
+    private bool m_isVisible = true;
 
     private void Start()
     {
@@ -27,15 +27,19 @@ public class ShopTooltip : MonoBehaviour
 
     private void Update()
     {
-        if (m_isAnyIconHovered) return; // Some other icon already is hovered
+        if (m_hoveredTooltip) return; // Some other icon already is hovered
 
         // Are we hovered
         Vector2 mousePos = Input.mousePosition;
         Vector2 min = new Vector2(m_itemIcon.position.x, m_itemIcon.position.y) - m_itemIcon.sizeDelta / 2;
         Vector2 max = min + m_itemIcon.sizeDelta;
-        if (mousePos.x < min.x || mousePos.y < min.y || mousePos.x > max.x || mousePos.y > max.y) return; // Not hovering
+        if (mousePos.x < min.x || mousePos.y < min.y || mousePos.x > max.x || mousePos.y > max.y)
+        {
+            // not hovered
+            return;
+        }
 
-        m_isAnyIconHovered = true;
+        m_hoveredTooltip = this;
         m_tooltip.transform.position = m_itemIcon.position + (Vector3)m_tooltipOffset;
         m_tooltipTextComponent.text = m_tooltipText;
     }
@@ -44,8 +48,8 @@ public class ShopTooltip : MonoBehaviour
     {
         Assert.IsNotNull(m_latestScript);
         if (this != m_latestScript) return; // Only a single script should do this per frame
-        m_tooltip.SetActive(m_isAnyIconHovered && m_isVisible);
-        m_isAnyIconHovered = false;
+        m_tooltip.SetActive(m_hoveredTooltip && m_hoveredTooltip.m_isVisible);
+        m_hoveredTooltip = null;
     }
 
     public void SetText(string text)

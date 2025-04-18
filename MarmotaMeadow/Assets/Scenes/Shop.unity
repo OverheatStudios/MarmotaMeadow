@@ -1222,6 +1222,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &257646185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 257646186}
+  m_Layer: 5
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &257646186
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257646185}
+  m_LocalRotation: {x: -0, y: 0.014829654, z: -0, w: 0.99989}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1739611258}
+  m_LocalEulerAnglesHint: {x: 0, y: 1.699, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 294, y: -251}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &263600078
 GameObject:
   m_ObjectHideFlags: 0
@@ -10810,6 +10845,7 @@ RectTransform:
   - {fileID: 2048772160}
   - {fileID: 1150198822}
   - {fileID: 1760337250}
+  - {fileID: 257646186}
   m_Father: {fileID: 1407972929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10829,7 +10865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfa0821c3efb3e4a8efb22658940796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_itemIcon: {fileID: 2048772160}
+  m_itemIcon: {fileID: 257646186}
   m_tooltip: {fileID: 1525874017}
   m_tooltipOffset: {x: -400, y: 50}
   m_tooltipText: 
