@@ -52,20 +52,21 @@ public class Bed : MonoBehaviour
             {
                 m_UI.SetActive(false);
                 foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(false);
+                m_confirmationUI.SetActive(false);
                 return; // Hit something else
             }
-        }
 
-        if (!m_clicked) m_UI.SetActive(true);
-        foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(true);
+            if (!m_clicked) m_UI.SetActive(true);
+            foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(true);
 
-        if (GameInput.GetKeybind("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
-        {
-            isInBed = true;
-            m_confirmationUI.SetActive(true);
-            m_cursorHandler.NotifyUiOpen();
-            m_clicked = true;
-            m_UI.SetActive(false);
+            if (GameInput.GetKeybind("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
+            {
+                isInBed = true;
+                m_confirmationUI.SetActive(true);
+                m_cursorHandler.NotifyUiOpen();
+                m_clicked = true;
+                m_UI.SetActive(false);
+            }
         }
     }
 
