@@ -13,11 +13,14 @@ public class ActionTooltip : MonoBehaviour
     [SerializeField] private Canvas m_canvas;
     [SerializeField] private float m_minScale = 5.0f;
     [SerializeField] private float m_maxScale = 10.0f;
+    [SerializeField] private float m_percentNoFade = 0.3f;
     private float m_seconds = 0;
 
     void Start()
     {
         Assert.IsTrue(m_sprites.Length > 0);
+        Assert.IsTrue(m_percentNoFade >= 0);
+        Assert.IsTrue(m_percentNoFade <= 1);
         m_image.sprite = m_sprites[Random.Range(0, m_sprites.Length)];
         m_image.preserveAspect = true;
         m_image.rectTransform.sizeDelta = m_image.sprite.rect.size;
@@ -34,7 +37,7 @@ public class ActionTooltip : MonoBehaviour
         transform.position += Vector3.up * m_speed * Time.deltaTime;
 
         var color = m_image.color;
-        color.a = 1 - Mathf.InverseLerp(0, m_duration, m_seconds);
+        color.a = 1 - Mathf.InverseLerp(m_duration * m_percentNoFade, m_duration, m_seconds);
         m_image.color = color;
 
         if (color.a <= 0)

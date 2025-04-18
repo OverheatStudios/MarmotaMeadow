@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 5773715353133121282}
   - component: {fileID: 7813697923435033185}
   m_Layer: 18
-  m_Name: PrefabActionTooltipFarm
+  m_Name: PrefabActionTooltipUnableHarvest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,15 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sprites:
-  - {fileID: 21300000, guid: 38a3fff05e731bf4684b1921161d463f, type: 3}
-  - {fileID: 21300000, guid: 62169c28bf0cac34ca48b73c28f7ddd1, type: 3}
-  - {fileID: 21300000, guid: 5a15d47ed20059b44b1783479ec271a9, type: 3}
+  - {fileID: 21300000, guid: 30518f1e6d87d9049a8e1b7a11a7b5e0, type: 3}
   m_duration: 2.5
   m_speed: 0.1
   m_image: {fileID: 4414332101897945739}
   m_canvas: {fileID: 8960629429656860662}
-  m_minScale: 4.5
-  m_maxScale: 6
+  m_minScale: 5
+  m_maxScale: 5
   m_percentNoFade: 0.3
 --- !u!1 &3405231580146173142
 GameObject:

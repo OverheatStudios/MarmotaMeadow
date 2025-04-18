@@ -112,11 +112,13 @@ MonoBehaviour:
   m_errorSfx: {fileID: 0}
   m_tooltipManager: {fileID: 0}
   m_goToSleepTooltip: {fileID: 0}
-  m_cantHarvestTooltip: {fileID: 0}
-  m_wrongToolSelectedTooltip: {fileID: 0}
+  m_cantHarvestActionTooltip: {fileID: 1207440342523378113, guid: b5020ffca26ffbf45be47168b9cabea2, type: 3}
+  m_wrongToolSelectedActionTooltip: {fileID: 1207440342523378113, guid: b8df55ea253b8244f9d2444b3f3a8627, type: 3}
   m_blockInteractionsLayer:
     serializedVersion: 2
     m_Bits: 32768
+  m_cursorHandler: {fileID: 0}
+  m_actionTooltipOffset: {x: 0, y: 0.4, z: 0}
 --- !u!1 &3097902270475952157
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ MonoBehaviour:
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
   m_maxNegativeYVelocity: 1
   m_airPenaltyMultiplier: 0.5
-  m_downwardVelocityForAir: 1
+  m_jumpVelocity: 10
 --- !u!23 &7827074693464386728
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -308,6 +310,7 @@ MonoBehaviour:
   m_pickupItemSfx: {fileID: 8300000, guid: 0a9994ac58e00e74e99c5d0ec380976c, type: 3}
   m_playerCollider: {fileID: 2501186632336930741}
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
+  m_floorLeniency: 0.1
 --- !u!1 &4274616188543242520
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +412,9 @@ MonoBehaviour:
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
   m_gunUpgrades: {fileID: 3183371221008993282}
   m_shootVolume: 0.4
+  m_actionTooltipOffset: {x: 0, y: 0.25, z: 0}
+  m_shootBadActionTooltip: {fileID: 0}
+  m_shootGoodActionTooltip: {fileID: 0}
   m_shootSoundInterval: 0.15
 --- !u!114 &3183371221008993282
 MonoBehaviour:
@@ -422,6 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727269e93c9d2ed45aa7aa22f059ddd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_saveManager: {fileID: 0}
 --- !u!1 &8133200046893287152
 GameObject:
   m_ObjectHideFlags: 0

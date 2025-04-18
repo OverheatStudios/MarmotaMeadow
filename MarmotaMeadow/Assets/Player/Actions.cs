@@ -26,7 +26,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private float m_redDuration = 1.5f;
     [Tooltip("How long should they take to fade back to original colour")]
     [SerializeField] private float m_redFadeDuration = 0.8f;
-    [Tooltip("When at 100% \"redness\", original colour is multiplied by this")] 
+    [Tooltip("When at 100% \"redness\", original colour is multiplied by this")]
     [SerializeField] private Color m_redColor = new(0.5f, 0, 0);
     [Tooltip("How many times should we change the colour when fading? 100 means we modify the colour in 1/100*abs(originalColour*redColor-originalColour) decrements/increments")]
     [SerializeField] private int m_numColorChanges = 100;
@@ -35,10 +35,11 @@ public class Actions : MonoBehaviour
     [SerializeField] private AudioClip m_errorSfx;
     [SerializeField] private TooltipManager m_tooltipManager;
     [SerializeField] private GameObject m_goToSleepTooltip;
-    [SerializeField] private GameObject m_cantHarvestTooltip;
-    [SerializeField] private GameObject m_wrongToolSelectedTooltip;
+    [SerializeField] private GameObject m_cantHarvestActionTooltip;
+    [SerializeField] private GameObject m_wrongToolSelectedActionTooltip;
     [SerializeField] private LayerMask m_blockInteractionsLayer;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
+    [SerializeField] private Vector3 m_actionTooltipOffset = Vector3.up * 0.4f;
 
     private void Start()
     {
@@ -51,7 +52,7 @@ public class Actions : MonoBehaviour
 
     void InteractWithPlot()
     {
-        if (GameInput.GetKeybind("Interact").GetKeyDown() && !m_cursorHandler.IsUiOpen() )
+        if (GameInput.GetKeybind("Interact").GetKeyDown() && !m_cursorHandler.IsUiOpen())
         {
 
             InventoryItem heldItem = m_inventoryManager.GetHeldInventoryItem();
@@ -79,7 +80,7 @@ public class Actions : MonoBehaviour
                     GameObject obj = hit.collider.gameObject;
                     StartCoroutine(ShowRedOverlay(obj));
                     AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                    m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                    Instantiate(m_cantHarvestActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
                     return;
                 }
 
@@ -95,22 +96,22 @@ public class Actions : MonoBehaviour
                         return;
                     }
 
-                    
+
                     if (hit.collider.GetComponent<Plant>())
                     {
                         if (plant.ChangeState(heldItem) == false)
                         {
-                            StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
-                            AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                            m_tooltipManager.ShowTooltip(m_wrongToolSelectedTooltip);
+                           // StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
+                           // AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
+                           // Instantiate(m_wrongToolSelectedActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
                             if (plant.CanGiveErrorFeedback())
                             {
                                 StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                                 AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                                m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                                Instantiate(m_wrongToolSelectedActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
                             }
                         }
-                        else 
+                        else
                         {
                             plant.ChangeState(heldItem);
                             if (heldItem.item.IsStackable())
@@ -124,17 +125,17 @@ public class Actions : MonoBehaviour
                         if (hit.collider.gameObject.GetComponentInParent<Plant>())
                         {
                             plant = hit.collider.gameObject.GetComponentInParent<Plant>();
-                            
+
                             if (plant.ChangeState(heldItem) == false)
                             {
                                 if (plant.CanGiveErrorFeedback())
                                 {
                                     StartCoroutine(ShowRedToonOverlay(hit.collider.gameObject));
                                     AudioSource.PlayClipAtPoint(m_errorSfx, Camera.main.transform.position);
-                                    m_tooltipManager.ShowTooltip(m_cantHarvestTooltip);
+                                    Instantiate(m_cantHarvestActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
                                 }
                             }
-                            else 
+                            else
                             {
                                 plant.ChangeState(heldItem);
                                 if (heldItem.item.IsStackable())
@@ -143,7 +144,7 @@ public class Actions : MonoBehaviour
                                 }
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -242,7 +243,7 @@ public class Actions : MonoBehaviour
                 mat.SetColor("_BaseColor", Color.Lerp(modifiedColor, originalColor, t));
                 yield return new WaitForSeconds(delay);
             }
-    
+
             mat.SetColor("_BaseColor", originalColor);
         }
         else
