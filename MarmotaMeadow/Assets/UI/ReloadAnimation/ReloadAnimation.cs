@@ -8,6 +8,7 @@ public class ReloadAnimation : MonoBehaviour
 {
     [SerializeField] private List<Sprite> m_sprites = new List<Sprite>();
     [SerializeField] private Image m_display;
+    [SerializeField] private Color m_color = new Color(1, 1, 1, 1.0f);
     private float m_secondsPerFrame = 0;
     private float m_secondsSinceAnimationStart = 0;
     private bool m_running = false;
@@ -37,7 +38,7 @@ public class ReloadAnimation : MonoBehaviour
         }
 
         m_display.sprite = m_sprites[index];
-        if (m_visible) m_display.color = Color.white;
+        if (m_visible) m_display.color = m_color;
         else m_display.color = Color.clear;
     }
 
