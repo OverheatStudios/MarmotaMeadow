@@ -17,15 +17,16 @@ public class ChangeToNight : MonoBehaviour
     void Update()
     {
         if (m_debug.IsInfiniteDay()) return;
-        
+
         if (scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() < 0)
         {
             text.text = "";
             moon.SetActive(false);
-        }else if(maxTime > 0 && !isNight && !bed.ReturnIsInBed() && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
+        }
+        else if (maxTime > 0 && !isNight && !bed.ReturnIsInBed() && scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() >= 0)
         {
             maxTime -= Time.deltaTime;
-            text.text = Mathf.Ceil(maxTime).ToString() ;
+            text.text = Mathf.Ceil(maxTime).ToString();
         }
 
         if (maxTime <= 0)
@@ -36,6 +37,6 @@ public class ChangeToNight : MonoBehaviour
 
     public bool ReturnIsNight()
     {
-       return isNight; 
+        return isNight;
     }
 }
