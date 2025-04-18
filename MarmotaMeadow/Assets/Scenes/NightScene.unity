@@ -14322,9 +14322,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1369510650}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_shootBadActionTooltip
+      value: 
+      objectReference: {fileID: 1207440342523378113, guid: f4dfa78e789b5ba499b75706088450ae, type: 3}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_noBulletsForReloadText
       value: 
       objectReference: {fileID: 1414743288}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_shootGoodActionTooltip
+      value: 
+      objectReference: {fileID: 1207440342523378113, guid: 3ed13e2de80d8a74ba7136eca40176a7, type: 3}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_shootablesLayer.m_Bits
       value: 256

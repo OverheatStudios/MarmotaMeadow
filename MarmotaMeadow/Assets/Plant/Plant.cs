@@ -106,7 +106,10 @@ public class Plant : MonoBehaviour
     [SerializeField] private bool inWateringMiniGame = false;
     [SerializeField] private float toolMultiplier;
     [SerializeField] private GameObject m_cropUiCanvas;
-    
+
+    [Header("Tooltips")]
+    [SerializeField] private Vector3 m_actionTooltipOffset = Vector3.up * 0.4f;
+    [SerializeField] private GameObject m_goodTooltip;
 
     public System.Action OnTealed;
     public System.Action OnPlanted;
@@ -157,6 +160,7 @@ public class Plant : MonoBehaviour
         {
             m_stateLastFrame = state;
             m_secondsSinceStateChange = 0;
+            Instantiate(m_goodTooltip).transform.position = transform.position + m_actionTooltipOffset;
         }
 
         // Tilling minigame

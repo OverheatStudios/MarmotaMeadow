@@ -56,6 +56,10 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private GunUpgrades m_gunUpgrades;
     [SerializeField] private float m_shootVolume = 0.4f;
 
+    [SerializeField] private Vector3 m_actionTooltipOffset = Vector3.up * 0.25f;
+    [SerializeField] private GameObject m_shootBadActionTooltip;
+    [SerializeField] private GameObject m_shootGoodActionTooltip;
+
     private ReloadAnimation m_reloadBar;
 
     private const float MAX_RAY_DISTANCE = 100f;
@@ -357,6 +361,7 @@ public class ShootScript : MonoBehaviour
             // Hit a groundhog, damage it
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponentInParent<GroundhogScript>();
             DamageGroundhog(groundhogScript, hit.point);
+            Instantiate(m_shootGoodActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
             if (groundhogScript.IsAlive())
             {
                 // Cast ray against groundhogs mesh
@@ -372,6 +377,8 @@ public class ShootScript : MonoBehaviour
         {
             // Hit shootable
             SpawnBulletHoleDecal(hit);
+
+            Instantiate(m_shootBadActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
         }
     }
 
