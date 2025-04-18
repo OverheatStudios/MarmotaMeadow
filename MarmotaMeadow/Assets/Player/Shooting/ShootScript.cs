@@ -170,7 +170,7 @@ public class ShootScript : MonoBehaviour
 
         if (m_reloadBar && m_reloadBar.IsRunning()) return;
 
-        if (m_noBulletsToReload)
+        if (m_noBulletsToReload && HoldingEmptyGun())
         {
             m_noBulletsForReloadText.enabled = true;
         }
@@ -178,6 +178,15 @@ public class ShootScript : MonoBehaviour
         {
             m_reloadText.enabled = true;
         }
+    }
+
+    private bool HoldingEmptyGun()
+    {
+        if (m_inventoryManager.GetHeldItem() is Gun gun)
+        {
+            return gun.GetCurrentAmmo() <= 0;
+        }
+        return false;
     }
 
     private void UpdateBulletForHeldGun()
