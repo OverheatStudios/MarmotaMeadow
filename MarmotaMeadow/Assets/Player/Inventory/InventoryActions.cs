@@ -22,10 +22,14 @@ public class InventoryActions : MonoBehaviour
     [SerializeField] private bool m_canSelectSlots = true;
     [SerializeField] private GameObject m_toolTip;
     [SerializeField] private RectTransform m_inventoryBackground;
+    [SerializeField] private float m_timeBeforeClickingOffClosesInventory = 1.0f;
+    [SerializeField] private RectTransform m_toolbarBackground;
     private float m_lateStartCalled = 0;
+    private float m_secondsSinceInventoryOpen = 0;
 
     private void Start()
     {
+        Assert.IsTrue(m_timeBeforeClickingOffClosesInventory > 0);  
         if (m_canSelectSlots)
         {
             SelectSlot(m_selectedItemIndex);
@@ -48,6 +52,10 @@ public class InventoryActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsInventoryOpen())
+            m_secondsSinceInventoryOpen += Time.deltaTime;
+        else
+            m_secondsSinceInventoryOpen = 0;
 
         m_lateStartCalled++;
         if (m_lateStartCalled == 2)
@@ -59,7 +67,10 @@ public class InventoryActions : MonoBehaviour
         if (m_canSelectSlots) HandleSlotChange();
 
         bool tryingToCloseInventory = GameInput.GetKeybind("Pause").GetKeyDown() && IsInventoryOpen();
-        bool clickedOffInventory = IsInventoryOpen() && m_cursorHandler.GetVirtualMouse().IsLMBDown() && !RectTransformUtility.RectangleContainsScreenPoint(m_inventoryBackground, Input.mousePosition);
+        bool clickedOffInventory = m_secondsSinceInventoryOpen > m_timeBeforeClickingOffClosesInventory && 
+            m_cursorHandler.GetVirtualMouse().IsLMBDown() && 
+            !RectTransformUtility.RectangleContainsScreenPoint(m_toolbarBackground, Input.mousePosition) &&
+            !RectTransformUtility.RectangleContainsScreenPoint(m_inventoryBackground, Input.mousePosition);
         if (GameInput.GetKeybind("OpenInventory").GetKeyDown() || tryingToCloseInventory || clickedOffInventory)
         {
             ToggleInventory();

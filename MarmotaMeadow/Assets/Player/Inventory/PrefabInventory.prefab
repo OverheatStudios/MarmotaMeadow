@@ -806,6 +806,8 @@ MonoBehaviour:
   m_canSelectSlots: 1
   m_toolTip: {fileID: 0}
   m_inventoryBackground: {fileID: 2511570085175462040}
+  m_timeBeforeClickingOffClosesInventory: 0.25
+  m_toolbarBackground: {fileID: 3994313649798490288}
 --- !u!114 &3877222016503559965
 MonoBehaviour:
   m_ObjectHideFlags: 0
