@@ -188,9 +188,4 @@ public class GroundhogScript : MonoBehaviour
     {
         m_highPrecisionCollider.enabled = false;
     }
-
-    public GroundhogTypeInfo getTypeInfo()
-    {
-        return m_typeInfo;
-    }
 }

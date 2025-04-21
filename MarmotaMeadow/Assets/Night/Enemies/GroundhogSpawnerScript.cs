@@ -29,6 +29,7 @@ public class GroundhogSpawnerScript : MonoBehaviour
 
     void Update()
     {
+        Assert.IsTrue(isActiveAndEnabled);
         m_secondsSinceNightBegin += Time.deltaTime;
 
         TrySpawnGroundhog();

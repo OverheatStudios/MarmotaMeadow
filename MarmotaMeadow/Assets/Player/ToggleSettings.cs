@@ -36,35 +36,11 @@ public class ToggleSettings : MonoBehaviour
 
         if (GameInput.GetKeybind("Pause").GetKeyDown() && !toggle)
         {
-            PlantToggler(toggle);
-            toggle = true;
-            m_globalData.m_isSettingsOpen = true;
-            settings.SetActive(true);
-            mainSettings.SetActive(true);
-            if (m_bedConfirmUi) m_bedConfirmUi.SetActive(false);
-            m_mainInventoryUi.SetActive(false);
-            foreach (GameObject go in m_settingsSubcategories)
-            {
-                go.SetActive(false);
-            }
-            foreach (GameObject go in m_disableWhenInSettings)
-            {
-                go.SetActive(false);
-            }
-            m_cursorHandler.NotifyUiOpen();
+            EnableSettings();
         }
         else if (GameInput.GetKeybind("Pause").GetKeyDown() && toggle)
         {
-            PlantToggler(toggle);
-            toggle = false;
-            m_globalData.m_isSettingsOpen = false;
-            settings.SetActive(false);
-            mainSettings.SetActive(true);
-            foreach (GameObject go in m_disableWhenInSettings)
-            {
-                go.SetActive(true);
-            }
-            m_cursorHandler.NotifyUiClosed();
+            Back();
         }
     }
 
@@ -72,9 +48,34 @@ public class ToggleSettings : MonoBehaviour
     {
         PlantToggler(toggle);
         toggle = false;
+        m_globalData.m_isSettingsOpen = false;
         settings.SetActive(false);
         mainSettings.SetActive(true);
+        foreach (GameObject go in m_disableWhenInSettings)
+        {
+            go.SetActive(true);
+        }
         m_cursorHandler.NotifyUiClosed();
+    }
+
+    public void EnableSettings()
+    {
+        PlantToggler(toggle);
+        toggle = true;
+        m_globalData.m_isSettingsOpen = true;
+        settings.SetActive(true);
+        mainSettings.SetActive(true);
+        if (m_bedConfirmUi) m_bedConfirmUi.SetActive(false);
+        m_mainInventoryUi.SetActive(false);
+        foreach (GameObject go in m_settingsSubcategories)
+        {
+            go.SetActive(false);
+        }
+        foreach (GameObject go in m_disableWhenInSettings)
+        {
+            go.SetActive(false);
+        }
+        m_cursorHandler.NotifyUiOpen();
     }
 
     void PlantToggler(bool toggle)

@@ -8,25 +8,14 @@ public class BurrowContainerScript : MonoBehaviour
 {
     [SerializeField] private ScrObjGlobalData m_data;
     private int m_currentBurrowCount = 0;
-    public int CurrentBurrowCount
-    {
-        get { return m_currentBurrowCount; }
-    }
 
     [Tooltip("Burrow count per night")]
     [SerializeField] private List<int> m_burrowCountPerNight = new();
 
-    // Start is called before the first frame update
     void Start()
     {
         Assert.IsTrue(m_burrowCountPerNight.Count > 0);
         EnableBurrows();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     /// <summary>
@@ -42,6 +31,12 @@ public class BurrowContainerScript : MonoBehaviour
         }
 
         int numBurrows = GetBurrowCount(m_data.GetData().GetNightCounter(), burrows.Count);
+        if (numBurrows <= 0)
+        {
+            Debug.LogWarning("Burrows for night " + m_data.GetData().GetNightCounter() + " was " + numBurrows + " (clamped to 1)");
+            numBurrows = 1;
+        }
+
         for (int i = 0; i < numBurrows; i++)
         {
             burrows[i].SetActive(true);

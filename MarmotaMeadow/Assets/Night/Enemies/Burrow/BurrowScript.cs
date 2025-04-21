@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 public class BurrowScript : MonoBehaviour
 {
     [SerializeField] private GroundhogTypes m_groundhogTypes;
-    
+
     [Tooltip("Each night groundhogs gain this amount more max health, if this is 5 for element 1 (second element) then on night 1 (second night) groundhogs have 105% health")]
     [SerializeField] private List<float> m_groundhogBonusHealthPercentages;
 
@@ -20,17 +20,28 @@ public class BurrowScript : MonoBehaviour
     /// The current groundhog object in this burrow, may be null
     /// </summary>
     private GameObject m_groundhog;
+    private bool m_wasGroundhogActive;
 
-    // Start is called before the first frame update
     void Start()
     {
         Assert.IsTrue(m_groundhogBonusHealthPercentages != null && m_groundhogBonusHealthPercentages.Count > 0);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
+        if (m_groundhog)
+        {
+            m_wasGroundhogActive = m_groundhog.activeInHierarchy;
+            m_groundhog.SetActive(false);
+        }
+    }
 
+    private void OnEnable()
+    {
+        if (m_groundhog)
+        {
+            m_groundhog.SetActive(m_wasGroundhogActive);
+        }
     }
 
     /// <summary>
