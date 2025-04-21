@@ -46,7 +46,7 @@ public class DiscordRPCHandler : ScriptableObject
             {
                 LargeImageKey = "large",
                 LargeImageText = "Marmota Meadow",
-                SmallImageKey = "small"
+                SmallImageKey = ""
             }
         });
     }
