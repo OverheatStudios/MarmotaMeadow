@@ -495,6 +495,10 @@ MonoBehaviour:
   m_spriteBankrupt: {fileID: 21300000, guid: f3d324a2a125e644494bc4767201901f, type: 3}
   m_background: {fileID: 1050984634}
   m_saveManager: {fileID: 11400000, guid: 5b64b1dd5842f9546b331fa5f9fe967d, type: 2}
+  m_discordRPCHandler: {fileID: 11400000, guid: ddba9fa4f616b1b4589eafcc00f5994f, type: 2}
+  m_wonDetails: Winning
+  m_diedDetails: Turning into a groundhog
+  m_bankruptDetails: Filing for bankruptcy
 --- !u!1 &1703521450
 GameObject:
   m_ObjectHideFlags: 0
