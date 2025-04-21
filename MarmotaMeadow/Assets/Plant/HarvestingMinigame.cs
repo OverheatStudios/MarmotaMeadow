@@ -68,7 +68,7 @@ public class HarvestingMinigame : MonoBehaviour
         C.name = "C";
 
 
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 90));
     }
 
     void CheckForCollisions()

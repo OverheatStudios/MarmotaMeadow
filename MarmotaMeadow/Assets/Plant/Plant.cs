@@ -183,7 +183,7 @@ public class Plant : MonoBehaviour
         if (isCameraInPosition && GameInput.GetKeybind("ExitMinigame").GetKeyDown()) // Right mouse button to reset camera
         {
             finishedMiniGame = true;
-            StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, 1.5f, false, false));
+            StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
             
             if (!planted)
             {
@@ -471,6 +471,14 @@ public class Plant : MonoBehaviour
         Quaternion startRotation = mainCamera.transform.rotation;
 
         planted = !planted;
+        
+        inWateringMiniGame = inWaterMiniGame;
+        inHarvestingMiniGame = inHarvestMiniGame;
+
+        m_lineMinigameUi.SetActive(inHarvestMiniGame || inWaterMiniGame);
+        harvestingMiniGame.SetActive(inHarvestMiniGame);
+        wateringMinigame.SetActive(inWaterMiniGame);
+        line.SetActive(!line.activeInHierarchy);
 
         while (elapsedTime < duration)
         {
@@ -483,14 +491,7 @@ public class Plant : MonoBehaviour
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
-
-        inWateringMiniGame = inWaterMiniGame;
-        inHarvestingMiniGame = inHarvestMiniGame;
-
-        m_lineMinigameUi.SetActive(inHarvestMiniGame || inWaterMiniGame);
-        harvestingMiniGame.SetActive(inHarvestMiniGame);
-        wateringMinigame.SetActive(inWaterMiniGame);
-        line.SetActive(!line.activeInHierarchy);
+        
         playerMovement.enabled = finishedMiniGame;
     }
 
