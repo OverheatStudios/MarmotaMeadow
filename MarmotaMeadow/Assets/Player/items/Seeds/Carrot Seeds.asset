@@ -18,11 +18,11 @@ MonoBehaviour:
   m_isStackable: 1
   m_image: {fileID: 21300000, guid: f0d457977f3096c47a2fac7f980a64f4, type: 3}
   m_maxAmount: 10000
-  m_amount: 10
+  m_amount: 15
   m_growthDuration: 60
   crop: {fileID: 11400000, guid: 9f889842aa6526b47aa70b403fc1f1f7, type: 2}
-  m_purchasePrice: 10
+  m_purchasePrice: 100
   plantedSprite: {fileID: 21300000, guid: ec7f00ff86f1cf74ba32bfed01cbf1e0, type: 3}
   growingSprite: {fileID: 21300000, guid: 43fb68f2412be7548bafe077626bb8a2, type: 3}
   finishedSprite: {fileID: 21300000, guid: 3712d5d68319df440975129c57499fb6, type: 3}
-  m_sellPrice: 5
+  m_sellPrice: 50

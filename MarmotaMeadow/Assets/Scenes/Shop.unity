@@ -7088,7 +7088,7 @@ MonoBehaviour:
   m_tooltipOffset: {x: 50, y: 50}
   m_tooltipText: 'Corn Seeds
 
-    Yield: MEDIUM
+    Yield: LOW
 
     Sell Price: LOW'
 --- !u!114 &936125729
@@ -8311,7 +8311,7 @@ MonoBehaviour:
   m_tooltipOffset: {x: 50, y: 50}
   m_tooltipText: 'Tomato Seeds
 
-    Yield: HIGH
+    Yield: INSANE
 
     Sell Price: LOW'
 --- !u!114 &1177284153
@@ -8900,9 +8900,9 @@ MonoBehaviour:
   m_tooltipOffset: {x: 50, y: 50}
   m_tooltipText: 'Carrot Seeds
 
-    Yield: LOW
+    Yield: HIGH
 
-    Sell Price: LOW'
+    Sell Price: MEDIUM'
 --- !u!114 &1328839009
 MonoBehaviour:
   m_ObjectHideFlags: 0
