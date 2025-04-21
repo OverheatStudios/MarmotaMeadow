@@ -19,7 +19,7 @@ MonoBehaviour:
   m_image: {fileID: 21300000, guid: f0d457977f3096c47a2fac7f980a64f4, type: 3}
   m_maxAmount: 10000
   m_amount: 15
-  m_growthDuration: 12
+  m_growthDuration: 5
   crop: {fileID: 11400000, guid: 9f889842aa6526b47aa70b403fc1f1f7, type: 2}
   m_purchasePrice: 100
   plantedSprite: {fileID: 21300000, guid: ec7f00ff86f1cf74ba32bfed01cbf1e0, type: 3}
