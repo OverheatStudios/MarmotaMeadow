@@ -14554,6 +14554,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1369510650}
     - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: m_randomDamageScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594669183110137106, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_shootBadActionTooltip
       value: 
       objectReference: {fileID: 1207440342523378113, guid: f4dfa78e789b5ba499b75706088450ae, type: 3}
