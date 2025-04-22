@@ -14,16 +14,19 @@ public class DayCountdownHandlerScript : MonoBehaviour
     [Tooltip("Number of seconds between groundhog spawning ending and night ending")]
     [SerializeField] private float m_nightBufferSeconds = 8;
     [SerializeField] private NightCounter m_nightCounter;
+    [SerializeField] private ShopFadeIn m_fadeOut;
+    [SerializeField] private ScrObjSun m_sun;
     private float m_secondsRemaining = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
+        Assert.IsFalse(m_fadeOut.gameObject.activeInHierarchy);
         Assert.IsTrue(m_data.GetData().GetNightCounter() >= 0);
         m_secondsRemaining = GetNightLengthSeconds();
+        m_fadeOut.LoadSceneAfter("SunScene");
+        m_sun.IsSunset = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         m_secondsRemaining -= Time.deltaTime;
@@ -32,10 +35,8 @@ public class DayCountdownHandlerScript : MonoBehaviour
 
         if (m_secondsRemaining < 0)
         {
-            if (m_nightCounter.NotifyNightEnd())
-            {
-                SwitchDayScene();
-            }
+            m_nightCounter.NotifyNightEnd();
+            m_fadeOut.gameObject.SetActive(true);
         }
     }
 
@@ -46,11 +47,6 @@ public class DayCountdownHandlerScript : MonoBehaviour
     private float GetNightLengthSeconds()
     {
         return m_allGroundhogSpawns.GetMinimumNightLength(m_data.GetData().GetNightCounter()) + m_nightBufferSeconds;
-    }
-
-    private void SwitchDayScene()
-    {
-        SceneManager.LoadScene("Day Scene", LoadSceneMode.Single);
     }
 
     public void SkipNight()
