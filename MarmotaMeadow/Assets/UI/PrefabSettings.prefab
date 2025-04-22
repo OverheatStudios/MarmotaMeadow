@@ -4437,6 +4437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DifficultySlider
       objectReference: {fileID: 0}
+    - target: {fileID: 925190306806382178, guid: 9e35c295bafcc69419b0b6228093d463, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3604151010446247028, guid: 9e35c295bafcc69419b0b6228093d463, type: 3}
       propertyPath: m_value
       value: 0

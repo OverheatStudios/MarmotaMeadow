@@ -47,7 +47,7 @@ public class Settings
 
     public float GetDifficulty()
     {
-        return m_difficulty;
+        return 1;// m_difficulty;
     }
 
     public void SetMusicVolume(float value)

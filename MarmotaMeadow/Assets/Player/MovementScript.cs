@@ -203,10 +203,10 @@ public class MovementScript : MonoBehaviour
         }
 
         // Prevent player being launched by going up stairs
-        if (m_rigidbody.velocity.y > m_maxNegativeYVelocity && isGrounded && m_lastJumpTimestamp + 0.1f > Time.time) m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, m_maxNegativeYVelocity, m_rigidbody.velocity.z);
+      //  if (m_rigidbody.velocity.y > m_maxNegativeYVelocity && isGrounded && m_lastJumpTimestamp + 0.1f > Time.time) m_rigidbody.velocity = new Vector3(m_rigidbody.velocity.x, m_maxNegativeYVelocity, m_rigidbody.velocity.z);
 
         // Jumping
-        if (isGrounded && GameInput.GetKeybind("Jump").GetKey())
+        if (isGrounded && GameInput.GetKeybind("Jump").GetKey() && m_lastJumpTimestamp + 0.1f < Time.time)
         {
             Vector3 velo = m_rigidbody.velocity;
             velo.y = m_jumpVelocity;
