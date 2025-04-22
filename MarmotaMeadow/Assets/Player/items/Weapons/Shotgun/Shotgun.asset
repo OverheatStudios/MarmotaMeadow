@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f684fb996e77894e9f56564f32233b9, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  m_handModelPrefab: {fileID: 4046243830329892476, guid: e4ebbf60d18b74747bdad67e4e3035f6, type: 3}
+  m_handModelPrefab: {fileID: 5834573930448070735, guid: bba6b55c85f38684a8638a06e99f3f85, type: 3}
   m_isMinecraftModel: 0
   m_itemName: Shotgun
   m_isStackable: 0

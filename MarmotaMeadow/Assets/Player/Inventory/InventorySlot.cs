@@ -38,12 +38,14 @@ public class InventorySlot : MonoBehaviour//, IPointerClickHandler
         {
             inventory.ReturnInventoryItem().transform.SetParent(transform);
             inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(true);
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().IsNotPickedUp();
             inventory.SetInventoryItem();
         }
         //trading places with another item
         else if (transform.childCount >= 1 && inventory.ReturnInventoryItem())
         {
             inventory.ReturnInventoryItem().transform.SetParent(transform);
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().IsNotPickedUp();
             inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(true);
             inventory.SetInventoryItem(transform.GetChild(0).gameObject);
             inventory.ReturnInventoryItem().transform.SetParent(transform.root);
@@ -55,6 +57,7 @@ public class InventorySlot : MonoBehaviour//, IPointerClickHandler
             inventory.SetInventoryItem(transform.GetChild(0).gameObject);
             inventory.ReturnInventoryItem().transform.SetParent(transform.root);
             inventory.ReturnInventoryItem().GetComponent<InventoryItem>().SetImageRaycast(false);
+            inventory.ReturnInventoryItem().GetComponent<InventoryItem>().IsPickedUp();
         }
 
         if (m_selectedSlot != null)

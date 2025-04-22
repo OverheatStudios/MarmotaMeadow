@@ -19,6 +19,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public Transform parentAfterDrag;
     [SerializeField] private float coins;
     [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private bool isPickedUp;
 
     [Header("ToolTip")]
     [SerializeField] private GameObject toolTip;
@@ -52,26 +53,21 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         RefreshCount();
     }
 
-    /*public void OnBeginDrag(PointerEventData eventData)
+    public void IsPickedUp()
     {
-        image.raycastTarget = false;
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+        isPickedUp = true;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void IsNotPickedUp()
     {
-        transform.position = Input.mousePosition;
+        isPickedUp = false;
     }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        image.raycastTarget = true;
-        transform.SetParent(parentAfterDrag);
-    }*/
+    
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(isPickedUp) return;
+        
         if (item is Tool || item is Gun)
         {
             toolTip.SetActive(true);

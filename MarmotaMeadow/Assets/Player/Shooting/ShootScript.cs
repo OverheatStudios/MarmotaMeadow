@@ -74,6 +74,10 @@ public class ShootScript : MonoBehaviour
     [Tooltip("3 sounds per interval seconds")]
     [SerializeField] private float m_shootSoundInterval = 0.4f;
     private int m_currentShootSoundIndex = 0;
+    
+    
+    [Header("Animation")]
+    [SerializeField] private Animator m_animator;
 
     void Start()
     {
@@ -84,6 +88,8 @@ public class ShootScript : MonoBehaviour
         {
             m_shootSoundTimestamps[i] = 0;
         }
+        
+        
     }
 
     void Update()
@@ -97,6 +103,10 @@ public class ShootScript : MonoBehaviour
             HandleCooldown();
             m_reloadBar = null;
             return;
+        }
+        else
+        {
+            m_animator = GameObject.FindObjectOfType<Animator>();
         }
 
         // Cooldown
@@ -228,6 +238,9 @@ public class ShootScript : MonoBehaviour
     {
         Gun gun = GetGunUnsafe();
         Assert.IsTrue(gun.GetNumBullets() >= 1);
+        
+        
+        m_animator.SetTrigger("Shoot");
 
         if (!m_isInfiniteAmmoCheatEnabled && m_gunUpgrades.ShouldConsumeAmmo())
         {
@@ -440,11 +453,13 @@ public class ShootScript : MonoBehaviour
         }
 
         // Reload
+        m_animator.SetBool("Reloading", true);
         float reloadCooldown = gun.GetReloadCooldownSeconds();
         gun.PlayReloadSfx();
         m_reloadBar.StartProgress(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000 - 10));
         if (gun == m_inventoryManager.GetHeldInventoryItem().item) SetAmmo(gun.GetMaxAmmo());
+        m_animator.SetBool("Reloading", false);
     }
 
     /// <summary>
