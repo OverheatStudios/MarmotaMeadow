@@ -10,20 +10,18 @@ public class NightCounter : MonoBehaviour
     [Tooltip("Lose on this night")]
     [SerializeField] private ScrObjNumNights m_numNights;
     [SerializeField] private CoinManager m_coinManager;
+    [SerializeField] private ScrObjSun m_sun;
+    private bool m_notified = false;
 
-    /// <summary>
-    /// Shuold be called before going to night scene
-    /// </summary>
-    /// <returns>True if shold go to night scene, false if we went to game over scene</returns>
-    public bool NotifyNightEnd()
+    public void NotifyNightEnd()
     {
+        if (m_notified) return;
+        m_notified = true;
         m_data.IncrementNightCounter();
         if (m_data.GetData().GetNightCounter() >= m_numNights.GetFinalNightPlusOne())
         {
             m_gameOverReason.GameOverReason = m_coinManager.GetCoins() >= m_numNights.GetMoneyRequired() ? ScrObjGameOver.Reason.Won: ScrObjGameOver.Reason.Bankrupt;
-            SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
-            return false;
+            m_sun.GameOver = true;
         }
-        return true;
     }
 }

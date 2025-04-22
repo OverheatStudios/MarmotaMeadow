@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 6dd18fc32d45d1b4fa512711e2ea2bfd
+  - enabled: 1
+    path: Assets/Scenes/SunScene.unity
+    guid: 72118d648ba433d41b8a459fcc10bf00
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

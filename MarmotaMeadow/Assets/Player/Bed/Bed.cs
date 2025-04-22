@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Bed : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class Bed : MonoBehaviour
     [SerializeField] private Camera m_camera;
     [SerializeField] private MeshRenderer[] m_highlightMeshes;
     [SerializeField] private Color m_highlightColor;
+    [SerializeField] private Image m_blackImage;
+    [SerializeField] private float m_fadeTime;
+    private float m_secondsFaded = -1;
 
     private void Start()
     {
@@ -31,6 +35,32 @@ public class Bed : MonoBehaviour
 
     private void Update()
     {
+        if (!tutorialManager.ReturnIsTutorialFinished())
+        {
+            foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(false);
+            return;
+        }
+
+        if (m_secondsFaded >= 0)
+        {
+            m_secondsFaded += Time.deltaTime;
+        }
+        var color = m_blackImage.color;
+        color.a = Mathf.InverseLerp(0, m_fadeTime, m_secondsFaded);
+        m_blackImage.color = color;
+        m_blackImage.gameObject.SetActive(color.a > 0);
+        if (color.a >= 1)
+        {
+            GameObject[] notPickedUpCrops = GameObject.FindGameObjectsWithTag("Crop");
+
+            for (int i = 0; i < notPickedUpCrops.Length; i++)
+            {
+                inventoryMager.AddItem(notPickedUpCrops[i].GetComponent<SpawnedItem>().ReturnItem());
+            }
+            SceneManager.LoadScene("Shop");
+            return;
+        }
+
         m_text.text = "Go to sleep? (" + GameInput.GetKeybind("Interact") + ")";
 
         // Is within interaction distance?
@@ -59,7 +89,7 @@ public class Bed : MonoBehaviour
             if (!m_clicked) m_UI.SetActive(true);
             foreach (var mesh in m_highlightMeshes) mesh.gameObject.SetActive(true);
 
-            if (GameInput.GetKeybind("Interact").GetKeyDown() && tutorialManager.ReturnIsTutorialFinished())
+            if (GameInput.GetKeybind("Interact").GetKeyDown() )
             {
                 isInBed = true;
                 m_confirmationUI.SetActive(true);
@@ -72,17 +102,14 @@ public class Bed : MonoBehaviour
 
     public void Confirm()
     {
-        GameObject[] notPikedUpCrops = GameObject.FindGameObjectsWithTag("Crop");
-
-        for (int i = 0; i < notPikedUpCrops.Length; i++)
-        {
-            inventoryMager.AddItem(notPikedUpCrops[i].GetComponent<SpawnedItem>().ReturnItem());
+        if (m_secondsFaded < 0) { 
+            m_secondsFaded = 0;
         }
-        SceneManager.LoadScene("Shop");
     }
 
     public void NoButton()
     {
+        if (m_secondsFaded >= 0) return;
         isInBed = false;
         m_confirmationUI.SetActive(false);
         m_cursorHandler.NotifyUiClosed();

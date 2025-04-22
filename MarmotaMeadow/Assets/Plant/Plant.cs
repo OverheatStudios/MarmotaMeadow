@@ -37,6 +37,7 @@ public class Plant : MonoBehaviour
     [SerializeField] private float m_secondsWithoutErrorFeedbackAfterStateChange = 1.5f; // So player doesn't get error sound when spam clicking
     [SerializeField] private BoxCollider extraCollider;
     [SerializeField] private float extraColliderYoffset;
+    [SerializeField] private bool m_plantMultiplierIsMultiplicative = true;
 
     [SerializeField] private Billboard m_billboard;
 
@@ -184,7 +185,7 @@ public class Plant : MonoBehaviour
         {
             finishedMiniGame = true;
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
-            
+
             if (!planted)
             {
                 planted = true;
@@ -357,7 +358,8 @@ public class Plant : MonoBehaviour
             growthTimer = m_seed.ReturnGrowDuration() + growOffset;
             maxGrowthTimer = m_seed.ReturnGrowDuration() + growOffset;
             planted = true;
-            multiplier += m_seed.ReturnAmount();
+            if (m_plantMultiplierIsMultiplicative) multiplier *= m_seed.ReturnAmount();
+            else multiplier += m_seed.ReturnAmount();
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             OnPlanted?.Invoke();
@@ -404,10 +406,10 @@ public class Plant : MonoBehaviour
         tealedGround.SetActive(true);
         untealedGround.SetActive(true);
         m_secondsSinceTilled = -1;
-        
+
         multiplier += toolMultiplier;
         toolMultiplier = 0;
-        
+
 
         AudioSource.PlayClipAtPoint(m_harvestSfx, transform.position, m_settings.GetSettings().GetGameVolume());
 
@@ -429,7 +431,7 @@ public class Plant : MonoBehaviour
         }
 
         multiplier = 0;
-        
+
         finishedMiniGame = true;
         OnHarvested?.Invoke();
         extraCollider.size = new Vector3(extraCollider.size.x, 1, extraCollider.size.z);
@@ -441,7 +443,7 @@ public class Plant : MonoBehaviour
         float minAngle = 10;
         float maxAngle = 60;
         float angleRad = UnityEngine.Random.Range(minAngle, maxAngle) * Mathf.Deg2Rad;
-        
+
         float min = 1.5f;
         float max = 7.0f;
         float distance = UnityEngine.Random.Range(min, max);
@@ -471,7 +473,7 @@ public class Plant : MonoBehaviour
         Quaternion startRotation = mainCamera.transform.rotation;
 
         planted = !planted;
-        
+
         inWateringMiniGame = inWaterMiniGame;
         inHarvestingMiniGame = inHarvestMiniGame;
 
@@ -491,7 +493,7 @@ public class Plant : MonoBehaviour
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.rotation = targetRotation;
         isCameraInPosition = !isCameraInPosition;
-        
+
         playerMovement.enabled = finishedMiniGame;
     }
 
