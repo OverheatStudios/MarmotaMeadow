@@ -15,10 +15,11 @@ public static class GameInput
                 { "Pause", new(KeyCode.Escape, GamepadButton.Start) },
                 { "ExitMinigame", new(KeyCode.Mouse1, GamepadButton.Y) },
                 { "Reload", new(KeyCode.R, GamepadButton.X) },
+                { "Crouch", new(KeyCode.DownArrow, GamepadButton.DpadDown) },
                 { "Jump", new(KeyCode.Space, GamepadButton.B) }
         };
 
-    internal static Dictionary<string, GameControl> m_keycodes = new Dictionary<string, GameControl>();
+    internal static Dictionary<string, GameControl> m_keycodes = new();
     internal static float m_framesSinceKeybindChange = 0;
 
     /// <summary>
