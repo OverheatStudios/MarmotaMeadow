@@ -135,12 +135,12 @@ public class MovementScript : MonoBehaviour
         m_secondsSinceCrouchStateChange += Time.deltaTime;
 
         // Crouch state changes
-        if (m_isCrouching && !Input.GetKey(KeyCode.DownArrow))
+        if (m_isCrouching && !GameInput.GetKeybind("Crouch").GetKey())
         {
             m_isCrouching = false;
             m_secondsSinceCrouchStateChange = m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
         }
-        else if (!m_isCrouching && Input.GetKey(KeyCode.DownArrow))
+        else if (!m_isCrouching && GameInput.GetKeybind("Crouch").GetKey())
         {
             m_isCrouching = true;
             m_secondsSinceCrouchStateChange = m_crouchAnimationDuration - m_secondsSinceCrouchStateChange;
