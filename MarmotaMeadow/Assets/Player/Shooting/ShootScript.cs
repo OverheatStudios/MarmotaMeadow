@@ -106,7 +106,7 @@ public class ShootScript : MonoBehaviour
         }
         else
         {
-            m_animator = GameObject.FindObjectOfType<Animator>();
+            ///m_animator = GameObject.FindObjectOfType<Animator>();
         }
 
         // Cooldown
@@ -240,7 +240,7 @@ public class ShootScript : MonoBehaviour
         Assert.IsTrue(gun.GetNumBullets() >= 1);
         
         
-        m_animator.SetTrigger("Shoot");
+        ///m_animator.SetTrigger("Shoot");
 
         if (!m_isInfiniteAmmoCheatEnabled && m_gunUpgrades.ShouldConsumeAmmo())
         {
@@ -453,13 +453,13 @@ public class ShootScript : MonoBehaviour
         }
 
         // Reload
-        m_animator.SetBool("Reloading", true);
+        ///m_animator.SetBool("Reloading", true);
         float reloadCooldown = gun.GetReloadCooldownSeconds();
         gun.PlayReloadSfx();
         m_reloadBar.StartProgress(reloadCooldown);
         await Task.Delay((int)(reloadCooldown * 1000 - 10));
         if (gun == m_inventoryManager.GetHeldInventoryItem().item) SetAmmo(gun.GetMaxAmmo());
-        m_animator.SetBool("Reloading", false);
+        ///m_animator.SetBool("Reloading", false);
     }
 
     /// <summary>

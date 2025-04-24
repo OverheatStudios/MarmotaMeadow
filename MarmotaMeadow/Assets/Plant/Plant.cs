@@ -410,7 +410,6 @@ public class Plant : MonoBehaviour
         multiplier += toolMultiplier;
         toolMultiplier = 0;
 
-
         AudioSource.PlayClipAtPoint(m_harvestSfx, transform.position, m_settings.GetSettings().GetGameVolume());
 
         for (int i = 0; i < multiplier; i++)
