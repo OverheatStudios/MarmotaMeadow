@@ -358,7 +358,7 @@ public class Plant : MonoBehaviour
             growthTimer = m_seed.ReturnGrowDuration() + growOffset;
             maxGrowthTimer = m_seed.ReturnGrowDuration() + growOffset;
             planted = true;
-            if (m_plantMultiplierIsMultiplicative) multiplier *= m_seed.ReturnAmount();
+            if (m_plantMultiplierIsMultiplicative) multiplier = (multiplier < 1 ? 1 : multiplier) * m_seed.ReturnAmount();
             else multiplier += m_seed.ReturnAmount();
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
