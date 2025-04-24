@@ -26,7 +26,7 @@ MonoBehaviour:
   m_spread: 0
   m_bulletHoleSize: 0.05
   m_swapCooldownSeconds: 0.25
-  m_purchasePrice: 800
+  m_purchasePrice: 40
   m_requiresBullets: 1
   m_recoilForce: 5
   m_reloadBarPrefab: {fileID: 4414279777620984797, guid: c76bdabedf3c63e4187a22ded64a0a91, type: 3}
@@ -40,5 +40,5 @@ MonoBehaviour:
     Frequency: 1
     TransitionInDuration: 0.1
     TransitionOutDuration: 0.3
-  m_upgradeCost: 5
+  m_upgradeCost: 2077
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
