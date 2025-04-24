@@ -30,16 +30,8 @@ public class WateringMinigame : MonoBehaviour
     [SerializeField] private bool finished = false;
     [SerializeField] private AudioClip soundEffect;
 
-    private float m_multiplier = 0;
-
     private void OnEnable()
     {
-        if (FindAnyObjectByType<InventoryMager>())
-        {
-            InventoryMager inv = InventoryMager.FindAnyObjectByType<InventoryMager>();
-            m_multiplier += inv.GetHeldInventoryItem().ReturnMultiplier();
-        }
-
         finished = false;
         GenerateRandomPoints();
         AddColliders();
@@ -138,7 +130,7 @@ public class WateringMinigame : MonoBehaviour
 
         if (transform.childCount == 0)
         {
-            plant.WaterCrop(m_multiplier);
+            plant.WaterCrop();
             finished = true;
         }
     }
