@@ -16,7 +16,12 @@ public class ChangeToNight : MonoBehaviour
 
     void Update()
     {
-        if (m_debug.IsInfiniteDay()) return;
+        if (m_debug.IsInfiniteDay())
+        {
+            text.text = "";
+            moon.SetActive(false);
+            return;
+        }
 
         if (scrObjGlobalData.GetData().GetNightCounterPossiblyNegative() < 0)
         {
