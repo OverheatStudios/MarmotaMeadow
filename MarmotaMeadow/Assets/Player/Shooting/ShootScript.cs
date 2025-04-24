@@ -88,8 +88,6 @@ public class ShootScript : MonoBehaviour
         {
             m_shootSoundTimestamps[i] = 0;
         }
-        
-        
     }
 
     void Update()
@@ -134,7 +132,7 @@ public class ShootScript : MonoBehaviour
         }
 
         // Shoot
-        if (GameInput.GetKeybind("Interact").GetKey())
+        if (GameInput.GetKeybind("Interact").GetKeyDown())
         {
             if (!m_movementScript.IsCrouching())
             {
