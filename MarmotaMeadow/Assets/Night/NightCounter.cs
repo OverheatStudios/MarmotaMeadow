@@ -20,7 +20,7 @@ public class NightCounter : MonoBehaviour
         m_data.IncrementNightCounter();
         if (m_data.GetData().GetNightCounter() >= m_numNights.GetFinalNightPlusOne())
         {
-            m_gameOverReason.GameOverReason = m_coinManager.GetCoins() >= m_numNights.GetMoneyRequired() ? ScrObjGameOver.Reason.Won: ScrObjGameOver.Reason.Bankrupt;
+            m_gameOverReason.GameOverReason = m_coinManager.GetCoins() >= m_numNights.GetMoneyRequired() ? ScrObjGameOver.Reason.Won : ScrObjGameOver.Reason.Bankrupt;
             m_sun.GameOver = true;
         }
     }
