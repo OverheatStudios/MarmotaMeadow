@@ -118,7 +118,7 @@ public class SaveManager : ScriptableObject
 
         if (playGame)
         {
-            MenuButtonScript.PlayGame();
+            MenuButtonScript.PlayGame(true);
         }
     }
 

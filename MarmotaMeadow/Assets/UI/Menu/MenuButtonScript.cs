@@ -18,6 +18,7 @@ public class MenuButtonScript : MonoBehaviour
     [SerializeField] private GameObject m_newSave;
     [SerializeField] private UiSlider m_difficultySlider;
     [SerializeField] private SaveManager m_saveManager;
+    [SerializeField] private FadeIn m_fadeOut;
 
     [Header("Audio Settings")]
     [SerializeField] private UiSlider m_musicVolumeSlider;
@@ -29,8 +30,11 @@ public class MenuButtonScript : MonoBehaviour
     [Header("Controls Settings")]
     [SerializeField] private UiSlider m_cameraSensitivitySlider;
 
+    private static FadeIn fadeOut;
     private void Start()
     {
+        fadeOut = m_fadeOut;
+
         m_difficultySlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetDifficulty(Mathf.Lerp(1, 3, val)));
         m_musicVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetMusicVolume(val));
         m_gameVolumeSlider.GetOnValueChanged().AddListener(val => m_settings.GetSettings().SetGameVolume(val));
@@ -53,9 +57,10 @@ public class MenuButtonScript : MonoBehaviour
         m_cameraSensitivitySlider.SetValue(m_settings.GetSettings().GetCameraSensitivity());
     }
 
-    public static void PlayGame()
+    public static void PlayGame(bool playIntro)
     {
-        SceneManager.LoadScene("Day Scene", LoadSceneMode.Single);
+        fadeOut.gameObject.SetActive(true);
+        fadeOut.LoadSceneAfter(playIntro ? "IntroScene" : "Day Scene");
     }
 
     private void DisableAllObjects()
