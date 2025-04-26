@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class SaveManager : ScriptableObject
 {
 #if UNITY_EDITOR
-    private const bool DEBUG = true;
+    private const bool DEBUG = false;
 #else
     private const bool DEBUG = false;
 #endif
@@ -44,6 +44,7 @@ public class SaveManager : ScriptableObject
 
     private void OnEnable()
     {
+        hideFlags = HideFlags.DontUnloadUnusedAsset;
         if (!GameRunning.IsGameRunning()) return;
         m_gameOverSavesPath = Path.Combine(Application.dataPath, m_gameOverSaves);
         m_currentSaveName = TEST_SAVE;
@@ -133,7 +134,7 @@ public class SaveManager : ScriptableObject
 
         string path = GetCurrentSavePath();
         string saveName = Path.GetFileName(path);
-        if (saveName == "Test" && DEBUG) yield return null;
+        if (saveName == TEST_SAVE && DEBUG) yield return null;
         if (!m_savesThatAreGameOver.List.Contains(saveName))
         {
             m_savesThatAreGameOver.List.Add(saveName);
@@ -188,7 +189,8 @@ public class SaveManager : ScriptableObject
     /// <returns>Absolute path to the file for the current save, doesn't guarantee the file exists</returns>
     public string GetFilePath(string fileName)
     {
-        return Path.Combine(GetCurrentSavePath(), fileName);
+        string path = Path.Combine(GetCurrentSavePath(), fileName);
+        return path;
     }
 
     /// <summary>
