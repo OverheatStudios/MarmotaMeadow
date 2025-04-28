@@ -150,7 +150,7 @@ public class Plant : MonoBehaviour
         {
             m_cropUiCanvas.SetActive(false);
             m_lineMinigameExitUi.gameObject.SetActive(false);
-            m_lineMinigameUi.gameObject.SetActive(false);
+            m_lineMinigameUi.SetActive(false);
             return;
         }
         m_cropUiCanvas.SetActive(!m_lineMinigameExitUi.isActiveAndEnabled); // Hides "requires watering" and "ready" text during line minigames
@@ -161,7 +161,10 @@ public class Plant : MonoBehaviour
         {
             m_stateLastFrame = state;
             m_secondsSinceStateChange = 0;
-            Instantiate(m_goodTooltip).transform.position = transform.position + m_actionTooltipOffset;
+            if (state == PlantState.Normal || state == PlantState.Waterd)
+            {
+                Instantiate(m_goodTooltip).transform.position = transform.position + m_actionTooltipOffset;
+            }
         }
 
         // Tilling minigame
