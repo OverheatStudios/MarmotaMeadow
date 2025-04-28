@@ -15,7 +15,7 @@ public static class GameInput
                 { "Pause", new(KeyCode.Escape, GamepadButton.Start) },
                 { "ExitMinigame", new(KeyCode.Mouse1, GamepadButton.Y) },
                 { "Reload", new(KeyCode.R, GamepadButton.X) },
-                { "Crouch", new(KeyCode.DownArrow, GamepadButton.DpadDown) },
+                { "Crouch", new(KeyCode.LeftShift, GamepadButton.RightShoulder) },
                 { "Jump", new(KeyCode.Space, GamepadButton.B) }
         };
 
