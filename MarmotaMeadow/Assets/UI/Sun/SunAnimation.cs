@@ -24,7 +24,7 @@ public class SunAnimation : MonoBehaviour
         Assert.IsTrue(m_fadeOutObj);
         Assert.IsTrue(m_fadeInObj);
         Assert.IsTrue(m_fadeInObj.activeInHierarchy);
-        m_fadeOutObj.GetComponent<ShopFadeIn>().LoadSceneAfter(m_sun.GameOver ? "GameOverScene" : (m_sun.IsSunset ? "NightScene" : "Day Scene"));
+        m_fadeOutObj.GetComponent<FadeIn>().LoadSceneAfter(m_sun.GameOver ? "GameOverScene" : (m_sun.IsSunset ? "NightScene" : "Day Scene"));
     }
 
     public void Update()

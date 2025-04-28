@@ -8,7 +8,7 @@ public class ShopExitManager : MonoBehaviour
     [SerializeField] private InventoryMager m_inventoryManager;
     [SerializeField] private GameObject[] m_shopUi;
     [SerializeField] private GameObject m_confirmUi;
-    [SerializeField] private ShopFadeIn m_fadeOutUi;
+    [SerializeField] private FadeIn m_fadeOutUi;
     [SerializeField] private ScrObjSun m_sun;
 
     public void ForceLeaveShop()

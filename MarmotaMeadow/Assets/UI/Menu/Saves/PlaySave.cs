@@ -24,6 +24,6 @@ public class PlaySave : MonoBehaviour
 
     public void PlayGame()
     {
-        MenuButtonScript.PlayGame();
+        MenuButtonScript.PlayGame(false);
     }
 }

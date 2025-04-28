@@ -11,5 +11,10 @@ public class ScrObjGameOver : ScriptableObject
         Bankrupt, Won, Died
     }
 
-    public Reason GameOverReason = Reason.Won;
+    public Reason GameOverReason;
+
+    private void OnEnable()
+    {
+        GameOverReason = Reason.Won;
+    }
 }

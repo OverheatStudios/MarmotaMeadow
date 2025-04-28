@@ -14,7 +14,7 @@ public class DayCountdownHandlerScript : MonoBehaviour
     [Tooltip("Number of seconds between groundhog spawning ending and night ending")]
     [SerializeField] private float m_nightBufferSeconds = 8;
     [SerializeField] private NightCounter m_nightCounter;
-    [SerializeField] private ShopFadeIn m_fadeOut;
+    [SerializeField] private FadeIn m_fadeOut;
     [SerializeField] private ScrObjSun m_sun;
     private float m_secondsRemaining = 0;
 
