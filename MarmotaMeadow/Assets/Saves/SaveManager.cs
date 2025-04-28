@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class SaveManager : ScriptableObject
 {
 #if UNITY_EDITOR
-    private const bool DEBUG = false;
+    private const bool DEBUG = true;
 #else
     private const bool DEBUG = false;
 #endif
