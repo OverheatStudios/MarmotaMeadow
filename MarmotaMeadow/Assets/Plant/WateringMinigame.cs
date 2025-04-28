@@ -35,6 +35,11 @@ public class WateringMinigame : MonoBehaviour
         finished = false;
         GenerateRandomPoints();
         AddColliders();
+        
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 1f;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        trail.transform.position = worldPosition;
     }
     
     private void OnDisable()

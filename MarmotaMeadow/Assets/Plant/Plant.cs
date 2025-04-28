@@ -479,7 +479,6 @@ public class Plant : MonoBehaviour
         m_lineMinigameUi.SetActive(inHarvestMiniGame || inWaterMiniGame);
         harvestingMiniGame.SetActive(inHarvestMiniGame);
         wateringMinigame.SetActive(inWaterMiniGame);
-        line.SetActive(!line.activeInHierarchy);
 
         while (elapsedTime < duration)
         {
@@ -488,6 +487,9 @@ public class Plant : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        
+        
+        line.SetActive(!line.activeInHierarchy);
 
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.rotation = targetRotation;
