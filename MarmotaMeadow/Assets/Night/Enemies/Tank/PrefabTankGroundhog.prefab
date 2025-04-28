@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_highPrecisionCollider: {fileID: 9190672146565771566}
-  m_healthScalar: 3
+  m_healthScalar: 2.2
   CurrentState: 1
   m_minYBeforeDisappear: -1.2
   m_bloodParticleSystem: {fileID: 504569150299133013, guid: c677897562f1c7e46812c5b895a9853e, type: 3}

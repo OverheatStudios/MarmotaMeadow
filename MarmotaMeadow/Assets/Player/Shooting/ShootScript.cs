@@ -59,6 +59,7 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private Vector3 m_actionTooltipOffset = Vector3.up * 0.25f;
     [SerializeField] private GameObject m_shootBadActionTooltip;
     [SerializeField] private GameObject m_shootGoodActionTooltip;
+    [SerializeField] private float m_actionTooltipInterval = 0.8f;
 
     private ReloadAnimation m_reloadBar;
 
@@ -74,7 +75,7 @@ public class ShootScript : MonoBehaviour
     [Tooltip("3 sounds per interval seconds")]
     [SerializeField] private float m_shootSoundInterval = 0.4f;
     private int m_currentShootSoundIndex = 0;
-    
+    private float m_secondsSinceLastActionTooltipShowed = 1.0f;
     
     [Header("Animation")]
     [SerializeField] private Animator m_animator;
@@ -92,6 +93,8 @@ public class ShootScript : MonoBehaviour
 
     void Update()
     {
+        m_secondsSinceLastActionTooltipShowed += Time.deltaTime;
+
         m_reloadText.text = "Press " + GameInput.GetKeybind("Reload").ToString() + " to reload";
 
         // Is holding gun?
@@ -372,7 +375,7 @@ public class ShootScript : MonoBehaviour
             // Hit a groundhog, damage it
             GroundhogScript groundhogScript = hit.collider.gameObject.GetComponentInParent<GroundhogScript>();
             DamageGroundhog(groundhogScript, hit.point);
-            Instantiate(m_shootGoodActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
+            ShowActionTooltip(m_shootGoodActionTooltip, hit.point);
             if (groundhogScript.IsAlive())
             {
                 // Cast ray against groundhogs mesh
@@ -389,8 +392,15 @@ public class ShootScript : MonoBehaviour
             // Hit shootable
             SpawnBulletHoleDecal(hit);
 
-            Instantiate(m_shootBadActionTooltip).transform.position = hit.point + m_actionTooltipOffset;
+            ShowActionTooltip(m_shootBadActionTooltip, hit.point);
         }
+    }
+
+    private void ShowActionTooltip(GameObject prefab, Vector3 position)
+    {
+        if (m_secondsSinceLastActionTooltipShowed < m_actionTooltipInterval) return;
+        m_secondsSinceLastActionTooltipShowed = 0;
+        Instantiate(prefab).transform.position = position + m_actionTooltipOffset;
     }
 
     /// <summary>

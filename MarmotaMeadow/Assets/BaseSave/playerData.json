@@ -22,13 +22,13 @@
             "slotName": "ToolBarSlot 3",
             "amount": 3,
             "multiplier": 0.0,
-            "item": "Corn seeds"
+            "item": "Cabbage Seeds"
         },
 		{
             "slotName": "ToolBarSlot 4",
             "amount": 1,
             "multiplier": 0.0,
-            "item": "ItemRifle"
+            "item": "ItemPistol"
         }
     ]
 }
