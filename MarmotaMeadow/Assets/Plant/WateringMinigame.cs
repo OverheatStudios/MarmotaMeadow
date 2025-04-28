@@ -29,6 +29,7 @@ public class WateringMinigame : MonoBehaviour
 
     [SerializeField] private bool finished = false;
     [SerializeField] private AudioClip soundEffect;
+    [SerializeField] private bool onSpot;
 
     private void OnEnable()
     {
@@ -41,6 +42,11 @@ public class WateringMinigame : MonoBehaviour
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         trail.transform.position = worldPosition;
     }
+
+    public void IsOnSpot(bool isOnSpot)
+    {
+        onSpot = isOnSpot;
+    }
     
     private void OnDisable()
     {
@@ -52,7 +58,7 @@ public class WateringMinigame : MonoBehaviour
 
     void Update()
     {
-        if (!finished)
+        if (!finished & onSpot)
             CheckForCollisions();
     }
     

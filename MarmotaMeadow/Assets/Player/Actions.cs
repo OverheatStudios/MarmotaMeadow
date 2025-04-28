@@ -40,6 +40,7 @@ public class Actions : MonoBehaviour
     [SerializeField] private LayerMask m_blockInteractionsLayer;
     [SerializeField] private CursorHandlerScript m_cursorHandler;
     [SerializeField] private Vector3 m_actionTooltipOffset = Vector3.up * 0.4f;
+    [SerializeField] private bool onMinigame;
 
     private void Start()
     {
@@ -48,6 +49,16 @@ public class Actions : MonoBehaviour
     private void Update()
     {
         InteractWithPlot();
+    }
+
+    public void InMinigame()
+    {
+        onMinigame = true;
+    }
+
+    public void OutOfMinigame()
+    {
+        onMinigame = false;
     }
 
     void InteractWithPlot()
@@ -97,7 +108,7 @@ public class Actions : MonoBehaviour
                     }
 
 
-                    if (hit.collider.GetComponent<Plant>())
+                    if (hit.collider.GetComponent<Plant>() && !onMinigame)
                     {
                         if (plant.ChangeState(heldItem) == false)
                         {
@@ -113,6 +124,11 @@ public class Actions : MonoBehaviour
                         }
                         else
                         {
+                            if (heldItem.item.name == "harvesting tool" || heldItem.item.name == "watering can")
+                            {
+                                onMinigame = true;
+                                plant.OutOfMinigame += OutOfMinigame;
+                            }
                             plant.ChangeState(heldItem);
                             if (heldItem.item.IsStackable())
                             {
@@ -126,7 +142,7 @@ public class Actions : MonoBehaviour
                         {
                             plant = hit.collider.gameObject.GetComponentInParent<Plant>();
 
-                            if (plant.ChangeState(heldItem) == false)
+                            if (onMinigame || plant.ChangeState(heldItem) == false)
                             {
                                 if (plant.CanGiveErrorFeedback())
                                 {

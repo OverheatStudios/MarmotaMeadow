@@ -116,6 +116,7 @@ public class Plant : MonoBehaviour
     public System.Action OnPlanted;
     public System.Action OnWatered;
     public System.Action OnHarvested;
+    public System.Action OutOfMinigame;
     private float m_secondsSinceStateChange = 0;
     private PlantState m_stateLastFrame;
 
@@ -188,7 +189,8 @@ public class Plant : MonoBehaviour
         {
             finishedMiniGame = true;
             StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
-
+            OutOfMinigame?.Invoke();
+            
             if (!planted)
             {
                 planted = true;
@@ -418,17 +420,20 @@ public class Plant : MonoBehaviour
         for (int i = 0; i < multiplier; i++)
         {
             GameObject spawnedItem = objectPool.TakeObjectOut("Crop");
-            spawnedItem.transform.position = cropToSpawnLocation.transform.position;
-            //GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
-
-            spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed.ReturnCrop());
-
-            // Apply force to throw the item in an arch
-            Rigidbody itemRb = spawnedItem.GetComponent<Rigidbody>();
-            if (itemRb != null)
+            if (spawnedItem)
             {
-                Vector3 throwDirection = CalculateArchVelocity();
-                itemRb.velocity = throwDirection;
+                spawnedItem.transform.position = cropToSpawnLocation.transform.position;
+                //GameObject spawnedItem = Instantiate(cropToSpawn, cropToSpawnLocation.transform.position, Quaternion.identity);
+
+                spawnedItem.GetComponent<SpawnedItem>().SetItem(m_seed.ReturnCrop());
+
+                // Apply force to throw the item in an arch
+                Rigidbody itemRb = spawnedItem.GetComponent<Rigidbody>();
+                if (itemRb != null)
+                {
+                    Vector3 throwDirection = CalculateArchVelocity();
+                    itemRb.velocity = throwDirection;
+                }
             }
         }
 
@@ -436,6 +441,7 @@ public class Plant : MonoBehaviour
 
         finishedMiniGame = true;
         OnHarvested?.Invoke();
+        OutOfMinigame?.Invoke();
         extraCollider.size = new Vector3(extraCollider.size.x, 1, extraCollider.size.z);
         StartCoroutine(MoveCamera(originalCameraPosition, originalCameraRotation, duration, false, false));
     }
@@ -490,7 +496,9 @@ public class Plant : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        
+
+        harvestingMiniGame.GetComponent<HarvestingMinigame>().IsOnSpot(inHarvestMiniGame);
+        wateringMinigame.GetComponent<WateringMinigame>().IsOnSpot(inWaterMiniGame);
         
         line.SetActive(!line.activeInHierarchy);
 
@@ -512,6 +520,7 @@ public class Plant : MonoBehaviour
         finishedMiniGame = true;
         state = PlantState.Waterd;
         OnWatered?.Invoke();
+        OutOfMinigame?.Invoke();
         AudioSource.PlayClipAtPoint(m_waterSfx, transform.position, m_settings.GetSettings().GetGameVolume());
         multiplier += toolMultiplier;
         toolMultiplier = 0;
