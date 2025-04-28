@@ -28,7 +28,7 @@ public class InventoryMager : MonoBehaviour
     public BaseItem item2;
     [SerializeField] private GameObject inventoryItem;
     [SerializeField] private BaseItem[] items; // Every registered item type
-    [SerializeField] private GameObject pistolButton;
+    [SerializeField] private GameObject rifleButton;
     [SerializeField] private GameObject shotgunButton;
     [SerializeField] private SaveManager m_saveManager;
 
@@ -54,11 +54,11 @@ public class InventoryMager : MonoBehaviour
 
     private void CheckIfBuyGunButtonsShouldBeDestroyed()
     {
-        if (pistolButton)
+        if (rifleButton)
         {
-            if (HasBoughtPistol())
+            if (HasBoughtRifle())
             {
-                Destroy(pistolButton);
+                Destroy(rifleButton);
             }
         }
 
@@ -390,13 +390,13 @@ public class InventoryMager : MonoBehaviour
         return inventorySlots.Length;
     }
 
-    private bool HasBoughtPistol()
+    private bool HasBoughtRifle()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (inventorySlots[i].transform.childCount > 0)
             {
-                if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemPistol")
+                if (inventorySlots[i].GetComponentInChildren<InventoryItem>().item.name == "ItemRifle")
                 {
                     return true;
                 }

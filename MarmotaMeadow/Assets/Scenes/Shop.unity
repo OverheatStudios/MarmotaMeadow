@@ -2797,7 +2797,7 @@ GameObject:
   - component: {fileID: 478727314}
   - component: {fileID: 478727315}
   m_Layer: 5
-  m_Name: BuyPistolAmmo
+  m_Name: BuyRifleAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2841,7 +2841,7 @@ MonoBehaviour:
   m_itemIcon: {fileID: 375878119}
   m_tooltip: {fileID: 1525874017}
   m_tooltipOffset: {x: 50, y: 50}
-  m_tooltipText: Pistol Ammo Pack
+  m_tooltipText: Rifle Ammo Pack
 --- !u!114 &478727315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3911,7 +3911,7 @@ PrefabInstance:
     - target: {fileID: 3877222016503559965, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: 'm_eternalItems.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
     - target: {fileID: 3887638392618100832, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: inventory
       value: 
@@ -4640,6 +4640,10 @@ PrefabInstance:
       propertyPath: m_sellSlot
       value: 
       objectReference: {fileID: 1628408399}
+    - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
+      propertyPath: rifleButton
+      value: 
+      objectReference: {fileID: 1908660537}
     - target: {fileID: 6857077546119639811, guid: 583c8930fb89e574b919c71f098a24a8, type: 3}
       propertyPath: pistolButton
       value: 
@@ -6753,7 +6757,7 @@ GameObject:
   - component: {fileID: 817270920}
   - component: {fileID: 817270921}
   m_Layer: 5
-  m_Name: Buy Pistol
+  m_Name: BuyRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6798,11 +6802,11 @@ MonoBehaviour:
   m_itemIcon: {fileID: 999092553}
   m_tooltip: {fileID: 1525874017}
   m_tooltipOffset: {x: 50, y: 50}
-  m_tooltipText: 'Pistol
+  m_tooltipText: 'Rifle
 
-    Damage: 18
+    Damage: 58
 
-    Max Ammo: 6
+    Max Ammo: 8
 
 '
 --- !u!114 &817270921
@@ -6817,7 +6821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91f259331b049a4d8e8ecbcd6eb9515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
+  item: {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
   text: {fileID: 1845758444}
   m_buyMultiplier: {fileID: 1848742447}
 --- !u!1 &840110004
@@ -7326,7 +7330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec38c0613ee61534786093663b58859d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 66d4397aae4b101489b49bb34aff942c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11885,7 +11889,7 @@ MonoBehaviour:
 
     Shoots 6 bullets per shot
 
-    Damage: 20
+    Damage: 34
 
     Max
     Ammo: 2
@@ -12175,7 +12179,7 @@ MonoBehaviour:
         m_MethodName: BuyItem
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
           m_ObjectArgumentAssemblyTypeName: BaseItem, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0

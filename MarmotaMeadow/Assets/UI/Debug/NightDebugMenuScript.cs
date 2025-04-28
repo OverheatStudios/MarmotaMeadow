@@ -11,7 +11,7 @@ public class NightDebugMenu : MonoBehaviour
     [SerializeField] private BaseItem m_pistol;
     [SerializeField] private BaseItem m_rifle;
     [SerializeField] private BaseItem m_shotgunAmmo;
-    [SerializeField] private BaseItem m_pistolAmmo;
+    [SerializeField] private BaseItem m_rifleAmmo;
     [SerializeField] private ShootScript m_shootScript;
     [SerializeField] private Toggle m_infiniteAmmoToggle;
     [SerializeField] private Toggle m_infiniteHealthToggle;
@@ -66,9 +66,9 @@ public class NightDebugMenu : MonoBehaviour
         m_inventoryManager.AddItem(m_shotgunAmmo);
     }
 
-    public void GivePistolAmmo()
+    public void GiveRifleAmmo()
     {
-        m_inventoryManager.AddItem(m_pistolAmmo);
+        m_inventoryManager.AddItem(m_rifleAmmo);
     }
 
     public void SetAmmo(int ammo)
