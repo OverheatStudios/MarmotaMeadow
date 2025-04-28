@@ -23,6 +23,8 @@ public class HarvestingMinigame : MonoBehaviour
     [SerializeField] private bool finished = false;
     [SerializeField] private AudioClip soundEffect;
 
+    [SerializeField] private bool onSpot;
+
     private void OnEnable()
     {
         
@@ -34,6 +36,11 @@ public class HarvestingMinigame : MonoBehaviour
         finished = false;
         GenerateRandomPoints();
         AddColliders();
+    }
+    
+    public void IsOnSpot(bool isOnSpot)
+    {
+        onSpot = isOnSpot;
     }
 
     private void OnDisable()
@@ -48,7 +55,7 @@ public class HarvestingMinigame : MonoBehaviour
 
     void Update()
     {
-        if(!finished)
+        if(!finished && onSpot)
             CheckForCollisions();
     }
 
