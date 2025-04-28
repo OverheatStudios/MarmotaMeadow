@@ -65,7 +65,7 @@ public class Shop : MonoBehaviour
             }
             else if (isUpgrade && item.item is Gun gun)
             {
-                price = gun.GetUpgradeCost() * m_buyMultiplier.GetCurrentMultiplier();
+               // price = gun.GetUpgradeCost() * m_buyMultiplier.GetCurrentMultiplier();
             }
             else if (!isUpgrade && item.item is Crops crops)
             {
@@ -132,10 +132,10 @@ public class Shop : MonoBehaviour
         }
         else if (item.GetComponentInChildren<InventoryItem>().item is Gun gun)
         {
-            if (coinManager.GetCoins() < gun.GetUpgradeCost()* multiplier || gun.GetUpgradeCost() == 0) return;
+            //if (coinManager.GetCoins() < gun.GetUpgradeCost()* multiplier || gun.GetUpgradeCost() == 0) return;
 
-            coinManager.DecreaseCoins(gun.GetUpgradeCost()* multiplier);
-            item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier(multiplier);
+            //coinManager.DecreaseCoins(gun.GetUpgradeCost()* multiplier);
+            //item.GetComponentInChildren<InventoryItem>().IncreaseMultiplier(multiplier);
         }
     }
 

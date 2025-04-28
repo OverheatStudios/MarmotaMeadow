@@ -68,7 +68,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if(isPickedUp) return;
         
-        if (item is Tool || item is Gun)
+        if (item is Tool)
         {
             toolTip.SetActive(true);
             toolTip.transform.position = toolTipLocation.transform.position;

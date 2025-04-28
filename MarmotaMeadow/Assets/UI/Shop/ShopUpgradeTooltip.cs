@@ -12,13 +12,13 @@ public class ShopUpgradeTooltip : MonoBehaviour
     void Update()
     {
         InventoryItem inventoryItem = m_inventorySlot.GetComponentInChildren<InventoryItem>();
-        if (inventoryItem == null || inventoryItem.item == null)
+        if (inventoryItem == null || inventoryItem.item == null || inventoryItem.item is not Tool)
         {
             m_shopTooltip.SetVisible(false);
             return;
         }
 
-        m_shopTooltip.SetText(inventoryItem.item is Gun ? m_gunText : m_toolText);
+        m_shopTooltip.SetText(m_toolText);
         m_shopTooltip.SetVisible(true);
     }
 }
