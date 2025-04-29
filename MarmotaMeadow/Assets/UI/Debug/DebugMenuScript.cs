@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class DebugMenuScript : MonoBehaviour
 {
+#if UNITY_EDITOR
     public static bool ForceDisableCheats = false;
+#else
+    public static bool ForceDisableCheats = true;
+#endif
 
     /// <summary>
     /// If true, debug menu can be opened with ctrl+d, else it can't be opened
