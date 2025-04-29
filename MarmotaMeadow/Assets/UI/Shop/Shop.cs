@@ -141,8 +141,11 @@ public class Shop : MonoBehaviour
 
     public void BuyPlot(int money)
     {
-        plotManager.IncreaseNumberOfPlots();
-        coinManager.DecreaseCoins(money);
+        if (coinManager.GetCoins() >= money)
+        {
+            plotManager.IncreaseNumberOfPlots();
+            coinManager.DecreaseCoins(money);
+        }
     }
 
     public void DestroyGameObject(GameObject objectToDestroy)
