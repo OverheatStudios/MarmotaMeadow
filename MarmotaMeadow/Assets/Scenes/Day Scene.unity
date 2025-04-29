@@ -1995,7 +1995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_jumpVelocity
-      value: 6.5
+      value: 6.58
       objectReference: {fileID: 0}
     - target: {fileID: 3726438974270153959, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_isCrouchingEnabled
@@ -2012,6 +2012,10 @@ PrefabInstance:
     - target: {fileID: 5373176862444775438, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945169492971177153, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
+      propertyPath: near clip plane
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5945169492971177153, guid: 994b0b612d108f245be2bbd7107f356f, type: 3}
       propertyPath: m_CullingMask.m_Bits
