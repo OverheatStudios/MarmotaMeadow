@@ -20,7 +20,7 @@ MonoBehaviour:
   m_maxAmount: 1
   m_damage: 58
   m_numBulletsPerShot: 1
-  m_shootCooldownSeconds: 0.25
+  m_shootCooldownSeconds: 0.2
   m_reloadCooldownSeconds: 0.8
   m_maxAmmo: 8
   m_spread: 0

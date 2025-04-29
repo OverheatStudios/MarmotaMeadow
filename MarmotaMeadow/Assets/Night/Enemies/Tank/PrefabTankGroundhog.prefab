@@ -107,7 +107,7 @@ MonoBehaviour:
   m_bloodParticleOffset: {x: 0, y: 0, z: 0}
   m_woundedSfx: {fileID: 8300000, guid: 6bf9ccaec8b927840b634e7a961fa31d, type: 3}
   m_settings: {fileID: 11400000, guid: 00fac60fd5df6174289fa40ab99cf236, type: 2}
-  m_coinsDropped: 10
+  m_coinsDropped: 2
 --- !u!1001 &9018654670850326487
 PrefabInstance:
   m_ObjectHideFlags: 0

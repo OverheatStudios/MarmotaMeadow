@@ -732,7 +732,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -3013,7 +3013,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -3379,7 +3379,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -6965,7 +6965,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -7062,7 +7062,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -7579,7 +7579,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -8057,7 +8057,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -10185,7 +10185,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -10278,7 +10278,7 @@ MonoBehaviour:
   m_pistol: {fileID: 11400000, guid: 402193238dfc5634aa319d3d4f8f6509, type: 2}
   m_rifle: {fileID: 11400000, guid: 87bd6381b321cb14390b777a2ee912c7, type: 2}
   m_shotgunAmmo: {fileID: 11400000, guid: 5561a2fc7aea06d4e9da82da4cb0c5c6, type: 2}
-  m_pistolAmmo: {fileID: 11400000, guid: 7bfcb18f8420aad40b364c55cb584c74, type: 2}
+  m_rifleAmmo: {fileID: 0}
   m_shootScript: {fileID: 1885290938}
   m_infiniteAmmoToggle: {fileID: 1154277963}
   m_infiniteHealthToggle: {fileID: 1327007232}
@@ -12084,7 +12084,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -12304,7 +12304,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -13043,7 +13043,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -13175,7 +13175,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -13410,7 +13410,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
@@ -13986,7 +13986,7 @@ PrefabInstance:
       objectReference: {fileID: 504569150299133013, guid: c45069589c1c7e4448e3232b50cfc208, type: 3}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: m_groundhogBonusHealthPercentages.Array.size
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2863495009115729737, guid: 2c9ac275ec6561c40915520300bb9fca, type: 3}
       propertyPath: 'm_groundhogBonusHealthPercentages.Array.data[1]'
