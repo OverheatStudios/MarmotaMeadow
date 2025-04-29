@@ -1,0 +1,606 @@
+e6af6fd,jack183190,made tooltips accurate in shop,32 seconds ago
+8ce9fd7,jack183190,fixed wrong game state,6 minutes ago
+d35a58b,jack183190,disable cheats,40 minutes ago
+473e28a,jack183190,Merge pull request #5 from OverheatStudios/night-balance,42 minutes ago
+b872dfd,jack183190,fixed tutorial saying corn not cabbage,45 minutes ago
+aa88c8d,jack183190,fixed back button not working on new save,46 minutes ago
+00a13fe,jack183190,v1.0.0git add .,49 minutes ago
+39b9744,jack183190,fixed being able to go into debt when buying shop plots,53 minutes ago
+7694dcb,jack183190,moved skip intro button out of black bars,63 minutes ago
+a15852a,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,73 minutes ago
+aaee646,jack183190,removed skies,80 minutes ago
+bc47028,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,87 minutes ago
+3567634,FLYHAPY,fixed isse with rifle cliping inside player,87 minutes ago
+7d9ad48,jack183190,Update README.md,88 minutes ago
+07c6351,jack183190,Update README.md,88 minutes ago
+38c3df5,underscore95,fixed hotbar rendering above pause menu in builds,Mon 18:36
+06a9681,underscore95,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Mon 16:20
+f9a2ed4,underscore95,show less encouragement tooltips,Mon 16:16
+b3060fb,FLYHAPY,fixed issue regarding interacting with other plots while on a minigame,Mon 16:15
+17af2e5,underscore95,notification when clicking on overheat icon,Mon 16:13
+336edf0,2101577,removed health scaling, updated shot and reload delays,Mon 14:52
+d24a24a,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Mon 11:38
+d5e85d1,FLYHAPY,fixed while entering the mingames being able to pop some of the circles,Mon 11:38
+a8c2d62,underscore95,deleted unused scenes,Mon 11:16
+38410f8,underscore95,don't spam action tooltips with shotgun,Mon 11:12
+7d4594a,underscore95,updated tutorial to say cabbage instead of corn,Mon 11:07
+db2847a,underscore95,removed original way of upgrading guns,Mon 10:46
+2b98418,underscore95,made pistol the starting weapon,Mon 10:35
+554431e,jack183190,Merge pull request #4 from OverheatStudios/night-balance,Mon 10:06
+9c68110,jack183190,Merge branch 'polish' into night-balance,Mon 10:06
+b3b4bd6,underscore95,using intro cutscene with audio,Mon 09:57
+8ab8ca3,underscore95,fixed debug save mode not enabled in editor,Mon 09:43
+80332f9,underscore95,changed default keybinds to make more sense,Mon 09:42
+ef7e998,underscore95,fixed bug where you don't get given starting items unless u restart the game,Sat 11:27
+971666d,underscore95,incremented version,Fri 13:10
+a86d614,underscore95,added skip intro button to cutscene, made it survive 4 nights (5 days),Fri 13:09
+061cc66,underscore95,start with rifle,Fri 10:48
+9b05a87,underscore95,forgot to save,Fri 10:44
+95fb3e0,underscore95,added lanterns, moved fog back,Fri 10:40
+91d03bd,underscore95,removed item tooltip background,Fri 10:32
+5c314f3,underscore95,fixed winning when u actually lost (idk i changed nothing but its working now so i wont question it),Fri 10:24
+a1b3087,underscore95,added intro,Fri 10:15
+9e050f8,2101577,Gun and Groundhog Balancing, made the player start with cabbage seeds,Thu Apr 24 19:34
+1679f52,jack183190,removed holding lmb to shoot automatically,Thu Apr 24 14:08
+3c26671,jack183190,fixed moon icon showing when infinte day enabled,Thu Apr 24 13:19
+61fb0ce,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Thu Apr 24 13:09
+ea88031,FLYHAPY,fixed watering can mingame,Thu Apr 24 13:09
+281fee4,2101577,Merge remote-tracking branch 'origin/Economy',Thu Apr 24 12:54
+f1e44af,jack183190,fixed not being able to shoot,Thu Apr 24 12:23
+03a05ea,underscore95,fixed no crops spawning,Thu Apr 24 11:50
+5fb0699,underscore95,fixed compile error,Thu Apr 24 11:46
+e11d69b,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Wed Apr 23 11:43
+9fff87b,underscore95,dont show save list if there is no saves, skip straight to new save menu,Wed Apr 23 10:20
+d09ddd0,underscore95,added crates,Wed Apr 23 10:13
+78616ec,underscore95,crouch tutorial, crouch is a keybind now, fixed some text from difficulty slider still being visible,Wed Apr 23 10:04
+735b111,jack183190,plant multiplier multiplicative,Tue Apr 22 15:47
+f9511a3,underscore95,incremented version,Wed Apr 23 10:24
+67adbf1,FLYHAPY,removed the shotgun model from the scriptable object,Wed Apr 23 11:42
+f3aed29,underscore95,Merge branch 'polish',Wed Apr 23 10:24
+14d5c8c,underscore95,incremented version,Wed Apr 23 10:24
+7af092c,underscore95,dont show save list if there is no saves, skip straight to new save menu,Wed Apr 23 10:20
+921742b,underscore95,added crates,Wed Apr 23 10:13
+f49fcec,underscore95,crouch tutorial, crouch is a keybind now, fixed some text from difficulty slider still being visible,Wed Apr 23 10:04
+6077a1f,2101577,Merge remote-tracking branch 'origin/polish' into Economy,Tue Apr 22 17:25
+6145d03,FLYHAPY,Merge branch 'main' into plant3,Tue Apr 22 15:50
+820a534,FLYHAPY,Addeed shotgun animations, fixed shop tooltip bug,Tue Apr 22 15:49
+29df6f9,jack183190,plant multiplier multiplicative,Tue Apr 22 15:47
+eaff352,jack183190,fixed burrow on day 2, removed random damage,Tue Apr 22 15:42
+c7b5773,jack183190,fixed jumping,Tue Apr 22 15:40
+a0aa861,jack183190,remved difficulty, added sun animations,Tue Apr 22 15:31
+6f63b57,2101577,Merge remote-tracking branch 'origin/main' into Economy,Tue Apr 22 13:35
+208b33e,jack183190,fixed shop prices being wrong,Tue Apr 22 13:29
+80f5041,jack183190,fixed compile error, fixed formatting of save input,Tue Apr 22 13:18
+34c2fad,jack183190,Merge branch 'main' into polish Merged,Tue Apr 22 12:51
+8baf1c2,jack183190,new save text input asset,Tue Apr 22 12:41
+c28e907,2101577,Economy Test,Tue Apr 22 11:27
+6e20ed2,FLYHAPY,fixed inventory tooltips bug,Mon Apr 21 13:20
+f32dac6,underscore95,added texture to colliders in line minigame,Mon Apr 21 12:55
+55122de,FLYHAPY,fixed carrots taking to long to grow,Mon Apr 21 12:52
+6aa7144,underscore95,Fixed merge conflict,Mon Apr 21 12:46
+0762870,underscore95,removed small image from discord rpc,Mon Apr 21 12:45
+f769e67,underscore95,added discord rich presence integration,Mon Apr 21 12:42
+e3baf94,underscore95,forgot to set growth times,Mon Apr 21 11:56
+97523b1,underscore95,put some prices and values into the seeds/crops, fixed carrots taking 60s to grow,Mon Apr 21 11:55
+bd3ef84,underscore95,made relaod ui semi transparent,Mon Apr 21 11:49
+00b9daf,underscore95,fixed bug with pause menu breaking burrows,Mon Apr 21 11:48
+bc6b430,underscore95,converted wrong tool and unable to harvest tooltips into action tooltips,Fri Apr 18 14:28
+a774ba4,underscore95,added action tooltips,Fri Apr 18 14:12
+30311f6,underscore95,fixed bug where farm name input wasn't clickable, made it use the gokhan font,Fri Apr 18 13:33
+f909679,underscore95,use mouse/kb as fallback when controller support is enabled,Fri Apr 18 12:15
+6e434fc,underscore95,made reload animation color configurable in inspector,Fri Apr 18 12:06
+d139378,underscore95,fixed countdown in day not working,Fri Apr 18 11:58
+146b8fa,underscore95,fixed bug with out of ammo text sometimes wrongfully showing,Fri Apr 18 11:40
+3f5e53a,underscore95,debt collector text in shop,Fri Apr 18 11:36
+5a84761,underscore95,bug fix with not being able to access toolbar while in inventory,Fri Apr 18 11:29
+5a884a8,underscore95,clicking off inventory closes it,Fri Apr 18 11:25
+d83f910,underscore95,moved plots and burrows around a bit, fixed line minigame ui showing in night, fixed issue with shop tooltips,Fri Apr 18 11:21
+2a4959d,FLYHAPY,fixed being able to finish minigame while exiting, mad the harvesting mnigame more horizontal than vertical,Fri Apr 18 11:08
+10fe856,underscore95,fixed bed issue,Fri Apr 18 11:02
+2503ed0,underscore95,moved first farm plot in night scene to match new pos in day,Fri Apr 18 10:23
+c8c7b67,FLYHAPY,remade and fixed all minigames, fixeds alot of bugs,Fri Apr 18 10:15
+73fc5a7,underscore95,new debt tooltip asset,Fri Apr 18 09:14
+24535cb,underscore95,moved player starting positions, added new sound effects,Thu Apr 17 15:20
+a5311a1,underscore95,door is highlighted green when looking at,Thu Apr 17 15:11
+340c557,underscore95,made door the bed,Thu Apr 17 14:57
+8f9d085,underscore95,fixed bug with new house model not blocking raycasts,Thu Apr 17 14:38
+c2f5e5a,underscore95,fixed bullet decals not appearing in the new house model, fixed night colliders on new house model,Thu Apr 17 14:38
+6a54318,underscore95,Merge branch 'farm' of https://github.com/OverheatStudios/MarmotaMeadow,Thu Apr 17 14:17
+e150bb3,jack183190,disabled gun upgrades,Thu Apr 17 13:13
+5668b23,jack183190,fixed inventory item count text overflowing, made it hidden for unstackable items,Thu Apr 17 13:12
+0f17bbe,underscore95,implemented new buy multiplier assets,Thu Apr 17 11:27
+a62c175,underscore95,increased velocity of projectiles,Thu Apr 17 10:58
+f2853f3,underscore95,hurt ui overlay,Thu Apr 17 10:57
+9e5b1a5,underscore95,changed some crop ui,Thu Apr 17 10:35
+9bacdd9,underscore95,removed hard coded pause menu keybind,Thu Apr 17 10:15
+07e80c4,underscore95,fixed footsteps and jumping being bugged because of item pickup collider,Thu Apr 17 10:13
+8b3af6c,2101577,House colliders, Gate, Door,Thu Apr 17 05:36
+8ff523d,2101577,Merge remote-tracking branch 'origin/main' into Farm,Thu Apr 17 04:01
+b144d18,underscore95,fixed having 2 audio listeners because of the second camera for the line minigame, fixed item pickup collider not being trigger,Wed Apr 16 18:07
+c59e351,underscore95,Merge branch 'gun-modifications',Wed Apr 16 17:55
+51ee45d,underscore95,jumping finally done,Wed Apr 16 17:55
+6b68bdb,FLYHAPY,Remade the minigames to have a solid image instead of using the line renderer and now the mnigames render on top of the crops and not behind,Wed Apr 16 15:39
+6cd351f,underscore95,esc closes inventory,Wed Apr 16 13:23
+db3866e,underscore95,added difficulty slider,Wed Apr 16 13:08
+63b9698,underscore95,made it survive 3 nights instead of 6, controller text smaller, fixed gun price display changnig based on buy multiplier, fixed hitbox issue (disabled spread on rifle/pistol), fixed issue with calculating night length,Wed Apr 16 12:00
+c1bc208,jack183190,removed unused assets from readme,Tue Apr 15 17:48
+1a82b5d,underscore95,gun modifications complete,Tue Apr 15 17:44
+8ae743e,2101577,Added new house (no colliders),Tue Apr 15 16:40
+c9a9dba,2101577,Merge branch 'main' into farm,Tue Apr 15 15:38
+4d9a555,jack183190,started gun upgrades,Tue Apr 15 15:10
+0ec90da,jack183190,cant buy more than max plots now,Tue Apr 15 14:47
+384f01a,jack183190,fixed crop health not affecting crop growth speed,Tue Apr 15 14:34
+8e0e412,jack183190,new social icons,Tue Apr 15 14:28
+1dbee19,jack183190,bullet holes in house,Tue Apr 15 14:23
+ef91e0f,jack183190,fixed wounded sfx not being destroyed when groundhog is,Tue Apr 15 13:58
+d0679ec,jack183190,configured bonus health %'s, spawn particles when groundhog spawns,Tue Apr 15 13:47
+5795863,jack183190,fixed carrot & carrot seed items not being registered, fixed not being able to open inventory in shop via keybind,Tue Apr 15 13:38
+557ad43,jack183190,buy multiplier in shop,Tue Apr 15 13:32
+1aa7744,jack183190,fixed gun buy buttons,Tue Apr 15 12:52
+65ac162,jack183190,house blocks interactions,Tue Apr 15 12:45
+14a4229,jack183190,fixed error when going in shop, only show too tired notification when hoeing and using correct tool, fixed wrong tool and cant harvest notifications being swapped,Tue Apr 15 12:24
+b9ae3d2,underscore95,fixed bug with shop coin gain animation,Tue Apr 15 10:01
+883fc7d,underscore95,night fog, no shop tutorial shaking, less free time at end of night, money for killing groundhogs, animation when gaining coins,Tue Apr 15 10:00
+0fb9cf2,underscore95,improved upgrade tooltip,Tue Apr 15 09:26
+eae1557,underscore95,fixed is controller text size being wrong, implemented camera sensitivity asset, max player interact distance,Tue Apr 15 09:08
+9d60c48,underscore95,fixed cabbage typo,Tue Apr 15 08:52
+ebcc667,2101577,more foliage,Tue Apr 15 06:12
+9350de1,FLYHAPY,forgot to add the inventory tooltips to night and shop scenes,Mon Apr 14 18:48
+67986ac,underscore95,fixed compile errors, incremented version,Mon Apr 14 16:40
+3f12581,jack183190,Removed old bugs from readme,Mon Apr 14 16:34
+456dbc1,underscore95,added tooltips, fixed gravity, move stairs have ramp colliders,Mon Apr 14 16:30
+015be87,underscore95,moved bed cube,Mon Apr 14 15:17
+87eba8a,underscore95,merge conflict resolved,Mon Apr 14 15:16
+64cd09b,underscore95,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Mon Apr 14 15:06
+6574c72,underscore95,implemented too tired tooltip, fixed clock icon missing, fixed tooltips being in wrong position,Mon Apr 14 15:00
+980b8f7,FLYHAPY,removed a print,Mon Apr 14 14:31
+01cddde,FLYHAPY,removed a couple of debug.logs,Mon Apr 14 14:28
+0b8b3bb,underscore95,Merge branch 'polish',Mon Apr 14 14:23
+b3927f8,underscore95,tutorial shake effect,Mon Apr 14 14:23
+d7d8300,FLYHAPY,made a script that makes items prices update automatically when we change on the scriptable object,Mon Apr 14 14:18
+2ce36d9,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Mon Apr 14 14:01
+e5b9621,underscore95,shop tooltips,Mon Apr 14 12:33
+cda5284,underscore95,watering can can be upgraded, swapped scythe and hoe starting slots,Fri Mar 28 12:57
+8255b98,underscore95,balanced the shop and the night and the guns i think but im not a game designer,Fri Mar 28 12:35
+d40f625,underscore95,night length now automatically calculated,Fri Mar 28 11:35
+6da8759,underscore95,made seeds sellable, fixed shop button on debug menu disappearing, removed night and shop tutorial, fixed not being able to go past day 2,Fri Mar 28 11:20
+fb2e2de,underscore95,fixed tooltip bug,Fri Mar 28 11:07
+95bfaeb,underscore95,made seeds sellable, moved bed cube,Fri Mar 28 11:03
+bc84bb0,FLYHAPY,item tooltips, automatically pick up all crops when the player sleeps, tooltips only show level, fix crops being able to land on farm plot, fixed multiplier bug, fixed being able to move when entering minigame,Mon Apr 14 13:59
+d0f809e,underscore95,removed bad words from save name gen,Mon Apr 14 12:54
+5c64132,underscore95,error sfx,Mon Apr 14 12:44
+189d8dc,underscore95,shop tooltips,Mon Apr 14 12:33
+5d8c758,2101577,Fence hole filled, house texture hopefully fixed,Mon Apr 14 10:43
+88e9e2b,2101577,Merge branch 'main' into Farm,Mon Apr 14 10:09
+c65e300,underscore95,watering can can be upgraded, swapped scythe and hoe starting slots,Fri Mar 28 12:57
+01a12a7,underscore95,balanced the shop and the night and the guns i think but im not a game designer,Fri Mar 28 12:35
+979bb4a,underscore95,night length now automatically calculated,Fri Mar 28 11:35
+bcf6bf4,underscore95,made seeds sellable, fixed shop button on debug menu disappearing, removed night and shop tutorial, fixed not being able to go past day 2,Fri Mar 28 11:20
+3e9775c,underscore95,fixed tooltip bug,Fri Mar 28 11:07
+3f57e45,underscore95,made seeds sellable, moved bed cube,Fri Mar 28 11:03
+f06b687,FLYHAPY,fixed one of the plots spawning on top the first one,Thu Mar 27 19:18
+e56e61e,underscore95,fixed build erros,Thu Mar 27 17:59
+c7f2d6c,underscore95,added socials to main menu,Thu Mar 27 17:53
+301947c,2101577,Merge branch 'main' into Farm,Thu Mar 27 16:18
+98f3dc7,2101577,trees,Thu Mar 27 16:14
+386f2df,jack183190,added lantenr to prefab,Thu Mar 27 16:08
+9c2eec4,jack183190,implemented new groundhog model, added lantern,Thu Mar 27 16:07
+acd67c4,jack183190,reload keybind, fixed visual bug with reload text,Thu Mar 27 15:41
+7aafe1b,jack183190,fixed save ui being broken on 1920x1080,Thu Mar 27 15:22
+e61f84a,jack183190,removed scyth ewhen pressing c, overheat icon,Thu Mar 27 15:18
+f29c0e4,jack183190,clock icon, app icon, moved tutorial in night, calendar icon,Thu Mar 27 15:15
+b78fe97,jack183190,Update ProjectSettings.asset,Thu Mar 27 15:00
+52b68ed,2101577,Merge branch 'main' into Farm,Thu Mar 27 14:57
+db527d2,2101577,added more trees,Thu Mar 27 14:57
+203363e,jack183190,hid random cube in day,Thu Mar 27 14:34
+3c27961,jack183190,fixed issue with red overlay,Thu Mar 27 14:30
+fff6107,jack183190,Increased growth text width,Thu Mar 27 14:14
+be06c55,jack183190,enabled fog,Thu Mar 27 14:05
+e99ab6c,FLYHAPY,fixed tutorial,Thu Mar 27 13:59
+81800ef,jack183190,Update Settings.json,Thu Mar 27 13:41
+d5bd5f7,jack183190,Merge branch 'polish',Thu Mar 27 13:41
+f34207c,jack183190,added play save background,Thu Mar 27 13:39
+5696462,jack183190,added arrows, remove crosshair in day scene,Thu Mar 27 13:36
+7c50d0e,FLYHAPY,made the plants glow red aswell, made some audio play, fixed player falling and added text to the plants saying required wawtering when neading to be waterd,Thu Mar 27 13:31
+f83d21b,jack183190,debt tooltip,Thu Mar 27 13:28
+3fa13f8,jack183190,reduced player collider size, fixed error with debug menu,Thu Mar 27 13:01
+ff17190,jack183190,Disabled old ground in night,Thu Mar 27 12:49
+9641d6d,jack183190,Changed night lighting,Thu Mar 27 12:48
+2f42e56,2101577,Merge branch 'main' into Farm,Thu Mar 27 12:34
+76e51b9,2101577,more trees,Thu Mar 27 12:33
+5f79657,jack183190,added level design in,Thu Mar 27 12:32
+44b956e,jack183190,Merge remote-tracking branch 'origin/Farm' into impl-farm,Thu Mar 27 12:11
+72ac6ba,underscore95,git ignore gamesaves meta,Thu Mar 27 11:37
+ee5edbf,underscore95,resolved merge conflicts,Thu Mar 27 11:34
+5bb937c,underscore95,force disbale cheats setting,Thu Mar 27 11:22
+3a2a393,FLYHAPY,fixed the meta files issue in the day scene and fixed plants and tutorial,Thu Mar 27 11:15
+4a71732,underscore95,implemented cannot sell/upgrade icons, fixed null error when trying to sell or upgrade nothing,Thu Mar 27 11:08
+d9fb7fe,underscore95,meta files,Thu Mar 27 11:01
+046fe55,underscore95,new hoe sfx,Thu Mar 27 11:00
+e0f1b75,FLYHAPY,fixed when using correct stackable item on plant it not decreasing,Thu Mar 27 10:42
+4dbc4b7,underscore95,removed .meta git ignore,Thu Mar 27 10:37
+7492567,underscore95,made it so you cant play saves that are game over,Thu Mar 27 10:21
+0a64b8c,FLYHAPY,scythe looked not very good so I made some adjustemants,Thu Mar 27 09:47
+46b0034,underscore95,added game over textures, added game over options to debug menu,Thu Mar 27 09:41
+1e99de6,FLYHAPY,added skybox, plots turn red when use the wrong tool and improved watering can,Thu Mar 27 09:35
+597a57f,underscore95,added game volume setting,Thu Mar 27 09:27
+c94fcdb,underscore95,added load shop button,Thu Mar 27 08:58
+2cd7d0f,2101577,Grass Texture, Terrain Tweaks & More Trees,Thu Mar 27 05:38
+20acc38,underscore95,Merge branch 'polish',Wed Mar 26 17:16
+95a4d81,underscore95,can now upgrade guns,Wed Mar 26 17:16
+d8b08a1,underscore95,tell player when they can't upgrade/sell something,Wed Mar 26 17:09
+8ff470c,underscore95,show buy/upgrade price,Wed Mar 26 17:05
+3ca6571,underscore95,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Wed Mar 26 16:06
+c4876a9,underscore95,hoe, plant sfx,Wed Mar 26 16:05
+af60358,underscore95,fixed gain coin sfx being in wrong location, added menu and shop music,Wed Mar 26 15:56
+e290983,underscore95,new mouse click sfx,Wed Mar 26 15:52
+3865139,underscore95,new footstep soudns,Wed Mar 26 15:30
+75392a1,underscore95,footsteps,Wed Mar 26 15:15
+9e908e0,underscore95,coin gain and item pickup sfx,Wed Mar 26 14:31
+aba9598,underscore95,button click sfx,Wed Mar 26 14:25
+68911b0,underscore95,disabled crop ui during night,Wed Mar 26 14:18
+3163f5e,underscore95,added fog back,Wed Mar 26 14:17
+7540bbb,underscore95,groundhog wound sfx,Wed Mar 26 14:16
+3b3898f,FLYHAPY,skybox,Wed Mar 26 14:10
+07889e9,FLYHAPY,revamped tutoria, fixed player health impacting crop growth, now you don0t nead to press lmb to do the minigames, prevented crop growth when unwaterd,Wed Mar 26 13:56
+350dbbe,underscore95,fixed bugs from merging,Wed Mar 26 13:15
+456eb20,underscore95,fixed compile error,Wed Mar 26 12:41
+380785f,underscore95,fixed merge conflict,Wed Mar 26 12:35
+a3057dc,underscore95,fix minecraft item held item model being wrong rotation in night,Wed Mar 26 12:31
+f4249c8,underscore95,added more cylinders to till mask,Wed Mar 26 12:27
+893643d,underscore95,new untilled farm plot model,Wed Mar 26 12:20
+3ad222c,underscore95,hide bed confirm ui,Wed Mar 26 12:13
+fb66a6c,underscore95,bed ui,Wed Mar 26 12:07
+f20a358,underscore95,final tutorial text,Wed Mar 26 12:01
+0bae08c,underscore95,tutorial textbox,Wed Mar 26 11:54
+15b3ecd,underscore95,plant panel ui,Wed Mar 26 11:37
+7a1d259,underscore95,random save button implemented, moved around new save ui,Wed Mar 26 11:09
+a3da90c,underscore95,implemented save button textures,Wed Mar 26 11:02
+f7b8b9a,underscore95,replaced save scroll view with a page thing,Wed Mar 26 10:52
+1813216,underscore95,keybind ui,Wed Mar 26 10:07
+17485a9,underscore95,ranged groundhog boils,Wed Mar 26 09:53
+29e0e22,2101577,Fence and House,Wed Mar 26 07:29
+3617e05,jack183190,Removed unused impot, fixed issue with minecraft icons being rotated wrong in night scene,Tue Mar 25 15:15
+d8e6594,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Tue Mar 25 15:03
+798f1f1,FLYHAPY,finished watering minigame,Tue Mar 25 15:03
+c50a4bc,jack183190,exit minigame tutorila text,Tue Mar 25 15:00
+e09f4a8,jack183190,Exit minigame keybind,Tue Mar 25 14:42
+81f55e6,jack183190,minigame tutotirla info,Tue Mar 25 14:29
+d71964f,FLYHAPY,added water minigame,Tue Mar 25 13:39
+06a8c7a,jack183190,Update README.md,Tue Mar 25 13:02
+6078a75,jack183190,Merge branch 'polish',Tue Mar 25 12:52
+489bfe7,jack183190,watering can added,Tue Mar 25 12:51
+428a7dc,jack183190,Ranged groundhog projectile,Tue Mar 25 12:39
+eb4c4a6,jack183190,Applied shader, fixed spawns being reset (again),Tue Mar 25 12:24
+a05b5b7,jack183190,Fixed deleting groundhog spawn config every night,Tue Mar 25 11:58
+909afc2,jack183190,Fixed missing groundhog spawns,Tue Mar 25 11:57
+86ea72f,jack183190,ranged groundhog,Tue Mar 25 11:54
+b996e54,jack183190,tank groundhog implemented,Tue Mar 25 11:47
+b161fc2,jack183190,Merge branch 'polish',Tue Mar 25 11:39
+919c26c,jack183190,rifle implemented,Tue Mar 25 11:28
+a9df0ed,FLYHAPY,fixed a litle bug I found,Mon Mar 24 17:58
+445b993,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Mon Mar 24 17:43
+513a0b9,underscore95,organised shop assets, inventory button and buy plot icon implemented,Mon Mar 24 16:30
+2986bc4,underscore95,shoot cooldown bar, fixed pistol shotgun camera shake duration being 0,Mon Mar 24 16:19
+5f679ab,underscore95,removed unused texture, fixed gun icon/price also being destroyed when u already have the gun insetad of just buy button,Mon Mar 24 15:38
+9ea91d3,underscore95,new tooltip texture,Mon Mar 24 15:35
+0d12e74,underscore95,custom cursor,Mon Mar 24 15:25
+92e7e65,FLYHAPY,made so that depending on how well you do in the night it increases the plant multiplier. Also started on the spawning the dead groundhogs,Mon Mar 24 17:42
+55b4868,2101577,Errors Fixed,Mon Mar 24 17:39
+099ec64,underscore95,Merge branch 'polish',Mon Mar 24 16:30
+1220979,underscore95,organised shop assets, inventory button and buy plot icon implemented,Mon Mar 24 16:30
+3b0317f,underscore95,shoot cooldown bar, fixed pistol shotgun camera shake duration being 0,Mon Mar 24 16:19
+35ccb58,underscore95,removed unused texture, fixed gun icon/price also being destroyed when u already have the gun insetad of just buy button,Mon Mar 24 15:38
+2468bbc,underscore95,new tooltip texture,Mon Mar 24 15:35
+7ed419e,underscore95,custom cursor,Mon Mar 24 15:25
+76f48c5,underscore95,hoe minigame done,Mon Mar 24 14:14
+7c01685,2101577,Farm,Mon Mar 24 12:08
+01494a6,underscore95,darken background in inv,Mon Mar 24 11:28
+c6e3717,underscore95,pause, inventory keybinds,Mon Mar 24 11:25
+64272d8,underscore95,fixed settings missing buttons in night scene,Mon Mar 24 09:46
+acccf61,underscore95,fixed cursor being set to bottom left,Mon Mar 24 09:40
+026bf8e,underscore95,harvesting & tilling particles,Mon Mar 24 09:36
+26610d0,underscore95,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow into polish,Mon Mar 24 09:31
+14f6b6f,FLYHAPY,Fixed bugged with the harvesting minigame,Mon Mar 24 09:26
+b124a59,underscore95,fixed ranged groundhog blood particle using harvest particle texture, added blood particle textures, fixed rifle camera shake duration being 0,Mon Mar 24 09:05
+52589e5,underscore95,sign texture, also added back to sign,Mon Mar 24 08:58
+c54f84d,FLYHAPY,Fixed the issue in the build (change from a coroutine to use the update method),Fri Mar 21 16:21
+38a99b8,underscore95,tried fixing tutorial bug,Fri Mar 21 14:47
+7110512,underscore95,Merge branch 'polish',Fri Mar 21 12:57
+a3303e5,underscore95,scroll throuhg toolbar usnig controller,Fri Mar 21 12:55
+9f8bac4,underscore95,got rid of first 3 tutorial steps,Fri Mar 21 12:49
+260c273,underscore95,player movement,Fri Mar 21 12:40
+dee9221,underscore95,controller support text,Fri Mar 21 12:27
+c006f77,underscore95,actual controller support rather than v to press mouse,Fri Mar 21 12:19
+0d73743,underscore95,inventory supports controller,Fri Mar 21 10:27
+6b4624b,underscore95,controller can click on buttons now,Fri Mar 21 10:17
+5e5e291,FLYHAPY,added minigame to harvesting,Thu Mar 20 15:30
+49e56d7,underscore95,support all buttons,Thu Mar 20 15:00
+d93624d,underscore95,key and controlelr,Thu Mar 20 14:31
+8abee35,underscore95,can bind contorller buttons,Thu Mar 20 13:59
+ac9c371,underscore95,camera shake,Thu Mar 20 12:34
+c59f488,underscore95,ranged has yellow blood,Thu Mar 20 11:19
+f4ee595,underscore95,blood particle,Thu Mar 20 09:52
+c3efe95,underscore95,harvesting particles,Thu Mar 20 09:37
+b418d7c,FLYHAPY,Rought mechaninc of the harvesting minigame,Wed Mar 19 17:10
+a7312c0,underscore95,turned crops into billboard with wind,Wed Mar 19 15:21
+455a481,underscore95,plant wind,Wed Mar 19 15:04
+37ac3e5,underscore95,removed some debug logs,Wed Mar 19 11:08
+d14dc62,underscore95,make not harvestables go red when attempting harvest,Wed Mar 19 10:59
+6f21afc,underscore95,fixed billboared sprites,Wed Mar 19 09:51
+ac8cdec,underscore95,disable crouching during day,Wed Mar 19 09:20
+cda569e,underscore95,increased crosshair size,Wed Mar 19 09:18
+4e506c0,underscore95,sign,Wed Mar 19 09:11
+c642afc,underscore95,made game over screen scale with screen size,Wed Mar 19 08:36
+f108f2f,FLYHAPY,Added enviroment to the night and fixed toolbar,Tue Mar 18 17:05
+b3b569c,jack183190,Merge branch 'polish' of https://github.com/OverheatStudios/MarmotaMeadow into polish,Tue Mar 18 13:57
+839acee,jack183190,tilling particles,Tue Mar 18 13:49
+6eb9211,jack183190,wip tilling particles,Tue Mar 18 13:49
+f6793a4,FLYHAPY,forgot to save the scene,Tue Mar 18 13:17
+c863e3f,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Tue Mar 18 13:14
+51f1331,FLYHAPY,added new plot models and when you teal the ground it changes,Tue Mar 18 13:14
+317b79a,jack183190,Merge branch 'polish',Tue Mar 18 13:10
+5355505,jack183190,Crouching,Tue Mar 18 13:09
+f42ed3c,jack183190,added assets,Tue Mar 18 12:17
+2e82701,jack183190,Implemented assets,Tue Mar 18 11:56
+b10ce9c,jack183190,fixed skip night cheat,Tue Mar 18 11:28
+b5bc1b9,FLYHAPY,Added a copple of tags for the spawned plots to be able to acess the pool and the tutorial,Tue Mar 18 11:21
+f1262c5,underscore95,tutorial says WASD not WSAD,Tue Mar 18 10:13
+67d8c84,underscore95,fixed some issues with item name scaling, its not perfect but its good enough for now,Tue Mar 18 10:11
+e8f8d13,underscore95,disabled selecting slots in shop,Tue Mar 18 10:06
+55352b6,underscore95,item name,Tue Mar 18 10:04
+1d98803,underscore95,fixed some warnings,Tue Mar 18 09:33
+8dd9463,underscore95,fixed slider ui not working on other screen sizes, fixed slider handle position calculations being incorrect,Tue Mar 18 09:30
+6df360f,underscore95,fixed settings ui being scaled wrong,Tue Mar 18 09:20
+36f13f8,underscore95,fixed ui not scaling with screen size,Tue Mar 18 09:12
+6cc2fc5,FLYHAPY,Forgot to add the scene,Mon Mar 17 20:08
+d92d2bc,FLYHAPY,Made so that toolbar stop being blue and made so that in the first night you can only plant crops while on the stop of the tutorial that explains that or if the tutorial is finished,Mon Mar 17 20:06
+a8a2fa9,FLYHAPY,Added object pulling,Mon Mar 17 19:46
+5840435,underscore95,multi key press now supports rebindable controls,Mon Mar 17 14:12
+65ebfd4,underscore95,fixed positioning of keybind,Mon Mar 17 13:55
+80290b7,underscore95,saved scene,Mon Mar 17 13:52
+a2fad4c,underscore95,merged,Mon Mar 17 13:51
+a906f0c,underscore95,controls,Mon Mar 17 13:47
+b884d48,FLYHAPY,when day timer expires, it prevent players from planting, made it impossible to progress to the next scene without completing the tutorial, day timer now does not go down in bed, fixed bugged where you would start with 2 plots already,Mon Mar 17 13:06
+5db8d6d,underscore95,nigth pause menu,Mon Mar 17 09:31
+e2c2f27,underscore95,fixed bug where opening and closing settings could incorrectly enable cursor when ui is open behind settings,Mon Mar 17 09:04
+651018c,underscore95,fixed settings bug,Mon Mar 17 09:00
+4ce97d5,underscore95,Shop exit confirm, scaled timer ui, fixed add coin debug cheats not working,Mon Mar 17 08:56
+a80a227,underscore95,new shop,Fri Mar 14 14:45
+aac3bd5,underscore95,always same night cheat,Fri Mar 14 13:49
+cb4c287,underscore95,crop health,Fri Mar 14 13:34
+1290712,FLYHAPY,Fixed some bugs from the play party,Fri Mar 14 13:06
+4dc835a,underscore95,decreased camera sensitivity,Fri Mar 14 11:09
+c97c4dc,underscore95,removed autosave inventory,Fri Mar 14 11:06
+b88dce0,underscore95,prevent upgrading causing negative coins,Fri Mar 14 11:06
+940bac3,underscore95,sell all instead of 1,Fri Mar 14 11:04
+3066906,underscore95,made it impossible to go to night without checking night inventory in shop,Fri Mar 14 11:02
+27faf1e,underscore95,disabled night inventory in shop,Fri Mar 14 10:59
+a7a8fb9,underscore95,save data scriptable object,Fri Mar 14 10:52
+7ac6870,underscore95,fixed bug where sometimes you cant reload, fixed bug where switching weapon fast could cause a white sprite to flicker on screen,Fri Mar 14 09:47
+8c1aa82,underscore95,gun sound effects,Fri Mar 14 09:37
+e6ad4d4,underscore95,renamed project,Fri Mar 14 09:23
+2215197,jack183190,Merge pull request #3 from OverheatStudios/ui,Thu Mar 13 14:31
+a513a4e,jack183190,removed some random save words, added plants,Thu Mar 13 14:20
+146f34d,FLYHAPY,found a bug,Thu Mar 13 13:34
+e8ab16e,jack183190,wip billboard,Thu Mar 13 13:32
+0dedecd,FLYHAPY,added inventory sprites,Thu Mar 13 13:26
+f58074a,jack183190,new volume handle,Thu Mar 13 13:10
+dee6b0f,jack183190,Merge branch 'ui',Thu Mar 13 12:58
+e389cfa,jack183190,shop prices, fixed pistol reload animation, new save button texture,Thu Mar 13 12:57
+3671648,FLYHAPY,tutorial saves step now and now has a font,Thu Mar 13 12:47
+1d92cf0,FLYHAPY,made the tutorial save,Thu Mar 13 10:39
+c61b043,underscore95,Merge branch 'plant2' of https://github.com/jack183190/DES315 into ui,Wed Mar 12 18:22
+6c51b76,FLYHAPY,forgot to save teh scene,Wed Mar 12 18:20
+a6d3492,FLYHAPY,Added ths shop tutorial,Wed Mar 12 18:19
+edd2c93,FLYHAPY,Merge branch 'main' of https://github.com/OverheatStudios/MarmotaMeadow,Wed Mar 12 16:43
+4579cd2,underscore95,enabled day countdown,Wed Mar 12 14:14
+0245d9c,underscore95,added rifle icon, removed watering can from base save,Wed Mar 12 14:10
+909acaa,underscore95,shop ui,Wed Mar 12 14:00
+83772f3,FLYHAPY,Made the day time tutorial,Wed Mar 12 16:42
+aff787c,underscore95,enabled day countdown,Wed Mar 12 14:14
+845ea81,underscore95,added rifle icon, removed watering can from base save,Wed Mar 12 14:10
+8c26106,underscore95,shop ui,Wed Mar 12 14:00
+c22423b,underscore95,resolved merge conflicts,Wed Mar 12 13:07
+269b385,underscore95,game over,Wed Mar 12 11:05
+88c8573,underscore95,debug menu features, game over,Wed Mar 12 10:46
+078e08d,underscore95,game over to death,Wed Mar 12 10:22
+f23bfa3,underscore95,Merge branch 'main' of https://github.com/jack183190/DES315 into ui,Wed Mar 12 09:58
+ea6ff12,underscore95,fixed pistol icon, random save name,Wed Mar 12 09:57
+81c3043,jack183190,Merge pull request #2 from OverheatStudios/Katie,Wed Mar 12 09:54
+a3972ef,underscore95,shotgun sfx,Wed Mar 12 09:30
+8659431,FLYHAPY,yeah made it a tiny bit cleaner,Tue Mar 11 18:00
+58d88e3,FLYHAPY,Made the code be simpler,Tue Mar 11 17:53
+4dbcfb8,FLYHAPY,Started on the Tutorial,Tue Mar 11 17:46
+8510a7c,krs285,New gameover image,Tue Mar 11 13:26
+5acf306,jack183190,Fixed groundhogs disappearing while still above ground,Tue Mar 11 13:09
+6bd4c71,jack183190,fixed ammo being in wrong position in hand,Tue Mar 11 12:59
+9f79702,jack183190,added ammo models,Tue Mar 11 12:18
+41cdcf2,underscore95,fixed missing triangles in minecraft models,Tue Mar 11 09:27
+8cdd609,underscore95,crop and seed models,Tue Mar 11 09:21
+2310bbe,underscore95,Merge branch 'main' of https://github.com/jack183190/DES315 into ui,Mon Mar 10 15:04
+6d0bfed,underscore95,compiled in release mode,Mon Mar 10 13:27
+4baea3e,underscore95,removed front face,Mon Mar 10 12:51
+71956dc,underscore95,greedy meshing,Mon Mar 10 12:46
+d5d2cf7,underscore95,minecraft model with internal face culling,Mon Mar 10 11:44
+698d83c,underscore95,ui,Mon Mar 10 08:53
+9db21fd,underscore95,rifle reload animation,Fri Mar 7 15:02
+248613f,underscore95,fixed error with reload bar,Fri Mar 7 09:28
+d646e87,underscore95,save cheat menu state in playerprefs,Fri Mar 7 09:26
+d5df01a,FLYHAPY,Merge branch 'main' into plant2,Thu Mar 6 16:33
+d32b4b7,FLYHAPY,added carrots, some shop UI, some bug fixing and settings on the day scene,Thu Mar 6 16:32
+0126e74,jack183190,Fixed build errors,Thu Mar 6 15:07
+ae7d8cb,jack183190,added burrow model,Thu Mar 6 14:49
+7e65d31,jack183190,Rifle reload animation,Thu Mar 6 14:23
+83a6b8a,jack183190,Health bar works for unusual (not divisible by num sprites - 1) max health,Thu Mar 6 14:14
+f6fbe81,jack183190,farm health!,Thu Mar 6 14:12
+ce807f4,jack183190,Credits, added reference to nouns and adjective list sources,Thu Mar 6 13:48
+abe6773,jack183190,Settings prefab,Thu Mar 6 13:40
+46ba674,jack183190,random save name gen,Thu Mar 6 13:39
+8c9a8d1,jack183190,Menu background,Thu Mar 6 13:26
+247e313,jack183190,enter save name,Thu Mar 6 13:15
+83e11f1,underscore95,added ranged groundhogs,Thu Mar 6 10:29
+89082ce,underscore95,removed upgrade gun button,Wed Mar 5 10:26
+6d9e60a,underscore95,pistol reload animation (wip),Wed Mar 5 10:25
+b7e1b4b,underscore95,merge conflict resolved,Wed Mar 5 10:10
+9afdac9,underscore95,main menu assets,Wed Mar 5 10:05
+6d44583,underscore95,added button assets to menu,Wed Mar 5 09:37
+9175b4e,jack183190,Gun reload animation,Tue Mar 4 15:13
+2642701,FLYHAPY,added actual sprites to the dropped items,Tue Mar 4 14:50
+81f1d3c,jack183190,crosshair, ammo ui,Tue Mar 4 14:24
+cebf707,jack183190,new volume icons,Tue Mar 4 14:20
+b41bde8,jack183190,health ui,Tue Mar 4 14:17
+4347712,jack183190,checkbox image,Tue Mar 4 14:10
+0f7e856,jack183190,dont save font sdf,Tue Mar 4 13:54
+4cffb98,jack183190,Merge branch 'main' into ui,Tue Mar 4 13:45
+4bfcf1b,FLYHAPY,Added a bunch of UI: plot model, inventory background, some items sprites,Tue Mar 4 13:44
+4fdba04,jack183190,fixed font x2,Tue Mar 4 13:41
+a129a83,jack183190,Tooltip on damage,Tue Mar 4 13:27
+3efe745,jack183190,Fixed font changing,Tue Mar 4 12:19
+b61bb06,underscore95,improved ux of slider,Mon Mar 3 18:11
+3a791a0,underscore95,slider,Mon Mar 3 17:58
+bc62459,underscore95,gun recoil,Mon Mar 3 12:50
+0d82514,underscore95,aim sway,Mon Mar 3 12:34
+3b0525e,underscore95,using albedo in pistol metallic map, fixed toolbar being too low,Mon Mar 3 11:49
+1877df3,underscore95,don't shoot while ui open,Mon Mar 3 11:43
+7aa6a30,underscore95,skip night button,Mon Mar 3 11:41
+b713a3d,underscore95,added pistol model,Mon Mar 3 11:37
+a896698,underscore95,fixed ammo showing when not holding a gun after just swapping,Mon Mar 3 09:50
+ad571e5,underscore95,version text,Mon Mar 3 09:42
+49ae4ea,underscore95,added music,Mon Mar 3 09:40
+a5ac605,underscore95,fixed health bug caused by spawning 2 groundhogs,Mon Mar 3 09:26
+e0ac29e,underscore95,comment,Fri Feb 28 14:24
+917b5aa,underscore95,save system integrated,Fri Feb 28 14:07
+deed1de,underscore95,backend system, ui,Fri Feb 28 13:30
+8e57a68,jack183190,start with rifle in shop,Thu Feb 27 15:09
+9cf59cc,FLYHAPY,fixed tiny bug forgot to add the gotoNightScript,Thu Feb 27 15:06
+ec2f8f1,FLYHAPY,Added Colliders and added countdown to shop Scene,Thu Feb 27 14:55
+b07ae52,jack183190,Cleaned up slot switching code, can switch slot with number keys,Thu Feb 27 14:38
+5b152b5,jack183190,Merge branch 'main' of https://github.com/jack183190/DES315,Thu Feb 27 14:10
+4914d08,jack183190,Fixed coins in shop,Thu Feb 27 14:10
+52dfdf8,FINLAY LORIMER,Merge branch 'main' of https://github.com/jack183190/DES315,Thu Feb 27 14:04
+d8d13cf,FINLAY LORIMER,Crop Mound Prefab,Thu Feb 27 14:04
+b8419bd,jack183190,Finished groundhog spawning,Thu Feb 27 13:40
+f35705d,jack183190,Merge branch 'main' of https://github.com/jack183190/DES315,Thu Feb 27 12:58
+84be24d,jack183190,wip groundhog spawns,Thu Feb 27 12:58
+330d6cb,FLYHAPY,fixed tooltip bug, night shop button bug, and fixed plants postion when spawning,Thu Feb 27 12:50
+a029efe,underscore95,pistol ammo in shop,Wed Feb 26 16:49
+c50ad8b,underscore95,multiple ammo packs working,Wed Feb 26 16:47
+38f008e,underscore95,shotgun ammo pack,Wed Feb 26 16:29
+f3529c0,FLYHAPY,Night Shop,Wed Feb 26 14:41
+f919d54,underscore95,added play button image, rearranged buttons on main menu,Wed Feb 26 10:10
+e185927,underscore95,fixed ui of debug menu,Wed Feb 26 09:43
+a142171,underscore95,git ignore night inventory,Wed Feb 26 09:33
+65cc337,underscore95,night inventory saves, always has rifle,Wed Feb 26 09:32
+afa9077,FLYHAPY,added them for good,Tue Feb 25 14:18
+42c3ac7,FLYHAPY,added buy option for the rest of the seeds on shop,Tue Feb 25 14:08
+f354179,jack183190,fixed debug menu in shop,Tue Feb 25 14:06
+487ef4f,jack183190,Merged,Tue Feb 25 13:54
+97fb940,jack183190,tank with more health,Tue Feb 25 13:51
+f6eb0f1,FINLAY LORIMER,ProBuilder,Tue Feb 25 13:28
+9a5a5d2,jack183190,supports multiple groundhogs,Tue Feb 25 13:20
+a335b75,jack183190,multiple guns,Tue Feb 25 12:49
+a7f705f,jack183190,renamed assets,Tue Feb 25 12:36
+293a3c0,FLYHAPY,Forgot some stuff,Tue Feb 25 12:12
+a1342c9,FLYHAPY,added option on shop to buy more plots,Tue Feb 25 12:10
+7e9244c,underscore95,camera sens,Mon Feb 24 20:15
+5962c0d,underscore95,save settings to file, dynamic crosshair setting,Mon Feb 24 14:20
+5c8c739,underscore95,config,Mon Feb 24 11:57
+97bc9ca,underscore95,debug menu with infinite ammo, health, and coin setting buttons, and load scene buttons,Fri Feb 21 12:23
+274d3a8,underscore95,Merge remote-tracking branch 'origin/main' into debug,Fri Feb 21 11:16
+2cef620,FLYHAPY,Fixed the inventory,Thu Feb 20 19:52
+45ec1d6,underscore95,debug menu prefab,Thu Feb 20 11:48
+d12a0c0,underscore95,moved cursor logic into its own script,Thu Feb 20 11:16
+4ac5fff,jack183190,Merge pull request #1 from jack183190/night-inventory,Thu Feb 20 10:47
+9de2c97,underscore95,fixed groundhog health bars being too low, added gun swap cooldown,Wed Feb 19 12:57
+9039ca3,underscore95,gun attributes,Wed Feb 19 12:36
+bc4a0ca,underscore95,hide ui if not holding gun,Wed Feb 19 12:07
+bb63da9,underscore95,held item models,Wed Feb 19 11:57
+9e829ed,underscore95,can't shoot unless holdnig weapon,Wed Feb 19 11:27
+e27b1b9,underscore95,can't open inventory in night scene,Wed Feb 19 10:37
+5df45df,underscore95,merge conflicts resolved,Wed Feb 19 10:32
+f77fa6a,underscore95,separate day and night inventories,Wed Feb 19 10:29
+e04251b,FLYHAPY,made the inventory to be clickable instead of dragable,Wed Feb 19 10:28
+3dafbc2,jack183190,moved fog back, brightnened night scene,Tue Feb 18 15:23
+b2f3130,FLYHAPY,shotgun model implemented,Tue Feb 18 15:17
+61dbf8f,jack183190,Merge branch 'main' into night-prototype,Tue Feb 18 15:10
+1c70ab3,jack183190,improved model, named material, fixed day materials,Tue Feb 18 15:07
+891ccf4,jack183190,fixed box collider, fixed decal scale bug,Tue Feb 18 14:52
+47cc01c,jack183190,Groundhog model, bullet decal,Tue Feb 18 14:41
+196b115,FLYHAPY,Merge branch 'main' into plant,Tue Feb 18 13:23
+4451a83,FLYHAPY,made a prototype for the shop,Tue Feb 18 13:13
+1716de0,underscore95,bullet decal,Tue Feb 18 12:20
+aad334b,underscore95,basic bullet hole,Mon Feb 17 18:36
+9604947,underscore95,lose health when groundhogs escape,Sun Feb 16 15:44
+add9744,underscore95,player health bar,Sun Feb 16 15:23
+88b4407,underscore95,Merge branch 'main' of https://github.com/jack183190/DES315,Fri Feb 14 16:23
+a5f2f9e,underscore95,fixed error message during night,Fri Feb 14 16:23
+0627c3e,underscore95,burrows always spawn in same order, fixed bug with groundhog health bars, fixed bug with groundhogsSpawned stat not incrementing,Fri Feb 14 16:20
+1b9b0d9,underscore95,improved night balancing & hitboxes based on feedback,Fri Feb 14 16:13
+60ff3e1,underscore95,implemented play party feedback for night ui,Fri Feb 14 16:06
+6de6540,FLYHAPY,Made the bed have a confirmation,Fri Feb 14 12:27
+f4aeaa7,underscore95,made menu a single scene,Fri Feb 14 11:04
+239ed4a,jack183190,changed sensitivity,Thu Feb 13 15:11
+93433ea,jack183190,Merge branch 'main' of https://github.com/jack183190/DES315,Thu Feb 13 15:07
+910bf3d,jack183190,fixed text in inventory item,Thu Feb 13 15:06
+384b385,jack183190,fixed text in inventory item,Thu Feb 13 15:06
+7fbe019,jack183190,anchored ui,Thu Feb 13 13:46
+b1d1b18,FLYHAPY,you choose the item on the scrool whell and you also start with all items,Thu Feb 13 11:49
+a3a9893,FLYHAPY,actually made bed,Thu Feb 13 11:37
+8a48390,FLYHAPY,Merge branch 'main' of https://github.com/jack183190/DES315,Thu Feb 13 11:16
+311a749,underscore95,unity changed font asset:(,Thu Feb 13 10:15
+c7ec6ea,underscore95,health bar changes colour,Thu Feb 13 10:13
+0e0a03b,underscore95,added font, changed colour of ui text, added ammo icon, added day countdown,Thu Feb 13 09:57
+0d8dce1,FLYHAPY,bed,Thu Feb 13 11:15
+0b97fd7,underscore95,unity changed font asset:(,Thu Feb 13 10:15
+0f67744,underscore95,health bar changes colour,Thu Feb 13 10:13
+baede1b,underscore95,added font, changed colour of ui text, added ammo icon, added day countdown,Thu Feb 13 09:57
+95b59eb,underscore95,crosshair is now a prefab and in day scene,Wed Feb 12 11:34
+935dc51,underscore95,dynamic crosshair colour,Wed Feb 12 11:33
+30e0227,jack183190,test,Tue Feb 11 15:13
+c5e84d7,jack183190,inreased porch size,Tue Feb 11 15:12
+9032640,jack183190,fixed stuff being disbaled that hsouldnt be,Tue Feb 11 15:09
+709f7fa,FLYHAPY,Merge branch 'main' of https://github.com/jack183190/DES315,Tue Feb 11 15:01
+ad0b086,jack183190,merge,Tue Feb 11 15:01
+cd3f2a6,jack183190,merge conflicts,Tue Feb 11 14:59
+1dad3f7,jack183190,i dont have local changes,Tue Feb 11 14:57
+5a22da3,jack183190,colliders,Tue Feb 11 14:56
+5788e9d,jack183190,credits,Tue Feb 11 14:14
+e680844,jack183190,slider options,Tue Feb 11 14:01
+ab0decb,jack183190,created settings scene,Tue Feb 11 13:02
+cf22915,underscore95,basic menu,Mon Feb 10 14:20
+67a302d,underscore95,health bars,Mon Feb 10 13:38
+72a99db,underscore95,health,Mon Feb 10 12:42
+8fd516d,underscore95,shotgun gun model,Mon Feb 10 09:33
+a97d8fb,underscore95,saved scene :),Fri Feb 7 11:10
+669db2f,underscore95,burrow count based on night count,Fri Feb 7 11:00
+e3f1a0e,FLYHAPY,Starte4d on the groundwork for the shop by having actual multipliers on the tools,Tue Feb 11 14:45
+6bb2ee1,jack183190,credits,Tue Feb 11 14:14
+506c7e0,jack183190,slider options,Tue Feb 11 14:01
+a93c166,jack183190,created settings scene,Tue Feb 11 13:02
+c2cfaa6,underscore95,basic menu,Mon Feb 10 14:20
+5b2eadd,underscore95,Merge branch 'night-prototype',Mon Feb 10 13:38
+58799c5,underscore95,health bars,Mon Feb 10 13:38
+71ddd00,FLYHAPY,for got to save some stuff sry,Mon Feb 10 13:26
+56bfda0,FLYHAPY,Made the plants actually grow and drop the crops when fullly grown,Mon Feb 10 13:24
+2a8857c,underscore95,health,Mon Feb 10 12:42
+723fcca,underscore95,shotgun gun model,Mon Feb 10 09:33
+ca7eaf6,underscore95,saved scene :),Fri Feb 7 11:10
+9f0cb20,underscore95,burrow count based on night count,Fri Feb 7 11:00
+313c651,FLYHAPY,Interactions with soil & inventory system,Wed Feb 5 18:28
+05acb00,underscore95,Merge branch 'main' of https://github.com/jack183190/DES315,Wed Feb 5 17:04
+1bc5d38,underscore95,documentated code,Wed Feb 5 17:03
+ed7140c,underscore95,night sky,Wed Feb 5 16:50
+a12acca,jack183190,Update README.md,Wed Feb 5 16:33
+f3464f0,underscore95,ammo + reloading,Wed Feb 5 16:29
+646b2e2,underscore95,fixed groundhogs spawning in predictable order,Wed Feb 5 11:52
+9e80353,underscore95,progress bar for cd,Wed Feb 5 11:49
+125650b,underscore95,shoot sfx,Wed Feb 5 11:26
+c617d9f,underscore95,hitscan,Wed Feb 5 11:12
+3064813,underscore95,added crosshair,Wed Feb 5 11:00
+6ec91ec,FLYHAPY,Sry forgot to apply the overrides to the prefab,Tue Feb 4 22:28
+e60e5ca,FLYHAPY,Fixed jiteriness and better organization,Tue Feb 4 19:51
+9e4a4e0,FLYHAPY,Fixed Movement and fixed cursur,Tue Feb 4 17:41
+35d60ec,underscore95,groundhogs spawn in burrows now,Tue Feb 4 15:55
+4e87e5f,underscore95,Night prototype,Mon Feb 3 14:07
+ac78718,jack183190,Initial commit,Mon Feb 3 11:26
