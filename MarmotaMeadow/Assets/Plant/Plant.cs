@@ -363,8 +363,6 @@ public class Plant : MonoBehaviour
             growthTimer = m_seed.ReturnGrowDuration() + growOffset;
             maxGrowthTimer = m_seed.ReturnGrowDuration() + growOffset;
             planted = true;
-            if (m_plantMultiplierIsMultiplicative) multiplier = (multiplier < 1 ? 1 : multiplier) * m_seed.ReturnAmount();
-            else multiplier += m_seed.ReturnAmount();
             //some visual feedback
             m_billboard.SetSprite(m_seed.ReturnPlantedSprite());
             OnPlanted?.Invoke();
@@ -416,6 +414,9 @@ public class Plant : MonoBehaviour
         toolMultiplier = 0;
 
         AudioSource.PlayClipAtPoint(m_harvestSfx, transform.position, m_settings.GetSettings().GetGameVolume());
+        
+        if (m_plantMultiplierIsMultiplicative) multiplier = (multiplier < 1 ? 1 : multiplier) * m_seed.ReturnAmount();
+        else multiplier += m_seed.ReturnAmount();
 
         for (int i = 0; i < multiplier; i++)
         {

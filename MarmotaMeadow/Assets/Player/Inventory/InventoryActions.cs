@@ -139,7 +139,7 @@ public class InventoryActions : MonoBehaviour
             //UI
             m_inInventory = false;
             m_inventoryUI.SetActive(false);
-            m_toolTip.SetActive(false);
+            //m_toolTip.SetActive(false);
 
             //Cursor
             m_cursorHandler.NotifyUiClosed();
