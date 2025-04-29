@@ -15,6 +15,8 @@ public class ScrObjGameOver : ScriptableObject
 
     private void OnEnable()
     {
+        hideFlags = HideFlags.DontUnloadUnusedAsset;
+
         GameOverReason = Reason.Won;
     }
 }
