@@ -1847,7 +1847,7 @@ MonoBehaviour:
   - {fileID: 90031397}
   tutorialText: {fileID: 1251129178}
   m_tutorialTextBackground: {fileID: 689688677}
-  textToDisplay: Farm the rest of your Corn and then go to sleep in your house.
+  textToDisplay: Farm the rest of your Cabbage and then go to sleep in your house.
   tutorialData:
     isFinsihed: 0
     step: 0
